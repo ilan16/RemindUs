@@ -48,11 +48,42 @@ public class MainActivity extends ActionBarActivity
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
+
+        Fragment objFragment = null;
+
+        switch(position) {
+            //Accueil
+            case 0:
+                objFragment = new AfficherAccueil();
+                break;
+            //RDV
+            case 1:
+                objFragment = new AfficherRdv();
+                break;
+            //Message prog
+            case 2:
+                objFragment = new AfficherMsgProg();
+                break;
+            //Groupe
+            case 3:
+                objFragment = new AfficherGroupe();
+                break;
+            //Contact
+            case 4:
+                objFragment = new AfficherContact();
+                break;
+            //Modèles Messages
+            case 5:
+                objFragment = new AfficherModelMsg();
+                break;
+        }
+
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                .commit();
+            .replace(R.id.container, objFragment)
+            .commit();
+
     }
 
     public void onSectionAttached(int number) {
