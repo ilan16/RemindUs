@@ -13,6 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 
+import com.remindus.projetcommun.remindus.view.AfficherAccueil;
+import com.remindus.projetcommun.remindus.view.AfficherContact;
+import com.remindus.projetcommun.remindus.view.AfficherGroupe;
+import com.remindus.projetcommun.remindus.view.AfficherModelMsg;
+import com.remindus.projetcommun.remindus.view.AfficherMsgProg;
+import com.remindus.projetcommun.remindus.view.AfficherRdv;
+import com.remindus.projetcommun.remindus.view.NavigationDrawerFragment;
+
 
 public class MainActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {

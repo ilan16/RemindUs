@@ -1,4 +1,4 @@
-package com.remindus.projetcommun.remindus;
+package com.remindus.projetcommun.remindus.view;
 
 import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
@@ -21,6 +21,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.remindus.projetcommun.remindus.R;
 
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
