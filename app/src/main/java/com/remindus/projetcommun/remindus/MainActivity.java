@@ -12,6 +12,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
+import android.widget.CalendarView;
+import android.widget.Toast;
 
 import com.remindus.projetcommun.remindus.view.AfficherContact;
 import com.remindus.projetcommun.remindus.view.AfficherAccueil;
@@ -35,7 +37,6 @@ public class MainActivity extends ActionBarActivity
      */
     private CharSequence mTitle;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +51,6 @@ public class MainActivity extends ActionBarActivity
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
-       
 
     }
 
