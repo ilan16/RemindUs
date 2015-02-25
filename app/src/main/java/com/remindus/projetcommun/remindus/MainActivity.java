@@ -13,9 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 
-import com.remindus.projetcommun.remindus.model.ModelContactAndroid;
-import com.remindus.projetcommun.remindus.view.AfficherAccueil;
 import com.remindus.projetcommun.remindus.view.AfficherContact;
+import com.remindus.projetcommun.remindus.view.AfficherAccueil;
 import com.remindus.projetcommun.remindus.view.AfficherGroupe;
 import com.remindus.projetcommun.remindus.view.AfficherModelMsg;
 import com.remindus.projetcommun.remindus.view.AfficherMsgProg;
@@ -79,8 +78,7 @@ public class MainActivity extends ActionBarActivity
                 break;
             //Contact
             case 4:
-                //objFragment = new AfficherContact();
-                objFragment = new ModelContactAndroid();
+                objFragment = new AfficherContact();
                 break;
             //Modèles Messages
             case 5:
