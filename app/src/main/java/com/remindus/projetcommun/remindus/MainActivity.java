@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 import com.remindus.projetcommun.remindus.view.AfficherContact;
 import com.remindus.projetcommun.remindus.view.AfficherAccueil;
-import com.remindus.projetcommun.remindus.view.AfficherGroupe;
 import com.remindus.projetcommun.remindus.view.AfficherModelMsg;
 import com.remindus.projetcommun.remindus.view.AfficherMsgProg;
 import com.remindus.projetcommun.remindus.view.AfficherRdv;
@@ -25,6 +24,7 @@ import com.remindus.projetcommun.remindus.view.NavigationDrawerFragment;
 
 
 public class MainActivity extends ActionBarActivity
+
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     /**
@@ -74,7 +74,7 @@ public class MainActivity extends ActionBarActivity
                 break;
             //Groupe
             case 3:
-                objFragment = new AfficherGroupe();
+                objFragment = new com.remindus.projetcommun.remindus.AfficherGroupe();
                 break;
             //Contact
             case 4:
