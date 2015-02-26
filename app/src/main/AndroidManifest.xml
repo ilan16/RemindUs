@@ -20,6 +20,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.AfficherAccueil" android:label="Accueil" />
+        <activity android:name=".view.AfficherMsgProg" android:label="Message Programmé" />
+        <activity android:name=".view.AfficherRdv" android:label="RDV" />
+        <activity android:name=".view.AfficherModelMsg" android:label="Modèle Message" />
+        <activity android:name=".view.AfficherContact" android:label="Contact" />
     </application>
 
 </manifest>
