@@ -32,4 +32,9 @@ public class ModelContact {
     public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
+
+    @Override
+    public String toString() {
+        return contact + " " + telephone;
+    }
 }
