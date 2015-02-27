@@ -4,21 +4,20 @@ package com.remindus.projetcommun.remindus;
  * Created by bahia on 26/02/2015.
  */
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 
-import com.remindus.projetcommun.remindus.view.AfficherAccueil;
-import com.remindus.projetcommun.remindus.view.AfficherContact;
-import com.remindus.projetcommun.remindus.view.AfficherModelMsg;
-import com.remindus.projetcommun.remindus.view.AfficherMsgProg;
-import com.remindus.projetcommun.remindus.view.AfficherRdv;
+import com.remindus.projetcommun.remindus.controller.ControllerContact;
+import com.remindus.projetcommun.remindus.controller.ControllerGroupe;
+import com.remindus.projetcommun.remindus.controller.ControllerModelMsg;
+import com.remindus.projetcommun.remindus.controller.ControllerMsgProg;
+import com.remindus.projetcommun.remindus.controller.ControllerCalendrier;
+import com.remindus.projetcommun.remindus.controller.ControllerRdv;
 
 public class MainActivity extends ActionBarActivity {
     @Override
@@ -31,7 +30,7 @@ public class MainActivity extends ActionBarActivity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AfficherAccueil.class);
+                Intent intent = new Intent(MainActivity.this, ControllerCalendrier.class);
                 startActivity(intent);
             }
         });
@@ -41,7 +40,7 @@ public class MainActivity extends ActionBarActivity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AfficherRdv.class);
+                Intent intent = new Intent(MainActivity.this, ControllerRdv.class);
                 startActivity(intent);
             }
         });
@@ -51,7 +50,7 @@ public class MainActivity extends ActionBarActivity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AfficherMsgProg.class);
+                Intent intent = new Intent(MainActivity.this, ControllerMsgProg.class);
                 startActivity(intent);
             }
         });
@@ -61,8 +60,8 @@ public class MainActivity extends ActionBarActivity {
 
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(MainActivity.this, AfficherAccueil.class);
-                //startActivity(intent);
+                Intent intent = new Intent(MainActivity.this, ControllerGroupe.class);
+                startActivity(intent);
             }
         });
 
@@ -71,7 +70,7 @@ public class MainActivity extends ActionBarActivity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AfficherContact.class);
+                Intent intent = new Intent(MainActivity.this, ControllerContact.class);
                 startActivity(intent);
             }
         });
@@ -81,7 +80,7 @@ public class MainActivity extends ActionBarActivity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AfficherModelMsg.class);
+                Intent intent = new Intent(MainActivity.this, ControllerModelMsg.class);
                 startActivity(intent);
             }
         });

@@ -1,4 +1,4 @@
-package com.remindus.projetcommun.remindus;
+package com.remindus.projetcommun.remindus.controller;
 
 import android.app.Activity;
 import android.support.v4.app.Fragment;
@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.remindus.projetcommun.remindus.R;
 import com.remindus.projetcommun.remindus.dao.DAOContact;
 import com.remindus.projetcommun.remindus.model.ModelContact;
 
@@ -19,7 +20,7 @@ import java.util.Random;
 /**
  * Created by bahia on 23/02/2015.
  */
-public class AfficherGroupe extends Activity {
+public class ControllerGroupe extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

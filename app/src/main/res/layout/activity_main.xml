@@ -49,6 +49,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/normal_padding"
-        android:text="@string/titre_accueil" />
+        android:text="@string/titre_calendrier" />
 
 </LinearLayout>

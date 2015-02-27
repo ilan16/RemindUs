@@ -1,25 +1,16 @@
-package com.remindus.projetcommun.remindus.view;
+package com.remindus.projetcommun.remindus.controller;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.provider.CalendarContract;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.Toast;
 
-import com.remindus.projetcommun.remindus.MainActivity;
 import com.remindus.projetcommun.remindus.R;
 
 /**
  * Created by bahia on 23/02/2015.
  */
-public class AfficherAccueil extends Activity implements CalendarView.OnDateChangeListener {
+public class ControllerCalendrier extends Activity implements CalendarView.OnDateChangeListener {
 
     private CalendarView calenderview=null;
     @Override

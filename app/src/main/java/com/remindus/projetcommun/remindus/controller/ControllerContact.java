@@ -1,4 +1,4 @@
-package com.remindus.projetcommun.remindus.view;
+package com.remindus.projetcommun.remindus.controller;
 
 /**
  * Created by bahia on 26/02/2015.
@@ -6,7 +6,6 @@ package com.remindus.projetcommun.remindus.view;
 
         import android.os.Bundle;
         import android.provider.ContactsContract;
-        import android.app.Activity;
         import android.app.ListActivity;
         import android.database.Cursor;
         import android.view.Menu;
@@ -15,7 +14,7 @@ package com.remindus.projetcommun.remindus.view;
 
         import com.remindus.projetcommun.remindus.R;
 
-public class AfficherContact extends ListActivity {
+public class ControllerContact extends ListActivity {
 
 
     @Override

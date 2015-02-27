@@ -4,6 +4,7 @@
     <string name="app_name">RemindUs</string>
     <string name="titre_accueil">Accueil</string>
     <string name="titre_RDV">RDV</string>
+    <string name="titre_calendrier">Calendrier</string>
     <string name="titre_msg_prog">Messages Programmés</string>
     <string name="titre_groupe">Groupe</string>
     <string name="titre_contact">Contact</string>
