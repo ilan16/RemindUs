@@ -14,8 +14,6 @@ import android.widget.Button;
 
 import com.remindus.projetcommun.remindus.controller.ControllerContact;
 import com.remindus.projetcommun.remindus.controller.ControllerGroupe;
-import com.remindus.projetcommun.remindus.controller.ControllerModelMsg;
-import com.remindus.projetcommun.remindus.controller.ControllerMsgProg;
 import com.remindus.projetcommun.remindus.controller.ControllerCalendrier;
 import com.remindus.projetcommun.remindus.controller.ControllerRdv;
 
