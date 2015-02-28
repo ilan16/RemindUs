@@ -15,7 +15,10 @@ import android.widget.Button;
 import com.remindus.projetcommun.remindus.controller.ControllerContact;
 import com.remindus.projetcommun.remindus.controller.ControllerGroupe;
 import com.remindus.projetcommun.remindus.controller.ControllerCalendrier;
+import com.remindus.projetcommun.remindus.controller.ControllerModelMsg;
+import com.remindus.projetcommun.remindus.controller.ControllerMsgProg;
 import com.remindus.projetcommun.remindus.controller.ControllerRdv;
+import com.remindus.projetcommun.remindus.controller.TesteBDD;
 
 public class MainActivity extends ActionBarActivity {
     @Override
@@ -79,6 +82,16 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ControllerModelMsg.class);
+                startActivity(intent);
+            }
+        });
+
+        final Button boutonTestBDD = (Button) findViewById(R.id.bouton_test_bdd);
+        boutonModelMsg.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, TesteBDD.class);
                 startActivity(intent);
             }
         });

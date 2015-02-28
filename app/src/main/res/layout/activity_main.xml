@@ -5,7 +5,7 @@
 
     <Button
         android:id="@+id/bouton_rdv"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/small_padding"
@@ -13,7 +13,7 @@
 
     <Button
         android:id="@+id/bouton_msg_prog"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/small_padding"
@@ -21,7 +21,7 @@
 
     <Button
         android:id="@+id/bouton_groupe"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/small_padding"
@@ -29,7 +29,7 @@
 
     <Button
         android:id="@+id/bouton_contact"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/small_padding"
@@ -37,7 +37,7 @@
 
     <Button
         android:id="@+id/bouton_model_msg"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/small_padding"
@@ -45,10 +45,18 @@
 
     <Button
         android:id="@+id/bouton_calendrier"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/normal_padding"
         android:text="@string/titre_calendrier" />
+
+    <Button
+        android:id="@+id/bouton_test_bdd"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/normal_padding"
+        android:text="Test BDD" />
 
 </LinearLayout>
