@@ -19,9 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".controller.AfficherAccueil" android:label="Accueil" />
+        <activity android:name=".controller.ControllerCalendrier" android:label="Accueil" />
         <activity android:name=".controller.ControllerMsgProg" android:label="Message Programmé" />
-        <activity android:name=".controller.AfficherRdv" android:label="RDV" />
+        <activity android:name=".controller.ControllerRdv" android:label="RDV" />
         <activity android:name=".controller.ControllerModelMsg" android:label="Modèle Message" />
         <activity android:name=".controller.ControllerContact" android:label="Contact" />
     </application>
