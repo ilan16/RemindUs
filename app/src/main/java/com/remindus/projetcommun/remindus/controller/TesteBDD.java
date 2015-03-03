@@ -40,6 +40,7 @@ public class TesteBDD extends ActionBarActivity {
 
     // Sera appelée par l'attribut onClick
     // des boutons déclarés dans main.xml
+    //eifhejkddsk
     public void onClick(View view) {
         @SuppressWarnings("unchecked")
         ArrayAdapter<ModelContact> adapter = (ArrayAdapter<ModelContact>) l.getAdapter();
