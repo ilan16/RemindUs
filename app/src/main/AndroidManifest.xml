@@ -25,6 +25,7 @@
         <activity android:name=".controller.ControllerModelMsg" android:label="Modèle Message" />
         <activity android:name=".controller.ControllerContact" android:label="Contact" />
         <activity android:name=".controller.ControllerGroupe" android:label="Groupe" />
+        <activity android:name=".controller.ControllerParametre" android:label="Parametre" />
     </application>
 
 </manifest>

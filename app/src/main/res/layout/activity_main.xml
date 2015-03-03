@@ -59,4 +59,11 @@
         android:layout_marginTop="@dimen/normal_padding"
         android:text="Test BDD" />
 
+    <Button
+        android:id="@+id/bouton_parametre"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/normal_padding"
+        android:text="Parametre" />
 </LinearLayout>
