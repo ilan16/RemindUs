@@ -26,6 +26,7 @@
         <activity android:name=".controller.ControllerContact" android:label="Contact" />
         <activity android:name=".controller.ControllerGroupe" android:label="Groupe" />
         <activity android:name=".controller.ControllerParametre" android:label="Parametre" />
+        <activity android:name=".controller.TesteBDD" android:label="TestBDD"/>
     </application>
 
 </manifest>

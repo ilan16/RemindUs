@@ -2,6 +2,9 @@ package com.remindus.projetcommun.remindus.controller;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.CalendarView;
 import android.widget.Toast;
 
@@ -10,7 +13,7 @@ import com.remindus.projetcommun.remindus.R;
 /**
  * Created by bahia on 23/02/2015.
  */
-public class ControllerCalendrier extends Activity /*implements CalendarView.OnDateChangeListener*/ {
+public class ControllerCalendrier extends ActionBarActivity /*implements CalendarView.OnDateChangeListener*/ {
 
     private CalendarView calenderview=null;
     @Override
@@ -56,8 +59,32 @@ public class ControllerCalendrier extends Activity /*implements CalendarView.OnD
             //show the selected date as a toast
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int day) {
-                Toast.makeText(getApplicationContext(), day + "/" + (month+1) + "/" + year, Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), day + "/" + (month+1) + "/" + year, Toast.LENGTH_SHORT).show();
             }
         });
+
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_controller_calendrier, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
