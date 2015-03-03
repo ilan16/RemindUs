@@ -87,7 +87,7 @@ public class MainActivity extends ActionBarActivity {
         });
 
         final Button boutonTestBDD = (Button) findViewById(R.id.bouton_test_bdd);
-        boutonModelMsg.setOnClickListener(new View.OnClickListener() {
+        boutonTestBDD.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
