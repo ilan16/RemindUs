@@ -26,7 +26,7 @@ public class TesteBDD extends ActionBarActivity {
         setContentView(R.layout.activity_teste_bdd);
 
         datasource = new DAOContact(this);
-        datasource.open();
+        datasource.getCrud().open();
 
         List<ModelContact> values = datasource.getAllContacts();
         l = (ListView) findViewById(R.id.list);
@@ -40,7 +40,6 @@ public class TesteBDD extends ActionBarActivity {
 
     // Sera appelée par l'attribut onClick
     // des boutons déclarés dans main.xml
-    //eifhejkddsk
     public void onClick(View view) {
         @SuppressWarnings("unchecked")
         ArrayAdapter<ModelContact> adapter = (ArrayAdapter<ModelContact>) l.getAdapter();
@@ -67,13 +66,13 @@ public class TesteBDD extends ActionBarActivity {
 
     @Override
     protected void onResume() {
-        datasource.open();
+        datasource.getCrud().open();
         super.onResume();
     }
 
     @Override
     protected void onPause() {
-        datasource.close();
+        datasource.getCrud().close();
         super.onPause();
     }
 

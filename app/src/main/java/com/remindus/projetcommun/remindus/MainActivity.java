@@ -20,6 +20,7 @@ import com.remindus.projetcommun.remindus.controller.ControllerMsgProg;
 import com.remindus.projetcommun.remindus.controller.ControllerParametre;
 import com.remindus.projetcommun.remindus.controller.ControllerRdv;
 import com.remindus.projetcommun.remindus.controller.TesteBDD;
+import com.remindus.projetcommun.remindus.controller.TesteBDD2;
 
 public class MainActivity extends ActionBarActivity {
     @Override
@@ -92,7 +93,7 @@ public class MainActivity extends ActionBarActivity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, TesteBDD.class);
+                Intent intent = new Intent(MainActivity.this, TesteBDD2.class);
                 startActivity(intent);
             }
         });
