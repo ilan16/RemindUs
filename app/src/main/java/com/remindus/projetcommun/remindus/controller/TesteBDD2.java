@@ -91,21 +91,23 @@ public class TesteBDD2 extends ActionBarActivity {
         ArrayAdapter<ModelContact> adapter = new ArrayAdapter<ModelContact>(this,
                 android.R.layout.simple_list_item_1, values);
         l.setAdapter(adapter);
+
         l.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                         Log.i("Tag", "Position=" + values.get(position));
-
-                        // Fait Planter le SmartPhone
-                        //String item = (String)parent.getItemAtPosition(position);
-                        //String  item = ((TextView)view).getText().toString();
-
                         Toast.makeText(getApplicationContext(), "Test", Toast.LENGTH_SHORT).show();
-
                     }
-                 });
+                });
+
+        l.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getApplicationContext(), "Longggggg", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
         datasource.getCrud().close();
     }
 

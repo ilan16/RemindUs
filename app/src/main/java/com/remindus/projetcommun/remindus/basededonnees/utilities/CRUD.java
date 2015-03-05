@@ -87,7 +87,7 @@ public class CRUD {
         return true;
     }
 
-    public void select(String sql){
+    public void requeteGeneral(String sql){
         this.database.execSQL(sql);
     }
 
