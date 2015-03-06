@@ -19,7 +19,7 @@ public class ControllerCalendrier extends ActionBarActivity /*implements Calenda
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.vue_afficher_accueil);
+        setContentView(R.layout.vue_afficher_calendrier);
         /*calenderview=(CalendarView)findViewById(R.id.calendarView_cl);
         calenderview.setOnDateChangeListener(this);*/
         initializeCalendar();
@@ -69,7 +69,7 @@ public class ControllerCalendrier extends ActionBarActivity /*implements Calenda
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_controller_calendrier, menu);
+        getMenuInflater().inflate(R.menu.global, menu);
         return true;
     }
 
