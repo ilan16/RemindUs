@@ -3,6 +3,10 @@ package com.remindus.projetcommun.remindus.dao;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+import android.widget.EditText;
 
 import com.remindus.projetcommun.remindus.basededonnees.MySQLiteHelper;
 import com.remindus.projetcommun.remindus.basededonnees.utilities.CRUD;
@@ -15,6 +19,7 @@ import java.util.List;
  * Created by Ilan on 24/02/2015.
  */
 public class DAOContact {
+
     private MySQLiteHelper dbHelper;
     private String[] allColumns = {
             MySQLiteHelper.COLUMN_ID_CONTACT,
@@ -35,21 +40,17 @@ public class DAOContact {
         this.crud = crud;
     }
 
-    public ModelContact createContact(String contact, String telephone) {
+    public boolean insertContact(String contact, String telephone) {
         ContentValues values = new ContentValues();
-        ModelContact newContact = null;
         values.put(MySQLiteHelper.COLUMN_NOM_CONTACT, contact);
         values.put(MySQLiteHelper.COLUMN_TELEPHONE, telephone);
-        long insertId = crud.getDatabase().insert(MySQLiteHelper.TABLE_CONTACTS, null,
-                values);
+        this.crud.open();
         boolean insert = crud.insert(MySQLiteHelper.TABLE_CONTACTS, values);
-        Cursor cursor = crud.getDatabase().query(MySQLiteHelper.TABLE_CONTACTS,
-                allColumns, MySQLiteHelper.COLUMN_ID_CONTACT + " = " + crud.getInsert(), null,
-                null, null, null);
-        cursor.moveToFirst();
-        newContact = cursorToContact(cursor);
-        cursor.close();
-        return newContact;
+        this.crud.close();
+        if(insert) {
+            return true;
+        }
+        return false;
     }
 
     public void deleteContact(ModelContact contact) {

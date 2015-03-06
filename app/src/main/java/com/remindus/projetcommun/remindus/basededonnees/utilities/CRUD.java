@@ -68,8 +68,8 @@ public class CRUD {
 
     public boolean insert(String table, ContentValues values) {
         this.insert = this.database.insert(table, null, values);
+        this.setInsert(this.insert);
         if (this.insert == -1) {
-            this.setInsert(this.insert);
             Log.i("INSERT", "false");
             System.out.println(insert);
             return false;

@@ -1,6 +1,5 @@
 package com.remindus.projetcommun.remindus.controller;
 
-import android.content.ContentValues;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -14,7 +13,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.remindus.projetcommun.remindus.R;
-import com.remindus.projetcommun.remindus.basededonnees.MySQLiteHelper;
 import com.remindus.projetcommun.remindus.dao.DAOContact;
 import com.remindus.projetcommun.remindus.model.ModelContact;
 
@@ -25,8 +23,8 @@ import java.util.List;
  */
 public class TesteBDD2 extends ActionBarActivity {
 
-    private EditText nom;
-    private EditText phone;
+    private EditText contactEdit;
+    private EditText telephoneEdit;
     private DAOContact datasource;
 
     @Override
@@ -34,6 +32,7 @@ public class TesteBDD2 extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teste_bdd_2);
     }
+
 
 
     @Override
@@ -58,24 +57,27 @@ public class TesteBDD2 extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void onClick(View v) {
+    public void onClick (View v) {
         Log.i("Test:", "bouton ajouté appuié");
-        nom = (EditText) findViewById(R.id.name);
-        phone = (EditText) findViewById(R.id.phone);
+        contactEdit = (EditText) findViewById(R.id.name);
+        telephoneEdit = (EditText) findViewById(R.id.phone);
+
+        String contact =  contactEdit.getText().toString();
+        String telephone = telephoneEdit.getText().toString();
 
         datasource = new DAOContact(this);
-        datasource.getCrud().open();
-        ContentValues c = new ContentValues();
-        c.put(MySQLiteHelper.COLUMN_NOM_CONTACT, nom.getText().toString());
-        c.put(MySQLiteHelper.COLUMN_TELEPHONE, phone.getText().toString());
-        datasource.getCrud().insert(MySQLiteHelper.TABLE_CONTACTS, c);
-        datasource.getCrud().close();
-        Log.i("Name:", " " + nom.getText().toString() + " ");
-        Log.i("Phone:", " " + phone.getText().toString() + " ");
+        if(telephone.length() < 8){
+            Toast.makeText(getApplicationContext(), R.string.erreur_telephone_contact, Toast.LENGTH_LONG).show();
+        }else {
+            datasource.insertContact(contact, telephone);
+        }
+
+        Log.i("Name:", " " + contactEdit.getText().toString() + " ");
+        Log.i("Phone:", " "+ telephoneEdit.getText().toString()+" ");
     }
 
 
-    public void lister(View view) {
+    public void lister(View view){
 
         Log.i("Test:", "bouton lister appuié");
         datasource = new DAOContact(this);
