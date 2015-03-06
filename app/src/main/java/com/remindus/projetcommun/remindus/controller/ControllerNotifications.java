@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.remindus.projetcommun.remindus.R;
@@ -29,86 +30,40 @@ public class ControllerNotifications extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vue_afficher_notifications);
 
-        addListenerOnChkNormal();
-        addListenerOnButton();
     }
 
-    public void addListenerOnChkNormal() {
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
 
-        normal = (CheckBox) findViewById(R.id.notif_normal);
-        normal.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                if (((CheckBox) v).isChecked()) {
-
-                    AudioManager audiomanage = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.notif_normal:
+                if (checked) {
+                    AudioManager audiomanage = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
                     audiomanage.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
 
                     Toast.makeText(ControllerNotifications.this, "Mode normal activé !", Toast.LENGTH_LONG).show();
+                    break;
                 }
-
-            }
-        });
-
-        silencieux = (CheckBox) findViewById(R.id.notif_silencieux);
-        silencieux.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                if (((CheckBox) v).isChecked()) {
-
-                    AudioManager audiomanage = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
+            case R.id.notif_silencieux:
+                if (checked) {
+                    AudioManager audiomanage = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
                     audiomanage.setRingerMode(AudioManager.RINGER_MODE_SILENT);
 
                     Toast.makeText(ControllerNotifications.this, "Mode silencieux activé !", Toast.LENGTH_LONG).show();
-                }
+                    break;
+                }case R.id.notif_vibreur:
+                if (checked) {
 
-            }
-        });
-
-        vibreur = (CheckBox) findViewById(R.id.notif_vibreur);
-        vibreur.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                if (((CheckBox) v).isChecked()) {
-
-                    AudioManager audiomanage = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
+                    AudioManager audiomanage = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
                     audiomanage.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
 
                     Toast.makeText(ControllerNotifications.this, "Mode vibreur activé !", Toast.LENGTH_LONG).show();
-                }
 
-            }
-        });
-
+                }break;
+        }
     }
 
-    public void addListenerOnButton() {
 
-        silencieux = (CheckBox) findViewById(R.id.notif_silencieux);
-        vibreur = (CheckBox) findViewById(R.id.notif_vibreur);
-        normal = (CheckBox) findViewById(R.id.notif_normal);
-        button = (Button) findViewById(R.id.notif_button);
-
-        button.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                StringBuffer result = new StringBuffer();
-                result.append("Silencieux check : ").append(silencieux.isChecked());
-                result.append("\nVibreur check : ").append(vibreur.isChecked());
-                result.append("\nNormal check :").append(normal.isChecked());
-
-                Toast.makeText(ControllerNotifications.this, result.toString(), Toast.LENGTH_LONG).show();
-
-            }
-        });
-
-    }
 }

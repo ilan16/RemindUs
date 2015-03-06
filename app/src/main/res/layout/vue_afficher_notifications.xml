@@ -13,7 +13,29 @@
         android:text="Notifications : Choisir mode de sonnerie"
         android:id="@+id/textView2" />
 
-    <CheckBox
+
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <RadioButton android:id="@+id/notif_silencieux"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/silencieux"
+            android:onClick="onRadioButtonClicked"/>
+        <RadioButton android:id="@+id/notif_vibreur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/vibreur"
+        android:onClick="onRadioButtonClicked"/>
+        <RadioButton android:id="@+id/notif_normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/normal"
+            android:onClick="onRadioButtonClicked"/>
+    </RadioGroup>
+
+    <!--<CheckBox
         android:layout_width="320dp"
         android:layout_height="152dp"
         android:text="Silencieux"
@@ -38,5 +60,5 @@
         android:layout_height="wrap_content"
         android:text="Valider"
         android:id="@+id/notif_button"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal" />-->
 </LinearLayout>
