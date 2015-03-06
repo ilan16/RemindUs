@@ -21,6 +21,7 @@
     <string name="action_home">Home</string>
     <string name="hello_world">Hello World</string>
     <string name="titre_accueil">Accueil</string>
+    <string name="titre_notifications">Notifications</string>
 
     <!-- MESSAGES ERREURS -->
     <string name="erreur_telephone_contact">Le numéro de téléphone doit contenir au moins 8 chiffres</string>

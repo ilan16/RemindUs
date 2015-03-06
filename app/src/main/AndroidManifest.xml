@@ -48,6 +48,9 @@
         <activity
             android:name=".controller.ControllerLangues"
             android:label="@string/titre_langues" />
+        <activity
+            android:name=".controller.ControllerNotifications"
+            android:label="@string/titre_notifications" />
     </application>
 
 </manifest>

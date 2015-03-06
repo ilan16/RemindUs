@@ -2,7 +2,41 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="1">
 
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Notifications : Choisir mode de sonnerie"
+        android:id="@+id/textView2" />
+
+    <CheckBox
+        android:layout_width="320dp"
+        android:layout_height="152dp"
+        android:text="Silencieux"
+        android:id="@+id/notif_silencieux" />
+
+    <CheckBox
+        android:layout_width="316dp"
+        android:layout_height="wrap_content"
+        android:text="Vibreur"
+        android:id="@+id/notif_vibreur"
+        android:layout_weight="0.38" />
+
+    <CheckBox
+        android:layout_width="316dp"
+        android:layout_height="wrap_content"
+        android:text="Normal"
+        android:id="@+id/notif_normal"
+        android:layout_weight="0.38" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Valider"
+        android:id="@+id/notif_button"
+        android:layout_gravity="center_horizontal" />
 </LinearLayout>
