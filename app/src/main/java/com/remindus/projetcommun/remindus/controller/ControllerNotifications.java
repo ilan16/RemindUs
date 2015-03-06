@@ -1,6 +1,7 @@
 package com.remindus.projetcommun.remindus.controller;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -70,6 +71,20 @@ public class ControllerNotifications extends ActionBarActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.global, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // TODO Auto-generated method stub
+        switch (item.getItemId()) {
+            case R.id.bouton_parametre:
+                Intent intent = new Intent(ControllerNotifications.this, ControllerParametre.class);
+                startActivity(intent);
+                break;
+
+        }
+
+        return false;
     }
 
 

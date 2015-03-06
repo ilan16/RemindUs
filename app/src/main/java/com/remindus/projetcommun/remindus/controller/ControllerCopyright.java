@@ -1,5 +1,6 @@
 package com.remindus.projetcommun.remindus.controller;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -27,17 +28,16 @@ public class ControllerCopyright extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        // TODO Auto-generated method stub
+        switch (item.getItemId()) {
+            case R.id.bouton_parametre:
+                Intent intent = new Intent(ControllerCopyright.this, ControllerParametre.class);
+                startActivity(intent);
+                break;
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
         }
 
-        return super.onOptionsItemSelected(item);
+        return false;
     }
 
 }
