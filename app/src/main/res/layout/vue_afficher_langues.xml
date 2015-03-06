@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <Button
@@ -12,6 +13,14 @@
         android:text="Français" />
 
     <Button
+        android:id="@+id/bouton_en"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/small_padding"
+        android:text="English" />
+
+    <Button
         android:id="@+id/bouton_ar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -19,5 +28,11 @@
         android:layout_marginTop="@dimen/small_padding"
         android:text="Arabe" />
 
-
+    <Button
+        android:id="@+id/bouton_hw"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/small_padding"
+        android:text="Hebreu" />
 </LinearLayout>

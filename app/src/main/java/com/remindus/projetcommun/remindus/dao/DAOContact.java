@@ -3,8 +3,6 @@ package com.remindus.projetcommun.remindus.dao;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
 
 import com.remindus.projetcommun.remindus.basededonnees.MySQLiteHelper;
 import com.remindus.projetcommun.remindus.basededonnees.utilities.CRUD;

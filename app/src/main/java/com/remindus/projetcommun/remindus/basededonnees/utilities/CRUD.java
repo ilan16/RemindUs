@@ -66,9 +66,9 @@ public class CRUD {
         dbHelper.close();
     }
 
-    public boolean insert(String table, ContentValues values){
+    public boolean insert(String table, ContentValues values) {
         this.insert = this.database.insert(table, null, values);
-        if (this.insert == -1){
+        if (this.insert == -1) {
             this.setInsert(this.insert);
             Log.i("INSERT", "false");
             System.out.println(insert);
@@ -78,16 +78,16 @@ public class CRUD {
         return true;
     }
 
-    public boolean delete(String table, String whereClause){
-        this.delete = this.database.delete(table,whereClause,null);
-        if(this.delete==0){
+    public boolean delete(String table, String whereClause) {
+        this.delete = this.database.delete(table, whereClause, null);
+        if (this.delete == 0) {
             this.setDelete(this.delete);
             return false;
         }
         return true;
     }
 
-    public void requeteGeneral(String sql){
+    public void requeteGeneral(String sql) {
         this.database.execSQL(sql);
     }
 

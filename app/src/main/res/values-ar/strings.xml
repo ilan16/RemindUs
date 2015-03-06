@@ -10,4 +10,9 @@
     <string name="titre_RDV">موعد</string>
     <string name="action_parametres">الإعدادات</string>
     <string name="action_aide">مساعدة</string>
+    <string name="action_home">ترحيب</string>
+    <string name="titre_home">ترحيب</string>
+    <string name="titre_langues">اللغات</string>
+    <string name="titre_parametre">المعلمات</string>
+    <string name="titre_aide">مساعدة</string>
 </resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RemindUs</string>
+    <string name="titre_accueil">בית</string>
+    <string name="titre_aide">עזרה</string>
+    <string name="titre_calendrier">לוח שנה</string>
+    <string name="titre_contact">אנשי קשר</string>
+    <string name="titre_groupe">קבוצה</string>
+    <string name="titre_home">בית</string>
+    <string name="titre_langues">שפות</string>
+    <string name="titre_model_msg">הודעות דגמים</string>
+    <string name="titre_msg_prog">הודעות מתוכננות</string>
+    <string name="titre_parametre">הגדרות</string>
+</resources>

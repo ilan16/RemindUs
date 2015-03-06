@@ -4,16 +4,16 @@ package com.remindus.projetcommun.remindus.controller;
  * Created by bahia on 26/02/2015.
  */
 
-        import android.os.Bundle;
-        import android.provider.ContactsContract;
-        import android.app.ListActivity;
-        import android.database.Cursor;
-        import android.view.Menu;
-        import android.view.MenuItem;
-        import android.widget.ListView;
-        import android.widget.SimpleCursorAdapter;
+import android.app.ListActivity;
+import android.database.Cursor;
+import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 
-        import com.remindus.projetcommun.remindus.R;
+import com.remindus.projetcommun.remindus.R;
 
 public class ControllerContact extends ListActivity {
 

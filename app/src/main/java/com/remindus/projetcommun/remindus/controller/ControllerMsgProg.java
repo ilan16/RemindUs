@@ -1,12 +1,9 @@
 package com.remindus.projetcommun.remindus.controller;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
@@ -52,24 +49,24 @@ public class ControllerMsgProg extends ActionBarActivity {
 
         // Process to get Current Time
         final Calendar c = Calendar.getInstance();
-        mHour = c.get(Calendar.HOUR_OF_DAY)+6;
+        mHour = c.get(Calendar.HOUR_OF_DAY) + 6;
         mMinute = c.get(Calendar.MINUTE);
 
         // Launch Time Picker Dialog
         TimePickerDialog tpd = new TimePickerDialog(this,
-            new TimePickerDialog.OnTimeSetListener() {
+                new TimePickerDialog.OnTimeSetListener() {
 
-                        @Override
-                        public void onTimeSet(TimePicker view, int hourOfDay,
-                                              int minute) {
-                // Display Selected time in textbox
-                editHeure.setText(hourOfDay + ":" + minute);
-                }
-                              }, mHour, mMinute, true);
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay,
+                                          int minute) {
+                        // Display Selected time in textbox
+                        editHeure.setText(hourOfDay + ":" + minute);
+                    }
+                }, mHour, mMinute, true);
         tpd.show();
     }
 
-    public void ajouterDate(View view){
+    public void ajouterDate(View view) {
         // Process to get Current Date
         final Calendar c = Calendar.getInstance();
         mYear = c.get(Calendar.YEAR);

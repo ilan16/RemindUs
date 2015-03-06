@@ -1,7 +1,5 @@
 package com.remindus.projetcommun.remindus.controller;
 
-import android.app.ActionBar;
-import android.app.ListActivity;
 import android.content.ContentValues;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -38,7 +36,6 @@ public class TesteBDD2 extends ActionBarActivity {
     }
 
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -61,7 +58,7 @@ public class TesteBDD2 extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void onClick (View v) {
+    public void onClick(View v) {
         Log.i("Test:", "bouton ajouté appuié");
         nom = (EditText) findViewById(R.id.name);
         phone = (EditText) findViewById(R.id.phone);
@@ -73,12 +70,12 @@ public class TesteBDD2 extends ActionBarActivity {
         c.put(MySQLiteHelper.COLUMN_TELEPHONE, phone.getText().toString());
         datasource.getCrud().insert(MySQLiteHelper.TABLE_CONTACTS, c);
         datasource.getCrud().close();
-        Log.i("Name:", " "+ nom.getText().toString()+" ");
-        Log.i("Phone:", " "+ phone.getText().toString()+" ");
+        Log.i("Name:", " " + nom.getText().toString() + " ");
+        Log.i("Phone:", " " + phone.getText().toString() + " ");
     }
 
 
-    public void lister(View view){
+    public void lister(View view) {
 
         Log.i("Test:", "bouton lister appuié");
         datasource = new DAOContact(this);

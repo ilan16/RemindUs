@@ -1,7 +1,5 @@
 package com.remindus.projetcommun.remindus.controller;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -9,21 +7,29 @@ import android.view.MenuItem;
 
 import com.remindus.projetcommun.remindus.R;
 
+import java.util.Locale;
+
 /**
- * Created by bahia on 23/02/2015.
+ * Created by samairi on 03/03/2015.
  */
+
 public class ControllerNotifications extends ActionBarActivity {
 
+    private Locale myLocale;
+
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vue_afficher_notifications);
+
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_controller_model_msg, menu);
+        getMenuInflater().inflate(R.menu.global, menu);
         return true;
     }
 
@@ -41,5 +47,6 @@ public class ControllerNotifications extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 
 }

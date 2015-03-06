@@ -3,7 +3,6 @@ package com.remindus.projetcommun.remindus.basededonnees;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 /**
  * Created by Ilan on 24/02/2015.
@@ -35,7 +34,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             + TABLE_GROUPES + "("
             + COLUMN_ID_GROUPE + " integer primary key autoincrement, "
             + COLUMN_NOM_GROUPE + " text not null,"
-            + COLUMN_FK_ID_CONTACT + " text not null CONSTRAINT fk_contact_id REFERENCES " + TABLE_CONTACTS + "("+ COLUMN_ID_CONTACT +"));";
+            + COLUMN_FK_ID_CONTACT + " text not null CONSTRAINT fk_contact_id REFERENCES " + TABLE_CONTACTS + "(" + COLUMN_ID_CONTACT + "));";
 
     public MySQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

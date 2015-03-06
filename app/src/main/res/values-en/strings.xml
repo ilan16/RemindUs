@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RemindUs</string>
+    <string name="action_aide">Help</string>
+    <string name="action_home">Home</string>
+    <string name="action_parametres">Settings</string>
+    <string name="action_settings">Settings</string>
+    <string name="titre_RDV">Meetings</string>
+    <string name="titre_accueil">Home</string>
+    <string name="titre_aide">Help</string>
+    <string name="titre_calendrier">Schedule</string>
+    <string name="titre_contact">Contact</string>
+    <string name="titre_groupe">Group</string>
+    <string name="titre_home">Home</string>
+    <string name="titre_langues">Languages</string>
+    <string name="titre_model_msg">Predefined Messages</string>
+    <string name="titre_msg_prog">Programmed Messages</string>
+    <string name="titre_parametre">Settings</string>
+</resources>

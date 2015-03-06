@@ -1,7 +1,7 @@
 package com.remindus.projetcommun.remindus.controller;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -46,8 +46,8 @@ public class TesteBDD extends ActionBarActivity {
         ModelContact comment = null;
         switch (view.getId()) {
             case R.id.add:
-                String[] contacts = new String[] { "Cool", "Very nice", "Hate it" };
-                String[] telephone = new String[] { "0123456789", "01478523369", "796541230" };
+                String[] contacts = new String[]{"Cool", "Very nice", "Hate it"};
+                String[] telephone = new String[]{"0123456789", "01478523369", "796541230"};
                 int nextInt = new Random().nextInt(3);
                 // enregistrer le nouveau commentaire dans la base de données
                 comment = datasource.createContact(contacts[nextInt], telephone[nextInt]);

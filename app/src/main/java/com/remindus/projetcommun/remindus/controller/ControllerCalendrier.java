@@ -1,6 +1,5 @@
 package com.remindus.projetcommun.remindus.controller;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -15,7 +14,8 @@ import com.remindus.projetcommun.remindus.R;
  */
 public class ControllerCalendrier extends ActionBarActivity /*implements CalendarView.OnDateChangeListener*/ {
 
-    private CalendarView calenderview=null;
+    private CalendarView calenderview = null;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +33,7 @@ public class ControllerCalendrier extends ActionBarActivity /*implements Calenda
     }*/
 
     public void initializeCalendar() {
-        calenderview=(CalendarView)findViewById(R.id.calendarView_cl);
+        calenderview = (CalendarView) findViewById(R.id.calendarView_cl);
 
         // sets whether to show the week number.
         calenderview.setShowWeekNumber(false);
@@ -59,7 +59,7 @@ public class ControllerCalendrier extends ActionBarActivity /*implements Calenda
             //show the selected date as a toast
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int day) {
-                Toast.makeText(getApplicationContext(), day + "/" + (month+1) + "/" + year, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), day + "/" + (month + 1) + "/" + year, Toast.LENGTH_SHORT).show();
             }
         });
 

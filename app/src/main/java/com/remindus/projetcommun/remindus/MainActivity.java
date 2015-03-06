@@ -5,28 +5,41 @@ package com.remindus.projetcommun.remindus;
  */
 
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.remindus.projetcommun.remindus.controller.ControllerCalendrier;
 import com.remindus.projetcommun.remindus.controller.ControllerContact;
 import com.remindus.projetcommun.remindus.controller.ControllerGroupe;
-import com.remindus.projetcommun.remindus.controller.ControllerCalendrier;
 import com.remindus.projetcommun.remindus.controller.ControllerModelMsg;
 import com.remindus.projetcommun.remindus.controller.ControllerMsgProg;
 import com.remindus.projetcommun.remindus.controller.ControllerParametre;
 import com.remindus.projetcommun.remindus.controller.ControllerRdv;
-import com.remindus.projetcommun.remindus.controller.TesteBDD;
 import com.remindus.projetcommun.remindus.controller.TesteBDD2;
+
+import java.util.Locale;
 
 public class MainActivity extends ActionBarActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        Locale myLocale = new Locale("fr");
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.locale = myLocale;
+        res.updateConfiguration(conf, dm);
 
         final Button boutonAccueil = (Button) findViewById(R.id.bouton_calendrier);
         boutonAccueil.setOnClickListener(new View.OnClickListener() {
@@ -111,8 +124,24 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
+        super.onCreateOptionsMenu(menu);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.global, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // TODO Auto-generated method stub
+        switch (item.getItemId()) {
+            case R.id.bouton_parametre:
+                Intent intent = new Intent(MainActivity.this, ControllerParametre.class);
+                startActivity(intent);
+                break;
+
+        }
+
+        return false;
     }
 }

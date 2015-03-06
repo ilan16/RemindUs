@@ -1,7 +1,5 @@
 package com.remindus.projetcommun.remindus.controller;
 
-import android.app.ActionBar;
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
