@@ -1,5 +1,9 @@
 package com.remindus.projetcommun.remindus.controller;
 
+import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 /**
  * Created by samairi on 03/03/2015.
  */
@@ -18,19 +22,8 @@ import android.widget.SimpleCursorAdapter;
 
 import com.remindus.projetcommun.remindus.R;
 
-public class ControllerParametre extends ListActivity {
+public class ControllerParametre extends ActionBarActivity {
 
-    @Override
-    public long getSelectedItemId() {
-        // TODO Auto-generated method stub
-        return super.getSelectedItemId();
-    }
-
-    @Override
-    public int getSelectedItemPosition() {
-        // TODO Auto-generated method stub
-        return super.getSelectedItemPosition();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
