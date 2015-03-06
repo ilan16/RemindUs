@@ -3,6 +3,21 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-       
+    <Button
+        android:id="@+id/bouton_fr"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/small_padding"
+        android:text="Français" />
 
-    </LinearLayout>
+    <Button
+        android:id="@+id/bouton_ar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/small_padding"
+        android:text="Arabe" />
+
+
+</LinearLayout>

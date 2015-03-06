@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">تذكرنا</string>
+    <string name="titre_calendrier">تقويم</string>
+    <string name="titre_accueil">ترحيب</string>
+    <string name="titre_contact">اتصال</string>
+    <string name="titre_groupe">مجموعة</string>
+    <string name="titre_model_msg">نماذج المشاركات</string>
+    <string name="titre_msg_prog">من المقرر المشاركات</string>
+    <string name="titre_RDV">موعد</string>
+    <string name="action_parametres">الإعدادات</string>
+    <string name="action_aide">مساعدة</string>
+</resources>

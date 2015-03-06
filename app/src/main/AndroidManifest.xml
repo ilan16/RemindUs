@@ -13,6 +13,7 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,6 +28,7 @@
         <activity android:name=".controller.ControllerGroupe" android:label="Groupe" />
         <activity android:name=".controller.ControllerParametre" android:label="Parametre" />
         <activity android:name=".controller.TesteBDD2" android:label="TestBDD"/>
+        <activity android:name=".controller.ControllerLangues" android:label="Langues"/>
     </application>
 
 </manifest>
