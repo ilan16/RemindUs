@@ -14,25 +14,34 @@
         android:id="@+id/textView2" />
 
 
-    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    <RadioGroup
+        android:id="@+id/group_radio_mode_notif"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:checkedButton="@+id/notif_normal"
         android:orientation="vertical">
-        <RadioButton android:id="@+id/notif_silencieux"
+
+        <RadioButton
+            android:id="@+id/notif_silencieux"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/silencieux"
             android:onClick="onRadioButtonClicked"/>
-        <RadioButton android:id="@+id/notif_vibreur"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/vibreur"
-        android:onClick="onRadioButtonClicked"/>
-        <RadioButton android:id="@+id/notif_normal"
+
+        <RadioButton
+            android:id="@+id/notif_vibreur"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/vibreur"
+            android:onClick="onRadioButtonClicked"/>
+
+        <RadioButton
+            android:id="@+id/notif_normal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/normal"
             android:onClick="onRadioButtonClicked"/>
+
     </RadioGroup>
 
     <!--<CheckBox

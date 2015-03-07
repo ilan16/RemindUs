@@ -137,29 +137,29 @@
             android:textStyle="bold" />
 
         <RadioGroup
-            android:id="@+id/group"
+            android:id="@+id/group_radio_mode_rdv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checkedButton="@+id/radio3"
+            android:checkedButton="@+id/radio_normal"
             android:orientation="horizontal"
             >
             <RadioButton
-                android:id="@+id/radio1"
+                android:id="@+id/radio_silencieux"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="silencieux"
+                android:text="@string/silencieux"
                 />
             <RadioButton
-                android:id="@+id/radio2"
+                android:id="@+id/radio_vibreur"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="vibreur"
+                android:text="@string/vibreur"
                 />
             <RadioButton
-                android:id="@+id/radio3"
+                android:id="@+id/radio_normal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="normal"
+                android:text="@string/normal"
                 />
         </RadioGroup>
 
