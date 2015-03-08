@@ -46,7 +46,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
     /*
             GROUPESxCONTACTS
-
+    */
 
     public static final String TABLE_GROUPESxCONTACTS = "groupesXcontacts";
     public static final String COLUMN_DATE_AJOUT = "date_ajout";
@@ -62,7 +62,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
     /*
             MESSAGES PROGRAMMES
-
+    */
 
     public static final String TABLE_MSG_PROG = "messages_programmes";
     public static final String COLUMN_ID_MSG_PROG = "id_message_programme";
@@ -77,10 +77,11 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             + COLUMN_TITRE_MSG_PROG + " text not null,"
             + COLUMN_DATE_MSG_PROG + " integer not null,"
             + COLUMN_HEURE_MSG_PROG + " integer not null,"
-            + COLUMN_MSG_PROG + " text not null );"; */
+            + COLUMN_MSG_PROG + " text not null );";
 
     /*
             MSG PRG x GROUPES
+    */
 
     public static final String TABLE_MSG_PROGxGROUPES = "messages_programmesXgroupes";
 
@@ -88,10 +89,10 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             + TABLE_MSG_PROGxGROUPES + "("
             + COLUMN_ID_MSG_PROG + " INTEGER NOT NULL CONSTRAINT fk_msg_prog_id REFERENCES "+ TABLE_MSG_PROG
             + "("+COLUMN_ID_MSG_PROG+"),"
-            + COLUMN_ID_GROUPE + " INTEGER NOT NULL CONSTRAINT fk_groupes_id REFERENCES "+ TABLE_GROUPES
+            + COLUMN_ID_GROUPE + " INTEGER NOT NULL CONSTRAINT fk_groupes_id_msg_prog REFERENCES "+ TABLE_GROUPES
             + "("+COLUMN_ID_GROUPE+"),"
             + COLUMN_DATE_AJOUT + " INTEGER,"
-            + "PRIMARY KEY (" + COLUMN_ID_MSG_PROG + "," + COLUMN_ID_GROUPE + ");"; */
+            + "PRIMARY KEY (" + COLUMN_ID_MSG_PROG + "," + COLUMN_ID_GROUPE + ");";
 
     /*
         METHODES BDD
@@ -105,18 +106,18 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase database) {
         database.execSQL(DATABASE_CREATE_CONTACTS);
         database.execSQL(DATABASE_CREATE_GROUPES);
-        //database.execSQL(DATABASE_CREATE_GROUPESxCONTACTS);
-        //database.execSQL(DATABASE_CREATE_MSG_PROG);
-        //database.execSQL(DATABASE_CREATE_MSG_PROGxGROUPES);
+        database.execSQL(DATABASE_CREATE_GROUPESxCONTACTS);
+        database.execSQL(DATABASE_CREATE_MSG_PROG);
+        database.execSQL(DATABASE_CREATE_MSG_PROGxGROUPES);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
         database.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
         database.execSQL("DROP TABLE IF EXISTS " + TABLE_GROUPES);
-        //database.execSQL("DROP TABLE IF EXISTS " + TABLE_GROUPESxCONTACTS);
-        //database.execSQL("DROP TABLE IF EXISTS " + TABLE_MSG_PROG);
-        //database.execSQL("DROP TABLE IF EXISTS " + TABLE_MSG_PROGxGROUPES);
+        database.execSQL("DROP TABLE IF EXISTS " + TABLE_GROUPESxCONTACTS);
+        database.execSQL("DROP TABLE IF EXISTS " + TABLE_MSG_PROG);
+        database.execSQL("DROP TABLE IF EXISTS " + TABLE_MSG_PROGxGROUPES);
         onCreate(database);
     }
 }

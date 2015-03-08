@@ -5,19 +5,22 @@ import java.util.Date;
 /**
  * Created by ilanmalka on 08/03/15.
  */
-public class ModelContactxGroupe {
+public class ModelGroupexContact {
 
     private long idcontact;
     private long idgroupe;
-    private Date dateAjout;
+    private long dateAjout;
 
-    public ModelContactxGroupe(long idcontact, long idgroupe, Date dateAjout) {
+    public ModelGroupexContact() {
+    }
+
+    public ModelGroupexContact(long idcontact, long idgroupe, long dateAjout) {
         this.idcontact = idcontact;
         this.idgroupe = idgroupe;
         this.dateAjout = dateAjout;
     }
 
-    public long getIdcontact() {
+    public long getIdcontact(long aLong) {
         return idcontact;
     }
 
@@ -33,11 +36,11 @@ public class ModelContactxGroupe {
         this.idgroupe = idgroupe;
     }
 
-    public Date getDateAjout() {
+    public long getDateAjout() {
         return dateAjout;
     }
 
-    public void setDateAjout(Date dateAjout) {
+    public void setDateAjout(long dateAjout) {
         this.dateAjout = dateAjout;
     }
 }

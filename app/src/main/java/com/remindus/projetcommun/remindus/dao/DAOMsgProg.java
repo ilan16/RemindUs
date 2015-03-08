@@ -7,7 +7,7 @@ import android.database.Cursor;
 import com.remindus.projetcommun.remindus.basededonnees.MySQLiteHelper;
 import com.remindus.projetcommun.remindus.basededonnees.utilities.CRUD;
 import com.remindus.projetcommun.remindus.model.ModelContact;
-import com.remindus.projetcommun.remindus.model.ModelGroupe;
+import com.remindus.projetcommun.remindus.model.ModelMsgProg;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,9 +19,11 @@ import java.util.List;
 public class DAOMsgProg {
     private MySQLiteHelper dbHelper;
     private String[] allColumns = {
-            MySQLiteHelper.COLUMN_ID_GROUPE,
-            MySQLiteHelper.COLUMN_NOM_GROUPE,
-            MySQLiteHelper.COLUMN_DATE_CREATION
+            MySQLiteHelper.COLUMN_ID_MSG_PROG,
+            MySQLiteHelper.COLUMN_TITRE_MSG_PROG,
+            MySQLiteHelper.COLUMN_DATE_MSG_PROG,
+            MySQLiteHelper.COLUMN_HEURE_MSG_PROG,
+            MySQLiteHelper.COLUMN_MSG_PROG
     };
     private CRUD crud;
 
@@ -41,13 +43,13 @@ public class DAOMsgProg {
         if(!this.isExist(titre)) {
 
             ContentValues values = new ContentValues();
-            //values.put(MySQLiteHelper.COLUMN_TITRE_MSG_PROG, titre);
-            //values.put(MySQLiteHelper.COLUMN_DATE_MSG_PROG, date);
-            //values.put(MySQLiteHelper.COLUMN_HEURE_MSG_PROG, heure);
-            //values.put(MySQLiteHelper.COLUMN_MSG_PROG, contenu);
+            values.put(MySQLiteHelper.COLUMN_TITRE_MSG_PROG, titre);
+            values.put(MySQLiteHelper.COLUMN_DATE_MSG_PROG, date);
+            values.put(MySQLiteHelper.COLUMN_HEURE_MSG_PROG, heure);
+            values.put(MySQLiteHelper.COLUMN_MSG_PROG, contenu);
 
             this.crud.open();
-            boolean insert = crud.insert(MySQLiteHelper.TABLE_GROUPES, values);
+            boolean insert = crud.insert(MySQLiteHelper.TABLE_MSG_PROG, values);
             this.crud.close();
 
             if (insert) {
@@ -59,61 +61,63 @@ public class DAOMsgProg {
         }
     }
 
-    public void deleteGroupe(ModelContact contact) {
-        long id = contact.getId();
+    public void deleteMsgProg(ModelMsgProg modelMsgProg) {
+        long id = modelMsgProg.getIdMsgProg();
         System.out.println("Contact deleted with id: " + id);
-        crud.getDatabase().delete(MySQLiteHelper.TABLE_GROUPES, MySQLiteHelper.COLUMN_ID_GROUPE
+        crud.getDatabase().delete(MySQLiteHelper.TABLE_MSG_PROG, MySQLiteHelper.COLUMN_ID_MSG_PROG
                 + " = " + id, null);
     }
 
-    public List<ModelGroupe> getAllGroupe() {
-        List<ModelGroupe> groupes = new ArrayList<ModelGroupe>();
+    public List<ModelMsgProg> getAllMsgProg() {
+        List<ModelMsgProg> msgProgs = new ArrayList<ModelMsgProg>();
 
-        Cursor cursor = crud.getDatabase().query(MySQLiteHelper.TABLE_GROUPES,
+        Cursor cursor = crud.getDatabase().query(MySQLiteHelper.TABLE_MSG_PROG,
                 allColumns, null, null, null, null, null);
 
         cursor.moveToFirst();
 
         while (!cursor.isAfterLast()) {
-            ModelGroupe groupe = cursorToGroupe(cursor);
-            groupes.add(groupe);
+            ModelMsgProg msgProg = cursorToMshProg(cursor);
+            msgProgs.add(msgProg);
             cursor.moveToNext();
 
         }
         cursor.close();
-        return groupes;
+        return msgProgs;
     }
 
-    public ModelGroupe getGroupe(int id){
+    public ModelMsgProg getMsgProg(int id){
         crud.open();
-        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_GROUPES + " WHERE "+ MySQLiteHelper.COLUMN_ID_GROUPE + " = " + id;
+        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MSG_PROG + " WHERE "+ MySQLiteHelper.COLUMN_ID_MSG_PROG + " = " + id;
         Cursor cursor = crud.getDatabase().rawQuery(sql, null);
         crud.close();
-        return this.cursorToGroupe(cursor);
+        return this.cursorToMshProg(cursor);
     }
 
-    public ModelGroupe getGroupe(String nom){
+    public ModelMsgProg getMsgProg(String titre){
         crud.open();
-        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_GROUPES + " WHERE "+ MySQLiteHelper.COLUMN_NOM_GROUPE + " = " + nom;
+        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MSG_PROG + " WHERE "+ MySQLiteHelper.COLUMN_TITRE_MSG_PROG + " = " + titre;
         Cursor cursor = crud.getDatabase().rawQuery(sql, null);
         crud.close();
-        return this.cursorToGroupe(cursor);
+        return this.cursorToMshProg(cursor);
     }
 
-    private ModelGroupe cursorToGroupe(Cursor cursor) {
-        ModelGroupe groupe = new ModelGroupe();
-        groupe.setIdGroupe(cursor.getLong(0));
-        groupe.setNomGroupe(cursor.getString(1));
-        groupe.setDateCreation(cursor.getLong(2));
-        return groupe;
+    private ModelMsgProg cursorToMshProg(Cursor cursor) {
+        ModelMsgProg msgProg = new ModelMsgProg();
+        msgProg.setIdMsgProg(cursor.getLong(0));
+        msgProg.setTitre(cursor.getString(1));
+        msgProg.setDate(cursor.getLong(2));
+        msgProg.setHeure(cursor.getLong(3));
+        msgProg.setMsgProg(cursor.getString(4));
+        return msgProg;
     }
 
     private boolean isExist(String titre){
-        //String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MSG_PROG + " WHERE "+ MySQLiteHelper.COLUMN_TITRE_MSG_PROG + " = '" + titre + "'";
-        //Cursor cursor = this.crud.getDatabase().rawQuery(sql, null);
-       // if (cursor.getCount() > 0){
-         //   return true;
-       // }
+        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MSG_PROG + " WHERE "+ MySQLiteHelper.COLUMN_TITRE_MSG_PROG + " = \"" + titre + "\"";
+        Cursor cursor = this.crud.getDatabase().rawQuery(sql, null);
+        if (cursor.getCount() > 0){
+            return true;
+        }
         return false;
     }
 

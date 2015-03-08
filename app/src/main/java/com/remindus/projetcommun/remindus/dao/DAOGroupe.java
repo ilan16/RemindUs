@@ -58,8 +58,8 @@ public class DAOGroupe {
         }
     }
 
-    public void deleteGroupe(ModelContact contact) {
-        long id = contact.getId();
+    public void deleteGroupe(ModelGroupe modelGroupe) {
+        long id = modelGroupe.getIdGroupe();
         System.out.println("Contact deleted with id: " + id);
         crud.getDatabase().delete(MySQLiteHelper.TABLE_GROUPES, MySQLiteHelper.COLUMN_ID_GROUPE
                 + " = " + id, null);
