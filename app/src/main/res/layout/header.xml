@@ -12,7 +12,7 @@
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true">
 
-        <ImageButton android:id="@+id/btnMenu"
+        <Button android:id="@+id/btnMenu"
             android:layout_width="33dp"
             android:layout_height="43dp"
             android:background="@drawable/accueil"/>
@@ -20,11 +20,11 @@
 
 
     </LinearLayout>
+
     <Button android:id="@+id/btnAccueil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/logo"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
-
 </RelativeLayout>
