@@ -12,9 +12,10 @@
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true">
 
-        <Button android:id="@+id/btnMenu"
+        <Button android:id="@+id/bouton_home"
             android:layout_width="33dp"
             android:layout_height="43dp"
+            android:onClick="backHome"
             android:background="@drawable/accueil"/>
 
 

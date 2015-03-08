@@ -8,6 +8,9 @@ import android.util.Log;
 
 import com.remindus.projetcommun.remindus.basededonnees.MySQLiteHelper;
 
+import java.util.List;
+import java.util.Objects;
+
 
 /**
  * Created by ilanmalka on 04/03/15.

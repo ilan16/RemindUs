@@ -9,6 +9,15 @@ public class ModelContact {
     private String contact;
     private String telephone;
 
+    public ModelContact() {
+    }
+
+    public ModelContact(long id, String contact, String telephone) {
+        this.id = id;
+        this.contact = contact;
+        this.telephone = telephone;
+    }
+
     public long getId() {
         return id;
     }

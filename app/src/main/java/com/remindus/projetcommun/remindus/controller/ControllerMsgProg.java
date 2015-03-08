@@ -8,11 +8,13 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TimePicker;
 
+import com.remindus.projetcommun.remindus.MainActivity;
 import com.remindus.projetcommun.remindus.R;
 
 import java.util.Calendar;
@@ -91,6 +93,17 @@ public class ControllerMsgProg extends ActionBarActivity {
         dpd.show();
     }
 
+    public void backHome(View view){
+        final Button bouton = (Button) findViewById(R.id.bouton_home);
+        bouton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ControllerMsgProg.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
