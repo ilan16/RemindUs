@@ -53,6 +53,9 @@
         <activity
             android:name=".controller.ControllerNotifications"
             android:label="@string/titre_notifications" />
+        <provider
+            android:name="com.tyczj.extendedcalendarview.CalendarProvider"
+            android:authorities="com.tyczj.extendedcalendarview.calendarprovider" />
     </application>
 
 </manifest>

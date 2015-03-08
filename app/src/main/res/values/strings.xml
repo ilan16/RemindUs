@@ -25,6 +25,15 @@
     <string name="silencieux">Silencieux</string>
     <string name="vibreur">Vibreur</string>
     <string name="normal">Normal</string>
+	
+
+    <string name="monday">LUN</string>
+    <string name="tuesday">MAR</string>
+    <string name="wednesday">MER</string>
+    <string name="thursday">JEU</string>
+    <string name="friday">VEN</string>
+    <string name="saturday">SAM</string>
+    <string name="sunday">DIM</string>
 
     <!-- MESSAGES ERREURS -->
     <string name="erreur_telephone_contact">Le numéro de téléphone doit contenir au moins 8 chiffres</string>
