@@ -27,6 +27,8 @@ import java.util.List;
 public class ControllerListerGroupe extends ActionBarActivity {
 
     private DAOGroupe daoGroupe;
+    private ListView l;
+    private ModelGroupe valeurSelectionnee;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,7 +43,7 @@ public class ControllerListerGroupe extends ActionBarActivity {
         daoGroupe.getCrud().open();
 
         final List<ModelGroupe> values = daoGroupe.getAllGroupe();
-        ListView l = (ListView) findViewById(R.id.sampleList);
+        l = (ListView) findViewById(R.id.sampleList);
 
         ArrayAdapter<ModelGroupe> adapter = new ArrayAdapter<ModelGroupe>(this,
                 android.R.layout.simple_list_item_1, values);
@@ -50,13 +52,18 @@ public class ControllerListerGroupe extends ActionBarActivity {
         l.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-               // daoGroupe.deleteGroupe(values.get(position).toString());
+                valeurSelectionnee = (ModelGroupe) l.getAdapter().getItem(position);
                 Log.i("GROUPE A DELETE", ""+values.get(position).toString()+"");
-                Toast.makeText(getApplicationContext(), "Longggggg", Toast.LENGTH_SHORT).show();
                 return false;
             }
         });
+    }
 
+    public void supprimerGroupe(View view){
+        ArrayAdapter<ModelGroupe> adapter = (ArrayAdapter<ModelGroupe>) l.getAdapter();
+        daoGroupe.deleteGroupe(valeurSelectionnee);
+        Log.i("GROUPE A DELETE", ""+valeurSelectionnee+"");
+        adapter.notifyDataSetChanged();
     }
 
     public void redirectionCreerGroupe(View view){

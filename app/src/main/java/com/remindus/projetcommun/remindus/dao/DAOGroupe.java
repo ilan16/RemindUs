@@ -59,10 +59,25 @@ public class DAOGroupe {
         }
     }
 
-    public void deleteGroupe(String nom) {
+    /*public void deleteGroupe(String nom) {
         System.out.println("Contact deleted with name group: " + nom);
+        this.crud.open();
         boolean delete = crud.delete(MySQLiteHelper.TABLE_GROUPES, MySQLiteHelper.COLUMN_NOM_GROUPE
-                + " = " + nom);
+                + " = \"" + nom +"\"");
+       // this.crud.close();
+        if (delete){
+            Log.i("DELETE", "effectué");
+        }else{
+            Log.i("DELETE", "merde");
+        }
+    }*/
+
+    public void deleteGroupe(ModelGroupe modelGroupe) {
+        long id = modelGroupe.getIdGroupe();
+        this.crud.open();
+        boolean delete = crud.delete(MySQLiteHelper.TABLE_GROUPES, MySQLiteHelper.COLUMN_ID_GROUPE
+                + " = " + id);
+        // this.crud.close();
         if (delete){
             Log.i("DELETE", "effectué");
         }else{
