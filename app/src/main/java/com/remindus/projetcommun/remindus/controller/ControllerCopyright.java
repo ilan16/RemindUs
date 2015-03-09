@@ -30,7 +30,7 @@ public class ControllerCopyright extends ActionBarActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // TODO Auto-generated method stub
         switch (item.getItemId()) {
-            case R.id.bouton_parametre:
+            case R.id.bouton_parametre_copyright:
                 Intent intent = new Intent(ControllerCopyright.this, ControllerParametre.class);
                 startActivity(intent);
                 break;
