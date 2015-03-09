@@ -15,4 +15,10 @@
     <string name="titre_langues">اللغات</string>
     <string name="titre_parametre">المعلمات</string>
     <string name="titre_aide">مساعدة</string>
+    <string name="action_settings">الإعدادات</string>
+    <string name="titre_notifications">إشعار</string>
+    <string name="titre_copyright">حق النشر</string>
+    <string name="silencieux">المسكت</string>
+    <string name="normal">طبيعي</string>
+    <string name="titre_mail">اتصل بنا</string>
 </resources>

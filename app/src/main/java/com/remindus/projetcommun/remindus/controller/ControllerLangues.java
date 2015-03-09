@@ -1,5 +1,6 @@
 package com.remindus.projetcommun.remindus.controller;
 
+import android.app.Application;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -20,7 +21,7 @@ import java.util.Locale;
  * Created by samairi on 03/03/2015.
  */
 
-public class ControllerLangues extends ActionBarActivity {
+public class ControllerLangues extends ActionBarActivity  {
 
     private Locale myLocale;
 
@@ -89,9 +90,14 @@ public class ControllerLangues extends ActionBarActivity {
         Configuration conf = res.getConfiguration();
         conf.locale = myLocale;
         res.updateConfiguration(conf, dm);
-        Intent refresh = new Intent(ControllerLangues.this, MainActivity.class);
-        startActivity(refresh);
+
+        Intent intent = new Intent(this.getApplicationContext(), MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        this.startActivity(intent);
+
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

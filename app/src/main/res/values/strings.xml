@@ -38,8 +38,7 @@
 
     <!-- MESSAGES ERREURS -->
     <string name="erreur_telephone_contact">Le numéro de téléphone doit contenir au moins 8 chiffres</string>
-
-
+    <string name="titre_mail">Contactez-Nous</string>
 
 
 </resources>

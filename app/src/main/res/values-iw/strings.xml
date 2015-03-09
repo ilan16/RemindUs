@@ -11,4 +11,14 @@
     <string name="titre_model_msg">הודעות דגמים</string>
     <string name="titre_msg_prog">הודעות מתוכננות</string>
     <string name="titre_parametre">הגדרות</string>
+    <string name="titre_RDV">פְּגִישָׁה</string>
+    <string name="action_home">בית</string>
+    <string name="action_parametres">הגדרות</string>
+    <string name="action_settings">הגדרות</string>
+    <string name="action_aide">עֶזרָה</string>
+    <string name="titre_notifications">הוֹדָעָה</string>
+    <string name="titre_copyright">כל הזכויות שמורות</string>
+    <string name="silencieux">שקט</string>
+    <string name="normal">רגיל</string>
+    <string name="titre_mail">צור קשר</string>
 </resources>

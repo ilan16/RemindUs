@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/small_padding"
-        android:text="langues" />
+        android:text="@string/titre_langues" />
 
     <Button
         android:id="@+id/bouton_parametre_notifications"
@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/small_padding"
-        android:text="notification" />
+        android:text="@string/titre_notifications" />
 
     <Button
         android:id="@+id/bouton_parametre_copyright"
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/small_padding"
-        android:text="copyright" />
+        android:text="@string/titre_copyright" />
 
     <Button
         android:id="@+id/bouton_parametre_mail"
@@ -34,5 +34,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/small_padding"
-        android:text="Contactez-nous" />
+        android:text="@string/titre_mail" />
 </LinearLayout>
