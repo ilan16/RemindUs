@@ -73,8 +73,7 @@ public class ControllerLangues extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
-
-                changeLangue("he");
+                changeLangue("iw");
 
             }
         });
