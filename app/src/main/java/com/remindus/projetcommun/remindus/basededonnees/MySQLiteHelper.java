@@ -42,7 +42,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             + TABLE_GROUPES + "("
             + COLUMN_ID_GROUPE + " integer primary key autoincrement, "
             + COLUMN_NOM_GROUPE + " text not null, "
-            + COLUMN_DATE_CREATION + " integer not null);";
+            + COLUMN_DATE_CREATION + " integer );";
 
     /*
             GROUPESxCONTACTS

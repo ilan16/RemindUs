@@ -7,6 +7,7 @@
     <string name="titre_calendrier">Calendrier</string>
     <string name="titre_msg_prog">Messages Programmés</string>
     <string name="titre_groupe">Groupe</string>
+    <string name="titre_liste_groupe">Liste des groupes</string>
     <string name="titre_contact">Contact</string>
     <string name="titre_model_msg">Modèles messages</string>
     <string name="titre_parametre">Paramètres</string>
@@ -27,7 +28,7 @@
     <string name="vibreur">Vibreur</string>
     <string name="normal">Normal</string>
 	
-
+    <!-- JOURS DE LA SEMAINE -->
     <string name="monday">LUN</string>
     <string name="tuesday">MAR</string>
     <string name="wednesday">MER</string>
@@ -39,6 +40,12 @@
     <!-- MESSAGES ERREURS -->
     <string name="erreur_telephone_contact">Le numéro de téléphone doit contenir au moins 8 chiffres</string>
     <string name="titre_mail">Contactez-Nous</string>
+
+    <!-- BOUTONS AJOUTER -->
+    <string name="ajouter_groupe">Ajouter un nouveau groupe</string>
+
+
+    
 
 
 </resources>

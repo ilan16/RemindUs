@@ -3,6 +3,7 @@ package com.remindus.projetcommun.remindus.dao;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 
 import com.remindus.projetcommun.remindus.basededonnees.MySQLiteHelper;
 import com.remindus.projetcommun.remindus.basededonnees.utilities.CRUD;
@@ -39,13 +40,13 @@ public class DAOGroupe {
     }
 
     public int insertGroupe(String nom) {
-        if(!this.isExist(nom)) {
+        if (!this.isExist(nom)) {
             ContentValues values = new ContentValues();
             values.put(MySQLiteHelper.COLUMN_NOM_GROUPE, nom);
             //convertion date en long pour la bdd
             Date actuelle = new Date();
             long dateLong = actuelle.getTime();
-            values.put(MySQLiteHelper.COLUMN_DATE_CREATION, dateLong);
+            values.put(MySQLiteHelper.COLUMN_DATE_CREATION, 0);
             this.crud.open();
             boolean insert = crud.insert(MySQLiteHelper.TABLE_GROUPES, values);
             this.crud.close();
@@ -58,11 +59,15 @@ public class DAOGroupe {
         }
     }
 
-    public void deleteGroupe(ModelGroupe modelGroupe) {
-        long id = modelGroupe.getIdGroupe();
-        System.out.println("Contact deleted with id: " + id);
-        crud.getDatabase().delete(MySQLiteHelper.TABLE_GROUPES, MySQLiteHelper.COLUMN_ID_GROUPE
-                + " = " + id, null);
+    public void deleteGroupe(String nom) {
+        System.out.println("Contact deleted with name group: " + nom);
+        boolean delete = crud.delete(MySQLiteHelper.TABLE_GROUPES, MySQLiteHelper.COLUMN_NOM_GROUPE
+                + " = " + nom);
+        if (delete){
+            Log.i("DELETE", "effectué");
+        }else{
+            Log.i("DELETE", "merde");
+        }
     }
 
     public List<ModelGroupe> getAllGroupe() {
@@ -83,17 +88,17 @@ public class DAOGroupe {
         return groupes;
     }
 
-    public ModelGroupe getGroupe(int id){
+    public ModelGroupe getGroupe(int id) {
         crud.open();
-        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_GROUPES + " WHERE "+ MySQLiteHelper.COLUMN_ID_GROUPE + " = " + id;
+        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_GROUPES + " WHERE " + MySQLiteHelper.COLUMN_ID_GROUPE + " = " + id;
         Cursor cursor = crud.getDatabase().rawQuery(sql, null);
         crud.close();
         return this.cursorToGroupe(cursor);
     }
 
-    public ModelGroupe getGroupe(String nom){
+    public ModelGroupe getGroupe(String nom) {
         crud.open();
-        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_GROUPES + " WHERE "+ MySQLiteHelper.COLUMN_NOM_GROUPE + " = " + nom;
+        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_GROUPES + " WHERE " + MySQLiteHelper.COLUMN_NOM_GROUPE + " = " + nom;
         Cursor cursor = crud.getDatabase().rawQuery(sql, null);
         crud.close();
         return this.cursorToGroupe(cursor);
@@ -107,11 +112,17 @@ public class DAOGroupe {
         return groupe;
     }
 
-    private boolean isExist(String nom){
-        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_GROUPES + " WHERE "+ MySQLiteHelper.COLUMN_NOM_GROUPE + " = '" + nom + "'";
-        Cursor cursor = this.crud.getDatabase().rawQuery(sql, null);
-        if (cursor.getCount() > 0){
-            return true;
+    private boolean isExist(String nom) {
+        this.crud.open();
+        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_GROUPES + " WHERE " + MySQLiteHelper.COLUMN_NOM_GROUPE + " = '" + nom + "'";
+        Cursor cursor = crud.getDatabase().rawQuery(sql, null);
+
+        if (cursor != null) {
+            if (cursor.getCount() > 0) {
+                cursor.close();
+                return true;
+            }
+            cursor.close();
         }
         return false;
     }

@@ -21,7 +21,7 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/Nom"
+            android:id="@+id/nom_groupe"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="Nom"
@@ -50,6 +50,7 @@
             android:layout_height="wrap_content"
             android:text="Valider"
             android:layout_gravity="center"
+            android:onClick="ajouterGroupe"
             android:layout_weight="0.08" />
 
 

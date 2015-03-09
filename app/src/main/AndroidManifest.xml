@@ -39,8 +39,10 @@
             android:name=".controller.ControllerContact"
             android:label="@string/titre_contact" />
         <activity
-            android:name=".controller.ControllerGroupe"
+            android:name=".controller.ControllerCreerGroupe"
             android:label="@string/titre_groupe" />
+        <activity android:name=".controller.ControllerListerGroupe"
+            android:label="@string/titre_liste_groupe"/>
         <activity
             android:name=".controller.ControllerParametre"
             android:label="@string/titre_parametre" />
