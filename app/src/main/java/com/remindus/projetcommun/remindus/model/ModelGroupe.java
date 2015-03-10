@@ -1,6 +1,7 @@
 package com.remindus.projetcommun.remindus.model;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -43,5 +44,14 @@ public class ModelGroupe {
 
     public void setDateCreation(long dateCreation) {
         this.dateCreation = dateCreation;
+    }
+
+    public String convertionLongDate(){
+        DateFormat df = new SimpleDateFormat("dd/MM/yy à HH:mm:ss");
+        return df.format(dateCreation);
+    }
+
+    public String toString() {
+        return nomGroupe + " " + convertionLongDate();
     }
 }

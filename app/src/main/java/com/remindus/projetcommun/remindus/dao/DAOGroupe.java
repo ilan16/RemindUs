@@ -43,10 +43,11 @@ public class DAOGroupe {
         if (!this.isExist(nom)) {
             ContentValues values = new ContentValues();
             values.put(MySQLiteHelper.COLUMN_NOM_GROUPE, nom);
+            Log.i("NOM GROUPE ADD", ""+values.get(MySQLiteHelper.COLUMN_NOM_GROUPE)+"");
             //convertion date en long pour la bdd
             Date actuelle = new Date();
             long dateLong = actuelle.getTime();
-            values.put(MySQLiteHelper.COLUMN_DATE_CREATION, 0);
+            values.put(MySQLiteHelper.COLUMN_DATE_CREATION, dateLong);
             this.crud.open();
             boolean insert = crud.insert(MySQLiteHelper.TABLE_GROUPES, values);
             this.crud.close();
@@ -59,18 +60,6 @@ public class DAOGroupe {
         }
     }
 
-    /*public void deleteGroupe(String nom) {
-        System.out.println("Contact deleted with name group: " + nom);
-        this.crud.open();
-        boolean delete = crud.delete(MySQLiteHelper.TABLE_GROUPES, MySQLiteHelper.COLUMN_NOM_GROUPE
-                + " = \"" + nom +"\"");
-       // this.crud.close();
-        if (delete){
-            Log.i("DELETE", "effectué");
-        }else{
-            Log.i("DELETE", "merde");
-        }
-    }*/
 
     public void deleteGroupe(ModelGroupe modelGroupe) {
         long id = modelGroupe.getIdGroupe();

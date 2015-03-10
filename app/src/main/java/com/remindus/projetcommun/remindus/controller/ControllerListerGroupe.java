@@ -63,6 +63,7 @@ public class ControllerListerGroupe extends ActionBarActivity {
         ArrayAdapter<ModelGroupe> adapter = (ArrayAdapter<ModelGroupe>) l.getAdapter();
         daoGroupe.deleteGroupe(valeurSelectionnee);
         Log.i("GROUPE A DELETE", ""+valeurSelectionnee+"");
+        adapter.remove(valeurSelectionnee);
         adapter.notifyDataSetChanged();
     }
 
