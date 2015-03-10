@@ -3,8 +3,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
+
+    <RelativeLayout
+        android:id="@+id/headerMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="#FC9"
+        android:gravity="center" >
+
+        <include android:id="@+id/header"
+            layout="@layout/header"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"/>
+    </RelativeLayout>
+
+
     <com.tyczj.extendedcalendarview.ExtendedCalendarView
         android:id="@+id/calendar"
+        android:layout_below="@id/headerMenu"
         android:layout_height="match_parent"
         android:layout_width="match_parent"/>
 
