@@ -16,9 +16,9 @@ import com.remindus.projetcommun.remindus.R;
 public class ControllerMail extends ControllerHeader {
 
     Button btnOK;
-    TextView txtTo;
-    TextView txtSubject;
-    TextView txtMessage;
+    EditText txtTo;
+    EditText txtSubject;
+    EditText txtMessage;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -26,9 +26,9 @@ public class ControllerMail extends ControllerHeader {
         setContentView(R.layout.vue_afficher_mail);
 
         btnOK = (Button) findViewById(R.id.mail_bouton);
-        txtTo = (TextView) findViewById(R.id.mail_destinataire);
-        txtSubject = (TextView) findViewById(R.id.mail_sujet);
-        txtMessage = (TextView) findViewById(R.id.mail_message);
+        txtTo = (EditText) findViewById(R.id.mail_destinataire_edit);
+        txtSubject = (EditText) findViewById(R.id.mail_sujet_edit);
+        txtMessage = (EditText) findViewById(R.id.mail_message_edit);
 
         btnOK.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
