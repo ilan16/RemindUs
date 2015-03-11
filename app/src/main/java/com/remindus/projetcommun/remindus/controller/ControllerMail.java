@@ -9,26 +9,27 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.remindus.projetcommun.remindus.R;
 
 public class ControllerMail extends ControllerHeader {
 
     Button btnOK;
-    EditText txtTo;
-    EditText txtSubject;
-    EditText txtMessage;
+    TextView txtTo;
+    TextView txtSubject;
+    TextView txtMessage;
 
-    @SuppressLint("WrongViewCast")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vue_afficher_mail);
+
         btnOK = (Button) findViewById(R.id.mail_bouton);
-        txtTo = (EditText) findViewById(R.id.mail_destinataire);
-        txtTo.requestFocus();
-        txtSubject = (EditText) findViewById(R.id.mail_destinataire);
-        txtMessage = (EditText) findViewById(R.id.mail_message);
+        txtTo = (TextView) findViewById(R.id.mail_destinataire);
+        txtSubject = (TextView) findViewById(R.id.mail_sujet);
+        txtMessage = (TextView) findViewById(R.id.mail_message);
+
         btnOK.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String to = txtTo.getText().toString();
