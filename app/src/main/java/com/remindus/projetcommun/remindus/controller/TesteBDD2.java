@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * Created by ilanmalka on 04/03/15.
  */
-public class TesteBDD2 extends ActionBarActivity {
+public class TesteBDD2 extends ControllerHeader {
 
     private EditText contactEdit;
     private EditText telephoneEdit;

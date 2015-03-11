@@ -21,7 +21,7 @@ import java.util.Locale;
  * Created by samairi on 03/03/2015.
  */
 
-public class ControllerNotifications extends ActionBarActivity {
+public class ControllerNotifications extends ControllerHeader {
 
     private CheckBox normal, silencieux, vibreur;
     private Button button;

@@ -14,7 +14,7 @@ import com.remindus.projetcommun.remindus.R;
  * Created by samairi on 03/03/2015.
  */
 
-public class ControllerParametre extends ActionBarActivity {
+public class ControllerParametre extends ControllerHeader {
 
 
     @Override

@@ -14,7 +14,7 @@ import com.tyczj.extendedcalendarview.ExtendedCalendarView;
 /**
  * Created by bahia on 23/02/2015.
  */
-public class ControllerCalendrier extends ActionBarActivity /*implements CalendarView.OnDateChangeListener*/ {
+public class ControllerCalendrier extends ControllerHeader /*implements CalendarView.OnDateChangeListener*/ {
 
     private ExtendedCalendarView calendar = null;
 

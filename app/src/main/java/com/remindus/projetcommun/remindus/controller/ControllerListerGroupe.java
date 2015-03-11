@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * Created by ilanmalka on 09/03/15.
  */
-public class ControllerListerGroupe extends ActionBarActivity {
+public class ControllerListerGroupe extends ControllerHeader {
 
     private DAOGroupe daoGroupe;
     private ListView l;

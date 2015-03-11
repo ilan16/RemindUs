@@ -21,7 +21,7 @@ import java.util.Locale;
  * Created by samairi on 03/03/2015.
  */
 
-public class ControllerLangues extends ActionBarActivity  {
+public class ControllerLangues extends ControllerHeader  {
 
     private Locale myLocale;
 

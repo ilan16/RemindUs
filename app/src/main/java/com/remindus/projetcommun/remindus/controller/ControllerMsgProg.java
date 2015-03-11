@@ -22,7 +22,7 @@ import java.util.Calendar;
 /**
  * Created by bahia on 23/02/2015.
  */
-public class ControllerMsgProg extends ActionBarActivity {
+public class ControllerMsgProg extends ControllerHeader {
 
     // Widget GUI
     private ImageButton buttonDate, buttonHeure;
@@ -93,17 +93,6 @@ public class ControllerMsgProg extends ActionBarActivity {
         dpd.show();
     }
 
-    public void backHome(View view){
-        final Button bouton = (Button) findViewById(R.id.bouton_home);
-        bouton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ControllerMsgProg.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

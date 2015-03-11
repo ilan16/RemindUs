@@ -16,7 +16,7 @@ import com.remindus.projetcommun.remindus.model.ModelContact;
 import java.util.List;
 import java.util.Random;
 
-public class TesteBDD extends ActionBarActivity {
+public class TesteBDD extends ControllerHeader {
 
     private DAOContact datasource;
     ListView l = null;

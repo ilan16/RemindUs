@@ -15,7 +15,7 @@ import com.remindus.projetcommun.remindus.dao.DAOGroupe;
 /**
  * Created by bahia on 23/02/2015.
  */
-public class ControllerCreerGroupe extends ActionBarActivity {
+public class ControllerCreerGroupe extends ControllerHeader {
 
     private EditText nomGroupeEdit;
     private DAOGroupe daoGroupe;

@@ -11,7 +11,7 @@ import com.remindus.projetcommun.remindus.R;
 /**
  * Created by bahia on 23/02/2015.
  */
-public class ControllerRdv extends ActionBarActivity {
+public class ControllerRdv extends ControllerHeader {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

@@ -11,7 +11,7 @@ import com.remindus.projetcommun.remindus.R;
 /**
  * Created by bahia on 23/02/2015.
  */
-public class ControllerMail extends ActionBarActivity {
+public class ControllerMail extends ControllerHeader {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
