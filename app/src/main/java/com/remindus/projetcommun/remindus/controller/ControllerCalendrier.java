@@ -1,6 +1,7 @@
 package com.remindus.projetcommun.remindus.controller;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,7 +37,13 @@ public class ControllerCalendrier extends ControllerHeader /*implements Calendar
                 AlertDialog alertDialog = new AlertDialog.Builder(ControllerCalendrier.this).create();
                 alertDialog.setTitle(day.getDay()+"/"+(day.getMonth()+1)+"/"+day.getYear());
                 alertDialog.setMessage("Futur liste des RDV");
-                alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+                alertDialog.setButton(Dialog.BUTTON_NEGATIVE, "Ajouter un RDV", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(ControllerCalendrier.this, ControllerRdv.class);
+                        startActivity(intent);
+                    }
+                });
+                alertDialog.setButton(Dialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         // TODO Add your code for the button here.
                         //Toast.makeText(getApplicationContext(), "OK", Toast.LENGTH_SHORT).show();
