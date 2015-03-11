@@ -77,12 +77,13 @@ public class DAOGroupe {
     }
 
     public int updateGroupe(ModelGroupe modelGroupe, String nom){
-        long id = modelGroupe.getIdGroupe();
+        String id = ""+modelGroupe.getIdGroupe();
+        Log.i("ID",id);
         if(!this.isExist(nom)) {
             this.crud.open();
             ContentValues values = new ContentValues();
             values.put(MySQLiteHelper.COLUMN_NOM_GROUPE, nom);
-            boolean update = crud.update(MySQLiteHelper.TABLE_GROUPES, values, MySQLiteHelper.COLUMN_ID_GROUPE, new String[]{String.valueOf(id)});
+            boolean update = crud.update(MySQLiteHelper.TABLE_GROUPES, values, MySQLiteHelper.COLUMN_ID_GROUPE, new String[]{id});
             if(update){
                 Log.i("UPDATE","BON");
                 return 0; //si l'update fonctionne
