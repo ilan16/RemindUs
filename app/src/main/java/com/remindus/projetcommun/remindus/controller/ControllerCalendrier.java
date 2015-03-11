@@ -1,14 +1,19 @@
 package com.remindus.projetcommun.remindus.controller;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.CalendarView;
 import android.widget.Toast;
 
 import com.remindus.projetcommun.remindus.R;
+import com.tyczj.extendedcalendarview.Day;
 import com.tyczj.extendedcalendarview.ExtendedCalendarView;
 
 /**
@@ -24,6 +29,22 @@ public class ControllerCalendrier extends ControllerHeader /*implements Calendar
 
         setContentView(R.layout.vue_afficher_calendrier);
         calendar = (ExtendedCalendarView)findViewById(R.id.calendar);
+        calendar.setOnDayClickListener(new ExtendedCalendarView.OnDayClickListener() {
+            @Override
+            public void onDayClicked(AdapterView<?> adapter, View view, int position,
+                                     long id, Day day) {
+                AlertDialog alertDialog = new AlertDialog.Builder(ControllerCalendrier.this).create();
+                alertDialog.setTitle(day.getDay()+"/"+(day.getMonth()+1)+"/"+day.getYear());
+                alertDialog.setMessage("Futur liste des RDV");
+                alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // TODO Add your code for the button here.
+                        //Toast.makeText(getApplicationContext(), "OK", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                alertDialog.show();
+            }
+        });
 
     }
 

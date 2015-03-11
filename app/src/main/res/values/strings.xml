@@ -8,6 +8,7 @@
     <string name="titre_msg_prog">Messages Programmés</string>
     <string name="titre_groupe">Groupe</string>
     <string name="titre_liste_groupe">Liste des groupes</string>
+    <string name="titre_modifier_groupe">Modifier le groupe</string>
     <string name="titre_contact">Contact</string>
     <string name="titre_model_msg">Modèles messages</string>
     <string name="titre_parametre">Paramètres</string>
@@ -44,8 +45,15 @@
     <!-- BOUTONS AJOUTER -->
     <string name="ajouter_groupe">Ajouter un nouveau groupe</string>
 
+    <!-- BOUTONS MODIFIER -->
+    <string name="modifier_groupe">Modifier ce groupe</string>
 
-    
+
+    <!-- RESULTAT APRES APPUIE SUR UN BOUTON -->
+    <string name="groupe_supprime">$s a bien été supprimé</string>
+    <string name="groupe_modifie">$s a bien été modifié</string>
+
+
 
 
 </resources>

@@ -61,7 +61,7 @@ public class DAOGroupe {
     }
 
 
-    public void deleteGroupe(ModelGroupe modelGroupe) {
+    public boolean deleteGroupe(ModelGroupe modelGroupe) {
         long id = modelGroupe.getIdGroupe();
         this.crud.open();
         boolean delete = crud.delete(MySQLiteHelper.TABLE_GROUPES, MySQLiteHelper.COLUMN_ID_GROUPE
@@ -69,9 +69,27 @@ public class DAOGroupe {
         // this.crud.close();
         if (delete){
             Log.i("DELETE", "effectué");
-        }else{
-            Log.i("DELETE", "merde");
+            return true;
         }
+        Log.i("DELETE", "merde");
+        return false;
+
+    }
+
+    public int updateGroupe(ModelGroupe modelGroupe, String nom){
+        long id = modelGroupe.getIdGroupe();
+        if(!this.isExist(nom)) {
+            this.crud.open();
+            ContentValues values = new ContentValues();
+            values.put(MySQLiteHelper.COLUMN_NOM_GROUPE, nom);
+            boolean update = crud.update(MySQLiteHelper.TABLE_GROUPES, values, MySQLiteHelper.COLUMN_ID_GROUPE, new String[]{String.valueOf(id)});
+            if(update){
+                Log.i("UPDATE","BON");
+                return 0; //si l'update fonctionne
+            }
+            return 1;
+        }
+        return 2; // le nom existe déjà donc pas possible de maj avec ce nom
     }
 
     public List<ModelGroupe> getAllGroupe() {
