@@ -20,13 +20,9 @@ public class CRUD {
     private SQLiteDatabase database;
     private MySQLiteHelper dbHelper;
 
-    private long insert;
-    private int delete;
 
     public CRUD(Context context) {
         dbHelper = new MySQLiteHelper(context);
-        this.insert = 0;
-        this.delete = 0;
     }
 
     public SQLiteDatabase getDatabase() {
@@ -45,22 +41,6 @@ public class CRUD {
         this.dbHelper = dbHelper;
     }
 
-    public long getInsert() {
-        return insert;
-    }
-
-    public void setInsert(long insert) {
-        this.insert = insert;
-    }
-
-    public int getDelete() {
-        return delete;
-    }
-
-    public void setDelete(int delete) {
-        this.delete = delete;
-    }
-
     public void open() throws SQLException {
         database = dbHelper.getWritableDatabase();
     }
@@ -70,9 +50,8 @@ public class CRUD {
     }
 
     public boolean insert(String table, ContentValues values) {
-        this.insert = this.database.insert(table, null, values);
-        this.setInsert(this.insert);
-        if (this.insert == -1) {
+        long insert = this.database.insert(table, null, values);
+        if (insert == -1) {
             Log.i("INSERT", "false");
             System.out.println(insert);
             return false;
@@ -82,9 +61,16 @@ public class CRUD {
     }
 
     public boolean delete(String table, String whereClause) {
-        this.delete = this.database.delete(table, whereClause, null);
-        if (this.delete == 0) {
-            this.setDelete(this.delete);
+        int delete = this.database.delete(table, whereClause, null);
+        if (delete == 0) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean update(String table, ContentValues values, String valeurAupdate, String[] contenuValeurUpdate){
+        int update = this.database.update(table, values, valeurAupdate + " = ?", contenuValeurUpdate);
+        if(update == -1){
             return false;
         }
         return true;

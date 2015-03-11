@@ -28,7 +28,7 @@ public class ControllerListerGroupe extends ControllerHeader {
 
     private DAOGroupe daoGroupe;
     private ListView l;
-    private ModelGroupe valeurSelectionnee;
+    private static ModelGroupe valeurSelectionnee;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,6 +53,7 @@ public class ControllerListerGroupe extends ControllerHeader {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 valeurSelectionnee = (ModelGroupe) l.getAdapter().getItem(position);
+                ControllerListerGroupe.setValeurSelectionnee(valeurSelectionnee);
                 Log.i("GROUPE A DELETE", ""+values.get(position).toString()+"");
                 return false;
             }
@@ -61,15 +62,27 @@ public class ControllerListerGroupe extends ControllerHeader {
 
     public void supprimerGroupe(View view){
         ArrayAdapter<ModelGroupe> adapter = (ArrayAdapter<ModelGroupe>) l.getAdapter();
-        daoGroupe.deleteGroupe(valeurSelectionnee);
+        boolean delete = daoGroupe.deleteGroupe(valeurSelectionnee);
+        if(delete){
+            Toast.makeText(getApplicationContext(), getResources().getString(R.string.groupe_supprime,valeurSelectionnee.getNomGroupe()), Toast.LENGTH_SHORT).show();
+        }
         Log.i("GROUPE A DELETE", ""+valeurSelectionnee+"");
         adapter.remove(valeurSelectionnee);
         adapter.notifyDataSetChanged();
     }
 
-    public void redirectionCreerGroupe(View view){
-        Intent intent = new Intent(ControllerListerGroupe.this, ControllerCreerGroupe.class);
-        startActivity(intent);
+    public void redirectionGroupe(View view){
+        Intent intent = null;
+        switch (view.getId()) {
+            case R.id.bouton_ajouter_groupe:
+                intent = new Intent(ControllerListerGroupe.this, ControllerCreerGroupe.class);
+                startActivity(intent);
+                break;
+            case R.id.bouton_modifier_groupe:
+                intent = new Intent(ControllerListerGroupe.this, ControllerModifierGroupe.class);
+                startActivity(intent);
+                break;
+        }
     }
 
     @Override
@@ -93,4 +106,11 @@ public class ControllerListerGroupe extends ControllerHeader {
         return false;
     }
 
+    public static ModelGroupe getValeurSelectionnee() {
+        return valeurSelectionnee;
+    }
+
+    public static void setValeurSelectionnee(ModelGroupe valeurSelectionnee) {
+        ControllerListerGroupe.valeurSelectionnee = valeurSelectionnee;
+    }
 }

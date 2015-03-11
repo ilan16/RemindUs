@@ -37,7 +37,14 @@
         android:id="@+id/bouton_ajouter_groupe"
         android:text="@string/ajouter_groupe"
         android:layout_gravity="center"
-        android:onClick="redirectionCreerGroupe"
+        android:onClick="redirectionGroupe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/bouton_modifier_groupe"
+        android:text="@string/modifier_groupe"
+        android:layout_gravity="center"
+        android:onClick="redirectionGroupe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <Button
