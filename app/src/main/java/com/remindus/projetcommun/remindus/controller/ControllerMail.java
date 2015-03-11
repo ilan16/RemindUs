@@ -1,8 +1,11 @@
 package com.remindus.projetcommun.remindus.controller;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +19,7 @@ public class ControllerMail extends ControllerHeader {
     EditText txtSubject;
     EditText txtMessage;
 
+    @SuppressLint("WrongViewCast")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +42,29 @@ public class ControllerMail extends ControllerHeader {
                 startActivity(Intent.createChooser(mail, "Send email via:"));
             }
         });
+    }
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.global, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // TODO Auto-generated method stub
+        switch (item.getItemId()) {
+            case R.id.bouton_parametre:
+                Intent intent = new Intent(ControllerMail.this, ControllerParametre.class);
+                startActivity(intent);
+                break;
+
+        }
+
+        return false;
     }
 
 
