@@ -38,7 +38,7 @@ public class ControllerModifierGroupe  extends ActionBarActivity {
     public void modifierGroupe(View view){
         this.nomGroupeEdit = (EditText) findViewById(R.id.nom_groupe_update);
         Log.i("NOUVELLE VALEUR: ", ""+this.nomGroupeEdit.getText().toString()+"");
-//        int update = this.daoGroupe.updateGroupe(ControllerListerGroupe.getValeurSelectionnee(), this.nomGroupeEdit.getText().toString());
+        int update = this.daoGroupe.updateGroupe(ControllerListerGroupe.getValeurSelectionnee(), this.nomGroupeEdit.getText().toString());
 //        if(update == 0){
 //            Toast.makeText(getApplicationContext(), getResources().getString(R.string.groupe_modifie, ControllerListerGroupe.getValeurSelectionnee().getNomGroupe()), Toast.LENGTH_SHORT).show();
 //        }else{
