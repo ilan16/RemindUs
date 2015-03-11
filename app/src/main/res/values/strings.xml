@@ -53,6 +53,10 @@
     <string name="groupe_supprime">$s a bien été supprimé</string>
     <string name="groupe_modifie">$s a bien été modifié</string>
 
+    <!-- DIALOG -->
+    <string name="dialogue_supprimer">Supprimer</string>
+    <string name="dialogue_modifier">Modifier</string>
+
 
 
 

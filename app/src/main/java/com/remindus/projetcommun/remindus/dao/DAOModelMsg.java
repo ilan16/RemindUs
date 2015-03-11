@@ -7,27 +7,28 @@ import android.util.Log;
 
 import com.remindus.projetcommun.remindus.basededonnees.MySQLiteHelper;
 import com.remindus.projetcommun.remindus.basededonnees.utilities.CRUD;
-import com.remindus.projetcommun.remindus.model.ModelContact;
 import com.remindus.projetcommun.remindus.model.ModelGroupe;
+import com.remindus.projetcommun.remindus.model.ModelModelMsg;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 /**
- * Created by ilanmalka on 08/03/15.
+ * Created by ilanmalka on 11/03/15.
  */
-public class DAOGroupe {
+public class DAOModelMsg {
 
     private MySQLiteHelper dbHelper;
     private String[] allColumns = {
-            MySQLiteHelper.COLUMN_ID_GROUPE,
-            MySQLiteHelper.COLUMN_NOM_GROUPE,
-            MySQLiteHelper.COLUMN_DATE_CREATION
+            MySQLiteHelper.COLUMN_ID_MSG_PROG,
+            MySQLiteHelper.COLUMN_TITRE_MSG_PROG,
+            MySQLiteHelper.COLUMN_CONTENU_MODEL_MSG,
+            MySQLiteHelper.COLUMN_DATE_CREATION_MODEL_MSG
     };
     private CRUD crud;
 
-    public DAOGroupe(Context context) {
+    public DAOModelMsg(Context context) {
         crud = new CRUD(context);
     }
 
@@ -39,16 +40,16 @@ public class DAOGroupe {
         this.crud = crud;
     }
 
-    public int insertGroupe(String nom) {
-        if (!this.isExist(nom)) {
+    public int insertModelMsg(String titre) {
+        if (!this.isExist(titre)) {
             ContentValues values = new ContentValues();
-            values.put(MySQLiteHelper.COLUMN_NOM_GROUPE, nom);
+            values.put(MySQLiteHelper.COLUMN_TITRE_MODEL_MSG, titre);
             //convertion date en long pour la bdd
             Date actuelle = new Date();
             long dateLong = actuelle.getTime();
-            values.put(MySQLiteHelper.COLUMN_DATE_CREATION, dateLong);
+            values.put(MySQLiteHelper.COLUMN_DATE_CREATION_MODEL_MSG, dateLong);
             this.crud.open();
-            boolean insert = crud.insert(MySQLiteHelper.TABLE_GROUPES, values);
+            boolean insert = crud.insert(MySQLiteHelper.TABLE_MODEL_MSG, values);
             this.crud.close();
             if (insert) {
                 return 0; // insertion ok
@@ -60,10 +61,10 @@ public class DAOGroupe {
     }
 
 
-    public boolean deleteGroupe(ModelGroupe modelGroupe) {
-        long id = modelGroupe.getIdGroupe();
+    public boolean deleteModelMsg(ModelModelMsg modelModelMsg) {
+        long id = modelModelMsg.getId();
         this.crud.open();
-        boolean delete = crud.delete(MySQLiteHelper.TABLE_GROUPES, MySQLiteHelper.COLUMN_ID_GROUPE
+        boolean delete = crud.delete(MySQLiteHelper.TABLE_MODEL_MSG, MySQLiteHelper.COLUMN_ID_MODEL_MSG
                 + " = " + id);
         // this.crud.close();
         if (delete){
@@ -75,19 +76,19 @@ public class DAOGroupe {
 
     }
 
-    public int updateGroupe(ModelGroupe modelGroupe, String nom){
-        String id = ""+modelGroupe.getIdGroupe();
+    public int updateModelMsg(ModelModelMsg modelModelMsg, String titre){
+        String id = ""+modelModelMsg.getId();
         Log.i("ID",id);
-        if(!this.isExist(nom)) {
+        if(!this.isExist(titre)) {
             this.crud.open();
             ContentValues values = new ContentValues();
-            values.put(MySQLiteHelper.COLUMN_NOM_GROUPE, nom);
-            boolean update = crud.update(MySQLiteHelper.TABLE_GROUPES, values, MySQLiteHelper.COLUMN_ID_GROUPE, new String[]{id});
+            values.put(MySQLiteHelper.COLUMN_TITRE_MODEL_MSG, titre);
+            boolean update = crud.update(MySQLiteHelper.TABLE_MODEL_MSG, values, MySQLiteHelper.COLUMN_ID_MODEL_MSG, new String[]{id});
             if(update){
                 Log.i("UPDATE","BON");
                 return 0; //si l'update fonctionne
             }
-            return 1;
+            return 1; // pb update
         }
         return 2; // le nom existe déjà donc pas possible de maj avec ce nom
     }

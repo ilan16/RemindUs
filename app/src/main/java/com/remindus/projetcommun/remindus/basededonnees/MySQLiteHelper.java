@@ -42,7 +42,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             + TABLE_GROUPES + "("
             + COLUMN_ID_GROUPE + " integer primary key autoincrement, "
             + COLUMN_NOM_GROUPE + " text not null, "
-            + COLUMN_DATE_CREATION + " integer );";
+            + COLUMN_DATE_CREATION + " integer not null);";
 
     /*
             GROUPESxCONTACTS
@@ -95,6 +95,45 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             + "PRIMARY KEY (" + COLUMN_ID_MSG_PROG + "," + COLUMN_ID_GROUPE + ");";
 
     /*
+            MODEL MESSAGE
+     */
+
+    public static final String TABLE_MODEL_MSG = "model_messages";
+    public static final String COLUMN_ID_MODEL_MSG = "_id";
+    public static final String COLUMN_TITRE_MODEL_MSG = "titre";
+    public static final String COLUMN_CONTENU_MODEL_MSG = "contenu";
+    public static final String COLUMN_DATE_CREATION_MODEL_MSG = "date_creation";
+
+    private static final String DATABASE_CREATE_MODEL_MSG = "create table "
+            + TABLE_MODEL_MSG + "("
+            + COLUMN_ID_MODEL_MSG + " integer primary key autoincrement, "
+            + COLUMN_TITRE_MODEL_MSG + " text not null,"
+            + COLUMN_CONTENU_MODEL_MSG + " text not null, "
+            + COLUMN_DATE_CREATION_MODEL_MSG +" integer not null);";
+
+    /*
+            RDV
+     */
+
+    public static final String TABLE_RDV = "rdv";
+    public static final String COLUMN_ID_RDV = "_id";
+    public static final String COLUMN_NOM_RDV = "nom_rdv";
+    public static final String COLUMN_DATE_RDV = "date_rdv";
+    public static final String COLUMN_HEURE_RDV = "heure_rdv";
+    public static final String COLUMN_LIEU_RDV = "lieu";
+    public static final String COLUMN_MODE_TEL_RDV = "mode";
+
+
+    private static final String DATABASE_CREATE_RDV = "create table "
+            + TABLE_RDV + "("
+            + COLUMN_ID_RDV + " integer primary key autoincrement, "
+            + COLUMN_NOM_RDV+ " text not null,"
+            + COLUMN_DATE_RDV+ " integer not null,"
+            + COLUMN_HEURE_RDV+ " integer not null,"
+            + COLUMN_LIEU_RDV + " text not null, "
+            + COLUMN_MODE_TEL_RDV +" integer not null);";
+
+    /*
         METHODES BDD
      */
 
@@ -109,6 +148,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         database.execSQL(DATABASE_CREATE_GROUPESxCONTACTS);
         database.execSQL(DATABASE_CREATE_MSG_PROG);
         database.execSQL(DATABASE_CREATE_MSG_PROGxGROUPES);
+        database.execSQL(DATABASE_CREATE_MODEL_MSG);
+        database.execSQL(DATABASE_CREATE_RDV);
     }
 
     @Override
@@ -118,6 +159,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         database.execSQL("DROP TABLE IF EXISTS " + TABLE_GROUPESxCONTACTS);
         database.execSQL("DROP TABLE IF EXISTS " + TABLE_MSG_PROG);
         database.execSQL("DROP TABLE IF EXISTS " + TABLE_MSG_PROGxGROUPES);
+        database.execSQL("DROP TABLE IF EXISTS " + TABLE_MODEL_MSG);
+        database.execSQL("DROP TABLE IF EXISTS " + TABLE_RDV);
         onCreate(database);
     }
 }

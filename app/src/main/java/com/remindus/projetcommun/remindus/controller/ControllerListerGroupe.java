@@ -1,5 +1,8 @@
 package com.remindus.projetcommun.remindus.controller;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -10,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -54,6 +58,21 @@ public class ControllerListerGroupe extends ControllerHeader {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 valeurSelectionnee = (ModelGroupe) l.getAdapter().getItem(position);
                 ControllerListerGroupe.setValeurSelectionnee(valeurSelectionnee);
+                AlertDialog alertDialog = new AlertDialog.Builder(ControllerListerGroupe.this).create();
+                alertDialog.setTitle(valeurSelectionnee.getNomGroupe());
+                alertDialog.setButton(Dialog.BUTTON1, "Modifier", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(ControllerListerGroupe.this, ControllerModifierGroupe.class);
+                        startActivity(intent);
+                    }
+                });
+                alertDialog.setButton(Dialog.BUTTON2, "Supprimer", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        supprimerGroupe(null);
+                    }
+                });
+                alertDialog.show();
+
                 Log.i("GROUPE A DELETE", ""+values.get(position).toString()+"");
                 return false;
             }
@@ -64,7 +83,7 @@ public class ControllerListerGroupe extends ControllerHeader {
         ArrayAdapter<ModelGroupe> adapter = (ArrayAdapter<ModelGroupe>) l.getAdapter();
         boolean delete = daoGroupe.deleteGroupe(valeurSelectionnee);
         if(delete){
-            Toast.makeText(getApplicationContext(), getResources().getString(R.string.groupe_supprime,valeurSelectionnee.getNomGroupe()), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), getResources().getString(R.string.groupe_supprime, valeurSelectionnee.getNomGroupe()), Toast.LENGTH_SHORT).show();
         }
         Log.i("GROUPE A DELETE", ""+valeurSelectionnee+"");
         adapter.remove(valeurSelectionnee);
