@@ -18,12 +18,11 @@ import android.widget.Button;
 
 import com.remindus.projetcommun.remindus.controller.ControllerCalendrier;
 import com.remindus.projetcommun.remindus.controller.ControllerContact;
-import com.remindus.projetcommun.remindus.controller.ControllerCreerGroupe;
+import com.remindus.projetcommun.remindus.controller.ControllerCreerRDV;
 import com.remindus.projetcommun.remindus.controller.ControllerListerGroupe;
 import com.remindus.projetcommun.remindus.controller.ControllerModelMsg;
 import com.remindus.projetcommun.remindus.controller.ControllerMsgProg;
 import com.remindus.projetcommun.remindus.controller.ControllerParametre;
-import com.remindus.projetcommun.remindus.controller.ControllerRdv;
 import com.remindus.projetcommun.remindus.controller.TesteBDD2;
 
 import java.util.Locale;
@@ -50,7 +49,7 @@ public class MainActivity extends ActionBarActivity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ControllerRdv.class);
+                Intent intent = new Intent(MainActivity.this, ControllerCreerRDV.class);
                 startActivity(intent);
             }
         });

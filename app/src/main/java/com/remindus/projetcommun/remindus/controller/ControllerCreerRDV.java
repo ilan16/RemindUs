@@ -3,50 +3,81 @@ package com.remindus.projetcommun.remindus.controller;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.inputmethodservice.Keyboard;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.TimePicker;
 
-import com.remindus.projetcommun.remindus.MainActivity;
 import com.remindus.projetcommun.remindus.R;
+import com.remindus.projetcommun.remindus.dao.DAORDV;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by bahia on 23/02/2015.
  */
-public class ControllerMsgProg extends ControllerHeader {
+public class ControllerCreerRDV extends ControllerHeader {
 
-    // Widget GUI
-    private ImageButton buttonDate, buttonHeure;
-    private EditText editDate, editHeure;
-
-    // Variable for storing current date and time
+    private EditText nomEdit;
+    private EditText dateEdit;
+    private EditText heureEdit;
+    private EditText lieuEdit;
+    private RadioButton normal, silencieux, vibreur;
+    private DAORDV daordv;
     private int mYear, mMonth, mDay, mHour, mMinute;
 
-    /**
-     * Called when the activity is first created.
-     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.vue_afficher_msg_prog);
+        setContentView(R.layout.vue_afficher_rdv);
 
-        buttonDate = (ImageButton) findViewById(R.id.date);
-        buttonHeure = (ImageButton) findViewById(R.id.heure);
+        nomEdit = (EditText) findViewById(R.id.nom_rdv);
+        dateEdit = (EditText) findViewById(R.id.editDate);
+        heureEdit = (EditText) findViewById(R.id.editHeure);
+        lieuEdit = (EditText) findViewById(R.id.lieu_rdv);
+        normal = (RadioButton) findViewById(R.id.radio_normal);
+        silencieux = (RadioButton) findViewById(R.id.radio_silencieux);
+        vibreur = (RadioButton) findViewById(R.id.radio_vibreur);
+    }
 
-        editDate = (EditText) findViewById(R.id.editDate);
-        editHeure = (EditText) findViewById(R.id.editHeure);
+    public void creerRDV(View view) throws ParseException {
 
-        //buttonDate.setOnClickListener(this);
-        //buttonHeure.setOnClickListener(this);
+        String nom = nomEdit.getText().toString();
+        String date = dateEdit.getText().toString();
+        String heure = heureEdit.getText().toString();
+        String lieu = lieuEdit.getText().toString();
+        long mode = 0;
+
+        if(normal.isChecked()){
+            mode = 0;
+        }else if(silencieux.isChecked()){
+            mode = 1;
+        }else if(vibreur.isChecked()){
+            mode = 2;
+        }
+        String dateRDV = date + "-"+heure;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy-HH:mm");
+        Date d = (Date)simpleDateFormat.parse(dateRDV);
+        long dateLong = d.getTime();
+
+        DateFormat df = new SimpleDateFormat("dd/MM/yy à HH:mm:ss");
+        String doo =df.format(dateLong);
+        System.out.println("date : "+date+ " dateMinute : "+dateLong + " reconversion :" +doo);
+
+        daordv = new DAORDV(this);
+
+        int insert = daordv.insertRDV(nom, dateLong, lieu, mode);
+
     }
 
     public void ajouterHeure(View v) {
@@ -64,7 +95,7 @@ public class ControllerMsgProg extends ControllerHeader {
                     public void onTimeSet(TimePicker view, int hourOfDay,
                                           int minute) {
                         // Display Selected time in textbox
-                        editHeure.setText(hourOfDay + ":" + minute);
+                        heureEdit.setText(hourOfDay + ":" + minute);
                     }
                 }, mHour, mMinute, true);
         tpd.show();
@@ -85,13 +116,15 @@ public class ControllerMsgProg extends ControllerHeader {
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
                         // Display Selected date in textbox
-                        editDate.setText(dayOfMonth + "/"
+                        dateEdit.setText(dayOfMonth + "/"
                                 + (monthOfYear + 1) + "/" + year);
 
                     }
                 }, mYear, mMonth, mDay);
         dpd.show();
     }
+
+
 
 
     @Override
@@ -106,7 +139,7 @@ public class ControllerMsgProg extends ControllerHeader {
         // TODO Auto-generated method stub
         switch (item.getItemId()) {
             case R.id.bouton_parametre:
-                Intent intent = new Intent(ControllerMsgProg.this, ControllerParametre.class);
+                Intent intent = new Intent(ControllerCreerRDV.this, ControllerParametre.class);
                 startActivity(intent);
                 break;
 
@@ -114,7 +147,4 @@ public class ControllerMsgProg extends ControllerHeader {
 
         return false;
     }
-
-
-
 }

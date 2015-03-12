@@ -45,7 +45,7 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/Nom"
+            android:id="@+id/nom_rdv"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="Nom"
@@ -139,16 +139,16 @@
             android:layout_width="fill_parent"
             android:layout_height="60dp"
             android:gravity="center"
-            android:text="Lieux : "
+            android:text="Lieu : "
             android:textColor="#FF0000"
             android:textSize="18dp"
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/lieux"
+            android:id="@+id/lieu_rdv"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="Lieux"
+            android:hint="Lieu"
             android:inputType="text" />
 
         <TextView
@@ -208,6 +208,7 @@
             android:layout_width="114dp"
             android:layout_height="wrap_content"
             android:text="Valider"
+            android:onClick="creerRDV"
             android:layout_gravity="center"
             android:layout_weight="0.08" />
 

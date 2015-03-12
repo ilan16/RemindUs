@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class MySQLiteHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "remindus.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
 
     /*
             CONTACTS
@@ -115,11 +115,11 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             RDV
      */
 
-    public static final String TABLE_RDV = "rdv";
+    public static final String TABLE_RDV = "table_rdv";
     public static final String COLUMN_ID_RDV = "_id";
     public static final String COLUMN_NOM_RDV = "nom_rdv";
     public static final String COLUMN_DATE_RDV = "date_rdv";
-    public static final String COLUMN_HEURE_RDV = "heure_rdv";
+    //public static final String COLUMN_HEURE_RDV = "heure_rdv";
     public static final String COLUMN_LIEU_RDV = "lieu";
     public static final String COLUMN_MODE_TEL_RDV = "mode";
 
@@ -129,7 +129,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             + COLUMN_ID_RDV + " integer primary key autoincrement, "
             + COLUMN_NOM_RDV+ " text not null,"
             + COLUMN_DATE_RDV+ " integer not null,"
-            + COLUMN_HEURE_RDV+ " integer not null,"
+            //+ COLUMN_HEURE_RDV+ " integer not null,"
             + COLUMN_LIEU_RDV + " text not null, "
             + COLUMN_MODE_TEL_RDV +" integer not null);";
 
@@ -145,10 +145,10 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase database) {
         database.execSQL(DATABASE_CREATE_CONTACTS);
         database.execSQL(DATABASE_CREATE_GROUPES);
-        database.execSQL(DATABASE_CREATE_GROUPESxCONTACTS);
-        database.execSQL(DATABASE_CREATE_MSG_PROG);
-        database.execSQL(DATABASE_CREATE_MSG_PROGxGROUPES);
-        database.execSQL(DATABASE_CREATE_MODEL_MSG);
+        //database.execSQL(DATABASE_CREATE_GROUPESxCONTACTS);
+        //database.execSQL(DATABASE_CREATE_MSG_PROG);
+        //database.execSQL(DATABASE_CREATE_MSG_PROGxGROUPES);
+        //database.execSQL(DATABASE_CREATE_MODEL_MSG);
         database.execSQL(DATABASE_CREATE_RDV);
     }
 
@@ -156,10 +156,10 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
         database.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
         database.execSQL("DROP TABLE IF EXISTS " + TABLE_GROUPES);
-        database.execSQL("DROP TABLE IF EXISTS " + TABLE_GROUPESxCONTACTS);
-        database.execSQL("DROP TABLE IF EXISTS " + TABLE_MSG_PROG);
-        database.execSQL("DROP TABLE IF EXISTS " + TABLE_MSG_PROGxGROUPES);
-        database.execSQL("DROP TABLE IF EXISTS " + TABLE_MODEL_MSG);
+        //atabase.execSQL("DROP TABLE IF EXISTS " + TABLE_GROUPESxCONTACTS);
+        //database.execSQL("DROP TABLE IF EXISTS " + TABLE_MSG_PROG);
+        //database.execSQL("DROP TABLE IF EXISTS " + TABLE_MSG_PROGxGROUPES);
+        //database.execSQL("DROP TABLE IF EXISTS " + TABLE_MODEL_MSG);
         database.execSQL("DROP TABLE IF EXISTS " + TABLE_RDV);
         onCreate(database);
     }

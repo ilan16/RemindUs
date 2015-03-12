@@ -23,15 +23,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".controller.ControllerHeader"/>
         <activity
             android:name=".controller.ControllerCalendrier"
             android:label="@string/titre_home" />
         <activity
             android:name=".controller.ControllerMsgProg"
             android:label="@string/titre_msg_prog" />
-        <activity
-            android:name=".controller.ControllerRdv"
-            android:label="@string/titre_RDV" />
         <activity
             android:name=".controller.ControllerModelMsg"
             android:label="@string/titre_model_msg" />
@@ -45,6 +43,8 @@
             android:label="@string/titre_liste_groupe"/>
         <activity android:name=".controller.ControllerModifierGroupe"
             android:label="@string/titre_modifier_groupe"/>
+        <activity android:name=".controller.ControllerCreerRDV"
+            android:label="@string/titre_creer_RDV"/>
         <activity
             android:name=".controller.ControllerParametre"
             android:label="@string/titre_parametre" />

@@ -53,7 +53,6 @@ public class CRUD {
         long insert = this.database.insert(table, null, values);
         if (insert == -1) {
             Log.i("INSERT", "false");
-            System.out.println(insert);
             return false;
         }
         Log.i("INSERT", "true");

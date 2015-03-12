@@ -25,7 +25,7 @@ public class DAORDV {
             MySQLiteHelper.COLUMN_ID_RDV,
             MySQLiteHelper.COLUMN_NOM_RDV,
             MySQLiteHelper.COLUMN_DATE_RDV,
-            MySQLiteHelper.COLUMN_HEURE_RDV,
+            //MySQLiteHelper.COLUMN_HEURE_RDV,
             MySQLiteHelper.COLUMN_LIEU_RDV,
             MySQLiteHelper.COLUMN_MODE_TEL_RDV
     };
@@ -43,15 +43,15 @@ public class DAORDV {
         this.crud = crud;
     }
 
-    public int insertRDV(String nom, long date, long heure, String lieu, long mode) {
+    public int insertRDV(String nom, long date, String lieu, long mode) {
         ContentValues values = new ContentValues();
         values.put(MySQLiteHelper.COLUMN_NOM_RDV, nom);
         values.put(MySQLiteHelper.COLUMN_DATE_RDV, date);
-        values.put(MySQLiteHelper.COLUMN_HEURE_RDV, heure);
+       // values.put(MySQLiteHelper.COLUMN_HEURE_RDV, heure);
         values.put(MySQLiteHelper.COLUMN_LIEU_RDV, lieu);
         values.put(MySQLiteHelper.COLUMN_MODE_TEL_RDV, mode);
         this.crud.open();
-        boolean insert = crud.insert(MySQLiteHelper.TABLE_MODEL_MSG, values);
+        boolean insert = crud.insert(MySQLiteHelper.TABLE_RDV, values);
         this.crud.close();
         if (insert) {
             return 0; // insertion ok
@@ -83,7 +83,7 @@ public class DAORDV {
         ContentValues values = new ContentValues();
         values.put(MySQLiteHelper.COLUMN_NOM_RDV, nom);
         values.put(MySQLiteHelper.COLUMN_DATE_RDV, date);
-        values.put(MySQLiteHelper.COLUMN_HEURE_RDV, heure);
+        //values.put(MySQLiteHelper.COLUMN_HEURE_RDV, heure);
         values.put(MySQLiteHelper.COLUMN_LIEU_RDV, lieu);
         values.put(MySQLiteHelper.COLUMN_MODE_TEL_RDV, mode);
         boolean update = crud.update(MySQLiteHelper.TABLE_RDV, values, MySQLiteHelper.COLUMN_ID_RDV, new String[]{id});

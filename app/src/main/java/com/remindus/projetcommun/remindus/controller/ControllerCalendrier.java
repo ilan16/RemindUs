@@ -5,13 +5,10 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.CalendarView;
-import android.widget.Toast;
 
 import com.remindus.projetcommun.remindus.R;
 import com.tyczj.extendedcalendarview.Day;
@@ -39,7 +36,7 @@ public class ControllerCalendrier extends ControllerHeader /*implements Calendar
                 alertDialog.setMessage("Futur liste des RDV");
                 alertDialog.setButton(Dialog.BUTTON_NEGATIVE, "Ajouter un RDV", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(ControllerCalendrier.this, ControllerRdv.class);
+                        Intent intent = new Intent(ControllerCalendrier.this, ControllerCreerRDV.class);
                         startActivity(intent);
                     }
                 });

@@ -38,7 +38,7 @@ public class ControllerNotifications extends ControllerHeader {
         boolean checked = ((RadioButton) view).isChecked();
 
         // Check which radio button was clicked
-        switch(view.getId()) {
+        switch (view.getId()) {
             case R.id.notif_normal:
                 if (checked) {
                     AudioManager audiomanage = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
@@ -54,15 +54,15 @@ public class ControllerNotifications extends ControllerHeader {
 
                     Toast.makeText(ControllerNotifications.this, "Mode silencieux activé !", Toast.LENGTH_LONG).show();
                     break;
-                }case R.id.notif_vibreur:
+                }
+            case R.id.notif_vibreur:
                 if (checked) {
-
                     AudioManager audiomanage = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
                     audiomanage.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
 
                     Toast.makeText(ControllerNotifications.this, "Mode vibreur activé !", Toast.LENGTH_LONG).show();
-
-                }break;
+                    break;
+                }
         }
     }
 
