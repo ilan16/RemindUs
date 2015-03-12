@@ -13,6 +13,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.remindus.projetcommun.remindus.R;
 import com.remindus.projetcommun.remindus.dao.DAORDV;
@@ -59,25 +60,32 @@ public class ControllerCreerRDV extends ControllerHeader {
         String lieu = lieuEdit.getText().toString();
         long mode = 0;
 
-        if(normal.isChecked()){
+        if (normal.isChecked()) {
             mode = 0;
-        }else if(silencieux.isChecked()){
+        } else if (silencieux.isChecked()) {
             mode = 1;
-        }else if(vibreur.isChecked()){
+        } else if (vibreur.isChecked()) {
             mode = 2;
         }
-        String dateRDV = date + "-"+heure;
+        String dateRDV = date + "-" + heure;
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy-HH:mm");
-        Date d = (Date)simpleDateFormat.parse(dateRDV);
+        Date d = (Date) simpleDateFormat.parse(dateRDV);
         long dateLong = d.getTime();
 
         DateFormat df = new SimpleDateFormat("dd/MM/yy à HH:mm:ss");
-        String doo =df.format(dateLong);
-        System.out.println("date : "+date+ " dateMinute : "+dateLong + " reconversion :" +doo);
+        String doo = df.format(dateLong);
+        System.out.println("date : " + date + " dateMinute : " + dateLong + " reconversion :" + doo);
 
         daordv = new DAORDV(this);
 
         int insert = daordv.insertRDV(nom, dateLong, lieu, mode);
+
+        if (insert == 0) {
+            Intent intent = new Intent(ControllerCreerRDV.this, ControllerListerGroupe.class);
+            startActivity(intent);
+        }else {
+            Toast.makeText(this, R.string.erreur_insertion_rdv, Toast.LENGTH_SHORT);
+        }
 
     }
 
@@ -124,8 +132,6 @@ public class ControllerCreerRDV extends ControllerHeader {
                 }, mYear, mMonth, mDay);
         dpd.show();
     }
-
-
 
 
     @Override

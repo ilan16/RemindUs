@@ -1,5 +1,8 @@
 package com.remindus.projetcommun.remindus.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 /**
  * Created by ilanmalka on 11/03/15.
  */
@@ -51,7 +54,12 @@ public class ModelRDV {
         this.mode = mode;
     }
 
+    public String convertionLongDate(){
+        DateFormat df = new SimpleDateFormat("dd/MM/yy");
+        return df.format(this.getDate());
+    }
+
     public String toString(){
-        return this.getNom();
+        return "RDV " + this.getNom() + " prévu le " + convertionLongDate();
     }
 }
