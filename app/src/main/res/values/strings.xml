@@ -45,16 +45,19 @@
 
     <!-- BOUTONS AJOUTER -->
     <string name="ajouter_groupe">Ajouter un nouveau groupe</string>
+    <string name="ajouter_rdv">Ajouter un nouveau RDV</string>
 
     <!-- BOUTONS MODIFIER -->
     <string name="modifier_groupe">Modifier ce groupe</string>
 
 
     <!-- RESULTAT APRES APPUIE SUR UN BOUTON -->
-    <string name="groupe_supprime">$s a bien été supprimé</string>
-    <string name="groupe_modifie">$s a bien été modifié</string>
+    <string name="groupe_supprime">%s a bien été supprimé</string>
+    <string name="groupe_modifie">%s a bien été modifié</string>
+    <string name="rdv_supprime">%s a bien été supprimé</string>
+    <string name="rdv_modifie">%s a bien été modifié</string>
 
-    <!-- DIALOG -->
+    <!-- DIALOGUE -->
     <string name="dialogue_supprimer">Supprimer</string>
     <string name="dialogue_modifier">Modifier</string>
 

@@ -20,6 +20,7 @@ import com.remindus.projetcommun.remindus.controller.ControllerCalendrier;
 import com.remindus.projetcommun.remindus.controller.ControllerContact;
 import com.remindus.projetcommun.remindus.controller.ControllerCreerRDV;
 import com.remindus.projetcommun.remindus.controller.ControllerListerGroupe;
+import com.remindus.projetcommun.remindus.controller.ControllerListerRDV;
 import com.remindus.projetcommun.remindus.controller.ControllerModelMsg;
 import com.remindus.projetcommun.remindus.controller.ControllerMsgProg;
 import com.remindus.projetcommun.remindus.controller.ControllerParametre;
@@ -49,7 +50,7 @@ public class MainActivity extends ActionBarActivity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ControllerCreerRDV.class);
+                Intent intent = new Intent(MainActivity.this, ControllerListerRDV.class);
                 startActivity(intent);
             }
         });

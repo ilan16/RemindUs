@@ -8,7 +8,6 @@ public class ModelRDV {
     private long id;
     private String nom;
     private long date;
-    private long heure;
     private String lieu;
     private long mode;
 
@@ -34,14 +33,6 @@ public class ModelRDV {
 
     public void setDate(long date) {
         this.date = date;
-    }
-
-    public long getHeure() {
-        return heure;
-    }
-
-    public void setHeure(long heure) {
-        this.heure = heure;
     }
 
     public String getLieu() {

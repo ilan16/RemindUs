@@ -45,6 +45,8 @@
             android:label="@string/titre_modifier_groupe"/>
         <activity android:name=".controller.ControllerCreerRDV"
             android:label="@string/titre_creer_RDV"/>
+        <activity android:name=".controller.ControllerListerRDV"
+            android:label="@string/titre_RDV"/>
         <activity
             android:name=".controller.ControllerParametre"
             android:label="@string/titre_parametre" />

@@ -7,12 +7,10 @@ import android.util.Log;
 
 import com.remindus.projetcommun.remindus.basededonnees.MySQLiteHelper;
 import com.remindus.projetcommun.remindus.basededonnees.utilities.CRUD;
-import com.remindus.projetcommun.remindus.model.ModelGroupe;
-import com.remindus.projetcommun.remindus.model.ModelModelMsg;
+
 import com.remindus.projetcommun.remindus.model.ModelRDV;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,7 +23,6 @@ public class DAORDV {
             MySQLiteHelper.COLUMN_ID_RDV,
             MySQLiteHelper.COLUMN_NOM_RDV,
             MySQLiteHelper.COLUMN_DATE_RDV,
-            //MySQLiteHelper.COLUMN_HEURE_RDV,
             MySQLiteHelper.COLUMN_LIEU_RDV,
             MySQLiteHelper.COLUMN_MODE_TEL_RDV
     };
@@ -47,7 +44,6 @@ public class DAORDV {
         ContentValues values = new ContentValues();
         values.put(MySQLiteHelper.COLUMN_NOM_RDV, nom);
         values.put(MySQLiteHelper.COLUMN_DATE_RDV, date);
-       // values.put(MySQLiteHelper.COLUMN_HEURE_RDV, heure);
         values.put(MySQLiteHelper.COLUMN_LIEU_RDV, lieu);
         values.put(MySQLiteHelper.COLUMN_MODE_TEL_RDV, mode);
         this.crud.open();
@@ -76,14 +72,13 @@ public class DAORDV {
 
     }
 
-    public int updateRDV(ModelRDV modelRDV, String nom, long date, long heure, String lieu, long mode) {
+    public int updateRDV(ModelRDV modelRDV, String nom, long date, String lieu, long mode) {
         String id = "" + modelRDV.getId();
         Log.i("ID", id);
         this.crud.open();
         ContentValues values = new ContentValues();
         values.put(MySQLiteHelper.COLUMN_NOM_RDV, nom);
         values.put(MySQLiteHelper.COLUMN_DATE_RDV, date);
-        //values.put(MySQLiteHelper.COLUMN_HEURE_RDV, heure);
         values.put(MySQLiteHelper.COLUMN_LIEU_RDV, lieu);
         values.put(MySQLiteHelper.COLUMN_MODE_TEL_RDV, mode);
         boolean update = crud.update(MySQLiteHelper.TABLE_RDV, values, MySQLiteHelper.COLUMN_ID_RDV, new String[]{id});
@@ -97,7 +92,7 @@ public class DAORDV {
     public List<ModelRDV> getAllRDV() {
         List<ModelRDV> rdvs = new ArrayList<ModelRDV>();
 
-        Cursor cursor = crud.getDatabase().query(MySQLiteHelper.TABLE_GROUPES,
+        Cursor cursor = crud.getDatabase().query(MySQLiteHelper.TABLE_RDV,
                 allColumns, null, null, null, null, null);
 
         cursor.moveToFirst();
@@ -114,7 +109,7 @@ public class DAORDV {
 
     public ModelRDV getRDV(int id) {
         crud.open();
-        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_GROUPES + " WHERE " + MySQLiteHelper.COLUMN_ID_RDV + " = " + id;
+        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_RDV + " WHERE " + MySQLiteHelper.COLUMN_ID_RDV + " = " + id;
         Cursor cursor = crud.getDatabase().rawQuery(sql, null);
         crud.close();
         return this.cursorToRDV(cursor);
@@ -133,9 +128,8 @@ public class DAORDV {
         rdv.setId(cursor.getLong(0));
         rdv.setNom(cursor.getString(1));
         rdv.setDate(cursor.getLong(2));
-        rdv.setHeure(cursor.getLong(3));
-        rdv.setLieu(cursor.getString(4));
-        rdv.setMode(cursor.getLong(5));
+        rdv.setLieu(cursor.getString(3));
+        rdv.setMode(cursor.getLong(4));
         return rdv;
     }
 
