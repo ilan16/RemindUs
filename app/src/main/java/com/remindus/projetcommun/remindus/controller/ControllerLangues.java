@@ -91,9 +91,9 @@ public class ControllerLangues extends ControllerHeader  {
         conf.locale = myLocale;
         res.updateConfiguration(conf, dm);
 
-        Intent intent = new Intent(this.getApplicationContext(), MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        this.startActivity(intent);
+        Intent intent = getIntent();
+        startActivity(intent);
+        finish();
 
     }
 

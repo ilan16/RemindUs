@@ -28,4 +28,5 @@
     <string name="silencieux">silent</string>
     <string name="normal">Normal</string>
     <string name="titre_mail">Contact Us</string>
+    <string name="vibreur">Vibrate</string>
 </resources>

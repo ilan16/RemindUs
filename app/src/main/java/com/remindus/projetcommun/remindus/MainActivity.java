@@ -35,13 +35,6 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
 
-        Locale myLocale = new Locale("fr");
-        Resources res = getResources();
-        DisplayMetrics dm = res.getDisplayMetrics();
-        Configuration conf = res.getConfiguration();
-        conf.locale = myLocale;
-        res.updateConfiguration(conf, dm);
-
         final Button boutonAccueil = (Button) findViewById(R.id.bouton_calendrier);
         boutonAccueil.setOnClickListener(new View.OnClickListener() {
 
