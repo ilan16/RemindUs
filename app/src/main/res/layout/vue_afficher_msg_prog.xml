@@ -79,7 +79,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="5dp"
                 android:hint="DD/MM/YYYY"
-                android:inputType="text"
+                android:inputType="date"
                 android:editable="true"></EditText>
 
             <ImageButton
@@ -121,7 +121,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="5dp"
                 android:hint="HH:MM"
-                android:inputType="text"
+                android:inputType="datetime"
                 android:editable="true" />
 
             <ImageButton
