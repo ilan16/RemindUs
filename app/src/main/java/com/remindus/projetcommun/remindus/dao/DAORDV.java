@@ -74,13 +74,14 @@ public class DAORDV {
 
     }
 
-    public int updateRDV(ModelRDV modelRDV, String nom, long date, String lieu, long mode) {
+    public int updateRDV(ModelRDV modelRDV, String nom, long date,String datestring, String lieu, long mode) {
         String id = "" + modelRDV.getId();
         Log.i("ID", id);
         this.crud.open();
         ContentValues values = new ContentValues();
         values.put(MySQLiteHelper.COLUMN_NOM_RDV, nom);
         values.put(MySQLiteHelper.COLUMN_DATE_RDV, date);
+        values.put(MySQLiteHelper.COLUMN_DATESTRING_RDV, datestring);
         values.put(MySQLiteHelper.COLUMN_LIEU_RDV, lieu);
         values.put(MySQLiteHelper.COLUMN_MODE_TEL_RDV, mode);
         boolean update = crud.update(MySQLiteHelper.TABLE_RDV, values, MySQLiteHelper.COLUMN_ID_RDV, new String[]{id});
@@ -119,10 +120,11 @@ public class DAORDV {
 
     public ModelRDV getRDV(String date) {
         crud.open();
-        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_RDV + " WHERE " + MySQLiteHelper.COLUMN_DATESTRING_RDV + " = " + date;
-        Cursor cursor = crud.getDatabase().rawQuery(sql, null);
+        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_RDV + " WHERE " + MySQLiteHelper.COLUMN_DATESTRING_RDV + " = ?";
+        Cursor cursor = crud.getDatabase().rawQuery(sql, new String[]{date});
+        ModelRDV rdv = this.cursorToRDV(cursor);
         crud.close();
-        return this.cursorToRDV(cursor);
+        return rdv;
     }
 
 
@@ -131,8 +133,9 @@ public class DAORDV {
         rdv.setId(cursor.getLong(0));
         rdv.setNom(cursor.getString(1));
         rdv.setDate(cursor.getLong(2));
-        rdv.setLieu(cursor.getString(3));
-        rdv.setMode(cursor.getLong(4));
+        rdv.setDateString(cursor.getString(3));
+        rdv.setLieu(cursor.getString(4));
+        rdv.setMode(cursor.getLong(5));
         return rdv;
     }
 

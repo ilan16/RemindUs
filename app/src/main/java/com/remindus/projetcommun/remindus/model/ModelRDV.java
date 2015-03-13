@@ -11,6 +11,7 @@ public class ModelRDV {
     private long id;
     private String nom;
     private long date;
+    private String dateString;
     private String lieu;
     private long mode;
 
@@ -37,6 +38,10 @@ public class ModelRDV {
     public void setDate(long date) {
         this.date = date;
     }
+
+    public String getDateString() { return dateString; }
+
+    public void setDateString(String dateString) { this.dateString = dateString; }
 
     public String getLieu() {
         return lieu;
