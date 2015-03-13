@@ -2,7 +2,6 @@ package com.remindus.projetcommun.remindus.controller;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,7 +24,7 @@ public class ControllerCreerGroupe extends ControllerHeader {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.vue_afficher_groupe);
+        setContentView(R.layout.vue_creer_groupe);
     }
 
     public void ajouterGroupe(View view){

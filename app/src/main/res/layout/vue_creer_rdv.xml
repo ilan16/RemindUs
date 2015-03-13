@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:id="@+id/headerMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="#FC9"
+        android:gravity="center">
+
+        <include
+            android:id="@+id/header"
+            layout="@layout/header"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/scroll"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/headerMenu">
+
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:text="Nom : "
+                android:textColor="#FF0000"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/nom_rdv"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nom"
+                android:inputType="text" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:text="date : "
+                android:textColor="#FF0000"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/layoutDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:context=".MainActivity"
+
+                >
+
+                <EditText
+                    android:id="@+id/editDate"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="5dp"
+                    android:editable="true"
+                    android:hint="DD/MM/YYYY"
+                    android:inputType="date"></EditText>
+
+                <ImageButton
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_toRightOf="@+id/editDate"
+                    android:cropToPadding="true"
+                    android:onClick="ajouterDate"
+                    android:src="@drawable/ic_calendar" />
+
+
+            </RelativeLayout>
+
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:text="heure : "
+                android:textColor="#FF0000"
+                android:textSize="18dp"
+                android:textStyle="bold"></TextView>
+
+
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/layoutHeure"
+                android:layout_width="match_parent"
+                android:layout_height="57dp"
+                tools:context=".MainActivity">
+
+                <EditText
+                    android:id="@+id/editHeure"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="5dp"
+                    android:editable="true"
+                    android:hint="HH:MM"
+                    android:inputType="datetime" />
+
+                <ImageButton
+                    android:id="@+id/heure"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toRightOf="@+id/editHeure"
+                    android:cropToPadding="true"
+                    android:onClick="ajouterHeure"
+                    android:src="@drawable/ic_heure" />
+            </RelativeLayout>
+
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:text="Lieu : "
+                android:textColor="#FF0000"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/lieu_rdv"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="Lieu"
+                android:inputType="text" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:text="Mode du téléphone pendant le RDV : "
+                android:textColor="#FF0000"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:id="@+id/group_radio_mode_rdv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkedButton="@+id/radio_normal"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radio_silencieux"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/silencieux" />
+
+                <RadioButton
+                    android:id="@+id/radio_vibreur"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/vibreur" />
+
+                <RadioButton
+                    android:id="@+id/radio_normal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/normal" />
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:text="Contact : "
+                android:textColor="#FF0000"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/contact"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="contact"
+                android:inputType="textMultiLine" />
+
+            <Button
+                android:id="@+id/valider"
+                android:layout_width="114dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.08"
+                android:onClick="creerRDV"
+                android:text="Valider" />
+
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

@@ -43,12 +43,13 @@ public class ControllerCreerRDV extends ControllerHeader {
     private RadioButton normal, silencieux, vibreur;
     private DAORDV daordv;
     private int mYear, mMonth, mDay, mHour, mMinute;
+    private UtilitaireDate utilitaireDate;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.vue_afficher_rdv);
+        setContentView(R.layout.vue_creer_rdv);
 
         nomEdit = (EditText) findViewById(R.id.nom_rdv);
         dateEdit = (EditText) findViewById(R.id.editDate);
@@ -75,25 +76,21 @@ public class ControllerCreerRDV extends ControllerHeader {
             mode = 2;
         }
         String dateRDV = date + "-" + heure;
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy-HH:mm");
-        Date d = (Date) simpleDateFormat.parse(dateRDV);
-        long dateLong = d.getTime();
 
-        DateFormat df = new SimpleDateFormat("dd/MM/yy à HH:mm:ss");
-        String doo = df.format(dateLong);
-        System.out.println("date : " + date + " dateMinute : " + dateLong + " reconversion :" + doo);
+        utilitaireDate = new UtilitaireDate();
+        long dateLong = utilitaireDate.convertirStringDateEnLong(dateRDV);
 
         daordv = new DAORDV(this);
 
-        int insert = daordv.insertRDV(nom, dateLong, lieu, mode);
+        int insert = daordv.insertRDV(nom, dateLong, date,lieu, mode);
 
         if (insert == 0) {
-            ajouterEventCalendrier(date, heure);
-            Intent intent = new Intent(ControllerCreerRDV.this, ControllerListerGroupe.class);
+            Intent intent = new Intent(ControllerCreerRDV.this, ControllerListerRDV.class);
             startActivity(intent);
         }else {
             Toast.makeText(this, R.string.erreur_insertion_rdv, Toast.LENGTH_SHORT);
         }
+
     }
 
     public void ajouterHeure(View v) {

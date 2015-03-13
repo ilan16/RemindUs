@@ -23,6 +23,7 @@ public class DAORDV {
             MySQLiteHelper.COLUMN_ID_RDV,
             MySQLiteHelper.COLUMN_NOM_RDV,
             MySQLiteHelper.COLUMN_DATE_RDV,
+            MySQLiteHelper.COLUMN_DATESTRING_RDV,
             MySQLiteHelper.COLUMN_LIEU_RDV,
             MySQLiteHelper.COLUMN_MODE_TEL_RDV
     };
@@ -40,10 +41,11 @@ public class DAORDV {
         this.crud = crud;
     }
 
-    public int insertRDV(String nom, long date, String lieu, long mode) {
+    public int insertRDV(String nom, long date, String datestring,String lieu, long mode) {
         ContentValues values = new ContentValues();
         values.put(MySQLiteHelper.COLUMN_NOM_RDV, nom);
         values.put(MySQLiteHelper.COLUMN_DATE_RDV, date);
+        values.put(MySQLiteHelper.COLUMN_DATESTRING_RDV, datestring);
         values.put(MySQLiteHelper.COLUMN_LIEU_RDV, lieu);
         values.put(MySQLiteHelper.COLUMN_MODE_TEL_RDV, mode);
         this.crud.open();
@@ -110,6 +112,14 @@ public class DAORDV {
     public ModelRDV getRDV(int id) {
         crud.open();
         String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_RDV + " WHERE " + MySQLiteHelper.COLUMN_ID_RDV + " = " + id;
+        Cursor cursor = crud.getDatabase().rawQuery(sql, null);
+        crud.close();
+        return this.cursorToRDV(cursor);
+    }
+
+    public ModelRDV getRDV(long date) {
+        crud.open();
+        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_RDV + " WHERE " + MySQLiteHelper.COLUMN_DATE_RDV + " = " + date;
         Cursor cursor = crud.getDatabase().rawQuery(sql, null);
         crud.close();
         return this.cursorToRDV(cursor);
