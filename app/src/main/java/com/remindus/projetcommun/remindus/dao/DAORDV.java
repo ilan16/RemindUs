@@ -117,21 +117,14 @@ public class DAORDV {
         return this.cursorToRDV(cursor);
     }
 
-    public ModelRDV getRDV(long date) {
+    public ModelRDV getRDV(String date) {
         crud.open();
-        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_RDV + " WHERE " + MySQLiteHelper.COLUMN_DATE_RDV + " = " + date;
+        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_RDV + " WHERE " + MySQLiteHelper.COLUMN_DATESTRING_RDV + " = " + date;
         Cursor cursor = crud.getDatabase().rawQuery(sql, null);
         crud.close();
         return this.cursorToRDV(cursor);
     }
 
-    public ModelRDV getRDV(String nom) {
-        crud.open();
-        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_RDV + " WHERE " + MySQLiteHelper.COLUMN_NOM_RDV + " = " + nom;
-        Cursor cursor = crud.getDatabase().rawQuery(sql, null);
-        crud.close();
-        return this.cursorToRDV(cursor);
-    }
 
     private ModelRDV cursorToRDV(Cursor cursor) {
         ModelRDV rdv = new ModelRDV();
