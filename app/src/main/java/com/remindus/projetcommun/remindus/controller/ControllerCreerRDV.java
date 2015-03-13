@@ -2,9 +2,12 @@ package com.remindus.projetcommun.remindus.controller;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.inputmethodservice.Keyboard;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.format.Time;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,12 +20,16 @@ import android.widget.Toast;
 
 import com.remindus.projetcommun.remindus.R;
 import com.remindus.projetcommun.remindus.dao.DAORDV;
+import com.tyczj.extendedcalendarview.CalendarProvider;
+import com.tyczj.extendedcalendarview.Event;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by bahia on 23/02/2015.
@@ -81,12 +88,12 @@ public class ControllerCreerRDV extends ControllerHeader {
         int insert = daordv.insertRDV(nom, dateLong, lieu, mode);
 
         if (insert == 0) {
+            ajouterEventCalendrier(date, heure);
             Intent intent = new Intent(ControllerCreerRDV.this, ControllerListerGroupe.class);
             startActivity(intent);
         }else {
             Toast.makeText(this, R.string.erreur_insertion_rdv, Toast.LENGTH_SHORT);
         }
-
     }
 
     public void ajouterHeure(View v) {
@@ -131,6 +138,41 @@ public class ControllerCreerRDV extends ControllerHeader {
                     }
                 }, mYear, mMonth, mDay);
         dpd.show();
+    }
+
+    public void ajouterEventCalendrier(String date, String h){
+        ContentValues values = new ContentValues();
+        values.put(CalendarProvider.COLOR, Event.COLOR_RED);
+        values.put(CalendarProvider.DESCRIPTION, "");
+        values.put(CalendarProvider.LOCATION, "");
+        values.put(CalendarProvider.EVENT, "RDV");
+
+        Calendar cal = Calendar.getInstance();
+
+        String[] tab_date = date.split("/");
+        int annee = Integer.parseInt(tab_date[2]);
+        int mois = Integer.parseInt(tab_date[1]);
+        int jour = Integer.parseInt(tab_date[0]);
+
+        String[] tab_heure = h.split(":");
+
+        int heure = Integer.parseInt(tab_heure[0]);
+        int min = Integer.parseInt(tab_heure[1]);
+
+        cal.set(annee, mois-1, jour, heure, min);
+        values.put(CalendarProvider.START, cal.getTimeInMillis());
+
+        TimeZone tz = TimeZone.getDefault();
+
+        int endDayJulian = Time.getJulianDay(cal.getTimeInMillis(), TimeUnit.MILLISECONDS.toSeconds(tz.getOffset(cal.getTimeInMillis())));
+
+        values.put(CalendarProvider.START_DAY, endDayJulian);
+        cal.set(annee, mois-1, jour, heure, min);
+        values.put(CalendarProvider.END, cal.getTimeInMillis());
+        values.put(CalendarProvider.END_DAY, endDayJulian);
+
+        Uri uri = getContentResolver().insert(CalendarProvider.CONTENT_URI, values);
+
     }
 
 
