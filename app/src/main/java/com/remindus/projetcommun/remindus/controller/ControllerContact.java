@@ -4,7 +4,10 @@ package com.remindus.projetcommun.remindus.controller;
  * Created by bahia on 26/02/2015.
  */
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ListActivity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -13,12 +16,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
 import com.remindus.projetcommun.remindus.R;
 import com.remindus.projetcommun.remindus.dao.DAOContact;
 import com.remindus.projetcommun.remindus.model.ModelContact;
+import com.remindus.projetcommun.remindus.model.ModelRDV;
 
 public class ControllerContact extends ListActivity {
 
@@ -56,10 +61,13 @@ public class ControllerContact extends ListActivity {
     public void refreshContact(View view){
         daoContact = new DAOContact(this);
         cursor1 = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC");
-        cursor1.moveToFirst();
-        while (!cursor1.isAfterLast()){
-            Log.i("CONTACT",""+cursor1.getColumnName(1) + " " +cursor1.getColumnName(3));
-            cursor1.moveToNext();
+        //cursor1.moveToFirst();
+        while (cursor1.moveToNext()){
+            String contactId = cursor1.getString(cursor1.getColumnIndex(ContactsContract.Contacts._ID));
+            String name = cursor1.getString(cursor1.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+            String number = cursor1.getString(cursor1.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+            Log.i("CONTACT",""+contactId + " " +name+ " " +number);
+            //cursor1.moveToNext();
         }
     }
 
