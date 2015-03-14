@@ -74,7 +74,7 @@
                 android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_weight="0.08"
-                android:onClick="ajouterModelMsg"
+                android:onClick="modifierModelMsg"
                 android:text="Valider" />
 
 

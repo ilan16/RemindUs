@@ -12,6 +12,8 @@
     <string name="titre_modifier_groupe">Modifier le groupe</string>
     <string name="titre_contact">Contact</string>
     <string name="titre_model_msg">Modèles messages</string>
+    <string name="titre_model_msg_creer"> Créer un modèle message</string>
+    <string name="titre_model_msg_modifier">Modifier ce modèle</string>
     <string name="titre_parametre">Paramètres</string>
     <string name="titre_langues">Langues</string>
     <string name="titre_aide">Aide</string>
@@ -45,10 +47,12 @@
     <string name="erreur_insertion_rdv">Une erreur s\'est produite lors de l\'insertion du RDV</string>
     <string name="erreur_modifiction_groupe">Une erreur s\'est produite lors de la modification de ce groupe</string>
     <string name="erreur_modifiction_rdv">Une erreur s\'est produite lors de la modification de ce RDV</string>
+    <string name="erreur_modifiction_model_msg">Une erreur s\'est produite lors de la modification de ce modèle</string>
 
     <!-- BOUTONS AJOUTER -->
     <string name="ajouter_groupe">Ajouter un nouveau groupe</string>
     <string name="ajouter_rdv">Ajouter un nouveau RDV</string>
+    <string name="ajouter_model_msg">Ajouter un nouveau model de message</string>
 
     <!-- BOUTONS MODIFIER -->
     <string name="modifier_groupe">Modifier ce groupe</string>
@@ -60,6 +64,9 @@
     <string name="groupe_modifie">%s a bien été modifié</string>
     <string name="rdv_supprime">%s a bien été supprimé</string>
     <string name="rdv_modifie">%s a bien été modifié</string>
+    <string name="model_msg_supprime">%s a bien été supprimé</string>
+    <string name="model_msg_modifie">%s a bien été modifié</string>
+
 
     <!-- DIALOGUE -->
     <string name="dialogue_supprimer">Supprimer</string>

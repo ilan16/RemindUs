@@ -23,8 +23,8 @@ public class DAOModelMsg {
     private MySQLiteHelper dbHelper;
     private UtilitaireDate utilitaireDate;
     private String[] allColumns = {
-            MySQLiteHelper.COLUMN_ID_MSG_PROG,
-            MySQLiteHelper.COLUMN_TITRE_MSG_PROG,
+            MySQLiteHelper.COLUMN_ID_MODEL_MSG,
+            MySQLiteHelper.COLUMN_TITRE_MODEL_MSG,
             MySQLiteHelper.COLUMN_CONTENU_MODEL_MSG,
             MySQLiteHelper.COLUMN_DATE_CREATION_MODEL_MSG
     };
@@ -80,7 +80,7 @@ public class DAOModelMsg {
     public int updateModelMsg(ModelModelMsg modelModelMsg, String titre, String contenu){
         String id = ""+modelModelMsg.getId();
         Log.i("ID",id);
-        if(!this.isExist(titre)) {
+//        if(!this.isExist(titre)) {
             this.crud.open();
             ContentValues values = new ContentValues();
             values.put(MySQLiteHelper.COLUMN_TITRE_MODEL_MSG, titre);
@@ -91,8 +91,8 @@ public class DAOModelMsg {
                 return 0; //si l'update fonctionne
             }
             return 1; // pb update
-        }
-        return 2; // le nom existe déjà donc pas possible de maj avec ce nom
+//        }
+//        return 2; // le nom existe déjà donc pas possible de maj avec ce nom
     }
 
     public List<ModelModelMsg> getAllModelMsg() {
