@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
 
 
     <RelativeLayout
@@ -11,14 +11,16 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:background="#FC9"
-        android:gravity="center" >
+        android:gravity="center">
 
-        <include android:id="@+id/header"
+        <include
+            android:id="@+id/header"
             layout="@layout/header"
-            android:layout_height="wrap_content"
-            android:layout_width="fill_parent"/>
-    </RelativeLayout>
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
 
+
+    </RelativeLayout>
 
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -28,16 +30,33 @@
         android:layout_below="@id/headerMenu">
 
 
+        <!--<TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/textView" />-->
 
-    <!--<TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/textView" />-->
-    <ListView
-        android:id="@android:id/list"
-        android:layout_width="match_parent"
-        android:layout_below="@id/headerMenu"
-        android:layout_height="wrap_content"></ListView>
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <Button
+                android:id="@+id/refresh_contact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:onClick="refreshContact"
+                android:text="@string/refresh_contact" />
+
+
+            <ListView
+                android:id="@android:id/list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
     </ScrollView>
 </RelativeLayout>

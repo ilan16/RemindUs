@@ -32,6 +32,7 @@
     <string name="vibreur">Vibreur</string>
     <string name="normal">Normal</string>
     <string name="titre_mail">Contactez-Nous</string>
+    <string name="refresh_contact">Refresh</string>
 	
     <!-- JOURS DE LA SEMAINE -->
     <string name="monday">LUN</string>

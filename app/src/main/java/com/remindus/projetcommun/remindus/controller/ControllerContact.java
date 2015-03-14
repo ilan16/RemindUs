@@ -9,30 +9,22 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
 import com.remindus.projetcommun.remindus.R;
+import com.remindus.projetcommun.remindus.dao.DAOContact;
+import com.remindus.projetcommun.remindus.model.ModelContact;
 
 public class ControllerContact extends ListActivity {
 
-
-    @Override
-    public long getSelectedItemId() {
-        // TODO Auto-generated method stub
-        return super.getSelectedItemId();
-    }
-
-    @Override
-    public int getSelectedItemPosition() {
-        // TODO Auto-generated method stub
-        return super.getSelectedItemPosition();
-    }
-
-    ListView lv;
-    Cursor cursor1;
+    private ListView lv;
+    private Cursor cursor1;
+    private DAOContact daoContact;
 
 
     @Override
@@ -59,6 +51,16 @@ public class ControllerContact extends ListActivity {
         lv = getListView();
         lv.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
+    }
+
+    public void refreshContact(View view){
+        daoContact = new DAOContact(this);
+        cursor1 = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC");
+        cursor1.moveToFirst();
+        while (!cursor1.isAfterLast()){
+            Log.i("CONTACT",""+cursor1.getColumnName(1) + " " +cursor1.getColumnName(3));
+            cursor1.moveToNext();
+        }
     }
 
 

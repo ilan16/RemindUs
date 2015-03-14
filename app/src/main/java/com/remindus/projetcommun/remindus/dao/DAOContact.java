@@ -72,8 +72,6 @@ public class DAOContact {
             ModelContact contact = cursorToContact(cursor);
             contacts.add(contact);
             cursor.moveToNext();
-            System.out.println("i :" + i);
-            i++;
         }
         cursor.close();
         return contacts;
