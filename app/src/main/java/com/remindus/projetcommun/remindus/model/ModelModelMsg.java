@@ -42,7 +42,7 @@ public class ModelModelMsg {
         this.dateCreation = dateCreation;
     }
 
-    public String toString(){
-        return this.getTitre();
+    public String toString() {
+        return this.getTitre() + "\n" + this.getContenu();
     }
 }

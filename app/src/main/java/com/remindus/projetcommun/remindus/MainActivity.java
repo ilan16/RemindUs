@@ -5,11 +5,8 @@ package com.remindus.projetcommun.remindus;
  */
 
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -18,15 +15,12 @@ import android.widget.Button;
 
 import com.remindus.projetcommun.remindus.controller.ControllerCalendrier;
 import com.remindus.projetcommun.remindus.controller.ControllerContact;
-import com.remindus.projetcommun.remindus.controller.ControllerCreerRDV;
+import com.remindus.projetcommun.remindus.controller.ControllerCreerModelMsg;
 import com.remindus.projetcommun.remindus.controller.ControllerListerGroupe;
 import com.remindus.projetcommun.remindus.controller.ControllerListerRDV;
-import com.remindus.projetcommun.remindus.controller.ControllerModelMsg;
 import com.remindus.projetcommun.remindus.controller.ControllerMsgProg;
 import com.remindus.projetcommun.remindus.controller.ControllerParametre;
 import com.remindus.projetcommun.remindus.controller.TesteBDD2;
-
-import java.util.Locale;
 
 public class MainActivity extends ActionBarActivity {
     @Override
@@ -90,7 +84,7 @@ public class MainActivity extends ActionBarActivity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ControllerModelMsg.class);
+                Intent intent = new Intent(MainActivity.this, ControllerCreerModelMsg.class);
                 startActivity(intent);
             }
         });

@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.remindus.projetcommun.remindus.R;
 import com.remindus.projetcommun.remindus.dao.DAOGroupe;
@@ -20,25 +21,27 @@ public class ControllerCreerGroupe extends ControllerHeader {
     private DAOGroupe daoGroupe;
 
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vue_creer_groupe);
     }
 
-    public void ajouterGroupe(View view){
+    public void ajouterGroupe(View view) {
         this.nomGroupeEdit = (EditText) findViewById(R.id.nom_groupe);
         String nomGroupe = this.nomGroupeEdit.getText().toString();
 
         this.daoGroupe = new DAOGroupe(this);
-
-        int insert = this.daoGroupe.insertGroupe(nomGroupe);
-        Log.i("INSERT GROUP", ""+insert+"");
-        if(insert == 0){
-            Intent intent = new Intent(ControllerCreerGroupe.this, ControllerListerGroupe.class);
-            startActivity(intent);
+        if (!nomGroupe.equals("")) {
+            int insert = this.daoGroupe.insertGroupe(nomGroupe);
+            if (insert == 0) {
+                Intent intent = new Intent(ControllerCreerGroupe.this, ControllerListerGroupe.class);
+                startActivity(intent);
+            }
+        } else {
+            Toast.makeText(this, R.string.groupe_nom_vide, Toast.LENGTH_SHORT);
         }
+
     }
 
     @Override

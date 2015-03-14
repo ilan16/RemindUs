@@ -2,7 +2,6 @@ package com.remindus.projetcommun.remindus.controller;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -11,12 +10,12 @@ import com.remindus.projetcommun.remindus.R;
 /**
  * Created by bahia on 23/02/2015.
  */
-public class ControllerModelMsg extends ControllerHeader {
+public class ControllerCreerModelMsg extends ControllerHeader {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.vue_afficher_model_msg);
+        setContentView(R.layout.vue_creer_model_msg);
     }
 
     @Override
@@ -31,7 +30,7 @@ public class ControllerModelMsg extends ControllerHeader {
         // TODO Auto-generated method stub
         switch (item.getItemId()) {
             case R.id.bouton_parametre:
-                Intent intent = new Intent(ControllerModelMsg.this, ControllerParametre.class);
+                Intent intent = new Intent(ControllerCreerModelMsg.this, ControllerParametre.class);
                 startActivity(intent);
                 break;
 

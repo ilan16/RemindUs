@@ -1,5 +1,7 @@
 package com.remindus.projetcommun.remindus.model;
 
+import com.remindus.projetcommun.remindus.controller.UtilitaireDate;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
@@ -14,6 +16,7 @@ public class ModelRDV {
     private String dateString;
     private String lieu;
     private long mode;
+    private UtilitaireDate utilitaireDate;
 
     public long getId() {
         return id;
@@ -59,12 +62,8 @@ public class ModelRDV {
         this.mode = mode;
     }
 
-    public String convertionLongDate(){
-        DateFormat df = new SimpleDateFormat("dd/MM/yy");
-        return df.format(this.getDate());
-    }
-
     public String toString(){
-        return "RDV " + this.getNom() + " prévu le " + convertionLongDate();
+        this.utilitaireDate = new UtilitaireDate();
+        return "RDV " + this.getNom() + " prévu le " + utilitaireDate.convertirLongDateString(this.getDate(), "dd/MM/yy");
     }
 }

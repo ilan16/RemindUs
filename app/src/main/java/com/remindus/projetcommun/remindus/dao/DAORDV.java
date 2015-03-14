@@ -8,6 +8,7 @@ import android.util.Log;
 import com.remindus.projetcommun.remindus.basededonnees.MySQLiteHelper;
 import com.remindus.projetcommun.remindus.basededonnees.utilities.CRUD;
 
+import com.remindus.projetcommun.remindus.controller.UtilitaireDate;
 import com.remindus.projetcommun.remindus.model.ModelRDV;
 
 import java.util.ArrayList;
@@ -74,7 +75,7 @@ public class DAORDV {
 
     }
 
-    public int updateRDV(ModelRDV modelRDV, String nom, long date,String datestring, String lieu, long mode) {
+    public int updateRDV(ModelRDV modelRDV, String nom, long date, String datestring, String lieu, long mode) {
         String id = "" + modelRDV.getId();
         Log.i("ID", id);
         this.crud.open();

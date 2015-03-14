@@ -31,7 +31,7 @@
             android:name=".controller.ControllerMsgProg"
             android:label="@string/titre_msg_prog" />
         <activity
-            android:name=".controller.ControllerModelMsg"
+            android:name=".controller.ControllerCreerModelMsg"
             android:label="@string/titre_model_msg" />
         <activity
             android:name=".controller.ControllerContact"
@@ -47,6 +47,8 @@
             android:label="@string/titre_creer_RDV"/>
         <activity android:name=".controller.ControllerListerRDV"
             android:label="@string/titre_RDV"/>
+        <activity android:name=".controller.ControllerModifierRDV"
+            android:label="@string/modifier_rdv"/>
         <activity
             android:name=".controller.ControllerParametre"
             android:label="@string/titre_parametre" />

@@ -75,8 +75,8 @@ public class ControllerCreerRDV extends ControllerHeader {
         } else if (vibreur.isChecked()) {
             mode = 2;
         }
-        String dateRDV = date + "-" + heure;
 
+        String dateRDV = date + "-" + heure;
         utilitaireDate = new UtilitaireDate();
         long dateLong = utilitaireDate.convertirStringDateEnLong(dateRDV);
 

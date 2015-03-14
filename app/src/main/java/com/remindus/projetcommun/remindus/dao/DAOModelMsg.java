@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.remindus.projetcommun.remindus.basededonnees.MySQLiteHelper;
 import com.remindus.projetcommun.remindus.basededonnees.utilities.CRUD;
+import com.remindus.projetcommun.remindus.controller.UtilitaireDate;
 import com.remindus.projetcommun.remindus.model.ModelGroupe;
 import com.remindus.projetcommun.remindus.model.ModelModelMsg;
 
@@ -20,6 +21,7 @@ import java.util.List;
 public class DAOModelMsg {
 
     private MySQLiteHelper dbHelper;
+    private UtilitaireDate utilitaireDate;
     private String[] allColumns = {
             MySQLiteHelper.COLUMN_ID_MSG_PROG,
             MySQLiteHelper.COLUMN_TITRE_MSG_PROG,
@@ -30,6 +32,7 @@ public class DAOModelMsg {
 
     public DAOModelMsg(Context context) {
         crud = new CRUD(context);
+        utilitaireDate = new UtilitaireDate();
     }
 
     public CRUD getCrud() {
@@ -40,14 +43,12 @@ public class DAOModelMsg {
         this.crud = crud;
     }
 
-    public int insertModelMsg(String titre) {
+    public int insertModelMsg(String titre, String contenu) {
         if (!this.isExist(titre)) {
             ContentValues values = new ContentValues();
             values.put(MySQLiteHelper.COLUMN_TITRE_MODEL_MSG, titre);
-            //convertion date en long pour la bdd
-            Date actuelle = new Date();
-            long dateLong = actuelle.getTime();
-            values.put(MySQLiteHelper.COLUMN_DATE_CREATION_MODEL_MSG, dateLong);
+            values.put(MySQLiteHelper.COLUMN_DATE_CREATION_MODEL_MSG, utilitaireDate.dateActuelle());
+            values.put(MySQLiteHelper.COLUMN_CONTENU_MODEL_MSG, contenu);
             this.crud.open();
             boolean insert = crud.insert(MySQLiteHelper.TABLE_MODEL_MSG, values);
             this.crud.close();
@@ -76,13 +77,14 @@ public class DAOModelMsg {
 
     }
 
-    public int updateModelMsg(ModelModelMsg modelModelMsg, String titre){
+    public int updateModelMsg(ModelModelMsg modelModelMsg, String titre, String contenu){
         String id = ""+modelModelMsg.getId();
         Log.i("ID",id);
         if(!this.isExist(titre)) {
             this.crud.open();
             ContentValues values = new ContentValues();
             values.put(MySQLiteHelper.COLUMN_TITRE_MODEL_MSG, titre);
+            values.put(MySQLiteHelper.COLUMN_CONTENU_MODEL_MSG, contenu);
             boolean update = crud.update(MySQLiteHelper.TABLE_MODEL_MSG, values, MySQLiteHelper.COLUMN_ID_MODEL_MSG, new String[]{id});
             if(update){
                 Log.i("UPDATE","BON");
@@ -93,51 +95,52 @@ public class DAOModelMsg {
         return 2; // le nom existe déjà donc pas possible de maj avec ce nom
     }
 
-    public List<ModelGroupe> getAllGroupe() {
-        List<ModelGroupe> groupes = new ArrayList<ModelGroupe>();
+    public List<ModelModelMsg> getAllModelMsg() {
+        List<ModelModelMsg> modelModelMsgs = new ArrayList<ModelModelMsg>();
 
-        Cursor cursor = crud.getDatabase().query(MySQLiteHelper.TABLE_GROUPES,
+        Cursor cursor = crud.getDatabase().query(MySQLiteHelper.TABLE_MODEL_MSG,
                 allColumns, null, null, null, null, null);
 
         cursor.moveToFirst();
 
         while (!cursor.isAfterLast()) {
-            ModelGroupe groupe = cursorToGroupe(cursor);
-            groupes.add(groupe);
+            ModelModelMsg modelModelMsg  = cursorToModelMsg(cursor);
+            modelModelMsgs.add(modelModelMsg);
             cursor.moveToNext();
 
         }
         cursor.close();
-        return groupes;
+        return modelModelMsgs;
     }
 
-    public ModelGroupe getGroupe(int id) {
+    public ModelModelMsg getModelMsg(int id) {
         crud.open();
-        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_GROUPES + " WHERE " + MySQLiteHelper.COLUMN_ID_GROUPE + " = " + id;
+        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MODEL_MSG + " WHERE " + MySQLiteHelper.COLUMN_ID_MODEL_MSG + " = " + id;
         Cursor cursor = crud.getDatabase().rawQuery(sql, null);
         crud.close();
-        return this.cursorToGroupe(cursor);
+        return this.cursorToModelMsg(cursor);
     }
 
-    public ModelGroupe getGroupe(String nom) {
+    public ModelModelMsg getGroupe(String titre) {
         crud.open();
-        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_GROUPES + " WHERE " + MySQLiteHelper.COLUMN_NOM_GROUPE + " = " + nom;
+        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MODEL_MSG + " WHERE " + MySQLiteHelper.COLUMN_TITRE_MODEL_MSG + " = " + titre;
         Cursor cursor = crud.getDatabase().rawQuery(sql, null);
         crud.close();
-        return this.cursorToGroupe(cursor);
+        return this.cursorToModelMsg(cursor);
     }
 
-    private ModelGroupe cursorToGroupe(Cursor cursor) {
-        ModelGroupe groupe = new ModelGroupe();
-        groupe.setIdGroupe(cursor.getLong(0));
-        groupe.setNomGroupe(cursor.getString(1));
-        groupe.setDateCreation(cursor.getLong(2));
-        return groupe;
+    private ModelModelMsg cursorToModelMsg(Cursor cursor) {
+        ModelModelMsg modelModelMsg = new ModelModelMsg();
+        modelModelMsg.setId(cursor.getLong(0));
+        modelModelMsg.setTitre(cursor.getString(1));
+        modelModelMsg.setContenu(cursor.getString(2));
+        modelModelMsg.setDateCreation(cursor.getLong(3));
+        return modelModelMsg;
     }
 
-    private boolean isExist(String nom) {
+    private boolean isExist(String titre) {
         this.crud.open();
-        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_GROUPES + " WHERE " + MySQLiteHelper.COLUMN_NOM_GROUPE + " = '" + nom + "'";
+        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MODEL_MSG + " WHERE " + MySQLiteHelper.COLUMN_TITRE_MODEL_MSG + " = '" + titre + "'";
         Cursor cursor = crud.getDatabase().rawQuery(sql, null);
 
         if (cursor != null) {

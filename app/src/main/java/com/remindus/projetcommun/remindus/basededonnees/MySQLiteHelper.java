@@ -103,7 +103,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
      */
 
     public static final String TABLE_MODEL_MSG = "model_messages";
-    public static final String COLUMN_ID_MODEL_MSG = "_id";
+    public static final String COLUMN_ID_MODEL_MSG = "id_model_msg";
     public static final String COLUMN_TITRE_MODEL_MSG = "titre";
     public static final String COLUMN_CONTENU_MODEL_MSG = "contenu";
     public static final String COLUMN_DATE_CREATION_MODEL_MSG = "date_creation";

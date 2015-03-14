@@ -21,4 +21,9 @@ public class UtilitaireDate {
         return df.format(dateLong);
     }
 
+    public long dateActuelle(){
+        Date actuelle = new Date();
+        return actuelle.getTime();
+    }
+
 }
