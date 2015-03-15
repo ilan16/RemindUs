@@ -11,16 +11,8 @@ public class ModelGroupexContact {
     private long idgroupe;
     private long dateAjout;
 
-    public ModelGroupexContact() {
-    }
 
-    public ModelGroupexContact(long idcontact, long idgroupe, long dateAjout) {
-        this.idcontact = idcontact;
-        this.idgroupe = idgroupe;
-        this.dateAjout = dateAjout;
-    }
-
-    public long getIdcontact(long aLong) {
+    public long getIdcontact() {
         return idcontact;
     }
 
@@ -42,5 +34,9 @@ public class ModelGroupexContact {
 
     public void setDateAjout(long dateAjout) {
         this.dateAjout = dateAjout;
+    }
+
+    public String toString(){
+        return this.getIdcontact() + " " + this.getIdgroupe();
     }
 }
