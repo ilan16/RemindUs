@@ -41,14 +41,17 @@ public class DAOContact {
     }
 
     public boolean insertContact(String contact, String telephone) {
-        ContentValues values = new ContentValues();
-        values.put(MySQLiteHelper.COLUMN_NOM_CONTACT, contact);
-        values.put(MySQLiteHelper.COLUMN_TELEPHONE, telephone);
-        this.crud.open();
-        boolean insert = crud.insert(MySQLiteHelper.TABLE_CONTACTS, values);
-        this.crud.close();
-        if(insert) {
-            return true;
+        if (!isExist(contact, telephone)) {
+            ContentValues values = new ContentValues();
+            values.put(MySQLiteHelper.COLUMN_NOM_CONTACT, contact);
+            values.put(MySQLiteHelper.COLUMN_TELEPHONE, telephone);
+            this.crud.open();
+            boolean insert = crud.insert(MySQLiteHelper.TABLE_CONTACTS, values);
+            this.crud.close();
+            if (insert) {
+                return true;
+            }
+            return false;
         }
         return false;
     }
@@ -83,6 +86,22 @@ public class DAOContact {
         contact.setContact(cursor.getString(1));
         contact.setTelephone(cursor.getString(2));
         return contact;
+    }
+
+    public boolean isExist(String nom, String tel) {
+        this.crud.open();
+        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_CONTACTS + " WHERE " + MySQLiteHelper.COLUMN_NOM_CONTACT + " = \"" + nom + "\"" +
+                " AND " + MySQLiteHelper.COLUMN_TELEPHONE + " = \"" + tel + "\"";
+        Cursor cursor = crud.getDatabase().rawQuery(sql, null);
+
+        if (cursor != null) {
+            if (cursor.getCount() > 0) {
+                cursor.close();
+                return true;
+            }
+            cursor.close();
+        }
+        return false;
     }
 }
 

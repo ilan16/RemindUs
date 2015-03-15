@@ -17,15 +17,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
 import com.remindus.projetcommun.remindus.R;
 import com.remindus.projetcommun.remindus.dao.DAOContact;
+import com.remindus.projetcommun.remindus.dao.DAOModelMsg;
 import com.remindus.projetcommun.remindus.model.ModelContact;
+import com.remindus.projetcommun.remindus.model.ModelModelMsg;
 import com.remindus.projetcommun.remindus.model.ModelRDV;
 
-public class ControllerContact extends ListActivity {
+import java.util.List;
+
+public class ControllerContact extends ControllerHeader {
 
     private ListView lv;
     private Cursor cursor1;
@@ -37,37 +42,30 @@ public class ControllerContact extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vue_afficher_contact);
 
-        // create a cursor to query the Contacts on the device to start populating a listview
-        cursor1 = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC");
-        startManagingCursor(cursor1);
+        this.listerContact();
+    }
 
-        String[] from = {ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME, ContactsContract.CommonDataKinds.Phone.NUMBER, ContactsContract.CommonDataKinds.Phone._ID}; // get the list items for the listadapter could be TITLE or URI
+    public void listerContact(){
+        daoContact = new DAOContact(this);
+        daoContact.getCrud().open();
 
+        final List<ModelContact> values = daoContact.getAllContacts();
+        lv = (ListView) findViewById(R.id.sampleList);
 
-        int[] to = {android.R.id.text1, android.R.id.text2}; // sets the items from above string to listview
-
-        // new listadapter, created to use android checked template
-        SimpleCursorAdapter listadapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_2, cursor1, from, to);
-
-
-        setListAdapter(listadapter);
-
-        // adds listview so I can get data from it
-        lv = getListView();
-        lv.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-
+        ArrayAdapter<ModelContact> adapter = new ArrayAdapter<ModelContact>(this, android.R.layout.simple_list_item_1, values);
+        lv.setAdapter(adapter);
     }
 
     public void refreshContact(View view){
         daoContact = new DAOContact(this);
         cursor1 = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC");
-        //cursor1.moveToFirst();
+
         while (cursor1.moveToNext()){
             String contactId = cursor1.getString(cursor1.getColumnIndex(ContactsContract.Contacts._ID));
             String name = cursor1.getString(cursor1.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
             String number = cursor1.getString(cursor1.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
             Log.i("CONTACT",""+contactId + " " +name+ " " +number);
-            //cursor1.moveToNext();
+            daoContact.insertContact(name, number);
         }
     }
 
@@ -92,5 +90,26 @@ public class ControllerContact extends ListActivity {
 
         return false;
     }
+
+    /*public void listerContact(){
+        // create a cursor to query the Contacts on the device to start populating a listview
+        cursor1 = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC");
+        startManagingCursor(cursor1);
+
+        String[] from = {ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME, ContactsContract.CommonDataKinds.Phone.NUMBER, ContactsContract.CommonDataKinds.Phone._ID}; // get the list items for the listadapter could be TITLE or URI
+
+
+        int[] to = {android.R.id.text1, android.R.id.text2}; // sets the items from above string to listview
+
+        // new listadapter, created to use android checked template
+        SimpleCursorAdapter listadapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_2, cursor1, from, to);
+
+        setListAdapter(listadapter);
+
+        // adds listview so I can get data from it
+        lv = getListView();
+        lv.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+    }*/
+
 
 }
