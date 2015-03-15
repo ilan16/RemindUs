@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
@@ -52,8 +53,26 @@ public class ControllerContact extends ControllerHeader {
         final List<ModelContact> values = daoContact.getAllContacts();
         lv = (ListView) findViewById(R.id.sampleList);
 
-        ArrayAdapter<ModelContact> adapter = new ArrayAdapter<ModelContact>(this, android.R.layout.simple_list_item_1, values);
+        CustomAdapterContact adapter = new CustomAdapterContact(this, values);
         lv.setAdapter(adapter);
+
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.i("Valeur sélectionnée", ""+lv.getId());
+            }
+        });
+
+        //ArrayAdapter<ModelContact> adapter = new ArrayAdapter<ModelContact>(this, android.R.layout.simple_list_item_1, values);
+        //lv.setAdapter(adapter);
+    }
+
+    public void choisirCheckBox(View view){
+
+        CheckBox cb = (CheckBox) view;
+        int position = Integer.parseInt(cb.getTag().toString());
+        Log.i("POSITION: ", ""+position);
     }
 
     public void refreshContact(View view){
@@ -64,7 +83,6 @@ public class ControllerContact extends ControllerHeader {
             String contactId = cursor1.getString(cursor1.getColumnIndex(ContactsContract.Contacts._ID));
             String name = cursor1.getString(cursor1.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
             String number = cursor1.getString(cursor1.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-            Log.i("CONTACT",""+contactId + " " +name+ " " +number);
             daoContact.insertContact(name, number);
         }
     }
