@@ -85,6 +85,7 @@ public class ControllerCreerRDV extends ControllerHeader {
         int insert = daordv.insertRDV(nom, dateLong, date,lieu, mode);
 
         if (insert == 0) {
+            ajouterEventCalendrier(date, heure);
             Intent intent = new Intent(ControllerCreerRDV.this, ControllerListerRDV.class);
             startActivity(intent);
         }else {
@@ -150,11 +151,13 @@ public class ControllerCreerRDV extends ControllerHeader {
         int annee = Integer.parseInt(tab_date[2]);
         int mois = Integer.parseInt(tab_date[1]);
         int jour = Integer.parseInt(tab_date[0]);
+        System.out.println("année: "+ annee + " mois: "+ mois + " jour: "+jour);
 
         String[] tab_heure = h.split(":");
 
         int heure = Integer.parseInt(tab_heure[0]);
         int min = Integer.parseInt(tab_heure[1]);
+        System.out.println("heure: "+ heure + " minute: "+ min);
 
         cal.set(annee, mois-1, jour, heure, min);
         values.put(CalendarProvider.START, cal.getTimeInMillis());
