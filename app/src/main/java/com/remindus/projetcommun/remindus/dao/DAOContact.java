@@ -13,7 +13,9 @@ import com.remindus.projetcommun.remindus.basededonnees.utilities.CRUD;
 import com.remindus.projetcommun.remindus.model.ModelContact;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Ilan on 24/02/2015.
@@ -70,7 +72,6 @@ public class DAOContact {
                 allColumns, null, null, null, null, null);
 
         cursor.moveToFirst();
-        int i = 0;
         while (!cursor.isAfterLast()) {
             ModelContact contact = cursorToContact(cursor);
             contacts.add(contact);
@@ -87,6 +88,7 @@ public class DAOContact {
         contact.setTelephone(cursor.getString(2));
         return contact;
     }
+
 
     public boolean isExist(String nom, String tel) {
         this.crud.open();

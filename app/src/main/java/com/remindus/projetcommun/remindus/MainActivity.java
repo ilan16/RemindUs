@@ -15,13 +15,11 @@ import android.widget.Button;
 
 import com.remindus.projetcommun.remindus.controller.ControllerCalendrier;
 import com.remindus.projetcommun.remindus.controller.ControllerContact;
-import com.remindus.projetcommun.remindus.controller.ControllerCreerModelMsg;
 import com.remindus.projetcommun.remindus.controller.ControllerListerGroupe;
 import com.remindus.projetcommun.remindus.controller.ControllerListerModelMsg;
 import com.remindus.projetcommun.remindus.controller.ControllerListerRDV;
 import com.remindus.projetcommun.remindus.controller.ControllerMsgProg;
 import com.remindus.projetcommun.remindus.controller.ControllerParametre;
-import com.remindus.projetcommun.remindus.controller.TesteBDD2;
 
 public class MainActivity extends ActionBarActivity {
     @Override
