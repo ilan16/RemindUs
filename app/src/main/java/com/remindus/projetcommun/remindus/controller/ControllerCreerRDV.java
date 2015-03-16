@@ -104,7 +104,9 @@ public class ControllerCreerRDV extends ControllerHeader {
 
         for (int i = 0; i < lv.getCount(); i++) {
             if (checked.get(i)) {
-                contacts.add("checked.get(i)");
+                String text = lv.getItemAtPosition(i).toString();
+                contacts.add(text);
+                Log.i("LIST", ""+text);
 
             }
         }
