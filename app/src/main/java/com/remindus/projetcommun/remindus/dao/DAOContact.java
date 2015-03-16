@@ -89,22 +89,6 @@ public class DAOContact {
         return contact;
     }
 
-    public ArrayList<HashMap<String, String>> getAllContactsMap(){
-        ArrayList<HashMap<String, String>> listItem = new ArrayList<HashMap<String, String>>();
-        HashMap<String, String> map = null;
-        Cursor cursor = crud.getDatabase().query(MySQLiteHelper.TABLE_CONTACTS,
-                allColumns, null, null, null, null, null);
-
-
-        while (cursor.moveToNext()) {
-            Log.i("INFOS", ""+ cursor.getString(1)+" "+cursor.getString(2));
-            map.put(cursor.getString(1), cursor.getString(2));
-            listItem.add(map);
-
-        }
-        cursor.close();
-        return listItem;
-    }
 
     public boolean isExist(String nom, String tel) {
         this.crud.open();
