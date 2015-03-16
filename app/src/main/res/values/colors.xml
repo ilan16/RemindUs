@@ -3,6 +3,8 @@
     <color name="black_color">#000</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="grey">#555555</color>
-    <color name="green">#4499CC00</color>
+    <!--<color name="green">#4499CC00</color>-->
     <color name="darkgreen">#FF669900</color>
+    <color name="blue">#3050A0</color>
+    <color name="green">#006600</color>
 </resources>

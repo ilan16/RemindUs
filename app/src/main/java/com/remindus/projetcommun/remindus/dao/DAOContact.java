@@ -13,7 +13,9 @@ import com.remindus.projetcommun.remindus.basededonnees.utilities.CRUD;
 import com.remindus.projetcommun.remindus.model.ModelContact;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Ilan on 24/02/2015.
@@ -70,7 +72,6 @@ public class DAOContact {
                 allColumns, null, null, null, null, null);
 
         cursor.moveToFirst();
-        int i = 0;
         while (!cursor.isAfterLast()) {
             ModelContact contact = cursorToContact(cursor);
             contacts.add(contact);
@@ -86,6 +87,23 @@ public class DAOContact {
         contact.setContact(cursor.getString(1));
         contact.setTelephone(cursor.getString(2));
         return contact;
+    }
+
+    public ArrayList<HashMap<String, String>> getAllContactsMap(){
+        ArrayList<HashMap<String, String>> listItem = new ArrayList<HashMap<String, String>>();
+        HashMap<String, String> map = null;
+        Cursor cursor = crud.getDatabase().query(MySQLiteHelper.TABLE_CONTACTS,
+                allColumns, null, null, null, null, null);
+
+
+        while (cursor.moveToNext()) {
+            Log.i("INFOS", ""+ cursor.getString(1)+" "+cursor.getString(2));
+            map.put(cursor.getString(1), cursor.getString(2));
+            listItem.add(map);
+
+        }
+        cursor.close();
+        return listItem;
     }
 
     public boolean isExist(String nom, String tel) {
