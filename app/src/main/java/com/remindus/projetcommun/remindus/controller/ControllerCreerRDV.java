@@ -4,30 +4,40 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.inputmethodservice.Keyboard;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.text.format.Time;
+import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.remindus.projetcommun.remindus.R;
+import com.remindus.projetcommun.remindus.dao.DAOContact;
 import com.remindus.projetcommun.remindus.dao.DAORDV;
+import com.remindus.projetcommun.remindus.model.ModelContact;
 import com.tyczj.extendedcalendarview.CalendarProvider;
 import com.tyczj.extendedcalendarview.Event;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
@@ -44,7 +54,28 @@ public class ControllerCreerRDV extends ControllerHeader {
     private DAORDV daordv;
     private int mYear, mMonth, mDay, mHour, mMinute;
     private UtilitaireDate utilitaireDate;
+    private ListView lv;
+    private Cursor cursor1;
+    private DAOContact daoContact;
 
+    public void listerContact(){
+        daoContact = new DAOContact(this);
+        daoContact.getCrud().open();
+
+        final List<ModelContact> values = daoContact.getAllContacts();
+        lv = (ListView) findViewById(R.id.sampleList);
+
+        CustomAdapterContact adapter = new CustomAdapterContact(this, values);
+        lv.setAdapter(adapter);
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.i("Valeur sélectionnée", "" + lv.getId());
+            }
+        });
+
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -58,9 +89,27 @@ public class ControllerCreerRDV extends ControllerHeader {
         normal = (RadioButton) findViewById(R.id.radio_normal);
         silencieux = (RadioButton) findViewById(R.id.radio_silencieux);
         vibreur = (RadioButton) findViewById(R.id.radio_vibreur);
+
+        this.listerContact();
     }
 
+
     public void creerRDV(View view) throws ParseException {
+
+        ArrayList<String> contacts = new ArrayList<String>();
+
+        lv = (ListView) findViewById(R.id.sampleList);
+
+        SparseBooleanArray checked = lv.getCheckedItemPositions();
+
+        for (int i = 0; i < lv.getCount(); i++) {
+            if (checked.get(i)) {
+                String text = lv.getItemAtPosition(i).toString();
+                contacts.add(text);
+                Log.i("LIST", ""+text);
+
+            }
+        }
 
         String nom = nomEdit.getText().toString();
         String date = dateEdit.getText().toString();
@@ -85,6 +134,7 @@ public class ControllerCreerRDV extends ControllerHeader {
         int insert = daordv.insertRDV(nom, dateLong, date,lieu, mode);
 
         if (insert == 0) {
+            ajouterEventCalendrier(date, heure);
             Intent intent = new Intent(ControllerCreerRDV.this, ControllerListerRDV.class);
             startActivity(intent);
         }else {
@@ -150,11 +200,13 @@ public class ControllerCreerRDV extends ControllerHeader {
         int annee = Integer.parseInt(tab_date[2]);
         int mois = Integer.parseInt(tab_date[1]);
         int jour = Integer.parseInt(tab_date[0]);
+        System.out.println("année: "+ annee + " mois: "+ mois + " jour: "+jour);
 
         String[] tab_heure = h.split(":");
 
         int heure = Integer.parseInt(tab_heure[0]);
         int min = Integer.parseInt(tab_heure[1]);
+        System.out.println("heure: "+ heure + " minute: "+ min);
 
         cal.set(annee, mois-1, jour, heure, min);
         values.put(CalendarProvider.START, cal.getTimeInMillis());

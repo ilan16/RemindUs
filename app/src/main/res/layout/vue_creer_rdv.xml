@@ -202,6 +202,18 @@
                 android:hint="contact"
                 android:inputType="textMultiLine" />
 
+
+
+            <!--<ListView-->
+            <!--android:id="@android:id/list"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content" />-->
+
+            <ListView
+                android:id="@+id/sampleList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
             <Button
                 android:id="@+id/valider"
                 android:layout_width="114dp"
