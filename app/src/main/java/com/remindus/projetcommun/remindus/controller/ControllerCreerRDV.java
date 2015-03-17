@@ -25,6 +25,8 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.remindus.projetcommun.remindus.R;
+import com.remindus.projetcommun.remindus.controller.validator.ValidatorDate;
+import com.remindus.projetcommun.remindus.controller.validator.ValidatorHeure;
 import com.remindus.projetcommun.remindus.dao.DAOContact;
 import com.remindus.projetcommun.remindus.dao.DAORDV;
 import com.remindus.projetcommun.remindus.model.ModelContact;
@@ -96,7 +98,7 @@ public class ControllerCreerRDV extends ControllerHeader {
 
     public void creerRDV(View view) throws ParseException {
 
-        ArrayList<String> contacts = new ArrayList<String>();
+/*        ArrayList<String> contacts = new ArrayList<String>();
 
         lv = (ListView) findViewById(R.id.sampleList);
 
@@ -109,7 +111,7 @@ public class ControllerCreerRDV extends ControllerHeader {
                 Log.i("LIST", ""+text);
 
             }
-        }
+        }*/
 
         String nom = nomEdit.getText().toString();
         String date = dateEdit.getText().toString();
@@ -117,31 +119,60 @@ public class ControllerCreerRDV extends ControllerHeader {
         String lieu = lieuEdit.getText().toString();
         long mode = 0;
 
-        if (normal.isChecked()) {
-            mode = 0;
-        } else if (silencieux.isChecked()) {
-            mode = 1;
-        } else if (vibreur.isChecked()) {
-            mode = 2;
+        if(this.verifierDate()) {
+
+            if (this.verifierHeure()) {
+
+                if (!nom.equals("")) {
+
+                    if (!lieu.equals("")) {
+
+                        if (normal.isChecked()) {
+                            mode = 0;
+                        } else if (silencieux.isChecked()) {
+                            mode = 1;
+                        } else if (vibreur.isChecked()) {
+                            mode = 2;
+                        }
+
+                        String dateRDV = date + "-" + heure;
+                        utilitaireDate = new UtilitaireDate();
+                        long dateLong = utilitaireDate.convertirStringDateEnLong(dateRDV);
+
+                        daordv = new DAORDV(this);
+                        int insert = daordv.insertRDV(nom, dateLong, date, lieu, mode);
+
+                        if (insert == 0) {
+                            ajouterEventCalendrier(date, heure);
+                            Intent intent = new Intent(ControllerCreerRDV.this, ControllerListerRDV.class);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(this, R.string.erreur_insertion_rdv, Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(this, getResources().getString(R.string.champs_vide, "lieu"), Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(this, getResources().getString(R.string.champs_vide, "nom"), Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(this, getResources().getString(R.string.erreur_format, "HH:MM"), Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(this, getResources().getString(R.string.erreur_format, "MM/DD/YYYY"), Toast.LENGTH_SHORT).show();
         }
-
-        String dateRDV = date + "-" + heure;
-        utilitaireDate = new UtilitaireDate();
-        long dateLong = utilitaireDate.convertirStringDateEnLong(dateRDV);
-
-        daordv = new DAORDV(this);
-
-        int insert = daordv.insertRDV(nom, dateLong, date,lieu, mode);
-
-        if (insert == 0) {
-            ajouterEventCalendrier(date, heure);
-            Intent intent = new Intent(ControllerCreerRDV.this, ControllerListerRDV.class);
-            startActivity(intent);
-        }else {
-            Toast.makeText(this, R.string.erreur_insertion_rdv, Toast.LENGTH_SHORT);
-        }
-
     }
+
+    public boolean verifierDate(){
+        ValidatorDate validatorDate = new ValidatorDate();
+        return validatorDate.validate(dateEdit.getText().toString());
+    }
+
+    public boolean verifierHeure(){
+        ValidatorHeure validatorHeure = new ValidatorHeure();
+        return validatorHeure.validate(heureEdit.getText().toString());
+    }
+
 
     public void ajouterHeure(View v) {
 

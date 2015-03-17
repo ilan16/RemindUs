@@ -81,7 +81,7 @@ public class ControllerListerGroupe extends ControllerHeader {
 
     public void supprimerGroupe(View view){
         ArrayAdapter<ModelGroupe> adapter = (ArrayAdapter<ModelGroupe>) l.getAdapter();
-        boolean delete = daoGroupe.deleteGroupe(valeurSelectionnee);
+        boolean delete = daoGroupe.deleteGroupe(valeurSelectionnee, this);
         if(delete){
             Toast.makeText(getApplicationContext(), getResources().getString(R.string.groupe_supprime, valeurSelectionnee.getNomGroupe()), Toast.LENGTH_SHORT).show();
         }
