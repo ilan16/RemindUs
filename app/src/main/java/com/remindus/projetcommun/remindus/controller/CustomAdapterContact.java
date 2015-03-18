@@ -13,6 +13,8 @@ import android.widget.TextView;
 import com.remindus.projetcommun.remindus.R;
 import com.remindus.projetcommun.remindus.model.ModelContact;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -21,13 +23,15 @@ import java.util.List;
 public class CustomAdapterContact extends ArrayAdapter<ModelContact> {
 
     List<ModelContact> modelItems = null;
-    List<ModelContact> listChecked = null;
+    HashMap<CheckBox,TextView> listbox = null;
     Context context;
 
     public CustomAdapterContact(Context context,int textViewResourceId ,List<ModelContact> resource) {
         super(context, textViewResourceId, resource);
         this.context = context;
         this.modelItems = resource;
+        listbox = new HashMap<CheckBox,TextView>();
+
     }
 
     @Override
@@ -39,14 +43,14 @@ public class CustomAdapterContact extends ArrayAdapter<ModelContact> {
         CheckBox cb = (CheckBox) convertView.findViewById(R.id.checkBox1);
         name.setText(modelItems.get(position).getContact()+"\n"+modelItems.get(position).getTelephone());
         cb.setTag(position);
-        if (cb.isChecked()) {
-            listChecked.add(modelItems.get(position));
-        }
+
+        listbox.put(cb,name);
+
         return convertView;
     }
 
-    public List<ModelContact> getListChecked(){
-        return listChecked;
+    public HashMap<CheckBox,TextView> getListChecked(){
+        return listbox;
     }
 
 }

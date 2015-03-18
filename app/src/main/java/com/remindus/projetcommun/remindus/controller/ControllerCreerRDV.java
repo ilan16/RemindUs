@@ -22,6 +22,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -40,7 +41,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
@@ -71,7 +74,7 @@ public class ControllerCreerRDV extends ControllerHeader {
         final List<ModelContact> values = daoContact.getAllContacts();
         lv = (ListView) findViewById(R.id.listeContact);
 
-        this.adapter = new CustomAdapterContact(this,R.layout.vue_creer_rdv,values);
+        adapter = new CustomAdapterContact(this,R.layout.vue_creer_rdv,values);
 
         lv.setAdapter(this.adapter);
         lv.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
@@ -122,15 +125,17 @@ public class ControllerCreerRDV extends ControllerHeader {
                 responseText.append("Contacts selectionnés ...\n");
 
 
-                final List<ModelContact> values = adapter.getListChecked();
+                final HashMap<CheckBox,TextView> values = adapter.getListChecked();
 
-                for(int i=0;i<values.size();i++)
-                {
-                    ModelContact contact = values.get(i);
+                for(HashMap.Entry<CheckBox,TextView> hash:values.entrySet()){
 
 
-                        responseText.append("\n - " + contact.getContact());
-                        //ici mettre code pour insert dans la base
+                    if(hash.getKey().isChecked()){
+
+                        responseText.append("\n - " + hash.getValue().getText());
+
+                    }
+
 
                 }
 
@@ -140,7 +145,12 @@ public class ControllerCreerRDV extends ControllerHeader {
         });
     }
 
+    public void choisirCheckBox(View view){
 
+        CheckBox cb = (CheckBox) view;
+        int position = Integer.parseInt(cb.getTag().toString());
+        Log.i("POSITION: ", ""+position);
+    }
 
 
     public void creerRDV(View view) throws ParseException {
