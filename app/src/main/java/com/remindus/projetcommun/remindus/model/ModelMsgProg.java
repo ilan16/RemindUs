@@ -63,4 +63,8 @@ public class ModelMsgProg {
     public void setMsgProg(String msgProg) {
         this.msgProg = msgProg;
     }
+
+    public String toString(){
+        return this.getTitre() + "\n"+ this.getMsgProg();
+    }
 }

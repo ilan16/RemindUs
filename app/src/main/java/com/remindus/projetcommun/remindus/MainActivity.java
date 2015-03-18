@@ -18,6 +18,7 @@ import com.remindus.projetcommun.remindus.controller.ControllerContact;
 import com.remindus.projetcommun.remindus.controller.ControllerCreerMsgProg;
 import com.remindus.projetcommun.remindus.controller.ControllerListerGroupe;
 import com.remindus.projetcommun.remindus.controller.ControllerListerModelMsg;
+import com.remindus.projetcommun.remindus.controller.ControllerListerMsgProg;
 import com.remindus.projetcommun.remindus.controller.ControllerListerRDV;
 import com.remindus.projetcommun.remindus.controller.ControllerParametre;
 
@@ -53,7 +54,7 @@ public class MainActivity extends ActionBarActivity {
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ControllerCreerMsgProg.class);
+                Intent intent = new Intent(MainActivity.this, ControllerListerMsgProg.class);
                 startActivity(intent);
             }
         });

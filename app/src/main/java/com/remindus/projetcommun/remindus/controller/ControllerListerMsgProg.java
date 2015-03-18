@@ -78,11 +78,11 @@ public class ControllerListerMsgProg extends ControllerHeader {
 
     public void supprimerMsgProg(View view){
         ArrayAdapter<ModelMsgProg> adapter = (ArrayAdapter<ModelMsgProg>) l.getAdapter();
-        //boolean delete = daoMsgProg.deleteRDV(valeurSelectionnee);
-        //if(delete){
+        boolean delete = daoMsgProg.deleteMsgProg(valeurSelectionnee);
+        if(delete){
             Toast.makeText(getApplicationContext(), getResources().getString(R.string.rdv_supprime, valeurSelectionnee.getTitre()), Toast.LENGTH_SHORT).show();
-        //}
-        Log.i("RDV A DELETE", ""+valeurSelectionnee+"");
+        }
+        Log.i("MSG PROG A DELETE", ""+valeurSelectionnee+"");
         adapter.remove(valeurSelectionnee);
         adapter.notifyDataSetChanged();
     }
