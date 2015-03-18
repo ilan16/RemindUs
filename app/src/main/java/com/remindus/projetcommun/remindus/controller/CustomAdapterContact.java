@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.remindus.projetcommun.remindus.R;
@@ -20,6 +21,7 @@ import java.util.List;
 public class CustomAdapterContact extends ArrayAdapter<ModelContact> {
 
     List<ModelContact> modelItems = null;
+    List<ModelContact> listChecked = null;
     Context context;
 
     public CustomAdapterContact(Context context,int textViewResourceId ,List<ModelContact> resource) {
@@ -37,7 +39,14 @@ public class CustomAdapterContact extends ArrayAdapter<ModelContact> {
         CheckBox cb = (CheckBox) convertView.findViewById(R.id.checkBox1);
         name.setText(modelItems.get(position).getContact()+"\n"+modelItems.get(position).getTelephone());
         cb.setTag(position);
+        if (cb.isChecked()) {
+            listChecked.add(modelItems.get(position));
+        }
         return convertView;
+    }
+
+    public List<ModelContact> getListChecked(){
+        return listChecked;
     }
 
 }

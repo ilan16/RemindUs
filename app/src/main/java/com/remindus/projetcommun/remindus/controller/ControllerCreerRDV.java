@@ -122,7 +122,7 @@ public class ControllerCreerRDV extends ControllerHeader {
                 responseText.append("Contacts selectionnés ...\n");
 
 
-                final List<ModelContact> values = adapter.modelItems;
+                final List<ModelContact> values = adapter.getListChecked();
 
                 for(int i=0;i<values.size();i++)
                 {
