@@ -41,6 +41,7 @@ public class CustomAdapterContact extends ArrayAdapter<ModelContact> {
         convertView = inflater.inflate(R.layout.row, parent, false);
         TextView name = (TextView) convertView.findViewById(R.id.textView1);
         CheckBox cb = (CheckBox) convertView.findViewById(R.id.checkBox1);
+        //name.setText(modelItems.get(position).getContact()+"\n"+modelItems.get(position).getTelephone());
         name.setText(modelItems.get(position).getContact()+"\n"+modelItems.get(position).getTelephone());
         cb.setTag(position);
 

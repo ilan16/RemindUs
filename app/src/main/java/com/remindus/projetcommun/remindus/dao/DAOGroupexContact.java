@@ -122,5 +122,4 @@ public class DAOGroupexContact {
         return modelGroupexContact;
     }
 
-
 }

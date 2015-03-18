@@ -8,11 +8,14 @@ public class ModelContact {
     private long id;
     private String contact;
     private String telephone;
-    private int value;
 
 
     public long getId() {
         return id;
+    }
+
+    public int getIdLong() {
+        return (int)id;
     }
 
     public void setId(long id) {
@@ -35,13 +38,6 @@ public class ModelContact {
         this.telephone = telephone;
     }
 
-    public int getValue() {
-        return value;
-    }
-
-    public void setValue(int value) {
-        this.value = value;
-    }
 
     @Override
     public String toString() {

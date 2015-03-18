@@ -128,6 +128,15 @@ public class DAORDV {
         return rdv;
     }
 
+    public ModelRDV getIdRDV(String nom) {
+        crud.open();
+        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_RDV + " WHERE " + MySQLiteHelper.COLUMN_NOM_RDV + " = ?";
+        Cursor cursor = crud.getDatabase().rawQuery(sql, new String[]{nom});
+        ModelRDV rdv = this.cursorToRDV(cursor);
+        crud.close();
+        return rdv;
+    }
+
 
     private ModelRDV cursorToRDV(Cursor cursor) {
         ModelRDV rdv = new ModelRDV();

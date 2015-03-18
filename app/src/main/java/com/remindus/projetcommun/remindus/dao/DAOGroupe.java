@@ -121,11 +121,15 @@ public class DAOGroupe {
     }
 
     public ModelGroupe getGroupe(String nom) {
+        ModelGroupe modelGroupe = new ModelGroupe();
         crud.open();
-        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_GROUPES + " WHERE " + MySQLiteHelper.COLUMN_NOM_GROUPE + " = " + nom;
-        Cursor cursor = crud.getDatabase().rawQuery(sql, null);
-        crud.close();
-        return this.cursorToGroupe(cursor);
+        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_GROUPES + " WHERE " + MySQLiteHelper.COLUMN_NOM_GROUPE + " = ? " ;
+        Cursor cursor = crud.getDatabase().rawQuery(sql, new String[]{nom});
+        while (cursor.moveToNext()) {
+            modelGroupe = cursorToGroupe(cursor);
+        }
+        cursor.close();
+        return modelGroupe;
     }
 
     private ModelGroupe cursorToGroupe(Cursor cursor) {

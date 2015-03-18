@@ -8,11 +8,6 @@ public class ModelMsgProgxGroupe {
     private long idMsgProg;
     private long idGroupe;
 
-    public ModelMsgProgxGroupe(long idMsgProg, long idGroupe) {
-        this.idMsgProg = idMsgProg;
-        this.idGroupe = idGroupe;
-    }
-
     public long getIdGroupe() {
         return idGroupe;
     }

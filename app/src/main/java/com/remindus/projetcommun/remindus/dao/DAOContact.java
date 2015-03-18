@@ -11,6 +11,7 @@ import android.widget.EditText;
 import com.remindus.projetcommun.remindus.basededonnees.MySQLiteHelper;
 import com.remindus.projetcommun.remindus.basededonnees.utilities.CRUD;
 import com.remindus.projetcommun.remindus.model.ModelContact;
+import com.remindus.projetcommun.remindus.model.ModelGroupe;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -79,6 +80,18 @@ public class DAOContact {
         }
         cursor.close();
         return contacts;
+    }
+
+    public ModelContact getContact(String telephone) {
+        ModelContact contact = new ModelContact();
+        crud.open();
+        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_CONTACTS + " WHERE " + MySQLiteHelper.COLUMN_TELEPHONE + " = ?";
+        Cursor cursor = crud.getDatabase().rawQuery(sql, new String[]{telephone});
+        while (cursor.moveToNext()) {
+            contact = cursorToContact(cursor);
+        }
+        cursor.close();
+        return contact;
     }
 
     private ModelContact cursorToContact(Cursor cursor) {

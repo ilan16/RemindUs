@@ -30,8 +30,13 @@ import com.remindus.projetcommun.remindus.R;
 import com.remindus.projetcommun.remindus.controller.validator.ValidatorDate;
 import com.remindus.projetcommun.remindus.controller.validator.ValidatorHeure;
 import com.remindus.projetcommun.remindus.dao.DAOContact;
+import com.remindus.projetcommun.remindus.dao.DAOGroupe;
+import com.remindus.projetcommun.remindus.dao.DAOGroupexContact;
 import com.remindus.projetcommun.remindus.dao.DAORDV;
+import com.remindus.projetcommun.remindus.dao.DAORDVxContacts;
 import com.remindus.projetcommun.remindus.model.ModelContact;
+import com.remindus.projetcommun.remindus.model.ModelGroupe;
+import com.remindus.projetcommun.remindus.model.ModelRDV;
 import com.tyczj.extendedcalendarview.CalendarProvider;
 import com.tyczj.extendedcalendarview.Event;
 
@@ -58,6 +63,7 @@ public class ControllerCreerRDV extends ControllerHeader {
     private EditText lieuEdit;
     private RadioButton normal, silencieux, vibreur;
     private DAORDV daordv;
+    private DAORDVxContacts daordVxContacts;
     private int mYear, mMonth, mDay, mHour, mMinute;
     private UtilitaireDate utilitaireDate;
     private ListView lv;
@@ -66,31 +72,6 @@ public class ControllerCreerRDV extends ControllerHeader {
 
     private CustomAdapterContact adapter =null;
 
-    public void listerContact(){
-
-        daoContact = new DAOContact(this);
-        daoContact.getCrud().open();
-
-        final List<ModelContact> values = daoContact.getAllContacts();
-        lv = (ListView) findViewById(R.id.listeContact);
-
-        adapter = new CustomAdapterContact(this,R.layout.vue_creer_rdv,values);
-
-        lv.setAdapter(this.adapter);
-        lv.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
-
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-            {
-                // When clicked, show a toast with the TextView text
-                Toast.makeText(getApplicationContext(),"SA MARCHEEEE",
-                        Toast.LENGTH_LONG).show();
-            }
-        });
-
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -106,37 +87,49 @@ public class ControllerCreerRDV extends ControllerHeader {
         vibreur = (RadioButton) findViewById(R.id.radio_vibreur);
 
         this.listerContact();
-        this.checkButtonClick();
+        //this.checkButtonClick();
     }
 
-    private void checkButtonClick()
-    {
+    public void listerContact(){
+
+        daoContact = new DAOContact(this);
+        daoContact.getCrud().open();
+
+        final List<ModelContact> values = daoContact.getAllContacts();
+        lv = (ListView) findViewById(R.id.listeContact);
+
+        adapter = new CustomAdapterContact(this,R.layout.vue_creer_rdv,values);
+
+        lv.setAdapter(this.adapter);
+        lv.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+
+    }
+
+
+    private void checkButtonClick() {
 
         Button myButton = (Button) findViewById(R.id.valider);
 
-        myButton.setOnClickListener(new View.OnClickListener()
-        {
+        myButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
 
                 StringBuffer responseText = new StringBuffer();
                 responseText.append("Contacts selectionnés ...\n");
 
 
-                final HashMap<CheckBox,TextView> values = adapter.getListChecked();
+                final HashMap<CheckBox, TextView> values = adapter.getListChecked();
 
-                for(HashMap.Entry<CheckBox,TextView> hash:values.entrySet()){
-
-
-                    if(hash.getKey().isChecked()){
-
+                for (HashMap.Entry<CheckBox, TextView> hash : values.entrySet()) {
+                    if (hash.getKey().isChecked()) {
                         responseText.append("\n - " + hash.getValue().getText());
+                        String[] split = hash.getValue().getText().toString().split("\n");
+                        daoContact =  new DAOContact(getBaseContext());
+                        ModelContact modelContact = daoContact.getContact(split[1]);
+                        Log.i("contact", ""+modelContact.getId()+" "+modelContact.getContact());
 
                     }
-
-
                 }
 
                 Toast.makeText(getApplicationContext(),
@@ -145,17 +138,27 @@ public class ControllerCreerRDV extends ControllerHeader {
         });
     }
 
-    public void choisirCheckBox(View view){
-
-        CheckBox cb = (CheckBox) view;
-        int position = Integer.parseInt(cb.getTag().toString());
-        Log.i("POSITION: ", ""+position);
+    public void ajouterContactRDV(String nomRDV){
+        final HashMap<CheckBox, TextView> values = adapter.getListChecked();
+        for (HashMap.Entry<CheckBox, TextView> hash : values.entrySet()) {
+            if (hash.getKey().isChecked()) {
+                String[] split = hash.getValue().getText().toString().split("\n");
+                this.daoContact =  new DAOContact(this);
+                ModelContact modelContact = this.daoContact.getContact(split[1]);
+                Log.i("contact", ""+modelContact.getId()+" "+modelContact.getContact());
+                this.daordVxContacts = new DAORDVxContacts(this);
+                this.daordv = new DAORDV(this);
+                ModelRDV modelRDV = new ModelRDV();
+                modelRDV = this.daordv.getIdRDV(nomRDV);
+                long idcontact = Long.parseLong(split[1]);
+                this.daordVxContacts.insertRDVxC(modelRDV.getId(),idcontact);
+            }
+        }
     }
-
 
     public void creerRDV(View view) throws ParseException {
 
-/*        ArrayList<String> contacts = new ArrayList<String>();
+        /*ArrayList<String> contacts = new ArrayList<String>();
 
         lv = (ListView) findViewById(R.id.sampleList);
 
@@ -202,6 +205,7 @@ public class ControllerCreerRDV extends ControllerHeader {
 
                         if (insert == 0) {
                             ajouterEventCalendrier(date, heure);
+                            this.ajouterContactRDV(nom);
                             Intent intent = new Intent(ControllerCreerRDV.this, ControllerListerRDV.class);
                             startActivity(intent);
                         } else {

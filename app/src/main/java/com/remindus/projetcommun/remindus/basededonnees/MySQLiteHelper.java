@@ -138,6 +138,22 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             + COLUMN_MODE_TEL_RDV +" integer not null);";
 
     /*
+            RDV CONTACTS
+     */
+
+    public static final String TABLE_RDVxCONTACTS = "rdv_contacts";
+    public static final String COLUMN_ID_RDV_RDVxC = "idrdv";
+    public static final String COLUMN_ID_CONTACT_RDVxC = "idcontact";
+
+    private static final String DATABASE_CREATE_RDVxCONTACTS = "create table "
+            + TABLE_RDVxCONTACTS + "("
+            + COLUMN_ID_RDV_RDVxC + " INTEGER NOT NULL CONSTRAINT fk_rdv_rdv_id REFERENCES "+ TABLE_RDV
+            + "("+COLUMN_ID_RDV+"),"
+            + COLUMN_ID_CONTACT_RDVxC+ " INTEGER NOT NULL CONSTRAINT fk_groupes_id_rdv REFERENCES "+ TABLE_CONTACTS
+            + "("+COLUMN_ID_CONTACT+"),"
+            + " PRIMARY KEY (" + COLUMN_ID_RDV_RDVxC + "," + COLUMN_ID_CONTACT_RDVxC + "));";
+
+    /*
         METHODES BDD
      */
 
