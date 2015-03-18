@@ -10,6 +10,7 @@ public class ModelContact {
     private String telephone;
     private int value;
 
+
     public long getId() {
         return id;
     }
@@ -46,4 +47,6 @@ public class ModelContact {
     public String toString() {
         return contact + "\n" + telephone;
     }
+
+
 }

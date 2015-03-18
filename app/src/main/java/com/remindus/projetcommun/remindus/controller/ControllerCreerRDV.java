@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -58,20 +59,29 @@ public class ControllerCreerRDV extends ControllerHeader {
     private Cursor cursor1;
     private DAOContact daoContact;
 
+    private CustomAdapterContact adapter =null;
+
     public void listerContact(){
+
         daoContact = new DAOContact(this);
         daoContact.getCrud().open();
 
         final List<ModelContact> values = daoContact.getAllContacts();
-        lv = (ListView) findViewById(R.id.sampleList);
+        lv = (ListView) findViewById(R.id.listeContact);
 
-        CustomAdapterContact adapter = new CustomAdapterContact(this, values);
-        lv.setAdapter(adapter);
+        this.adapter = new CustomAdapterContact(this,R.layout.vue_creer_rdv,values);
 
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.i("Valeur sélectionnée", "" + lv.getId());
+        lv.setAdapter(this.adapter);
+        lv.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+                // When clicked, show a toast with the TextView text
+                Toast.makeText(getApplicationContext(),"SA MARCHEEEE",
+                        Toast.LENGTH_LONG).show();
             }
         });
 
@@ -91,7 +101,44 @@ public class ControllerCreerRDV extends ControllerHeader {
         vibreur = (RadioButton) findViewById(R.id.radio_vibreur);
 
         this.listerContact();
+        this.checkButtonClick();
     }
+
+    private void checkButtonClick()
+    {
+
+        Button myButton = (Button) findViewById(R.id.valider);
+
+        myButton.setOnClickListener(new View.OnClickListener()
+        {
+
+            @Override
+            public void onClick(View v)
+            {
+
+                StringBuffer responseText = new StringBuffer();
+                responseText.append("Contacts selectionnés ...\n");
+
+
+                final List<ModelContact> values = adapter.modelItems;
+
+                for(int i=0;i<values.size();i++)
+                {
+                    ModelContact contact = values.get(i);
+
+
+                        responseText.append("\n - " + contact.getContact());
+                        //ici mettre code pour insert dans la base
+
+                }
+
+                Toast.makeText(getApplicationContext(),
+                        responseText, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+
 
 
     public void creerRDV(View view) throws ParseException {
@@ -101,6 +148,7 @@ public class ControllerCreerRDV extends ControllerHeader {
         lv = (ListView) findViewById(R.id.sampleList);
 
         SparseBooleanArray checked = lv.getCheckedItemPositions();
+
 
         for (int i = 0; i < lv.getCount(); i++) {
             if (checked.get(i)) {

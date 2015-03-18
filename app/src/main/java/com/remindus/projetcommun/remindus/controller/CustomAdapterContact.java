@@ -22,8 +22,8 @@ public class CustomAdapterContact extends ArrayAdapter<ModelContact> {
     List<ModelContact> modelItems = null;
     Context context;
 
-    public CustomAdapterContact(Context context, List<ModelContact> resource) {
-        super(context, R.layout.row, resource);
+    public CustomAdapterContact(Context context,int textViewResourceId ,List<ModelContact> resource) {
+        super(context, textViewResourceId, resource);
         this.context = context;
         this.modelItems = resource;
     }

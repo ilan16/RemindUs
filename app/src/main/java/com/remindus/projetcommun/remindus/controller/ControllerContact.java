@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -37,7 +38,6 @@ public class ControllerContact extends ControllerHeader {
     private Cursor cursor1;
     private DAOContact daoContact;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +53,7 @@ public class ControllerContact extends ControllerHeader {
         final List<ModelContact> values = daoContact.getAllContacts();
         lv = (ListView) findViewById(R.id.sampleList);
 
-        CustomAdapterContact adapter = new CustomAdapterContact(this, values);
+        CustomAdapterContact adapter= new CustomAdapterContact(this,R.layout.vue_afficher_contact,values);
         lv.setAdapter(adapter);
 
 
@@ -64,9 +64,11 @@ public class ControllerContact extends ControllerHeader {
             }
         });
 
-        //ArrayAdapter<ModelContact> adapter = new ArrayAdapter<ModelContact>(this, android.R.layout.simple_list_item_1, values);
-        //lv.setAdapter(adapter);
     }
+
+
+
+
 
     public void choisirCheckBox(View view){
 
