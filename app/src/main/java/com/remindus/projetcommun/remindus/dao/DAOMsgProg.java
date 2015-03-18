@@ -3,11 +3,13 @@ package com.remindus.projetcommun.remindus.dao;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 
 import com.remindus.projetcommun.remindus.basededonnees.MySQLiteHelper;
 import com.remindus.projetcommun.remindus.basededonnees.utilities.CRUD;
 import com.remindus.projetcommun.remindus.model.ModelContact;
 import com.remindus.projetcommun.remindus.model.ModelMsgProg;
+import com.remindus.projetcommun.remindus.model.ModelRDV;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,7 +24,7 @@ public class DAOMsgProg {
             MySQLiteHelper.COLUMN_ID_MSG_PROG,
             MySQLiteHelper.COLUMN_TITRE_MSG_PROG,
             MySQLiteHelper.COLUMN_DATE_MSG_PROG,
-            MySQLiteHelper.COLUMN_HEURE_MSG_PROG,
+            MySQLiteHelper.COLUMN_DATESTRING_MSG_PROG,
             MySQLiteHelper.COLUMN_MSG_PROG
     };
     private CRUD crud;
@@ -39,13 +41,13 @@ public class DAOMsgProg {
         this.crud = crud;
     }
 
-    public int insertMsgProg(String titre, long date, long heure, String contenu) {
-        if(!this.isExist(titre)) {
+    public int insertMsgProg(String titre, long date, String datestring, String contenu) {
+        //if(!this.isExist(titre)) {
 
             ContentValues values = new ContentValues();
             values.put(MySQLiteHelper.COLUMN_TITRE_MSG_PROG, titre);
             values.put(MySQLiteHelper.COLUMN_DATE_MSG_PROG, date);
-            values.put(MySQLiteHelper.COLUMN_HEURE_MSG_PROG, heure);
+            values.put(MySQLiteHelper.COLUMN_DATESTRING_MSG_PROG, datestring);
             values.put(MySQLiteHelper.COLUMN_MSG_PROG, contenu);
 
             this.crud.open();
@@ -56,16 +58,23 @@ public class DAOMsgProg {
                 return 0; // insertion ok
             }
             return 1; // pb d'insertion
-        } else {
-            return 2; // msg existe déjà
-        }
+        //} else {
+        //    return 2; // msg existe déjà
+        //}
     }
 
-    public void deleteMsgProg(ModelMsgProg modelMsgProg) {
+    public boolean deleteMsgProg(ModelMsgProg modelMsgProg) {
         long id = modelMsgProg.getIdMsgProg();
-        System.out.println("Contact deleted with id: " + id);
-        crud.getDatabase().delete(MySQLiteHelper.TABLE_MSG_PROG, MySQLiteHelper.COLUMN_ID_MSG_PROG
-                + " = " + id, null);
+        this.crud.open();
+        boolean delete = crud.delete(MySQLiteHelper.TABLE_MSG_PROG, MySQLiteHelper.COLUMN_ID_MSG_PROG
+                + " = " + id);
+        // this.crud.close();
+        if (delete) {
+            Log.i("DELETE", "effectué");
+            return true;
+        }
+        Log.i("DELETE", "merde");
+        return false;
     }
 
     public List<ModelMsgProg> getAllMsgProg() {
@@ -107,7 +116,7 @@ public class DAOMsgProg {
         msgProg.setIdMsgProg(cursor.getLong(0));
         msgProg.setTitre(cursor.getString(1));
         msgProg.setDate(cursor.getLong(2));
-        msgProg.setHeure(cursor.getLong(3));
+        msgProg.setDatestring(cursor.getString(3));
         msgProg.setMsgProg(cursor.getString(4));
         return msgProg;
     }

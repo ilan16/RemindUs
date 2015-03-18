@@ -46,6 +46,7 @@
     <!-- MESSAGES ERREURS -->
     <string name="erreur_telephone_contact">Le numéro de téléphone doit contenir au moins 8 chiffres</string>
     <string name="erreur_insertion_rdv">Une erreur s\'est produite lors de l\'insertion du RDV</string>
+    <string name="erreur_insertion_msg_prog">Une erreur s\'est produite lors de l\'insertion du message programmé</string>
     <string name="erreur_modifiction_groupe">Une erreur s\'est produite lors de la modification de ce groupe</string>
     <string name="erreur_modifiction_rdv">Une erreur s\'est produite lors de la modification de ce RDV</string>
     <string name="erreur_modifiction_model_msg">Une erreur s\'est produite lors de la modification de ce modèle</string>
@@ -55,6 +56,7 @@
     <string name="ajouter_groupe">Ajouter un nouveau groupe</string>
     <string name="ajouter_rdv">Ajouter un nouveau RDV</string>
     <string name="ajouter_model_msg">Ajouter un nouveau model de message</string>
+    <string name="ajouter_msg_prog">Ajouter un nouveau message programmé</string>
 
     <!-- BOUTONS MODIFIER -->
     <string name="modifier_groupe">Modifier ce groupe</string>
