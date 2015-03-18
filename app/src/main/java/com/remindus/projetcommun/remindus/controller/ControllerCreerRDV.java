@@ -106,10 +106,11 @@ public class ControllerCreerRDV extends ControllerHeader {
         vibreur = (RadioButton) findViewById(R.id.radio_vibreur);
 
         this.listerContact();
-        //this.checkButtonClick();
+        this.checkButtonClick();
     }
 
-    /*private void checkButtonClick(){
+    private void checkButtonClick()
+    {
 
         Button myButton = (Button) findViewById(R.id.valider);
 
@@ -142,7 +143,7 @@ public class ControllerCreerRDV extends ControllerHeader {
                         responseText, Toast.LENGTH_LONG).show();
             }
         });
-    }*/
+    }
 
     public void choisirCheckBox(View view){
 
@@ -154,7 +155,7 @@ public class ControllerCreerRDV extends ControllerHeader {
 
     public void creerRDV(View view) throws ParseException {
 
-       /* ArrayList<String> contacts = new ArrayList<String>();
+/*        ArrayList<String> contacts = new ArrayList<String>();
 
         lv = (ListView) findViewById(R.id.sampleList);
 
