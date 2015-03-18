@@ -28,7 +28,7 @@
             android:name=".controller.ControllerCalendrier"
             android:label="@string/titre_home" />
         <activity
-            android:name=".controller.ControllerMsgProg"
+            android:name=".controller.ControllerCreerMsgProg"
             android:label="@string/titre_msg_prog" />
         <activity
             android:name=".controller.ControllerCreerModelMsg"

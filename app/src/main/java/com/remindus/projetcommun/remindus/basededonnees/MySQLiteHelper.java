@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class MySQLiteHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "remindus.db";
-    private static final int DATABASE_VERSION = 11;
+    private static final int DATABASE_VERSION = 12;
 
     /*
             CONTACTS
@@ -69,7 +69,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     public static final String TABLE_MSG_PROG = "messages_programmes";
     public static final String COLUMN_ID_MSG_PROG = "id_message_programme";
     public static final String COLUMN_TITRE_MSG_PROG = "titre_message_programme";
-    public static final String COLUMN_HEURE_MSG_PROG = "heure_message_programme";
+    public static final String COLUMN_DATESTRING_MSG_PROG = "datestring_message_programme";
     public static final String COLUMN_DATE_MSG_PROG = "date_message_programme";
     public static final String COLUMN_MSG_PROG = "message_programme";
 
@@ -78,7 +78,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             + COLUMN_ID_MSG_PROG + " integer primary key autoincrement, "
             + COLUMN_TITRE_MSG_PROG + " text not null,"
             + COLUMN_DATE_MSG_PROG + " integer not null,"
-            + COLUMN_HEURE_MSG_PROG + " integer not null,"
+            + COLUMN_DATESTRING_MSG_PROG + " text not null,"
             + COLUMN_MSG_PROG + " text not null );";
 
     /*

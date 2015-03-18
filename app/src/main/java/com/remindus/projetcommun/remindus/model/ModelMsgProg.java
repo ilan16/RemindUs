@@ -11,21 +11,10 @@ public class ModelMsgProg {
     private long idMsgProg;
     private String titre;
     private long date;
-    private long heure;
+    private String datestring;
     private DateFormat format;
     private String msgProg;
 
-    public ModelMsgProg() {
-    }
-
-    public ModelMsgProg(long idMsgProg, String titre, long date, long heure, DateFormat format, String msgProg) {
-        this.idMsgProg = idMsgProg;
-        this.titre = titre;
-        this.date = date;
-        this.heure = heure;
-        this.format = format;
-        this.msgProg = msgProg;
-    }
 
     public long getIdMsgProg() {
         return idMsgProg;
@@ -51,12 +40,12 @@ public class ModelMsgProg {
         this.date = date;
     }
 
-    public long getHeure() {
-        return heure;
+    public String getDatestring() {
+        return datestring;
     }
 
-    public void setHeure(long heure) {
-        this.heure = heure;
+    public void setDatestring(String datestring) {
+        this.datestring = datestring;
     }
 
     public DateFormat getFormat() {

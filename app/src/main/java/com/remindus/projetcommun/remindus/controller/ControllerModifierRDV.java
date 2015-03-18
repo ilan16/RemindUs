@@ -15,6 +15,8 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.remindus.projetcommun.remindus.R;
+import com.remindus.projetcommun.remindus.controller.validator.ValidatorDate;
+import com.remindus.projetcommun.remindus.controller.validator.ValidatorHeure;
 import com.remindus.projetcommun.remindus.dao.DAOGroupe;
 import com.remindus.projetcommun.remindus.dao.DAORDV;
 
@@ -77,26 +79,46 @@ public class ControllerModifierRDV extends ControllerHeader {
         String lieu = lieuEdit.getText().toString();
         long mode = 0;
 
-        if (normal.isChecked()) {
-            mode = 0;
-        } else if (silencieux.isChecked()) {
-            mode = 1;
-        } else if (vibreur.isChecked()) {
-            mode = 2;
-        }
+        if (this.verifierDate()) {
 
-        String dateRDV = date + "-" + heure;
-        utilitaireDate = new UtilitaireDate();
-        long dateLong = utilitaireDate.convertirStringDateEnLong(dateRDV);
+            if (this.verifierHeure()) {
 
-        int update = this.daordv.updateRDV(ControllerListerRDV.getValeurSelectionnee(), nom, dateLong, date, lieu, mode);
+                if (!nom.equals("")) {
 
-        if(update == 0){
-            Toast.makeText(getApplicationContext(), getResources().getString(R.string.rdv_modifie, ControllerListerRDV.getValeurSelectionnee().getNom()), Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(ControllerModifierRDV.this, ControllerListerRDV.class);
-            startActivity(intent);
-        }else{
-            Toast.makeText(getApplicationContext(), R.string.erreur_modifiction_rdv, Toast.LENGTH_SHORT).show();
+                    if (!lieu.equals("")) {
+
+                        if (normal.isChecked()) {
+                            mode = 0;
+                        } else if (silencieux.isChecked()) {
+                            mode = 1;
+                        } else if (vibreur.isChecked()) {
+                            mode = 2;
+                        }
+
+                        String dateRDV = date + "-" + heure;
+                        utilitaireDate = new UtilitaireDate();
+                        long dateLong = utilitaireDate.convertirStringDateEnLong(dateRDV);
+
+                        int update = this.daordv.updateRDV(ControllerListerRDV.getValeurSelectionnee(), nom, dateLong, date, lieu, mode);
+
+                        if (update == 0) {
+                            Toast.makeText(getApplicationContext(), getResources().getString(R.string.rdv_modifie, ControllerListerRDV.getValeurSelectionnee().getNom()), Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(ControllerModifierRDV.this, ControllerListerRDV.class);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(getApplicationContext(), R.string.erreur_modifiction_rdv, Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(this, getResources().getString(R.string.champs_vide, "lieu"), Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(this, getResources().getString(R.string.champs_vide, "nom"), Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(this, getResources().getString(R.string.erreur_format, "HH:MM"), Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(this, getResources().getString(R.string.erreur_format, "MM/DD/YYYY"), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -143,6 +165,16 @@ public class ControllerModifierRDV extends ControllerHeader {
                     }
                 }, mYear, mMonth, mDay);
         dpd.show();
+    }
+
+    public boolean verifierDate() {
+        ValidatorDate validatorDate = new ValidatorDate();
+        return validatorDate.validate(dateEdit.getText().toString());
+    }
+
+    public boolean verifierHeure() {
+        ValidatorHeure validatorHeure = new ValidatorHeure();
+        return validatorHeure.validate(heureEdit.getText().toString());
     }
 
     @Override

@@ -22,7 +22,7 @@ public class DAOMsgProg {
             MySQLiteHelper.COLUMN_ID_MSG_PROG,
             MySQLiteHelper.COLUMN_TITRE_MSG_PROG,
             MySQLiteHelper.COLUMN_DATE_MSG_PROG,
-            MySQLiteHelper.COLUMN_HEURE_MSG_PROG,
+            MySQLiteHelper.COLUMN_DATESTRING_MSG_PROG,
             MySQLiteHelper.COLUMN_MSG_PROG
     };
     private CRUD crud;
@@ -39,13 +39,13 @@ public class DAOMsgProg {
         this.crud = crud;
     }
 
-    public int insertMsgProg(String titre, long date, long heure, String contenu) {
+    public int insertMsgProg(String titre, long date, String datestring, String contenu) {
         if(!this.isExist(titre)) {
 
             ContentValues values = new ContentValues();
             values.put(MySQLiteHelper.COLUMN_TITRE_MSG_PROG, titre);
             values.put(MySQLiteHelper.COLUMN_DATE_MSG_PROG, date);
-            values.put(MySQLiteHelper.COLUMN_HEURE_MSG_PROG, heure);
+            values.put(MySQLiteHelper.COLUMN_DATESTRING_MSG_PROG, datestring);
             values.put(MySQLiteHelper.COLUMN_MSG_PROG, contenu);
 
             this.crud.open();
@@ -107,7 +107,7 @@ public class DAOMsgProg {
         msgProg.setIdMsgProg(cursor.getLong(0));
         msgProg.setTitre(cursor.getString(1));
         msgProg.setDate(cursor.getLong(2));
-        msgProg.setHeure(cursor.getLong(3));
+        msgProg.setDatestring(cursor.getString(3));
         msgProg.setMsgProg(cursor.getString(4));
         return msgProg;
     }

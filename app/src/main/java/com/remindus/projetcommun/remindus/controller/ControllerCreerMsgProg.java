@@ -4,30 +4,33 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
-import com.remindus.projetcommun.remindus.MainActivity;
 import com.remindus.projetcommun.remindus.R;
+import com.remindus.projetcommun.remindus.controller.validator.ValidatorDate;
+import com.remindus.projetcommun.remindus.controller.validator.ValidatorHeure;
+import com.remindus.projetcommun.remindus.dao.DAOMsgProg;
 
+import java.text.ParseException;
 import java.util.Calendar;
 
 /**
  * Created by bahia on 23/02/2015.
  */
-public class ControllerMsgProg extends ControllerHeader {
+public class ControllerCreerMsgProg extends ControllerHeader {
 
     // Widget GUI
     private ImageButton buttonDate, buttonHeure;
-    private EditText editDate, editHeure;
-
+    private EditText editDate, editHeure, editTitre, editContenu;
+    private UtilitaireDate utilitaireDate;
+    private DAOMsgProg daoMsgProg;
     // Variable for storing current date and time
     private int mYear, mMonth, mDay, mHour, mMinute;
 
@@ -37,15 +40,16 @@ public class ControllerMsgProg extends ControllerHeader {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.vue_afficher_msg_prog);
+        setContentView(R.layout.vue_creer_msg_prog);
 
         buttonDate = (ImageButton) findViewById(R.id.date);
         buttonHeure = (ImageButton) findViewById(R.id.heure);
 
         editDate = (EditText) findViewById(R.id.editDate);
         editHeure = (EditText) findViewById(R.id.editHeure);
-
-        //buttonDate.setOnClickListener(this);
+        editTitre = (EditText) findViewById(R.id.titre_msg_prog);
+        editContenu = (EditText) findViewById(R.id.message_msg_prog);
+         //buttonDate.setOnClickListener(this);
         //buttonHeure.setOnClickListener(this);
     }
 
@@ -93,6 +97,57 @@ public class ControllerMsgProg extends ControllerHeader {
         dpd.show();
     }
 
+    public void creerMsgProg(View view) throws ParseException {
+        String titre = editTitre.getText().toString();
+        String date = editDate.getText().toString();
+        String heure = editHeure.getText().toString();
+        String contenu = editContenu.getText().toString();
+
+        if(this.verifierDate()) {
+
+            if (this.verifierHeure()) {
+
+                if (!titre.equals("")) {
+
+                    if (!contenu.equals("")) {
+
+                        String dateRDV = date + "-" + heure;
+                        utilitaireDate = new UtilitaireDate();
+                        long dateLong = utilitaireDate.convertirStringDateEnLong(dateRDV);
+
+                        daoMsgProg = new DAOMsgProg(this);
+                        int insert = daoMsgProg.insertMsgProg(titre, dateLong, date, contenu);
+
+                        if (insert == 0) {
+                            Intent intent = new Intent(ControllerCreerMsgProg.this, ControllerListerMsgProg.class);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(this, R.string.erreur_insertion_msg_prog, Toast.LENGTH_SHORT).show();
+                        }
+                    } else {
+                        Toast.makeText(this, getResources().getString(R.string.champs_vide, "contenu"), Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(this, getResources().getString(R.string.champs_vide, "titre"), Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(this, getResources().getString(R.string.erreur_format, "HH:MM"), Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(this, getResources().getString(R.string.erreur_format, "MM/DD/YYYY"), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public boolean verifierDate(){
+        ValidatorDate validatorDate = new ValidatorDate();
+        return validatorDate.validate(editDate.getText().toString());
+    }
+
+    public boolean verifierHeure(){
+        ValidatorHeure validatorHeure = new ValidatorHeure();
+        return validatorHeure.validate(editHeure.getText().toString());
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -106,7 +161,7 @@ public class ControllerMsgProg extends ControllerHeader {
         // TODO Auto-generated method stub
         switch (item.getItemId()) {
             case R.id.bouton_parametre:
-                Intent intent = new Intent(ControllerMsgProg.this, ControllerParametre.class);
+                Intent intent = new Intent(ControllerCreerMsgProg.this, ControllerParametre.class);
                 startActivity(intent);
                 break;
 
