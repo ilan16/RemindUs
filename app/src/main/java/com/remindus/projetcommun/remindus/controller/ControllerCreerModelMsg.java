@@ -42,13 +42,20 @@ public class ControllerCreerModelMsg extends ControllerHeader {
         String contenu = this.contenuEdit.getText().toString();
 
         this.daoModelMsg = new DAOModelMsg(this);
-        if (!titre.equals("") && !contenu.equals("")) {
-            int insert = this.daoModelMsg.insertModelMsg(titre, contenu);
-            if (insert == 0) {
-                Intent intent = new Intent(ControllerCreerModelMsg.this, ControllerListerModelMsg.class);
-                startActivity(intent);
+        if (!titre.equals("")) {
+            if (!contenu.equals("")) {
+                int insert = this.daoModelMsg.insertModelMsg(titre, contenu);
+                if (insert == 0) {
+                    Intent intent = new Intent(ControllerCreerModelMsg.this, ControllerListerModelMsg.class);
+                    startActivity(intent);
+                }
+            } else {
+                Toast.makeText(this, getResources().getString(R.string.champs_vide, "contenu"), Toast.LENGTH_SHORT).show();
             }
+        } else {
+            Toast.makeText(this, getResources().getString(R.string.champs_vide, "titre"), Toast.LENGTH_SHORT).show();
         }
+
     }
 
     @Override

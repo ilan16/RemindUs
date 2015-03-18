@@ -60,13 +60,15 @@ public class DAOGroupe {
     }
 
 
-    public boolean deleteGroupe(ModelGroupe modelGroupe) {
+    public boolean deleteGroupe(ModelGroupe modelGroupe, Context context) {
         long id = modelGroupe.getIdGroupe();
         this.crud.open();
-        boolean delete = crud.delete(MySQLiteHelper.TABLE_GROUPES, MySQLiteHelper.COLUMN_ID_GROUPE
+        DAOGroupexContact daoGroupexContact = new DAOGroupexContact(context);
+        daoGroupexContact.deleteGxC((int)id);
+        boolean deletegroupe = crud.delete(MySQLiteHelper.TABLE_GROUPES, MySQLiteHelper.COLUMN_ID_GROUPE
                 + " = " + id);
-        // this.crud.close();
-        if (delete){
+
+        if (deletegroupe){
             Log.i("DELETE", "effectué");
             return true;
         }

@@ -39,7 +39,7 @@ public class ControllerCreerGroupe extends ControllerHeader {
                 startActivity(intent);
             }
         } else {
-            Toast.makeText(this, R.string.groupe_nom_vide, Toast.LENGTH_SHORT);
+            Toast.makeText(this, R.string.groupe_nom_vide, Toast.LENGTH_SHORT).show();
         }
 
     }
