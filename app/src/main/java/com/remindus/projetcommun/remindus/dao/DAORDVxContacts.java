@@ -39,14 +39,12 @@ public class DAORDVxContacts {
     }
 
     public int insertRDVxC(long idrdv, long idcontact) {
-
         ContentValues values = new ContentValues();
         values.put(MySQLiteHelper.COLUMN_ID_RDV_RDVxC, idrdv);
         values.put(MySQLiteHelper.COLUMN_ID_CONTACT_RDVxC, idcontact);
 
         this.crud.open();
         boolean insert = crud.insert(MySQLiteHelper.TABLE_RDVxCONTACTS, values);
-        this.crud.close();
 
         if (insert) {
             Log.i("INSERER", ""+idrdv+" "+idcontact);

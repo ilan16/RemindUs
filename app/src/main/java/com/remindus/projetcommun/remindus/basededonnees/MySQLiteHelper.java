@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class MySQLiteHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "remindus.db";
-    private static final int DATABASE_VERSION = 12;
+    private static final int DATABASE_VERSION = 14;
 
     /*
             CONTACTS
@@ -149,7 +149,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             + TABLE_RDVxCONTACTS + "("
             + COLUMN_ID_RDV_RDVxC + " INTEGER NOT NULL CONSTRAINT fk_rdv_rdv_id REFERENCES "+ TABLE_RDV
             + "("+COLUMN_ID_RDV+"),"
-            + COLUMN_ID_CONTACT_RDVxC+ " INTEGER NOT NULL CONSTRAINT fk_groupes_id_rdv REFERENCES "+ TABLE_CONTACTS
+            + COLUMN_ID_CONTACT_RDVxC+ " INTEGER NOT NULL CONSTRAINT fk_contacts_id_rdv REFERENCES "+ TABLE_CONTACTS
             + "("+COLUMN_ID_CONTACT+"),"
             + " PRIMARY KEY (" + COLUMN_ID_RDV_RDVxC + "," + COLUMN_ID_CONTACT_RDVxC + "));";
 
@@ -170,6 +170,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         database.execSQL(DATABASE_CREATE_MSG_PROGxGROUPES);
         database.execSQL(DATABASE_CREATE_MODEL_MSG);
         database.execSQL(DATABASE_CREATE_RDV);
+        database.execSQL(DATABASE_CREATE_RDVxCONTACTS);
     }
 
     @Override
@@ -181,6 +182,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         database.execSQL("DROP TABLE IF EXISTS " + TABLE_MSG_PROGxGROUPES);
         database.execSQL("DROP TABLE IF EXISTS " + TABLE_MODEL_MSG);
         database.execSQL("DROP TABLE IF EXISTS " + TABLE_RDV);
+        database.execSQL("DROP TABLE IF EXISTS " + TABLE_RDVxCONTACTS);
         onCreate(database);
     }
 }

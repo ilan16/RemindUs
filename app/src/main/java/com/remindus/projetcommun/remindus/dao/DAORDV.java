@@ -132,8 +132,11 @@ public class DAORDV {
         crud.open();
         String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_RDV + " WHERE " + MySQLiteHelper.COLUMN_NOM_RDV + " = ?";
         Cursor cursor = crud.getDatabase().rawQuery(sql, new String[]{nom});
-        ModelRDV rdv = this.cursorToRDV(cursor);
-        crud.close();
+        ModelRDV rdv = new ModelRDV();
+        while (cursor.moveToNext()) {
+            rdv = cursorToRDV(cursor);
+        }
+        cursor.close();
         return rdv;
     }
 

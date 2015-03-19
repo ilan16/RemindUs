@@ -69,6 +69,7 @@ public class ControllerCreerRDV extends ControllerHeader {
     private ListView lv;
     private Cursor cursor1;
     private DAOContact daoContact;
+    private static String nomRDVstatic;
 
     private CustomAdapterContact adapter =null;
 
@@ -205,8 +206,8 @@ public class ControllerCreerRDV extends ControllerHeader {
 
                         if (insert == 0) {
                             ajouterEventCalendrier(date, heure);
-                            this.ajouterContactRDV(nom);
-                            Intent intent = new Intent(ControllerCreerRDV.this, ControllerListerRDV.class);
+                            ControllerCreerRDV.setNomRDVstatic(nom);
+                            Intent intent = new Intent(ControllerCreerRDV.this, ControllerContact.class);
                             startActivity(intent);
                         } else {
                             Toast.makeText(this, R.string.erreur_insertion_rdv, Toast.LENGTH_SHORT).show();
@@ -337,5 +338,13 @@ public class ControllerCreerRDV extends ControllerHeader {
         }
 
         return false;
+    }
+
+    public static String getNomRDVstatic() {
+        return nomRDVstatic;
+    }
+
+    public static void setNomRDVstatic(String nomRDVstatic) {
+        ControllerCreerRDV.nomRDVstatic = nomRDVstatic;
     }
 }

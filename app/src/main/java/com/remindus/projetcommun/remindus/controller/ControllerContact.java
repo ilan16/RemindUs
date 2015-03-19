@@ -28,6 +28,8 @@ import android.widget.Toast;
 import com.remindus.projetcommun.remindus.R;
 import com.remindus.projetcommun.remindus.dao.DAOContact;
 import com.remindus.projetcommun.remindus.dao.DAOModelMsg;
+import com.remindus.projetcommun.remindus.dao.DAORDV;
+import com.remindus.projetcommun.remindus.dao.DAORDVxContacts;
 import com.remindus.projetcommun.remindus.model.ModelContact;
 import com.remindus.projetcommun.remindus.model.ModelModelMsg;
 import com.remindus.projetcommun.remindus.model.ModelRDV;
@@ -48,7 +50,7 @@ public class ControllerContact extends ControllerHeader {
         setContentView(R.layout.vue_afficher_contact);
 
         this.listerContact();
-        this.checkButtonClick();
+        //this.checkButtonClick();
     }
 
     public void listerContact(){
@@ -58,7 +60,7 @@ public class ControllerContact extends ControllerHeader {
         final List<ModelContact> values = daoContact.getAllContacts();
         lv = (ListView) findViewById(R.id.sampleList);
 
-         adapter= new CustomAdapterContact(this,R.layout.vue_afficher_contact,values);
+        adapter= new CustomAdapterContact(this,R.layout.vue_afficher_contact,values);
         lv.setAdapter(adapter);
 
 
@@ -92,9 +94,12 @@ public class ControllerContact extends ControllerHeader {
             String number = cursor1.getString(cursor1.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
             daoContact.insertContact(name, number);
         }
+
+        adapter.notifyDataSetChanged();
+
     }
 
-    private void checkButtonClick() {
+    /*private void checkButtonClick() {
 
         Button myButton = (Button) findViewById(R.id.validerContact);
 
@@ -102,12 +107,13 @@ public class ControllerContact extends ControllerHeader {
 
             @Override
             public void onClick(View v) {
+                Log.i("test nom rdv", ""+ControllerCreerRDV.getNomRDVstatic());
+                ajouterContactRDV(ControllerCreerRDV.getNomRDVstatic());
+                //StringBuffer responseText = new StringBuffer();
+               // responseText.append("Contacts selectionnés ...\n");
 
-                StringBuffer responseText = new StringBuffer();
-                responseText.append("Contacts selectionnés ...\n");
 
-
-                final HashMap<CheckBox, TextView> values = adapter.getListChecked();
+                *//*final HashMap<CheckBox, TextView> values = adapter.getListChecked();
 
                 for (HashMap.Entry<CheckBox, TextView> hash : values.entrySet()) {
                     if (hash.getKey().isChecked()) {
@@ -118,13 +124,37 @@ public class ControllerContact extends ControllerHeader {
                         Log.i("contact", "" + modelContact.getId() + " " + modelContact.getContact());
 
                     }
-                }
+                }*//*
 
-                Toast.makeText(getApplicationContext(),
-                        responseText, Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), responseText, Toast.LENGTH_LONG).show();
             }
         });
 
+    }
+*/
+
+    public void ajouterContactRDV(View view){
+        final HashMap<CheckBox, TextView> values = adapter.getListChecked();
+        for (HashMap.Entry<CheckBox, TextView> hash : values.entrySet()) {
+            if (hash.getKey().isChecked()) {
+                String[] split = hash.getValue().getText().toString().split("\n");
+                this.daoContact =  new DAOContact(this);
+                ModelContact modelContact = this.daoContact.getContact(split[1]);
+                Log.i("contact rdv", ""+modelContact.getId()+" "+modelContact.getContact());
+                DAORDVxContacts daordVxContacts = new DAORDVxContacts(this);
+                DAORDV daordv = new DAORDV(this);
+                ModelRDV modelRDV = new ModelRDV();
+                modelRDV = daordv.getIdRDV(ControllerCreerRDV.getNomRDVstatic());
+                long idcontact = modelContact.getId();
+                int insert = daordVxContacts.insertRDVxC(modelRDV.getId(),idcontact);
+                if (insert == 0){
+                    Intent intent = new Intent(ControllerContact.this, ControllerListerRDV.class);
+                    startActivity(intent);
+                }
+                //Log.i("insertion ct", ""+insert);
+                Log.i("valeurs", ""+idcontact+" "+modelRDV.getId());
+            }
+        }
     }
 
     @Override
