@@ -110,33 +110,33 @@ public class ControllerCreerRDV extends ControllerHeader {
 
         Button myButton = (Button) findViewById(R.id.valider);
 
-        myButton.setOnClickListener(new View.OnClickListener() {
+    myButton.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
+        @Override
+        public void onClick(View v) {
 
-                StringBuffer responseText = new StringBuffer();
-                responseText.append("Contacts selectionnés ...\n");
+            StringBuffer responseText = new StringBuffer();
+            responseText.append("Contacts selectionnés ...\n");
 
 
-                final HashMap<CheckBox, TextView> values = adapter.getListChecked();
+            final HashMap<CheckBox, TextView> values = adapter.getListChecked();
 
-                for (HashMap.Entry<CheckBox, TextView> hash : values.entrySet()) {
-                    if (hash.getKey().isChecked()) {
-                        responseText.append("\n - " + hash.getValue().getText());
-                        String[] split = hash.getValue().getText().toString().split("\n");
-                        daoContact =  new DAOContact(getBaseContext());
-                        ModelContact modelContact = daoContact.getContact(split[1]);
-                        Log.i("contact", ""+modelContact.getId()+" "+modelContact.getContact());
+            for (HashMap.Entry<CheckBox, TextView> hash : values.entrySet()) {
+                if (hash.getKey().isChecked()) {
+                    responseText.append("\n - " + hash.getValue().getText());
+                    String[] split = hash.getValue().getText().toString().split("\n");
+                    daoContact =  new DAOContact(getBaseContext());
+                    ModelContact modelContact = daoContact.getContact(split[1]);
+                    Log.i("contact", ""+modelContact.getId()+" "+modelContact.getContact());
 
-                    }
                 }
-
-                Toast.makeText(getApplicationContext(),
-                        responseText, Toast.LENGTH_LONG).show();
             }
-        });
-    }
+
+            Toast.makeText(getApplicationContext(),
+                    responseText, Toast.LENGTH_LONG).show();
+        }
+    });
+}
 
     public void ajouterContactRDV(String nomRDV){
         final HashMap<CheckBox, TextView> values = adapter.getListChecked();

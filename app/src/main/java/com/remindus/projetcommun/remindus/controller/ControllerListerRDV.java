@@ -44,7 +44,7 @@ public class ControllerListerRDV extends ControllerHeader {
         daordv.getCrud().open();
 
         final List<ModelRDV> values = daordv.getAllRDV();
-        l = (ListView) findViewById(R.id.sampleList);
+        l = (ListView) findViewById(R.id.afficherRDV);
 
         ArrayAdapter<ModelRDV> adapter = new ArrayAdapter<ModelRDV>(this,
                 android.R.layout.simple_list_item_1, values);

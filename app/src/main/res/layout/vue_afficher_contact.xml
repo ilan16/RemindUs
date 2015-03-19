@@ -25,16 +25,10 @@
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/scroll"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/headerMenu">
 
-
-        <!--<TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/textView" />-->
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
@@ -42,26 +36,42 @@
             android:orientation="vertical">
 
 
-            <Button
-                android:id="@+id/refresh_contact"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:onClick="refreshContact"
-                android:text="@string/refresh_contact" />
 
 
-            <!--<ListView-->
-                <!--android:id="@android:id/list"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content" />-->
 
             <ListView
                 android:id="@+id/sampleList"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="236dp" />
+
+
 
         </LinearLayout>
 
     </ScrollView>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/scroll"
+        android:layout_alignParentStart="true">
+        <Button
+            android:id="@+id/refresh_contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="refreshContact"
+            android:text="@string/refresh_contact" />
+
+        <Button
+            android:id="@+id/validerContact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="validerContact"
+            android:text="Valider" />
+
+    </LinearLayout>
+
 </RelativeLayout>

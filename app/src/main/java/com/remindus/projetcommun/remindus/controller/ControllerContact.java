@@ -22,6 +22,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.remindus.projetcommun.remindus.R;
 import com.remindus.projetcommun.remindus.dao.DAOContact;
@@ -30,6 +32,7 @@ import com.remindus.projetcommun.remindus.model.ModelContact;
 import com.remindus.projetcommun.remindus.model.ModelModelMsg;
 import com.remindus.projetcommun.remindus.model.ModelRDV;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class ControllerContact extends ControllerHeader {
@@ -37,6 +40,7 @@ public class ControllerContact extends ControllerHeader {
     private ListView lv;
     private Cursor cursor1;
     private DAOContact daoContact;
+    private CustomAdapterContact adapter =null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,7 @@ public class ControllerContact extends ControllerHeader {
         setContentView(R.layout.vue_afficher_contact);
 
         this.listerContact();
+        this.checkButtonClick();
     }
 
     public void listerContact(){
@@ -53,7 +58,7 @@ public class ControllerContact extends ControllerHeader {
         final List<ModelContact> values = daoContact.getAllContacts();
         lv = (ListView) findViewById(R.id.sampleList);
 
-        CustomAdapterContact adapter= new CustomAdapterContact(this,R.layout.vue_afficher_contact,values);
+         adapter= new CustomAdapterContact(this,R.layout.vue_afficher_contact,values);
         lv.setAdapter(adapter);
 
 
@@ -89,6 +94,38 @@ public class ControllerContact extends ControllerHeader {
         }
     }
 
+    private void checkButtonClick() {
+
+        Button myButton = (Button) findViewById(R.id.validerContact);
+
+        myButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                StringBuffer responseText = new StringBuffer();
+                responseText.append("Contacts selectionnés ...\n");
+
+
+                final HashMap<CheckBox, TextView> values = adapter.getListChecked();
+
+                for (HashMap.Entry<CheckBox, TextView> hash : values.entrySet()) {
+                    if (hash.getKey().isChecked()) {
+                        responseText.append("\n - " + hash.getValue().getText());
+                        String[] split = hash.getValue().getText().toString().split("\n");
+                        daoContact = new DAOContact(getBaseContext());
+                        ModelContact modelContact = daoContact.getContact(split[1]);
+                        Log.i("contact", "" + modelContact.getId() + " " + modelContact.getContact());
+
+                    }
+                }
+
+                Toast.makeText(getApplicationContext(),
+                        responseText, Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
