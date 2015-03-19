@@ -60,9 +60,6 @@
             android:name=".controller.ControllerParametre"
             android:label="@string/titre_parametre" />
         <activity
-            android:name=".controller.TesteBDD2"
-            android:label="TestBDD" />
-        <activity
             android:name=".controller.ControllerLangues"
             android:label="@string/titre_langues" />
         <activity

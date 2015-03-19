@@ -2,6 +2,7 @@ package com.remindus.projetcommun.remindus.basededonnees.utilities;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
@@ -75,8 +76,8 @@ public class CRUD {
         return true;
     }
 
-    public void requeteGeneral(String sql) {
-        this.database.execSQL(sql);
+    public Cursor requeteGeneral(String sql, String[] contenu) {
+        return this.database.rawQuery(sql, contenu);
     }
 
 }

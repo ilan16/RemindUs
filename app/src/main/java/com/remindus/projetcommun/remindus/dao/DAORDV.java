@@ -141,7 +141,7 @@ public class DAORDV {
     }
 
 
-    private ModelRDV cursorToRDV(Cursor cursor) {
+    public ModelRDV cursorToRDV(Cursor cursor) {
         ModelRDV rdv = new ModelRDV();
         rdv.setId(cursor.getLong(0));
         rdv.setNom(cursor.getString(1));
@@ -152,5 +152,18 @@ public class DAORDV {
         return rdv;
     }
 
+    public ModelRDV prochainRDV(){
+        UtilitaireDate utilitaireDate = new UtilitaireDate();
+        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_RDV + " WHERE " + MySQLiteHelper.COLUMN_DATE_RDV + " >= "
+                + utilitaireDate.dateActuelle() + " ORDER BY " + MySQLiteHelper.COLUMN_DATE_RDV +" ASC"  ;
+        this.crud.open();
+        Cursor cursor = this.crud.requeteGeneral(sql, null);
+        ModelRDV modelRDV = new ModelRDV();
+        while (cursor.moveToNext()){
+            modelRDV = this.cursorToRDV(cursor);
+            break;
+        }
+        return modelRDV;
+    }
 
 }
