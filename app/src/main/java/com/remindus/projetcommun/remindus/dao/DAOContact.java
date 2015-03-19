@@ -94,6 +94,18 @@ public class DAOContact {
         return contact;
     }
 
+    public ModelContact getContact(long id) {
+        ModelContact contact = new ModelContact();
+        crud.open();
+        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_CONTACTS + " WHERE " + MySQLiteHelper.COLUMN_ID_CONTACT + " = " + id;
+        Cursor cursor = crud.getDatabase().rawQuery(sql, null);
+        while (cursor.moveToNext()) {
+            contact = cursorToContact(cursor);
+        }
+        cursor.close();
+        return contact;
+    }
+
     private ModelContact cursorToContact(Cursor cursor) {
         ModelContact contact = new ModelContact();
         contact.setId(cursor.getLong(0));

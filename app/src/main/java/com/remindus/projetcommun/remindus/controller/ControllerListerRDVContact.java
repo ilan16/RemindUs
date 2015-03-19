@@ -15,51 +15,67 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.remindus.projetcommun.remindus.R;
-import com.remindus.projetcommun.remindus.dao.DAOGroupe;
+import com.remindus.projetcommun.remindus.dao.DAOContact;
 import com.remindus.projetcommun.remindus.dao.DAORDV;
-import com.remindus.projetcommun.remindus.model.ModelGroupe;
+import com.remindus.projetcommun.remindus.dao.DAORDVxContacts;
+import com.remindus.projetcommun.remindus.model.ModelContact;
 import com.remindus.projetcommun.remindus.model.ModelRDV;
+import com.remindus.projetcommun.remindus.model.ModelRDVxContacts;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by ilanmalka on 12/03/15.
+ * Created by ilanmalka on 19/03/15.
  */
-public class ControllerListerRDV extends ControllerHeader {
+public class ControllerListerRDVContact extends ControllerHeader {
 
-    private DAORDV daordv;
+    private DAORDVxContacts daordVxContacts;
     private ListView l;
     private static ModelRDV valeurSelectionnee;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.vue_liste_rdv);
+        setContentView(R.layout.vue_liste_rdv_contact);
 
-        this.listerRDV();
+        this.listerRDVContact();
     }
 
-    public void listerRDV(){
-        daordv = new DAORDV(this);
-        daordv.getCrud().open();
+    public void listerRDVContact(){
+        daordVxContacts = new DAORDVxContacts(this);
+        daordVxContacts.getCrud().open();
 
-        final List<ModelRDV> values = daordv.getAllRDV();
-        l = (ListView) findViewById(R.id.afficherRDV);
+        final List<ModelRDVxContacts> values = daordVxContacts.getAllRDVxC(ControllerListerRDV.getValeurSelectionnee().getId());
+        l = (ListView) findViewById(R.id.sampleList);
 
-        ArrayAdapter<ModelRDV> adapter = new ArrayAdapter<ModelRDV>(this,
-                android.R.layout.simple_list_item_1, values);
+        List affiche = new ArrayList();
+
+        DAORDV daordv = new DAORDV(this);
+        DAOContact daoContact = new DAOContact(this);
+
+        for (ModelRDVxContacts m : values){
+            ModelContact modelContact = daoContact.getContact(m.getIdcontact());
+            String tel = modelContact.getTelephone();
+            String nom = modelContact.getContact();
+            affiche.add(nom + "\n"+tel);
+        }
+
+
+
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, affiche);
         l.setAdapter(adapter);
 
-        l.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        /*l.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 valeurSelectionnee = (ModelRDV) l.getAdapter().getItem(position);
                 ControllerListerRDV.setValeurSelectionnee(valeurSelectionnee);
-                AlertDialog alertDialog = new AlertDialog.Builder(ControllerListerRDV.this).create();
+                AlertDialog alertDialog = new AlertDialog.Builder(ControllerListerRDVContact.this).create();
                 alertDialog.setTitle(valeurSelectionnee.getNom());
                 alertDialog.setButton(Dialog.BUTTON1, "Modifier", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(ControllerListerRDV.this, ControllerModifierRDV.class);
+                        Intent intent = new Intent(ControllerListerRDVContact.this, ControllerModifierRDV.class);
                         startActivity(intent);
                     }
                 });
@@ -68,22 +84,17 @@ public class ControllerListerRDV extends ControllerHeader {
                         supprimerRDV(null);
                     }
                 });
-                alertDialog.setButton(Dialog.BUTTON3, "Contacts", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(ControllerListerRDV.this, ControllerListerRDVContact.class);
-                        startActivity(intent);
-                    }
-                });
                 alertDialog.show();
 
+                Log.i("RDV A DELETE", "" + values.get(position).toString() + "");
                 return false;
             }
-        });
+        });*/
     }
 
-    public void supprimerRDV(View view){
+    /*public void supprimerRDV(View view){
         ArrayAdapter<ModelRDV> adapter = (ArrayAdapter<ModelRDV>) l.getAdapter();
-        boolean delete = daordv.deleteRDV(valeurSelectionnee);
+        boolean delete = daordVxContacts.deleteRDV(valeurSelectionnee);
         if(delete){
             Toast.makeText(getApplicationContext(), getResources().getString(R.string.rdv_supprime, valeurSelectionnee.getNom()), Toast.LENGTH_SHORT).show();
         }
@@ -91,11 +102,7 @@ public class ControllerListerRDV extends ControllerHeader {
         adapter.remove(valeurSelectionnee);
         adapter.notifyDataSetChanged();
     }
-
-    public void redirectionCreerRDV(View view){
-        Intent intent = new Intent(ControllerListerRDV.this, ControllerCreerRDV.class);
-        startActivity(intent);
-    }
+*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -109,7 +116,7 @@ public class ControllerListerRDV extends ControllerHeader {
         // TODO Auto-generated method stub
         switch (item.getItemId()) {
             case R.id.bouton_parametre:
-                Intent intent = new Intent(ControllerListerRDV.this, ControllerParametre.class);
+                Intent intent = new Intent(ControllerListerRDVContact.this, ControllerParametre.class);
                 startActivity(intent);
                 break;
 
@@ -118,11 +125,4 @@ public class ControllerListerRDV extends ControllerHeader {
         return false;
     }
 
-    public static ModelRDV getValeurSelectionnee() {
-        return valeurSelectionnee;
-    }
-
-    public static void setValeurSelectionnee(ModelRDV valeurSelectionnee) {
-        ControllerListerRDV.valeurSelectionnee = valeurSelectionnee;
-    }
 }

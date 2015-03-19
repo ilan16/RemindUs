@@ -23,4 +23,8 @@ public class ModelRDVxContacts {
     public void setIdcontact(long idcontact) {
         this.idcontact = idcontact;
     }
+
+    public String toString(){
+        return idrdv +" " + idcontact;
+    }
 }

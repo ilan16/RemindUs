@@ -85,12 +85,17 @@ public class DAORDVxContacts {
         return modelRDVxContacts;
     }
 
-    public ModelRDVxContacts getRDVxC(int idrdv, int idc){
+    public List<ModelRDVxContacts> getAllRDVxC(long idrdv){
+        List<ModelRDVxContacts> modelRDVxContactses = new ArrayList<ModelRDVxContacts>();
         crud.open();
-        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_RDVxCONTACTS + " WHERE "+ MySQLiteHelper.COLUMN_ID_CONTACT_RDVxC + " = " + idc + " AND " + MySQLiteHelper.COLUMN_ID_RDV_RDVxC + " = " + idrdv;
+        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_RDVxCONTACTS + " WHERE " + MySQLiteHelper.COLUMN_ID_RDV_RDVxC + " = " + idrdv;
         Cursor cursor = crud.getDatabase().rawQuery(sql, null);
-        crud.close();
-        return this.cursorToRDVxC(cursor);
+        while (cursor.moveToNext()){
+            ModelRDVxContacts modelRDVxContacts = cursorToRDVxC(cursor);
+            modelRDVxContactses.add(modelRDVxContacts);
+        }
+        cursor.close();
+        return modelRDVxContactses;
     }
 
     public boolean deleteRDVxC(int idrdv) {
@@ -106,8 +111,10 @@ public class DAORDVxContacts {
 
     private ModelRDVxContacts cursorToRDVxC(Cursor cursor) {
         ModelRDVxContacts modelRDVxContacts = new ModelRDVxContacts();
-        modelRDVxContacts.setIdcontact(cursor.getLong(0));
-        modelRDVxContacts.setIdrdv(cursor.getLong(1));
+        modelRDVxContacts.setIdrdv(cursor.getLong(0));
+        modelRDVxContacts.setIdcontact(cursor.getLong(1));
         return modelRDVxContacts;
     }
+
+
 }
