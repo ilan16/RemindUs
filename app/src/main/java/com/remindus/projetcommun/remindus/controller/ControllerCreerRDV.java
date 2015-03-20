@@ -87,11 +87,11 @@ public class ControllerCreerRDV extends ControllerHeader {
         silencieux = (RadioButton) findViewById(R.id.radio_silencieux);
         vibreur = (RadioButton) findViewById(R.id.radio_vibreur);
 
-        this.listerContact();
+        //this.listerContact();
         //this.checkButtonClick();
     }
 
-    public void listerContact(){
+    /*public void listerContact(){
 
         daoContact = new DAOContact(this);
         daoContact.getCrud().open();
@@ -104,7 +104,7 @@ public class ControllerCreerRDV extends ControllerHeader {
         lv.setAdapter(this.adapter);
         lv.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
-    }
+    }*/
 
 
     private void checkButtonClick() {

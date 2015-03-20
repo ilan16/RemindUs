@@ -20,6 +20,7 @@ import com.remindus.projetcommun.remindus.dao.DAORDV;
 import com.remindus.projetcommun.remindus.model.ModelGroupe;
 import com.remindus.projetcommun.remindus.model.ModelRDV;
 
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -85,6 +86,7 @@ public class ControllerListerRDV extends ControllerHeader {
         ArrayAdapter<ModelRDV> adapter = (ArrayAdapter<ModelRDV>) l.getAdapter();
         boolean delete = daordv.deleteRDV(valeurSelectionnee);
         if(delete){
+            supprimerEventCalendrier(valeurSelectionnee);
             Toast.makeText(getApplicationContext(), getResources().getString(R.string.rdv_supprime, valeurSelectionnee.getNom()), Toast.LENGTH_SHORT).show();
         }
         Log.i("RDV A DELETE", ""+valeurSelectionnee+"");
@@ -124,5 +126,42 @@ public class ControllerListerRDV extends ControllerHeader {
 
     public static void setValeurSelectionnee(ModelRDV valeurSelectionnee) {
         ControllerListerRDV.valeurSelectionnee = valeurSelectionnee;
+    }
+
+    public void supprimerEventCalendrier(ModelRDV rdv){
+        Calendar cal = Calendar.getInstance();
+        UtilitaireDate util_date = new UtilitaireDate();
+
+
+
+        String[] tab_date = rdv.getDateString().split("/");
+        int annee = Integer.parseInt(tab_date[2]);
+        int mois = Integer.parseInt(tab_date[1]);
+        int jour = Integer.parseInt(tab_date[0]);
+        System.out.println("année: "+ annee + " mois: "+ mois + " jour: "+jour);
+
+        String h = util_date.convertirLongDateString(rdv.getDate(),"HH:mm:ss");
+        System.out.println(h);
+        String[] tab_heure = h.split(":");
+
+        int heure = Integer.parseInt(tab_heure[0]);
+        int min = Integer.parseInt(tab_heure[1]);
+
+        /*cal.set(annee, mois-1, jour, heure, min);
+        // Defines selection criteria for the rows you want to delete
+        String mSelectionClause = UserDictionary.Words.APP_ID + " LIKE ?";
+        String[] mSelectionArgs = {"user"};
+
+        // Defines a variable to contain the number of rows deleted
+        int mRowsDeleted = 0;
+
+
+
+        // Deletes the words that match the selection criteria
+        mRowsDeleted = getContentResolver().delete(
+                UserDictionary.Words.CONTENT_URI,   // the user dictionary content URI
+                mSelectionClause                    // the column to select on
+                mSelectionArgs                      // the value to compare to
+        );*/
     }
 }
