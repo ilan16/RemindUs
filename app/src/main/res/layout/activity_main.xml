@@ -1,69 +1,71 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical">
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/bouton_rdv"
-        android:layout_width="fill_parent"
+    <GridLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/small_padding"
-        android:text="@string/titre_RDV" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/gridLayout">
+
+        <Button
+            android:layout_width="193dp"
+            android:layout_height="161dp"
+            android:id="@+id/bouton_rdv"
+            android:text="@string/titre_RDV"
+            android:layout_row="0"
+            android:layout_column="0" />
+
+        <Button
+            android:layout_width="193dp"
+            android:layout_height="161dp"
+            android:id="@+id/bouton_msg_prog"
+            android:text="msg"
+            android:layout_row="0"
+            android:layout_column="1" />
+
+        <Button
+            android:layout_width="193dp"
+            android:layout_height="161dp"
+            android:id="@+id/bouton_groupe"
+            android:text="@string/titre_groupe"
+            android:layout_row="1"
+            android:layout_column="0" />
+
+        <Button
+            android:layout_width="193dp"
+            android:layout_height="161dp"
+            android:id="@+id/bouton_contact"
+            android:text="@string/titre_contact"
+            android:layout_row="1"
+            android:layout_column="1" />
+
+        <Button
+            android:layout_width="193dp"
+            android:layout_height="161dp"
+            android:id="@+id/bouton_model_msg"
+            android:text="@string/titre_model_msg"
+            android:layout_row="2"
+            android:layout_column="0" />
+
+        <Button
+            android:layout_width="193dp"
+            android:layout_height="161dp"
+            android:id="@+id/bouton_calendrier"
+            android:text="@string/titre_calendrier"
+            android:layout_row="2"
+            android:layout_column="1" />
+
+    </GridLayout>
 
     <Button
-        android:id="@+id/bouton_msg_prog"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/small_padding"
-        android:text="@string/titre_msg_prog" />
-
-    <Button
-        android:id="@+id/bouton_groupe"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/small_padding"
-        android:text="@string/titre_groupe" />
-
-    <Button
-        android:id="@+id/bouton_contact"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/small_padding"
-        android:text="@string/titre_contact" />
-
-    <Button
-        android:id="@+id/bouton_model_msg"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/small_padding"
-        android:text="@string/titre_model_msg" />
-
-    <Button
-        android:id="@+id/bouton_calendrier"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/normal_padding"
-        android:text="@string/titre_calendrier" />
-
-    <Button
-        android:id="@+id/bouton_test_bdd"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/normal_padding"
-        android:text="Test" />
-
-    <Button
+        android:text="Parametre"
         android:id="@+id/bouton_parametre"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:text="@string/titre_parametre" />
-</LinearLayout>
+        android:layout_below="@+id/gridLayout"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+</RelativeLayout>
