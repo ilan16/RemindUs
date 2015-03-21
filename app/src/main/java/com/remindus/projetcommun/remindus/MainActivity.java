@@ -7,9 +7,6 @@ package com.remindus.projetcommun.remindus;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -100,26 +97,4 @@ public class MainActivity extends ActionBarActivity {
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        super.onCreateOptionsMenu(menu);
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.global, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // TODO Auto-generated method stub
-        switch (item.getItemId()) {
-            case R.id.bouton_parametre:
-                Intent intent = new Intent(MainActivity.this, ControllerParametre.class);
-                startActivity(intent);
-                break;
-
-        }
-
-        return false;
-    }
 }

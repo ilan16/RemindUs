@@ -9,8 +9,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.format.Time;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -309,24 +307,4 @@ public class ControllerCreerRDV extends ControllerHeader {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.global, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // TODO Auto-generated method stub
-        switch (item.getItemId()) {
-            case R.id.bouton_parametre:
-                Intent intent = new Intent(ControllerCreerRDV.this, ControllerParametre.class);
-                startActivity(intent);
-                break;
-
-        }
-
-        return false;
-    }
 }

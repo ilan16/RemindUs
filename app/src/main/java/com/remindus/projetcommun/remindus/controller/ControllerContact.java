@@ -9,8 +9,6 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
@@ -144,26 +142,6 @@ public class ControllerContact extends ControllerHeader {
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.global, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // TODO Auto-generated method stub
-        switch (item.getItemId()) {
-            case R.id.bouton_parametre:
-                Intent intent = new Intent(ControllerContact.this, ControllerParametre.class);
-                startActivity(intent);
-                break;
-
-        }
-
-        return false;
-    }
 
     /*public void listerContact(){
         // create a cursor to query the Contacts on the device to start populating a listview
