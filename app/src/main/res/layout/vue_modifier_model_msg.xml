@@ -31,40 +31,28 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical"
-            android:weightSum="1">
+            android:weightSum="1"
+            android:background="#ff486e76">
 
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="60dp"
-                android:gravity="center"
-                android:text="Titre : "
-                android:textColor="#FF0000"
-                android:textSize="18dp"
-                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/titre_model_msg"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:hint="Titre"
+                android:textColorHint="#ffffff"
                 android:inputType="text" />
 
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="60dp"
-                android:gravity="center"
-                android:text="Message : "
-                android:textColor="#FF0000"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+
 
             <EditText
                 android:id="@+id/message_model_msg"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:hint="Message"
+                android:textColorHint="#ffffff"
                 android:inputType="textMultiLine" />
 
             <Button

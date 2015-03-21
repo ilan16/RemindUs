@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#ff486e76">
 
 
     <RelativeLayout
@@ -40,7 +41,7 @@
                 android:layout_height="60dp"
                 android:gravity="center"
                 android:text="Titre : "
-                android:textColor="#FF0000"
+                android:textColor="#ffffff"
                 android:textSize="18dp"
                 android:textStyle="bold" />
 
@@ -57,7 +58,7 @@
                 android:layout_height="60dp"
                 android:gravity="center"
                 android:text="date : "
-                android:textColor="#FF0000"
+                android:textColor="#ffffff"
                 android:textSize="18dp"
                 android:textStyle="bold" />
 
@@ -100,7 +101,7 @@
                 android:layout_height="60dp"
                 android:gravity="center"
                 android:text="heure : "
-                android:textColor="#FF0000"
+                android:textColor="#ffffff"
                 android:textSize="18dp"
                 android:textStyle="bold"></TextView>
 
@@ -140,7 +141,7 @@
                 android:layout_height="60dp"
                 android:gravity="center"
                 android:text="Message : "
-                android:textColor="#FF0000"
+                android:textColor="#ffffff"
                 android:textSize="18dp"
                 android:textStyle="bold" />
 
@@ -156,7 +157,7 @@
                 android:layout_height="60dp"
                 android:gravity="center"
                 android:text="Contact : "
-                android:textColor="#FF0000"
+                android:textColor="#ffffff"
                 android:textSize="18dp"
                 android:textStyle="bold" />
 

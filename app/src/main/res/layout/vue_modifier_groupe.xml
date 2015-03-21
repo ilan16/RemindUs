@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/scroll"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="#ff486e76">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
@@ -16,7 +17,7 @@
             android:layout_height="60dp"
             android:gravity="center"
             android:text="Nom : "
-            android:textColor="#FF0000"
+            android:textColor="#ffffff"
             android:textSize="18dp"
             android:textStyle="bold" />
 
@@ -32,7 +33,7 @@
             android:layout_height="60dp"
             android:gravity="center"
             android:text="Contact : "
-            android:textColor="#FF0000"
+            android:textColor="#ffffff"
             android:textSize="18dp"
             android:textStyle="bold" />
 
