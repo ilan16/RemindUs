@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,8 +13,6 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.remindus.projetcommun.remindus.R;
-
-import java.util.Locale;
 
 /**
  * Created by samairi on 03/03/2015.

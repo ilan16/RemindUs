@@ -1,12 +1,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/bouton_parametre"
-        android:title="@string/action_parametres"
-        android:orderInCategory="100" />
+        android:orderInCategory="100"
+        android:title="@string/action_parametres" />
     <item
         android:id="@+id/action_aide"
-        android:title="@string/action_aide"
-        android:orderInCategory="100" />
+        android:orderInCategory="100"
+        android:title="@string/action_aide" />
 
 
 </menu>

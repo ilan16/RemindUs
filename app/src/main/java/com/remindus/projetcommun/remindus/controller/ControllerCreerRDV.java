@@ -5,17 +5,13 @@ import android.app.TimePickerDialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
-import android.inputmethodservice.Keyboard;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.text.format.Time;
 import android.util.Log;
-import android.util.SparseBooleanArray;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
@@ -30,25 +26,16 @@ import com.remindus.projetcommun.remindus.R;
 import com.remindus.projetcommun.remindus.controller.validator.ValidatorDate;
 import com.remindus.projetcommun.remindus.controller.validator.ValidatorHeure;
 import com.remindus.projetcommun.remindus.dao.DAOContact;
-import com.remindus.projetcommun.remindus.dao.DAOGroupe;
-import com.remindus.projetcommun.remindus.dao.DAOGroupexContact;
 import com.remindus.projetcommun.remindus.dao.DAORDV;
 import com.remindus.projetcommun.remindus.dao.DAORDVxContacts;
 import com.remindus.projetcommun.remindus.model.ModelContact;
-import com.remindus.projetcommun.remindus.model.ModelGroupe;
 import com.remindus.projetcommun.remindus.model.ModelRDV;
 import com.tyczj.extendedcalendarview.CalendarProvider;
 import com.tyczj.extendedcalendarview.Event;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
@@ -57,6 +44,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class ControllerCreerRDV extends ControllerHeader {
 
+    private static String nomRDVstatic;
     private EditText nomEdit;
     private EditText dateEdit;
     private EditText heureEdit;
@@ -69,10 +57,30 @@ public class ControllerCreerRDV extends ControllerHeader {
     private ListView lv;
     private Cursor cursor1;
     private DAOContact daoContact;
-    private static String nomRDVstatic;
+    private CustomAdapterContact adapter = null;
 
-    private CustomAdapterContact adapter =null;
+    public static String getNomRDVstatic() {
+        return nomRDVstatic;
+    }
 
+    /*public void listerContact(){
+
+        daoContact = new DAOContact(this);
+        daoContact.getCrud().open();
+
+        final List<ModelContact> values = daoContact.getAllContacts();
+        lv = (ListView) findViewById(R.id.listeContact);
+
+        adapter = new CustomAdapterContact(this,R.layout.vue_creer_rdv,values);
+
+        lv.setAdapter(this.adapter);
+        lv.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+
+    }*/
+
+    public static void setNomRDVstatic(String nomRDVstatic) {
+        ControllerCreerRDV.nomRDVstatic = nomRDVstatic;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -91,68 +99,52 @@ public class ControllerCreerRDV extends ControllerHeader {
         //this.checkButtonClick();
     }
 
-    /*public void listerContact(){
-
-        daoContact = new DAOContact(this);
-        daoContact.getCrud().open();
-
-        final List<ModelContact> values = daoContact.getAllContacts();
-        lv = (ListView) findViewById(R.id.listeContact);
-
-        adapter = new CustomAdapterContact(this,R.layout.vue_creer_rdv,values);
-
-        lv.setAdapter(this.adapter);
-        lv.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-
-    }*/
-
-
     private void checkButtonClick() {
 
         Button myButton = (Button) findViewById(R.id.valider);
 
-    myButton.setOnClickListener(new View.OnClickListener() {
+        myButton.setOnClickListener(new View.OnClickListener() {
 
-        @Override
-        public void onClick(View v) {
+            @Override
+            public void onClick(View v) {
 
-            StringBuffer responseText = new StringBuffer();
-            responseText.append("Contacts selectionnés ...\n");
+                StringBuffer responseText = new StringBuffer();
+                responseText.append("Contacts selectionnés ...\n");
 
 
-            final HashMap<CheckBox, TextView> values = adapter.getListChecked();
+                final HashMap<CheckBox, TextView> values = adapter.getListChecked();
 
-            for (HashMap.Entry<CheckBox, TextView> hash : values.entrySet()) {
-                if (hash.getKey().isChecked()) {
-                    responseText.append("\n - " + hash.getValue().getText());
-                    String[] split = hash.getValue().getText().toString().split("\n");
-                    daoContact =  new DAOContact(getBaseContext());
-                    ModelContact modelContact = daoContact.getContact(split[1]);
-                    Log.i("contact", ""+modelContact.getId()+" "+modelContact.getContact());
+                for (HashMap.Entry<CheckBox, TextView> hash : values.entrySet()) {
+                    if (hash.getKey().isChecked()) {
+                        responseText.append("\n - " + hash.getValue().getText());
+                        String[] split = hash.getValue().getText().toString().split("\n");
+                        daoContact = new DAOContact(getBaseContext());
+                        ModelContact modelContact = daoContact.getContact(split[1]);
+                        Log.i("contact", "" + modelContact.getId() + " " + modelContact.getContact());
 
+                    }
                 }
+
+                Toast.makeText(getApplicationContext(),
+                        responseText, Toast.LENGTH_LONG).show();
             }
+        });
+    }
 
-            Toast.makeText(getApplicationContext(),
-                    responseText, Toast.LENGTH_LONG).show();
-        }
-    });
-}
-
-    public void ajouterContactRDV(String nomRDV){
+    public void ajouterContactRDV(String nomRDV) {
         final HashMap<CheckBox, TextView> values = adapter.getListChecked();
         for (HashMap.Entry<CheckBox, TextView> hash : values.entrySet()) {
             if (hash.getKey().isChecked()) {
                 String[] split = hash.getValue().getText().toString().split("\n");
-                this.daoContact =  new DAOContact(this);
+                this.daoContact = new DAOContact(this);
                 ModelContact modelContact = this.daoContact.getContact(split[1]);
-                Log.i("contact", ""+modelContact.getId()+" "+modelContact.getContact());
+                Log.i("contact", "" + modelContact.getId() + " " + modelContact.getContact());
                 this.daordVxContacts = new DAORDVxContacts(this);
                 this.daordv = new DAORDV(this);
                 ModelRDV modelRDV = new ModelRDV();
                 modelRDV = this.daordv.getIdRDV(nomRDV);
                 long idcontact = Long.parseLong(split[1]);
-                this.daordVxContacts.insertRDVxC(modelRDV.getId(),idcontact);
+                this.daordVxContacts.insertRDVxC(modelRDV.getId(), idcontact);
             }
         }
     }
@@ -181,7 +173,7 @@ public class ControllerCreerRDV extends ControllerHeader {
         String lieu = lieuEdit.getText().toString();
         long mode = 0;
 
-        if(this.verifierDate()) {
+        if (this.verifierDate()) {
 
             if (this.verifierHeure()) {
 
@@ -226,16 +218,15 @@ public class ControllerCreerRDV extends ControllerHeader {
         }
     }
 
-    public boolean verifierDate(){
+    public boolean verifierDate() {
         ValidatorDate validatorDate = new ValidatorDate();
         return validatorDate.validate(dateEdit.getText().toString());
     }
 
-    public boolean verifierHeure(){
+    public boolean verifierHeure() {
         ValidatorHeure validatorHeure = new ValidatorHeure();
         return validatorHeure.validate(heureEdit.getText().toString());
     }
-
 
     public void ajouterHeure(View v) {
 
@@ -281,7 +272,7 @@ public class ControllerCreerRDV extends ControllerHeader {
         dpd.show();
     }
 
-    public void ajouterEventCalendrier(String date, String h){
+    public void ajouterEventCalendrier(String date, String h) {
         ContentValues values = new ContentValues();
         values.put(CalendarProvider.COLOR, Event.COLOR_RED);
         values.put(CalendarProvider.DESCRIPTION, "");
@@ -294,15 +285,15 @@ public class ControllerCreerRDV extends ControllerHeader {
         int annee = Integer.parseInt(tab_date[2]);
         int mois = Integer.parseInt(tab_date[1]);
         int jour = Integer.parseInt(tab_date[0]);
-        System.out.println("année: "+ annee + " mois: "+ mois + " jour: "+jour);
+        System.out.println("année: " + annee + " mois: " + mois + " jour: " + jour);
 
         String[] tab_heure = h.split(":");
 
         int heure = Integer.parseInt(tab_heure[0]);
         int min = Integer.parseInt(tab_heure[1]);
-        System.out.println("heure: "+ heure + " minute: "+ min);
+        System.out.println("heure: " + heure + " minute: " + min);
 
-        cal.set(annee, mois-1, jour, heure, min);
+        cal.set(annee, mois - 1, jour, heure, min);
         values.put(CalendarProvider.START, cal.getTimeInMillis());
 
         TimeZone tz = TimeZone.getDefault();
@@ -310,14 +301,13 @@ public class ControllerCreerRDV extends ControllerHeader {
         int endDayJulian = Time.getJulianDay(cal.getTimeInMillis(), TimeUnit.MILLISECONDS.toSeconds(tz.getOffset(cal.getTimeInMillis())));
 
         values.put(CalendarProvider.START_DAY, endDayJulian);
-        cal.set(annee, mois-1, jour, heure, min);
+        cal.set(annee, mois - 1, jour, heure, min);
         values.put(CalendarProvider.END, cal.getTimeInMillis());
         values.put(CalendarProvider.END_DAY, endDayJulian);
 
         Uri uri = getContentResolver().insert(CalendarProvider.CONTENT_URI, values);
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -338,13 +328,5 @@ public class ControllerCreerRDV extends ControllerHeader {
         }
 
         return false;
-    }
-
-    public static String getNomRDVstatic() {
-        return nomRDVstatic;
-    }
-
-    public static void setNomRDVstatic(String nomRDVstatic) {
-        ControllerCreerRDV.nomRDVstatic = nomRDVstatic;
     }
 }

@@ -1,7 +1,5 @@
 package com.remindus.projetcommun.remindus.model;
 
-import java.util.Date;
-
 /**
  * Created by ilanmalka on 08/03/15.
  */
@@ -36,7 +34,7 @@ public class ModelGroupexContact {
         this.dateAjout = dateAjout;
     }
 
-    public String toString(){
+    public String toString() {
         return this.getIdcontact() + " " + this.getIdgroupe();
     }
 }

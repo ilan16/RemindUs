@@ -4,7 +4,6 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +16,6 @@ import android.widget.Toast;
 import com.remindus.projetcommun.remindus.R;
 import com.remindus.projetcommun.remindus.controller.validator.ValidatorDate;
 import com.remindus.projetcommun.remindus.controller.validator.ValidatorHeure;
-import com.remindus.projetcommun.remindus.dao.DAOGroupe;
 import com.remindus.projetcommun.remindus.dao.DAORDV;
 
 import java.text.ParseException;

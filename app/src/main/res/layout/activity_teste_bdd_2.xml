@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
 
 
     <RelativeLayout
@@ -11,14 +10,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:background="#FC9"
-        android:gravity="center" >
+        android:gravity="center">
 
-        <include android:id="@+id/header"
+        <include
+            android:id="@+id/header"
             layout="@layout/header"
-            android:layout_height="wrap_content"
-            android:layout_width="fill_parent"/>
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
     </RelativeLayout>
-
 
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -28,58 +27,59 @@
         android:layout_below="@id/headerMenu">
 
 
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:hint="Name"
-        android:ems="30"
-        android:padding="20dp"
-        android:id="@+id/name"
-        android:layout_gravity="center_horizontal" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="phone"
-        android:maxEms="10"
-        android:hint="Phone"
-        android:padding="20dp"
-        android:id="@+id/phone" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Insérer"
-        android:id="@+id/button_inserer"
-        android:onClick="onClick"
-        android:layout_gravity="center_horizontal" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Lister"
-        android:id="@+id/button_lister"
-        android:onClick="lister"
-        android:layout_gravity="center_horizontal" />
-
-    <!--<ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/scroll"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"> -->
-
-        <ListView
-            android:id="@+id/sampleList"
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-   <!-- </ScrollView> -->
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-</LinearLayout>
-        </ScrollView>
-    </RelativeLayout>
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:ems="30"
+                android:hint="Name"
+                android:inputType="textPersonName"
+                android:padding="20dp" />
+
+            <EditText
+                android:id="@+id/phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Phone"
+                android:inputType="phone"
+                android:maxEms="10"
+                android:padding="20dp" />
+
+            <Button
+                android:id="@+id/button_inserer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:onClick="onClick"
+                android:text="Insérer" />
+
+            <Button
+                android:id="@+id/button_lister"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:onClick="lister"
+                android:text="Lister" />
+
+            <!--<ScrollView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/scroll"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"> -->
+
+            <ListView
+                android:id="@+id/sampleList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <!-- </ScrollView> -->
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

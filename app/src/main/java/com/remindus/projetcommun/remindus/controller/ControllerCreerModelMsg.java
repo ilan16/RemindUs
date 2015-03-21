@@ -9,7 +9,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.remindus.projetcommun.remindus.R;
-import com.remindus.projetcommun.remindus.dao.DAOGroupe;
 import com.remindus.projetcommun.remindus.dao.DAOModelMsg;
 
 /**

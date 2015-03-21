@@ -1,18 +1,11 @@
 package com.remindus.projetcommun.remindus.controller;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.remindus.projetcommun.remindus.R;
 import com.remindus.projetcommun.remindus.dao.DAOContact;
@@ -30,9 +23,9 @@ import java.util.List;
  */
 public class ControllerListerRDVContact extends ControllerHeader {
 
+    private static ModelRDV valeurSelectionnee;
     private DAORDVxContacts daordVxContacts;
     private ListView l;
-    private static ModelRDV valeurSelectionnee;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,7 +35,7 @@ public class ControllerListerRDVContact extends ControllerHeader {
         this.listerRDVContact();
     }
 
-    public void listerRDVContact(){
+    public void listerRDVContact() {
         daordVxContacts = new DAORDVxContacts(this);
         daordVxContacts.getCrud().open();
 
@@ -54,13 +47,12 @@ public class ControllerListerRDVContact extends ControllerHeader {
         DAORDV daordv = new DAORDV(this);
         DAOContact daoContact = new DAOContact(this);
 
-        for (ModelRDVxContacts m : values){
+        for (ModelRDVxContacts m : values) {
             ModelContact modelContact = daoContact.getContact(m.getIdcontact());
             String tel = modelContact.getTelephone();
             String nom = modelContact.getContact();
-            affiche.add(nom + "\n"+tel);
+            affiche.add(nom + "\n" + tel);
         }
-
 
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, affiche);

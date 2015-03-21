@@ -3,29 +3,31 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/header"
-    android:gravity="fill_horizontal" >
+    android:gravity="fill_horizontal">
 
-    <LinearLayout android:id="@+id/panelIconLeft"
+    <LinearLayout
+        android:id="@+id/panelIconLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true">
+        android:layout_margin="5dp">
 
-        <Button android:id="@+id/bouton_home"
-            android:layout_width="33dp"
-            android:layout_height="43dp"
-            android:onClick="backHome"
-            android:background="@drawable/accueil"/>
-
+        <Button
+            android:id="@+id/bouton_home"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/accueil"
+            android:onClick="backHome" />
 
 
     </LinearLayout>
 
-    <Button android:id="@+id/btnAccueil"
+    <Button
+        android:id="@+id/btnAccueil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/logo"
+        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:background="@drawable/logo" />
 </RelativeLayout>

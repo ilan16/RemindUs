@@ -2,182 +2,181 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
 
-    
-<RelativeLayout
-    android:id="@+id/headerMenu"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignParentTop="true"
-    android:background="#FC9"
-    android:gravity="center" >
 
-    <include android:id="@+id/header"
-        layout="@layout/header"
+    <RelativeLayout
+        android:id="@+id/headerMenu"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_width="fill_parent"/>
+        android:layout_alignParentTop="true"
+        android:background="#FC9"
+        android:gravity="center">
+
+        <include
+            android:id="@+id/header"
+            layout="@layout/header"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
     </RelativeLayout>
 
 
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/scroll"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:layout_below="@id/headerMenu">
-
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/scroll"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="vertical"
-        android:weightSum="1">
+        android:layout_below="@id/headerMenu">
 
 
-
-        <TextView
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
-            android:layout_height="60dp"
-            android:gravity="center"
-            android:text="Titre : "
-            android:textColor="#FF0000"
-            android:textSize="18dp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/titre_msg_prog"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:hint="Titre"
-
-            android:inputType="text" />
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="60dp"
-            android:gravity="center"
-            android:text="date : "
-            android:textColor="#FF0000"
-            android:textSize="18dp"
-            android:textStyle="bold" />
-
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/layoutDate"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            tools:context=".MainActivity"
-
-            >
-
-            <EditText
-                android:id="@+id/editDate"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginLeft="5dp"
-                android:hint="DD/MM/YYYY"
-                android:inputType="date"
-                android:editable="true"></EditText>
-
-            <ImageButton
-                android:id="@+id/date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:cropToPadding="true"
-                android:onClick="ajouterDate"
-                android:src="@drawable/ic_calendar"
-                android:layout_alignParentTop="true"
-                android:layout_toEndOf="@+id/editDate" />
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:weightSum="1">
 
 
-        </RelativeLayout>
-
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="60dp"
-            android:gravity="center"
-            android:text="heure : "
-            android:textColor="#FF0000"
-            android:textSize="18dp"
-            android:textStyle="bold"></TextView>
-
-
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/layoutHeure"
-            android:layout_width="match_parent"
-            android:layout_height="67dp"
-            tools:context=".MainActivity">
-
-            <EditText
-                android:id="@+id/editHeure"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginLeft="5dp"
-                android:hint="HH:MM"
-                android:inputType="datetime"
-                android:editable="true" />
-
-            <ImageButton
-                android:id="@+id/heure"
-                android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="fill_parent"
                 android:layout_height="60dp"
-                android:cropToPadding="true"
-                android:onClick="ajouterHeure"
-                android:src="@drawable/ic_heure"
-                android:layout_alignParentBottom="true"
-                android:layout_toEndOf="@+id/editHeure" />
-        </RelativeLayout>
+                android:gravity="center"
+                android:text="Titre : "
+                android:textColor="#FF0000"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/titre_msg_prog"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="Titre"
+
+                android:inputType="text" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:text="date : "
+                android:textColor="#FF0000"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/layoutDate"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                tools:context=".MainActivity"
+
+                >
+
+                <EditText
+                    android:id="@+id/editDate"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="5dp"
+                    android:editable="true"
+                    android:hint="DD/MM/YYYY"
+                    android:inputType="date"></EditText>
+
+                <ImageButton
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/editDate"
+                    android:cropToPadding="true"
+                    android:onClick="ajouterDate"
+                    android:src="@drawable/ic_calendar" />
 
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="60dp"
-            android:gravity="center"
-            android:text="Message : "
-            android:textColor="#FF0000"
-            android:textSize="18dp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/message_msg_prog"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:hint="Message"
-            android:inputType="textMultiLine" />
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="60dp"
-            android:gravity="center"
-            android:text="Contact : "
-            android:textColor="#FF0000"
-            android:textSize="18dp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/contact"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:hint="contact"
-            android:inputType="textMultiLine" />
-
-        <Button
-            android:id="@+id/valider"
-            android:layout_width="114dp"
-            android:layout_height="wrap_content"
-            android:text="Valider"
-            android:onClick="creerMsgProg"
-            android:layout_gravity="center"
-            android:layout_weight="0.08" />
+            </RelativeLayout>
 
 
-    </LinearLayout>
-</ScrollView>
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:text="heure : "
+                android:textColor="#FF0000"
+                android:textSize="18dp"
+                android:textStyle="bold"></TextView>
+
+
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/layoutHeure"
+                android:layout_width="match_parent"
+                android:layout_height="67dp"
+                tools:context=".MainActivity">
+
+                <EditText
+                    android:id="@+id/editHeure"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="5dp"
+                    android:editable="true"
+                    android:hint="HH:MM"
+                    android:inputType="datetime" />
+
+                <ImageButton
+                    android:id="@+id/heure"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toEndOf="@+id/editHeure"
+                    android:cropToPadding="true"
+                    android:onClick="ajouterHeure"
+                    android:src="@drawable/ic_heure" />
+            </RelativeLayout>
+
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:text="Message : "
+                android:textColor="#FF0000"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/message_msg_prog"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="Message"
+                android:inputType="textMultiLine" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:text="Contact : "
+                android:textColor="#FF0000"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/contact"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="contact"
+                android:inputType="textMultiLine" />
+
+            <Button
+                android:id="@+id/valider"
+                android:layout_width="114dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="0.08"
+                android:onClick="creerMsgProg"
+                android:text="Valider" />
+
+
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>

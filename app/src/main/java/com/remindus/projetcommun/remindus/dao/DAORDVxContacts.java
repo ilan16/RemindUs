@@ -7,8 +7,6 @@ import android.util.Log;
 
 import com.remindus.projetcommun.remindus.basededonnees.MySQLiteHelper;
 import com.remindus.projetcommun.remindus.basededonnees.utilities.CRUD;
-import com.remindus.projetcommun.remindus.model.ModelGroupexContact;
-import com.remindus.projetcommun.remindus.model.ModelRDV;
 import com.remindus.projetcommun.remindus.model.ModelRDVxContacts;
 
 import java.util.ArrayList;
@@ -47,7 +45,7 @@ public class DAORDVxContacts {
         boolean insert = crud.insert(MySQLiteHelper.TABLE_RDVxCONTACTS, values);
 
         if (insert) {
-            Log.i("INSERER", ""+idrdv+" "+idcontact);
+            Log.i("INSERER", "" + idrdv + " " + idcontact);
             return 0; // insertion ok
         }
         return 1; // pb d'insertion
@@ -59,7 +57,7 @@ public class DAORDVxContacts {
         this.crud.open();
         boolean delete = crud.delete(MySQLiteHelper.TABLE_RDVxCONTACTS, MySQLiteHelper.COLUMN_ID_CONTACT_RDVxC
                 + " = " + idcontact + " AND " + MySQLiteHelper.COLUMN_ID_RDV_RDVxC + " = " + idrdv);
-        if (delete){
+        if (delete) {
             Log.i("DELETE", "effectué");
             return true;
         }
@@ -85,12 +83,12 @@ public class DAORDVxContacts {
         return modelRDVxContacts;
     }
 
-    public List<ModelRDVxContacts> getAllRDVxC(long idrdv){
+    public List<ModelRDVxContacts> getAllRDVxC(long idrdv) {
         List<ModelRDVxContacts> modelRDVxContactses = new ArrayList<ModelRDVxContacts>();
         crud.open();
         String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_RDVxCONTACTS + " WHERE " + MySQLiteHelper.COLUMN_ID_RDV_RDVxC + " = " + idrdv;
         Cursor cursor = crud.getDatabase().rawQuery(sql, null);
-        while (cursor.moveToNext()){
+        while (cursor.moveToNext()) {
             ModelRDVxContacts modelRDVxContacts = cursorToRDVxC(cursor);
             modelRDVxContactses.add(modelRDVxContacts);
         }
@@ -101,7 +99,7 @@ public class DAORDVxContacts {
     public boolean deleteRDVxC(int idrdv) {
         this.crud.open();
         boolean delete = crud.delete(MySQLiteHelper.TABLE_RDVxCONTACTS, MySQLiteHelper.COLUMN_ID_CONTACT_RDVxC + " = " + idrdv);
-        if (delete){
+        if (delete) {
             Log.i("DELETE", "effectué");
             return true;
         }

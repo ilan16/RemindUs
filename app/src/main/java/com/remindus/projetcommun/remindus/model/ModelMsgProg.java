@@ -1,7 +1,6 @@
 package com.remindus.projetcommun.remindus.model;
 
 import java.text.DateFormat;
-import java.util.Date;
 
 /**
  * Created by ilanmalka on 08/03/15.
@@ -64,7 +63,7 @@ public class ModelMsgProg {
         this.msgProg = msgProg;
     }
 
-    public String toString(){
-        return this.getTitre() + "\n"+ this.getMsgProg();
+    public String toString() {
+        return this.getTitre() + "\n" + this.getMsgProg();
     }
 }

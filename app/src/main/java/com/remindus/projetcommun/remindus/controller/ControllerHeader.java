@@ -1,6 +1,5 @@
 package com.remindus.projetcommun.remindus.controller;
 
-import android.app.ListActivity;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
@@ -13,16 +12,26 @@ import com.remindus.projetcommun.remindus.R;
  * Created by kevin on 11/03/2015.
  */
 public class ControllerHeader extends ActionBarActivity {
-    public void backHome(View view){
-        final Button bouton = (Button) findViewById(R.id.bouton_home);
-        bouton.setOnClickListener(new View.OnClickListener() {
+    public void backHome(View view) {
 
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+        new Thread(new Runnable() {
+            public void run() {
+
+
+                final Button bouton = (Button) findViewById(R.id.bouton_home);
+                bouton.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                    }
+                });
+
             }
-        });
+        }).start();
+
+
     }
 }
 

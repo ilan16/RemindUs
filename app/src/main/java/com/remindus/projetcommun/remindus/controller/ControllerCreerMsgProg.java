@@ -49,7 +49,7 @@ public class ControllerCreerMsgProg extends ControllerHeader {
         editHeure = (EditText) findViewById(R.id.editHeure);
         editTitre = (EditText) findViewById(R.id.titre_msg_prog);
         editContenu = (EditText) findViewById(R.id.message_msg_prog);
-         //buttonDate.setOnClickListener(this);
+        //buttonDate.setOnClickListener(this);
         //buttonHeure.setOnClickListener(this);
     }
 
@@ -103,7 +103,7 @@ public class ControllerCreerMsgProg extends ControllerHeader {
         String heure = editHeure.getText().toString();
         String contenu = editContenu.getText().toString();
 
-        if(this.verifierDate()) {
+        if (this.verifierDate()) {
 
             if (this.verifierHeure()) {
 
@@ -138,12 +138,12 @@ public class ControllerCreerMsgProg extends ControllerHeader {
         }
     }
 
-    public boolean verifierDate(){
+    public boolean verifierDate() {
         ValidatorDate validatorDate = new ValidatorDate();
         return validatorDate.validate(editDate.getText().toString());
     }
 
-    public boolean verifierHeure(){
+    public boolean verifierHeure() {
         ValidatorHeure validatorHeure = new ValidatorHeure();
         return validatorHeure.validate(editHeure.getText().toString());
     }
@@ -169,7 +169,6 @@ public class ControllerCreerMsgProg extends ControllerHeader {
 
         return false;
     }
-
 
 
 }

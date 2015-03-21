@@ -4,10 +4,6 @@ package com.remindus.projetcommun.remindus.controller;
  * Created by bahia on 26/02/2015.
  */
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.ListActivity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -17,21 +13,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.remindus.projetcommun.remindus.R;
 import com.remindus.projetcommun.remindus.dao.DAOContact;
-import com.remindus.projetcommun.remindus.dao.DAOModelMsg;
 import com.remindus.projetcommun.remindus.dao.DAORDV;
 import com.remindus.projetcommun.remindus.dao.DAORDVxContacts;
 import com.remindus.projetcommun.remindus.model.ModelContact;
-import com.remindus.projetcommun.remindus.model.ModelModelMsg;
 import com.remindus.projetcommun.remindus.model.ModelRDV;
 
 import java.util.HashMap;
@@ -42,7 +32,7 @@ public class ControllerContact extends ControllerHeader {
     private ListView lv;
     private Cursor cursor1;
     private DAOContact daoContact;
-    private CustomAdapterContact adapter =null;
+    private CustomAdapterContact adapter = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,42 +43,39 @@ public class ControllerContact extends ControllerHeader {
         //this.checkButtonClick();
     }
 
-    public void listerContact(){
+    public void listerContact() {
         daoContact = new DAOContact(this);
         daoContact.getCrud().open();
 
         final List<ModelContact> values = daoContact.getAllContacts();
         lv = (ListView) findViewById(R.id.sampleList);
 
-        adapter= new CustomAdapterContact(this,R.layout.vue_afficher_contact,values);
+        adapter = new CustomAdapterContact(this, R.layout.vue_afficher_contact, values);
         lv.setAdapter(adapter);
 
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.i("Valeur sélectionnée", ""+lv.getId());
+                Log.i("Valeur sélectionnée", "" + lv.getId());
             }
         });
 
     }
 
 
-
-
-
-    public void choisirCheckBox(View view){
+    public void choisirCheckBox(View view) {
 
         CheckBox cb = (CheckBox) view;
         int position = Integer.parseInt(cb.getTag().toString());
-        Log.i("POSITION: ", ""+position);
+        Log.i("POSITION: ", "" + position);
     }
 
-    public void refreshContact(View view){
+    public void refreshContact(View view) {
         daoContact = new DAOContact(this);
         cursor1 = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC");
 
-        while (cursor1.moveToNext()){
+        while (cursor1.moveToNext()) {
             String contactId = cursor1.getString(cursor1.getColumnIndex(ContactsContract.Contacts._ID));
             String name = cursor1.getString(cursor1.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
             String number = cursor1.getString(cursor1.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
@@ -133,26 +120,26 @@ public class ControllerContact extends ControllerHeader {
     }
 */
 
-    public void ajouterContactRDV(View view){
+    public void ajouterContactRDV(View view) {
         final HashMap<CheckBox, TextView> values = adapter.getListChecked();
         for (HashMap.Entry<CheckBox, TextView> hash : values.entrySet()) {
             if (hash.getKey().isChecked()) {
                 String[] split = hash.getValue().getText().toString().split("\n");
-                this.daoContact =  new DAOContact(this);
+                this.daoContact = new DAOContact(this);
                 ModelContact modelContact = this.daoContact.getContact(split[1]);
-                Log.i("contact rdv", ""+modelContact.getId()+" "+modelContact.getContact());
+                Log.i("contact rdv", "" + modelContact.getId() + " " + modelContact.getContact());
                 DAORDVxContacts daordVxContacts = new DAORDVxContacts(this);
                 DAORDV daordv = new DAORDV(this);
                 ModelRDV modelRDV = new ModelRDV();
                 modelRDV = daordv.getIdRDV(ControllerCreerRDV.getNomRDVstatic());
                 long idcontact = modelContact.getId();
-                int insert = daordVxContacts.insertRDVxC(modelRDV.getId(),idcontact);
-                if (insert == 0){
+                int insert = daordVxContacts.insertRDVxC(modelRDV.getId(), idcontact);
+                if (insert == 0) {
                     Intent intent = new Intent(ControllerContact.this, ControllerListerRDV.class);
                     startActivity(intent);
                 }
                 //Log.i("insertion ct", ""+insert);
-                Log.i("valeurs", ""+idcontact+" "+modelRDV.getId());
+                Log.i("valeurs", "" + idcontact + " " + modelRDV.getId());
             }
         }
     }

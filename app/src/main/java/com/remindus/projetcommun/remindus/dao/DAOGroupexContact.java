@@ -7,9 +7,7 @@ import android.util.Log;
 
 import com.remindus.projetcommun.remindus.basededonnees.MySQLiteHelper;
 import com.remindus.projetcommun.remindus.basededonnees.utilities.CRUD;
-import com.remindus.projetcommun.remindus.model.ModelGroupe;
 import com.remindus.projetcommun.remindus.model.ModelGroupexContact;
-import com.remindus.projetcommun.remindus.model.ModelMsgProg;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,18 +38,18 @@ public class DAOGroupexContact {
 
     public int insertGxC(long idgroupe, long idcontact) {
 
-            ContentValues values = new ContentValues();
-            values.put(MySQLiteHelper.COLUMN_ID_GROUPE_GC, idgroupe);
-            values.put(MySQLiteHelper.COLUMN_ID_CONTACT_GC, idcontact);
+        ContentValues values = new ContentValues();
+        values.put(MySQLiteHelper.COLUMN_ID_GROUPE_GC, idgroupe);
+        values.put(MySQLiteHelper.COLUMN_ID_CONTACT_GC, idcontact);
 
-            this.crud.open();
-            boolean insert = crud.insert(MySQLiteHelper.TABLE_GROUPESxCONTACTS, values);
-            this.crud.close();
+        this.crud.open();
+        boolean insert = crud.insert(MySQLiteHelper.TABLE_GROUPESxCONTACTS, values);
+        this.crud.close();
 
-            if (insert) {
-                return 0; // insertion ok
-            }
-            return 1; // pb d'insertion
+        if (insert) {
+            return 0; // insertion ok
+        }
+        return 1; // pb d'insertion
     }
 
     public boolean deleteGxC(ModelGroupexContact modelGroupexContact) {
@@ -60,7 +58,7 @@ public class DAOGroupexContact {
         this.crud.open();
         boolean delete = crud.delete(MySQLiteHelper.TABLE_GROUPESxCONTACTS, MySQLiteHelper.COLUMN_ID_CONTACT_GC
                 + " = " + idcontact + " AND " + MySQLiteHelper.COLUMN_ID_GROUPE_GC + " = " + idgroupe);
-        if (delete){
+        if (delete) {
             Log.i("DELETE", "effectué");
             return true;
         }
@@ -86,18 +84,18 @@ public class DAOGroupexContact {
         return modelGroupexContacts;
     }
 
-    public ModelGroupexContact getGxC(int idg, int idc){
+    public ModelGroupexContact getGxC(int idg, int idc) {
         crud.open();
-        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_GROUPESxCONTACTS + " WHERE "+ MySQLiteHelper.COLUMN_ID_CONTACT_GC + " = " + idc + " AND " + MySQLiteHelper.COLUMN_ID_GROUPE_GC + " = " + idg;
+        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_GROUPESxCONTACTS + " WHERE " + MySQLiteHelper.COLUMN_ID_CONTACT_GC + " = " + idc + " AND " + MySQLiteHelper.COLUMN_ID_GROUPE_GC + " = " + idg;
         Cursor cursor = crud.getDatabase().rawQuery(sql, null);
         crud.close();
         return this.cursorToGxC(cursor);
     }
 
     //permet de récupérer toutes les lignes faisant parties du mm groupe
-    public ModelGroupexContact getGxC(int idg){
+    public ModelGroupexContact getGxC(int idg) {
         crud.open();
-        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_GROUPESxCONTACTS + " WHERE "+ MySQLiteHelper.COLUMN_ID_GROUPE_GC + " = " + idg;
+        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_GROUPESxCONTACTS + " WHERE " + MySQLiteHelper.COLUMN_ID_GROUPE_GC + " = " + idg;
         Cursor cursor = crud.getDatabase().rawQuery(sql, null);
         crud.close();
         return this.cursorToGxC(cursor);
@@ -106,7 +104,7 @@ public class DAOGroupexContact {
     public boolean deleteGxC(int idgroupe) {
         this.crud.open();
         boolean delete = crud.delete(MySQLiteHelper.TABLE_GROUPESxCONTACTS, MySQLiteHelper.COLUMN_ID_GROUPE_GC + " = " + idgroupe);
-        if (delete){
+        if (delete) {
             Log.i("DELETE", "effectué");
             return true;
         }

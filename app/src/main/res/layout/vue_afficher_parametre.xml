@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="#214056">
 
 
     <RelativeLayout
@@ -11,14 +11,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:background="#FC9"
-        android:gravity="center" >
+        android:gravity="center">
 
-        <include android:id="@+id/header"
-            layout="@layout/header"
-            android:layout_height="wrap_content"
-            android:layout_width="fill_parent"/>
+        <include layout="@layout/header" />
+
     </RelativeLayout>
-
 
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -27,42 +24,42 @@
         android:layout_height="fill_parent"
         android:layout_below="@id/headerMenu">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/bouton_parametre_langues"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/small_padding"
-        android:text="@string/titre_langues" />
+            <Button
+                android:id="@+id/bouton_parametre_langues"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/small_padding"
+                android:text="@string/titre_langues" />
 
-    <Button
-        android:id="@+id/bouton_parametre_notifications"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/small_padding"
-        android:text="@string/titre_notifications" />
+            <Button
+                android:id="@+id/bouton_parametre_notifications"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/small_padding"
+                android:text="@string/titre_notifications" />
 
-    <Button
-        android:id="@+id/bouton_parametre_copyright"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/small_padding"
-        android:text="@string/titre_copyright" />
+            <Button
+                android:id="@+id/bouton_parametre_copyright"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/small_padding"
+                android:text="@string/titre_copyright" />
 
-    <Button
-        android:id="@+id/bouton_parametre_mail"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/small_padding"
-        android:text="@string/titre_mail" />
-</LinearLayout>
-        </ScrollView>
-    </RelativeLayout>
+            <Button
+                android:id="@+id/bouton_parametre_mail"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/small_padding"
+                android:text="@string/titre_mail" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

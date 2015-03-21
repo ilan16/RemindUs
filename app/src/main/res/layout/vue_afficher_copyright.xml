@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
 
 
     <RelativeLayout
@@ -11,14 +10,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:background="#FC9"
-        android:gravity="center" >
+        android:gravity="center">
 
-        <include android:id="@+id/header"
+        <include
+            android:id="@+id/header"
             layout="@layout/header"
-            android:layout_height="wrap_content"
-            android:layout_width="fill_parent"/>
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
     </RelativeLayout>
-
 
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -28,22 +27,21 @@
         android:layout_below="@id/headerMenu">
 
 
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="1">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:weightSum="1">
 
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="     Conception et développement : \n \n         - AMAIRI Samir \n         - KIDOUCHIM Reouven \n         - MALKA Ilan \n         - SADOUN Kevin \n         - SOUDJAY Bahia \n  \n \n     Copyright (C) 2015 - RemindUs \n \n      Version BETA 0.1             "
-        android:id="@+id/textView"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.66" />
-</LinearLayout>
-        </ScrollView>
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.66"
+                android:text="     Conception et développement : \n \n         - AMAIRI Samir \n         - KIDOUCHIM Reouven \n         - MALKA Ilan \n         - SADOUN Kevin \n         - SOUDJAY Bahia \n  \n \n     Copyright (C) 2015 - RemindUs \n \n      Version BETA 0.1             "
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

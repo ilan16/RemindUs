@@ -7,7 +7,6 @@ import android.util.Log;
 
 import com.remindus.projetcommun.remindus.basededonnees.MySQLiteHelper;
 import com.remindus.projetcommun.remindus.basededonnees.utilities.CRUD;
-
 import com.remindus.projetcommun.remindus.controller.UtilitaireDate;
 import com.remindus.projetcommun.remindus.model.ModelRDV;
 
@@ -42,7 +41,7 @@ public class DAORDV {
         this.crud = crud;
     }
 
-    public int insertRDV(String nom, long date, String datestring,String lieu, long mode) {
+    public int insertRDV(String nom, long date, String datestring, String lieu, long mode) {
         ContentValues values = new ContentValues();
         values.put(MySQLiteHelper.COLUMN_NOM_RDV, nom);
         values.put(MySQLiteHelper.COLUMN_DATE_RDV, date);
@@ -116,8 +115,8 @@ public class DAORDV {
         ModelRDV modelRDV = new ModelRDV();
         String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_RDV + " WHERE " + MySQLiteHelper.COLUMN_ID_RDV + " = " + id;
         Cursor cursor = crud.getDatabase().rawQuery(sql, null);
-        while (cursor.moveToNext()){
-            modelRDV =  cursorToRDV(cursor);
+        while (cursor.moveToNext()) {
+            modelRDV = cursorToRDV(cursor);
         }
         cursor.close();
         return modelRDV;
@@ -156,14 +155,14 @@ public class DAORDV {
         return rdv;
     }
 
-    public ModelRDV prochainRDV(){
+    public ModelRDV prochainRDV() {
         UtilitaireDate utilitaireDate = new UtilitaireDate();
         String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_RDV + " WHERE " + MySQLiteHelper.COLUMN_DATE_RDV + " >= "
-                + utilitaireDate.dateActuelle() + " ORDER BY " + MySQLiteHelper.COLUMN_DATE_RDV +" ASC"  ;
+                + utilitaireDate.dateActuelle() + " ORDER BY " + MySQLiteHelper.COLUMN_DATE_RDV + " ASC";
         this.crud.open();
         Cursor cursor = this.crud.requeteGeneral(sql, null);
         ModelRDV modelRDV = new ModelRDV();
-        while (cursor.moveToNext()){
+        while (cursor.moveToNext()) {
             modelRDV = this.cursorToRDV(cursor);
             break;
         }

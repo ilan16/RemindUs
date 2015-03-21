@@ -2,9 +2,6 @@ package com.remindus.projetcommun.remindus.model;
 
 import com.remindus.projetcommun.remindus.controller.UtilitaireDate;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-
 /**
  * Created by ilanmalka on 11/03/15.
  */
@@ -42,9 +39,13 @@ public class ModelRDV {
         this.date = date;
     }
 
-    public String getDateString() { return dateString; }
+    public String getDateString() {
+        return dateString;
+    }
 
-    public void setDateString(String dateString) { this.dateString = dateString; }
+    public void setDateString(String dateString) {
+        this.dateString = dateString;
+    }
 
     public String getLieu() {
         return lieu;
@@ -62,7 +63,7 @@ public class ModelRDV {
         this.mode = mode;
     }
 
-    public String toString(){
+    public String toString() {
         this.utilitaireDate = new UtilitaireDate();
         return "RDV " + this.getNom() + " prévu le " + utilitaireDate.convertirLongDateString(this.getDate(), "dd/MM/yy");
     }

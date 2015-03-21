@@ -2,10 +2,8 @@ package com.remindus.projetcommun.remindus.controller;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -14,12 +12,11 @@ import com.remindus.projetcommun.remindus.dao.DAOContact;
 import com.remindus.projetcommun.remindus.model.ModelContact;
 
 import java.util.List;
-import java.util.Random;
 
 public class TesteBDD extends ControllerHeader {
 
-    private DAOContact datasource;
     ListView l = null;
+    private DAOContact datasource;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

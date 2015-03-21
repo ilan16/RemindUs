@@ -7,7 +7,6 @@ import android.util.Log;
 
 import com.remindus.projetcommun.remindus.basededonnees.MySQLiteHelper;
 import com.remindus.projetcommun.remindus.basededonnees.utilities.CRUD;
-import com.remindus.projetcommun.remindus.model.ModelContact;
 import com.remindus.projetcommun.remindus.model.ModelGroupe;
 
 import java.util.ArrayList;
@@ -64,11 +63,11 @@ public class DAOGroupe {
         long id = modelGroupe.getIdGroupe();
         this.crud.open();
         DAOGroupexContact daoGroupexContact = new DAOGroupexContact(context);
-        daoGroupexContact.deleteGxC((int)id);
+        daoGroupexContact.deleteGxC((int) id);
         boolean deletegroupe = crud.delete(MySQLiteHelper.TABLE_GROUPES, MySQLiteHelper.COLUMN_ID_GROUPE
                 + " = " + id);
 
-        if (deletegroupe){
+        if (deletegroupe) {
             Log.i("DELETE", "effectué");
             return true;
         }
@@ -77,16 +76,16 @@ public class DAOGroupe {
 
     }
 
-    public int updateGroupe(ModelGroupe modelGroupe, String nom){
-        String id = ""+modelGroupe.getIdGroupe();
-        Log.i("ID",id);
-        if(!this.isExist(nom)) {
+    public int updateGroupe(ModelGroupe modelGroupe, String nom) {
+        String id = "" + modelGroupe.getIdGroupe();
+        Log.i("ID", id);
+        if (!this.isExist(nom)) {
             this.crud.open();
             ContentValues values = new ContentValues();
             values.put(MySQLiteHelper.COLUMN_NOM_GROUPE, nom);
             boolean update = crud.update(MySQLiteHelper.TABLE_GROUPES, values, MySQLiteHelper.COLUMN_ID_GROUPE, new String[]{id});
-            if(update){
-                Log.i("UPDATE","BON");
+            if (update) {
+                Log.i("UPDATE", "BON");
                 return 0; //si l'update fonctionne
             }
             return 1;
@@ -123,7 +122,7 @@ public class DAOGroupe {
     public ModelGroupe getGroupe(String nom) {
         ModelGroupe modelGroupe = new ModelGroupe();
         crud.open();
-        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_GROUPES + " WHERE " + MySQLiteHelper.COLUMN_NOM_GROUPE + " = ? " ;
+        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_GROUPES + " WHERE " + MySQLiteHelper.COLUMN_NOM_GROUPE + " = ? ";
         Cursor cursor = crud.getDatabase().rawQuery(sql, new String[]{nom});
         while (cursor.moveToNext()) {
             modelGroupe = cursorToGroupe(cursor);

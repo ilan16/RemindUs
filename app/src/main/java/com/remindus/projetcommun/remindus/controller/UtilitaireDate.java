@@ -16,12 +16,12 @@ public class UtilitaireDate {
         return d.getTime();
     }
 
-    public String convertirLongDateString(long dateLong, String format){ //à mettre par défaut "dd/MM/yy à HH:mm:ss"
+    public String convertirLongDateString(long dateLong, String format) { //à mettre par défaut "dd/MM/yy à HH:mm:ss"
         DateFormat df = new SimpleDateFormat(format);
         return df.format(dateLong);
     }
 
-    public long dateActuelle(){
+    public long dateActuelle() {
         Date actuelle = new Date();
         return actuelle.getTime();
     }

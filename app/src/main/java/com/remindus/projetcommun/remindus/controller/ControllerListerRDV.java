@@ -15,9 +15,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.remindus.projetcommun.remindus.R;
-import com.remindus.projetcommun.remindus.dao.DAOGroupe;
 import com.remindus.projetcommun.remindus.dao.DAORDV;
-import com.remindus.projetcommun.remindus.model.ModelGroupe;
 import com.remindus.projetcommun.remindus.model.ModelRDV;
 
 import java.util.Calendar;
@@ -28,9 +26,17 @@ import java.util.List;
  */
 public class ControllerListerRDV extends ControllerHeader {
 
+    private static ModelRDV valeurSelectionnee;
     private DAORDV daordv;
     private ListView l;
-    private static ModelRDV valeurSelectionnee;
+
+    public static ModelRDV getValeurSelectionnee() {
+        return valeurSelectionnee;
+    }
+
+    public static void setValeurSelectionnee(ModelRDV valeurSelectionnee) {
+        ControllerListerRDV.valeurSelectionnee = valeurSelectionnee;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,7 +46,7 @@ public class ControllerListerRDV extends ControllerHeader {
         this.listerRDV();
     }
 
-    public void listerRDV(){
+    public void listerRDV() {
         daordv = new DAORDV(this);
         daordv.getCrud().open();
 
@@ -82,19 +88,19 @@ public class ControllerListerRDV extends ControllerHeader {
         });
     }
 
-    public void supprimerRDV(View view){
+    public void supprimerRDV(View view) {
         ArrayAdapter<ModelRDV> adapter = (ArrayAdapter<ModelRDV>) l.getAdapter();
         boolean delete = daordv.deleteRDV(valeurSelectionnee);
-        if(delete){
+        if (delete) {
             supprimerEventCalendrier(valeurSelectionnee);
             Toast.makeText(getApplicationContext(), getResources().getString(R.string.rdv_supprime, valeurSelectionnee.getNom()), Toast.LENGTH_SHORT).show();
         }
-        Log.i("RDV A DELETE", ""+valeurSelectionnee+"");
+        Log.i("RDV A DELETE", "" + valeurSelectionnee + "");
         adapter.remove(valeurSelectionnee);
         adapter.notifyDataSetChanged();
     }
 
-    public void redirectionCreerRDV(View view){
+    public void redirectionCreerRDV(View view) {
         Intent intent = new Intent(ControllerListerRDV.this, ControllerCreerRDV.class);
         startActivity(intent);
     }
@@ -120,27 +126,18 @@ public class ControllerListerRDV extends ControllerHeader {
         return false;
     }
 
-    public static ModelRDV getValeurSelectionnee() {
-        return valeurSelectionnee;
-    }
-
-    public static void setValeurSelectionnee(ModelRDV valeurSelectionnee) {
-        ControllerListerRDV.valeurSelectionnee = valeurSelectionnee;
-    }
-
-    public void supprimerEventCalendrier(ModelRDV rdv){
+    public void supprimerEventCalendrier(ModelRDV rdv) {
         Calendar cal = Calendar.getInstance();
         UtilitaireDate util_date = new UtilitaireDate();
-
 
 
         String[] tab_date = rdv.getDateString().split("/");
         int annee = Integer.parseInt(tab_date[2]);
         int mois = Integer.parseInt(tab_date[1]);
         int jour = Integer.parseInt(tab_date[0]);
-        System.out.println("année: "+ annee + " mois: "+ mois + " jour: "+jour);
+        System.out.println("année: " + annee + " mois: " + mois + " jour: " + jour);
 
-        String h = util_date.convertirLongDateString(rdv.getDate(),"HH:mm:ss");
+        String h = util_date.convertirLongDateString(rdv.getDate(), "HH:mm:ss");
         System.out.println(h);
         String[] tab_heure = h.split(":");
 

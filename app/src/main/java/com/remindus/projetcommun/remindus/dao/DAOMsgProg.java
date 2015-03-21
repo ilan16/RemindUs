@@ -7,12 +7,9 @@ import android.util.Log;
 
 import com.remindus.projetcommun.remindus.basededonnees.MySQLiteHelper;
 import com.remindus.projetcommun.remindus.basededonnees.utilities.CRUD;
-import com.remindus.projetcommun.remindus.model.ModelContact;
 import com.remindus.projetcommun.remindus.model.ModelMsgProg;
-import com.remindus.projetcommun.remindus.model.ModelRDV;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -44,20 +41,20 @@ public class DAOMsgProg {
     public int insertMsgProg(String titre, long date, String datestring, String contenu) {
         //if(!this.isExist(titre)) {
 
-            ContentValues values = new ContentValues();
-            values.put(MySQLiteHelper.COLUMN_TITRE_MSG_PROG, titre);
-            values.put(MySQLiteHelper.COLUMN_DATE_MSG_PROG, date);
-            values.put(MySQLiteHelper.COLUMN_DATESTRING_MSG_PROG, datestring);
-            values.put(MySQLiteHelper.COLUMN_MSG_PROG, contenu);
+        ContentValues values = new ContentValues();
+        values.put(MySQLiteHelper.COLUMN_TITRE_MSG_PROG, titre);
+        values.put(MySQLiteHelper.COLUMN_DATE_MSG_PROG, date);
+        values.put(MySQLiteHelper.COLUMN_DATESTRING_MSG_PROG, datestring);
+        values.put(MySQLiteHelper.COLUMN_MSG_PROG, contenu);
 
-            this.crud.open();
-            boolean insert = crud.insert(MySQLiteHelper.TABLE_MSG_PROG, values);
-            this.crud.close();
+        this.crud.open();
+        boolean insert = crud.insert(MySQLiteHelper.TABLE_MSG_PROG, values);
+        this.crud.close();
 
-            if (insert) {
-                return 0; // insertion ok
-            }
-            return 1; // pb d'insertion
+        if (insert) {
+            return 0; // insertion ok
+        }
+        return 1; // pb d'insertion
         //} else {
         //    return 2; // msg existe déjà
         //}
@@ -95,17 +92,17 @@ public class DAOMsgProg {
         return msgProgs;
     }
 
-    public ModelMsgProg getMsgProg(int id){
+    public ModelMsgProg getMsgProg(int id) {
         crud.open();
-        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MSG_PROG + " WHERE "+ MySQLiteHelper.COLUMN_ID_MSG_PROG + " = " + id;
+        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MSG_PROG + " WHERE " + MySQLiteHelper.COLUMN_ID_MSG_PROG + " = " + id;
         Cursor cursor = crud.getDatabase().rawQuery(sql, null);
         crud.close();
         return this.cursorToMshProg(cursor);
     }
 
-    public ModelMsgProg getMsgProg(String titre){
+    public ModelMsgProg getMsgProg(String titre) {
         crud.open();
-        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MSG_PROG + " WHERE "+ MySQLiteHelper.COLUMN_TITRE_MSG_PROG + " = " + titre;
+        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MSG_PROG + " WHERE " + MySQLiteHelper.COLUMN_TITRE_MSG_PROG + " = " + titre;
         Cursor cursor = crud.getDatabase().rawQuery(sql, null);
         crud.close();
         return this.cursorToMshProg(cursor);
@@ -121,10 +118,10 @@ public class DAOMsgProg {
         return msgProg;
     }
 
-    private boolean isExist(String titre){
-        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MSG_PROG + " WHERE "+ MySQLiteHelper.COLUMN_TITRE_MSG_PROG + " = \"" + titre + "\"";
+    private boolean isExist(String titre) {
+        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MSG_PROG + " WHERE " + MySQLiteHelper.COLUMN_TITRE_MSG_PROG + " = \"" + titre + "\"";
         Cursor cursor = this.crud.getDatabase().rawQuery(sql, null);
-        if (cursor.getCount() > 0){
+        if (cursor.getCount() > 0) {
             return true;
         }
         return false;

@@ -33,7 +33,7 @@
     <string name="normal">Normal</string>
     <string name="titre_mail">Contactez-Nous</string>
     <string name="refresh_contact">Refresh</string>
-	
+
     <!-- JOURS DE LA SEMAINE -->
     <string name="monday">LUN</string>
     <string name="tuesday">MAR</string>
@@ -79,8 +79,6 @@
     <!-- CHAMPS VIDES -->
     <string name="groupe_nom_vide">Le champs nom est vide. Veuillez le remplir !</string>
     <string name="champs_vide">Le champs %s est vide. Veuillez le remplir !</string>
-
-
 
 
 </resources>

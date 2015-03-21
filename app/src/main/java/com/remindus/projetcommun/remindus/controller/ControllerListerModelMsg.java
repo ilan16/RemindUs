@@ -15,9 +15,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.remindus.projetcommun.remindus.R;
-import com.remindus.projetcommun.remindus.dao.DAOGroupe;
 import com.remindus.projetcommun.remindus.dao.DAOModelMsg;
-import com.remindus.projetcommun.remindus.model.ModelGroupe;
 import com.remindus.projetcommun.remindus.model.ModelModelMsg;
 
 import java.util.List;
@@ -27,9 +25,17 @@ import java.util.List;
  */
 public class ControllerListerModelMsg extends ControllerHeader {
 
+    private static ModelModelMsg valeurSelectionnee;
     private DAOModelMsg daoModelMsg;
     private ListView l;
-    private static ModelModelMsg valeurSelectionnee;
+
+    public static ModelModelMsg getValeurSelectionnee() {
+        return valeurSelectionnee;
+    }
+
+    public static void setValeurSelectionnee(ModelModelMsg valeurSelectionnee) {
+        ControllerListerModelMsg.valeurSelectionnee = valeurSelectionnee;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,7 +45,7 @@ public class ControllerListerModelMsg extends ControllerHeader {
         this.listerModelMsg();
     }
 
-    public void listerModelMsg(){
+    public void listerModelMsg() {
         daoModelMsg = new DAOModelMsg(this);
         daoModelMsg.getCrud().open();
 
@@ -75,7 +81,7 @@ public class ControllerListerModelMsg extends ControllerHeader {
         });
     }
 
-    public void redirection(View view){
+    public void redirection(View view) {
         Intent intent = null;
         switch (view.getId()) {
             case R.id.bouton_ajouter_model_msg:
@@ -85,16 +91,15 @@ public class ControllerListerModelMsg extends ControllerHeader {
         }
     }
 
-    public void supprimerModelMsg(View view){
+    public void supprimerModelMsg(View view) {
         ArrayAdapter<ModelModelMsg> adapter = (ArrayAdapter<ModelModelMsg>) l.getAdapter();
         boolean delete = daoModelMsg.deleteModelMsg(valeurSelectionnee);
-        if(delete){
+        if (delete) {
             Toast.makeText(getApplicationContext(), getResources().getString(R.string.model_msg_supprime, valeurSelectionnee.getTitre()), Toast.LENGTH_SHORT).show();
         }
         adapter.remove(valeurSelectionnee);
         adapter.notifyDataSetChanged();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -115,14 +120,6 @@ public class ControllerListerModelMsg extends ControllerHeader {
         }
 
         return false;
-    }
-
-    public static ModelModelMsg getValeurSelectionnee() {
-        return valeurSelectionnee;
-    }
-
-    public static void setValeurSelectionnee(ModelModelMsg valeurSelectionnee) {
-        ControllerListerModelMsg.valeurSelectionnee = valeurSelectionnee;
     }
 
 }

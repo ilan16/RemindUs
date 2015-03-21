@@ -8,11 +8,9 @@ import android.util.Log;
 import com.remindus.projetcommun.remindus.basededonnees.MySQLiteHelper;
 import com.remindus.projetcommun.remindus.basededonnees.utilities.CRUD;
 import com.remindus.projetcommun.remindus.controller.UtilitaireDate;
-import com.remindus.projetcommun.remindus.model.ModelGroupe;
 import com.remindus.projetcommun.remindus.model.ModelModelMsg;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -68,7 +66,7 @@ public class DAOModelMsg {
         boolean delete = crud.delete(MySQLiteHelper.TABLE_MODEL_MSG, MySQLiteHelper.COLUMN_ID_MODEL_MSG
                 + " = " + id);
         // this.crud.close();
-        if (delete){
+        if (delete) {
             Log.i("DELETE", "effectué");
             return true;
         }
@@ -77,20 +75,20 @@ public class DAOModelMsg {
 
     }
 
-    public int updateModelMsg(ModelModelMsg modelModelMsg, String titre, String contenu){
-        String id = ""+modelModelMsg.getId();
-        Log.i("ID",id);
+    public int updateModelMsg(ModelModelMsg modelModelMsg, String titre, String contenu) {
+        String id = "" + modelModelMsg.getId();
+        Log.i("ID", id);
 //        if(!this.isExist(titre)) {
-            this.crud.open();
-            ContentValues values = new ContentValues();
-            values.put(MySQLiteHelper.COLUMN_TITRE_MODEL_MSG, titre);
-            values.put(MySQLiteHelper.COLUMN_CONTENU_MODEL_MSG, contenu);
-            boolean update = crud.update(MySQLiteHelper.TABLE_MODEL_MSG, values, MySQLiteHelper.COLUMN_ID_MODEL_MSG, new String[]{id});
-            if(update){
-                Log.i("UPDATE","BON");
-                return 0; //si l'update fonctionne
-            }
-            return 1; // pb update
+        this.crud.open();
+        ContentValues values = new ContentValues();
+        values.put(MySQLiteHelper.COLUMN_TITRE_MODEL_MSG, titre);
+        values.put(MySQLiteHelper.COLUMN_CONTENU_MODEL_MSG, contenu);
+        boolean update = crud.update(MySQLiteHelper.TABLE_MODEL_MSG, values, MySQLiteHelper.COLUMN_ID_MODEL_MSG, new String[]{id});
+        if (update) {
+            Log.i("UPDATE", "BON");
+            return 0; //si l'update fonctionne
+        }
+        return 1; // pb update
 //        }
 //        return 2; // le nom existe déjà donc pas possible de maj avec ce nom
     }
@@ -104,7 +102,7 @@ public class DAOModelMsg {
         cursor.moveToFirst();
 
         while (!cursor.isAfterLast()) {
-            ModelModelMsg modelModelMsg  = cursorToModelMsg(cursor);
+            ModelModelMsg modelModelMsg = cursorToModelMsg(cursor);
             modelModelMsgs.add(modelModelMsg);
             cursor.moveToNext();
 

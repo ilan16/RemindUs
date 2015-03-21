@@ -2,7 +2,6 @@ package com.remindus.projetcommun.remindus.model;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * Created by ilanmalka on 04/03/15.
@@ -46,7 +45,7 @@ public class ModelGroupe {
         this.dateCreation = dateCreation;
     }
 
-    public String convertionLongDate(){
+    public String convertionLongDate() {
         DateFormat df = new SimpleDateFormat("dd/MM/yy à HH:mm:ss");
         return df.format(dateCreation);
     }

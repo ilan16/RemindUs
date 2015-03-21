@@ -16,9 +16,7 @@ import android.widget.Toast;
 
 import com.remindus.projetcommun.remindus.R;
 import com.remindus.projetcommun.remindus.dao.DAOMsgProg;
-import com.remindus.projetcommun.remindus.dao.DAORDV;
 import com.remindus.projetcommun.remindus.model.ModelMsgProg;
-import com.remindus.projetcommun.remindus.model.ModelRDV;
 
 import java.util.List;
 
@@ -27,9 +25,17 @@ import java.util.List;
  */
 public class ControllerListerMsgProg extends ControllerHeader {
 
+    private static ModelMsgProg valeurSelectionnee;
     private DAOMsgProg daoMsgProg;
     private ListView l;
-    private static ModelMsgProg valeurSelectionnee;
+
+    public static ModelMsgProg getValeurSelectionnee() {
+        return valeurSelectionnee;
+    }
+
+    public static void setValeurSelectionnee(ModelMsgProg valeurSelectionnee) {
+        ControllerListerMsgProg.valeurSelectionnee = valeurSelectionnee;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,7 +45,7 @@ public class ControllerListerMsgProg extends ControllerHeader {
         this.listerRDV();
     }
 
-    public void listerRDV(){
+    public void listerRDV() {
         daoMsgProg = new DAOMsgProg(this);
         daoMsgProg.getCrud().open();
 
@@ -76,18 +82,18 @@ public class ControllerListerMsgProg extends ControllerHeader {
         });
     }
 
-    public void supprimerMsgProg(View view){
+    public void supprimerMsgProg(View view) {
         ArrayAdapter<ModelMsgProg> adapter = (ArrayAdapter<ModelMsgProg>) l.getAdapter();
         boolean delete = daoMsgProg.deleteMsgProg(valeurSelectionnee);
-        if(delete){
+        if (delete) {
             Toast.makeText(getApplicationContext(), getResources().getString(R.string.rdv_supprime, valeurSelectionnee.getTitre()), Toast.LENGTH_SHORT).show();
         }
-        Log.i("MSG PROG A DELETE", ""+valeurSelectionnee+"");
+        Log.i("MSG PROG A DELETE", "" + valeurSelectionnee + "");
         adapter.remove(valeurSelectionnee);
         adapter.notifyDataSetChanged();
     }
 
-    public void redirection(View view){
+    public void redirection(View view) {
         Intent intent = new Intent(ControllerListerMsgProg.this, ControllerCreerMsgProg.class);
         startActivity(intent);
     }
@@ -111,13 +117,5 @@ public class ControllerListerMsgProg extends ControllerHeader {
         }
 
         return false;
-    }
-
-    public static ModelMsgProg getValeurSelectionnee() {
-        return valeurSelectionnee;
-    }
-
-    public static void setValeurSelectionnee(ModelMsgProg valeurSelectionnee) {
-        ControllerListerMsgProg.valeurSelectionnee = valeurSelectionnee;
     }
 }

@@ -16,10 +16,6 @@ import com.remindus.projetcommun.remindus.model.ModelRDV;
 import com.tyczj.extendedcalendarview.Day;
 import com.tyczj.extendedcalendarview.ExtendedCalendarView;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -36,13 +32,13 @@ public class ControllerCalendrier extends ControllerHeader /*implements Calendar
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.vue_afficher_calendrier);
-        calendar = (ExtendedCalendarView)findViewById(R.id.calendar);
+        calendar = (ExtendedCalendarView) findViewById(R.id.calendar);
         calendar.setOnDayClickListener(new ExtendedCalendarView.OnDayClickListener() {
             @Override
             public void onDayClicked(AdapterView<?> adapter, View view, int position,
                                      long id, Day day) {
                 AlertDialog alertDialog = new AlertDialog.Builder(ControllerCalendrier.this).create();
-                String date = day.getDay()+"/"+(day.getMonth()+1)+"/"+day.getYear();
+                String date = day.getDay() + "/" + (day.getMonth() + 1) + "/" + day.getYear();
                 alertDialog.setTitle(date);
                 alertDialog.setMessage(listeRDV(date));
                 alertDialog.setButton(Dialog.BUTTON_NEGATIVE, "Ajouter un RDV", new DialogInterface.OnClickListener() {
@@ -93,16 +89,16 @@ public class ControllerCalendrier extends ControllerHeader /*implements Calendar
 
         List<ModelRDV> values = daordv.getAllRDV();
         if (values != null) {
-            for (int i=0; i < values.size(); i++) {
+            for (int i = 0; i < values.size(); i++) {
                 if (date.equals(values.get(i).getDateString())) {
-                    s_date += "RDV "+values.get(i).getNom() + " à "
-                                + values.get(i).getLieu()
-                                + " de " + utilitaire_date.convertirLongDateString(
-                                          values.get(i).getDate(), "dd/MM/yy à HH:mm:ss")+"\n";
+                    s_date += "RDV " + values.get(i).getNom() + " à "
+                            + values.get(i).getLieu()
+                            + " de " + utilitaire_date.convertirLongDateString(
+                            values.get(i).getDate(), "dd/MM/yy à HH:mm:ss") + "\n";
                 }
             }
         }
-        if (s_date.equals("")){
+        if (s_date.equals("")) {
             s_date = "Pas de RDV ce jour";
         }
         daordv.getCrud().close();

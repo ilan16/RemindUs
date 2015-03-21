@@ -9,9 +9,6 @@ import android.util.Log;
 
 import com.remindus.projetcommun.remindus.basededonnees.MySQLiteHelper;
 
-import java.util.List;
-import java.util.Objects;
-
 
 /**
  * Created by ilanmalka on 04/03/15.
@@ -68,9 +65,9 @@ public class CRUD {
         return true;
     }
 
-    public boolean update(String table, ContentValues values, String valeurAupdate, String[] contenuValeurUpdate){
+    public boolean update(String table, ContentValues values, String valeurAupdate, String[] contenuValeurUpdate) {
         int update = this.database.update(table, values, valeurAupdate + " = ?", contenuValeurUpdate);
-        if(update == -1){
+        if (update == -1) {
             return false;
         }
         return true;

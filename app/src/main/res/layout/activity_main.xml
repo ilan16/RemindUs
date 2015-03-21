@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:baselineAligned="false"
-    android:clickable="false">
+    android:clickable="false"
+    android:orientation="vertical">
 
-    <LinearLayout  android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <View
             android:layout_width="40dp"
@@ -14,95 +16,98 @@
             android:layout_weight="1"
             android:gravity="bottom|center"
             android:text="@string/titre_RDV"
-            android:textColor="#ffffffff"/>
+            android:textColor="#ffffffff" />
 
     </LinearLayout>
 
 
-    <LinearLayout  android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-
-    <Button
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:layout_weight="1"
-        android:gravity="bottom|center"
-        android:text="@string/titre_RDV"
-        android:textColor="#ffffffff"
-        android:background="@drawable/rdv"
-        android:id="@+id/bouton_rdv" />
-
-    <Button
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:layout_weight="1"
-        android:gravity="bottom|center"
-        android:textColor="#ffffffff"
-        android:text="@string/titre_msg_prog"
-        android:background="@drawable/prog"
-        android:id="@+id/bouton_msg_prog" />
-
-</LinearLayout>
-
-    <LinearLayout  android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
 
         <Button
+            android:id="@+id/bouton_rdv"
             android:layout_width="160dp"
             android:layout_height="160dp"
             android:layout_weight="1"
-            android:text="@string/titre_calendrier"
+            android:background="@drawable/rdv"
+            android:gravity="bottom|center"
+            android:text="@string/titre_RDV"
+            android:textColor="#ffffffff" />
+
+        <Button
+            android:id="@+id/bouton_msg_prog"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_weight="1"
+            android:background="@drawable/prog"
+            android:gravity="bottom|center"
+            android:text="@string/titre_msg_prog"
+            android:textColor="#ffffffff" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <Button
             android:id="@+id/bouton_calendrier"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_weight="1"
             android:background="@drawable/calendrier"
             android:gravity="bottom|center"
-            android:textColor="#ffffffff"/>
+            android:text="@string/titre_calendrier"
+            android:textColor="#ffffffff" />
 
         <Button
+            android:id="@+id/bouton_groupe"
             android:layout_width="160dp"
             android:layout_height="160dp"
             android:layout_weight="1"
+            android:background="@drawable/groupe"
             android:gravity="bottom|center"
-            android:textColor="#ffffffff"
             android:text="@string/titre_groupe"
-            android:id="@+id/bouton_groupe"
-            android:background="@drawable/groupe" />
+            android:textColor="#ffffffff" />
 
     </LinearLayout>
 
-    <LinearLayout  android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
 
         <Button
-            android:layout_width="160dp"
-            android:layout_height="160dp"
-            android:layout_weight="1"
-            android:gravity="bottom|center"
-            android:textColor="#ffffffff"
-            android:text="@string/titre_contact"
             android:id="@+id/bouton_contact"
-            android:background="@drawable/contact" />
-
-        <Button
             android:layout_width="160dp"
             android:layout_height="160dp"
             android:layout_weight="1"
+            android:background="@drawable/contact"
             android:gravity="bottom|center"
-            android:textColor="#ffffffff"
-            android:text="@string/titre_model_msg"
+            android:text="@string/titre_contact"
+            android:textColor="#ffffffff" />
+
+        <Button
             android:id="@+id/bouton_model_msg"
-            android:background="@drawable/modele" />
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_weight="1"
+            android:background="@drawable/modele"
+            android:gravity="bottom|center"
+            android:text="@string/titre_model_msg"
+            android:textColor="#ffffffff" />
 
     </LinearLayout>
 
     <Button
+        android:id="@+id/bouton_parametre"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/titre_parametre"
-        android:id="@+id/bouton_parametre"
         android:background="@drawable/parametre"
+        android:text="@string/titre_parametre"
         android:textColor="#ffffffff" />
 
 </LinearLayout>

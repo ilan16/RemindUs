@@ -7,11 +7,10 @@ import java.util.regex.Pattern;
  * Created by ilanmalka on 17/03/15.
  */
 public class ValidatorDate {
-    private Pattern pattern;
-    private Matcher matcher;
-
     private static final String DATE_PATTERN =
             "(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\d\\d)";
+    private Pattern pattern;
+    private Matcher matcher;
 
     public ValidatorDate() {
         pattern = Pattern.compile(DATE_PATTERN);

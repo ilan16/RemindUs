@@ -14,12 +14,12 @@ public class ModelContact {
         return id;
     }
 
-    public int getIdLong() {
-        return (int)id;
-    }
-
     public void setId(long id) {
         this.id = id;
+    }
+
+    public int getIdLong() {
+        return (int) id;
     }
 
     public String getContact() {

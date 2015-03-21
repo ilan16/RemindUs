@@ -24,7 +24,7 @@ public class ModelRDVxContacts {
         this.idcontact = idcontact;
     }
 
-    public String toString(){
-        return idrdv +" " + idcontact;
+    public String toString() {
+        return idrdv + " " + idcontact;
     }
 }

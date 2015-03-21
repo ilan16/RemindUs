@@ -5,22 +5,17 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.remindus.projetcommun.remindus.R;
-import com.remindus.projetcommun.remindus.dao.DAOContact;
 import com.remindus.projetcommun.remindus.dao.DAOGroupe;
-import com.remindus.projetcommun.remindus.model.ModelContact;
 import com.remindus.projetcommun.remindus.model.ModelGroupe;
 
 import java.util.List;
@@ -30,9 +25,17 @@ import java.util.List;
  */
 public class ControllerListerGroupe extends ControllerHeader {
 
+    private static ModelGroupe valeurSelectionnee;
     private DAOGroupe daoGroupe;
     private ListView l;
-    private static ModelGroupe valeurSelectionnee;
+
+    public static ModelGroupe getValeurSelectionnee() {
+        return valeurSelectionnee;
+    }
+
+    public static void setValeurSelectionnee(ModelGroupe valeurSelectionnee) {
+        ControllerListerGroupe.valeurSelectionnee = valeurSelectionnee;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,7 +45,7 @@ public class ControllerListerGroupe extends ControllerHeader {
         this.listerGroupe();
     }
 
-    public void listerGroupe(){
+    public void listerGroupe() {
         daoGroupe = new DAOGroupe(this);
         daoGroupe.getCrud().open();
 
@@ -73,24 +76,24 @@ public class ControllerListerGroupe extends ControllerHeader {
                 });
                 alertDialog.show();
 
-                Log.i("GROUPE A DELETE", ""+values.get(position).toString()+"");
+                Log.i("GROUPE A DELETE", "" + values.get(position).toString() + "");
                 return false;
             }
         });
     }
 
-    public void supprimerGroupe(View view){
+    public void supprimerGroupe(View view) {
         ArrayAdapter<ModelGroupe> adapter = (ArrayAdapter<ModelGroupe>) l.getAdapter();
         boolean delete = daoGroupe.deleteGroupe(valeurSelectionnee, this);
-        if(delete){
+        if (delete) {
             Toast.makeText(getApplicationContext(), getResources().getString(R.string.groupe_supprime, valeurSelectionnee.getNomGroupe()), Toast.LENGTH_SHORT).show();
         }
-        Log.i("GROUPE A DELETE", ""+valeurSelectionnee+"");
+        Log.i("GROUPE A DELETE", "" + valeurSelectionnee + "");
         adapter.remove(valeurSelectionnee);
         adapter.notifyDataSetChanged();
     }
 
-    public void redirectionGroupe(View view){
+    public void redirectionGroupe(View view) {
         Intent intent = null;
         switch (view.getId()) {
             case R.id.bouton_ajouter_groupe:
@@ -123,13 +126,5 @@ public class ControllerListerGroupe extends ControllerHeader {
         }
 
         return false;
-    }
-
-    public static ModelGroupe getValeurSelectionnee() {
-        return valeurSelectionnee;
-    }
-
-    public static void setValeurSelectionnee(ModelGroupe valeurSelectionnee) {
-        ControllerListerGroupe.valeurSelectionnee = valeurSelectionnee;
     }
 }
