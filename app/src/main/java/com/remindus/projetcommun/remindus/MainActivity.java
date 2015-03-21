@@ -44,8 +44,8 @@ public class MainActivity extends ActionBarActivity {
         cal.set(Calendar.MONTH,2);  //first month is 0!!! January is zero!!!
         cal.set(Calendar.YEAR,2015);//year...
 
-        cal.set(Calendar.HOUR_OF_DAY, 16);  //HOUR
-        cal.set(Calendar.MINUTE,13);       //MIN
+        cal.set(Calendar.HOUR_OF_DAY, 17);  //HOUR
+        cal.set(Calendar.MINUTE,44);       //MIN
         cal.set(Calendar.SECOND,0 );
 
         alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
