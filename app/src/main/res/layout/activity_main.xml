@@ -10,13 +10,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <View
-            android:layout_width="40dp"
+
+
+        <Button
+            android:layout_width="250dp"
             android:layout_height="40dp"
             android:layout_weight="1"
-            android:gravity="bottom|center"
-            android:text="@string/titre_RDV"
-            android:textColor="#ffffffff" />
+            android:text="REMIND US"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:background="#486e76"
+            />
 
     </LinearLayout>
 
@@ -35,6 +40,8 @@
             android:gravity="bottom|center"
             android:text="@string/titre_RDV"
             android:textColor="#ffffffff" />
+
+
 
         <Button
             android:id="@+id/bouton_msg_prog"
