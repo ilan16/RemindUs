@@ -1,33 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/header"
     android:gravity="fill_horizontal">
 
+
+
     <LinearLayout
-        android:id="@+id/panelIconLeft"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:layout_margin="5dp">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
 
         <Button
             android:id="@+id/bouton_home"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:background="@drawable/accueil"
+            android:layout_width="20dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/home"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
             android:onClick="backHome" />
 
+        <Button
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:text="REMIND US"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:background="#486e76"
+            />
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnAccueil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:background="@drawable/logo" />
+
 </RelativeLayout>
