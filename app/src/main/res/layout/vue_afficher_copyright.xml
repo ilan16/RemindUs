@@ -37,10 +37,9 @@
 
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_weight="0.66"
+                android:layout_gravity="left"
                 android:text="     Conception et développement : \n \n         - AMAIRI Samir \n         - KIDOUCHIM Reouven \n         - MALKA Ilan \n         - SADOUN Kevin \n         - SOUDJAY Bahia \n  \n \n     Copyright (C) 2015 - RemindUs \n \n      Version BETA 0.1             "
                 android:textAppearance="?android:attr/textAppearanceLarge" />
         </LinearLayout>

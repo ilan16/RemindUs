@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ff486e76">
+    android:background="@color/fond"
+    >
 
 
     <RelativeLayout
@@ -36,31 +37,13 @@
             android:weightSum="1">
 
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="60dp"
-                android:gravity="center"
-                android:text="Titre : "
-                android:textColor="#ffffff"
-                android:textSize="18dp"
-                android:textStyle="bold" />
-
             <EditText
                 android:id="@+id/titre_msg_prog"
-                android:layout_width="fill_parent"
+                android:layout_width="257dp"
                 android:layout_height="wrap_content"
                 android:hint="Titre"
 
                 android:inputType="text" />
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="60dp"
-                android:gravity="center"
-                android:text="date : "
-                android:textColor="#ffffff"
-                android:textSize="18dp"
-                android:textStyle="bold" />
 
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
@@ -77,33 +60,22 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginLeft="5dp"
                     android:editable="true"
                     android:hint="DD/MM/YYYY"
                     android:inputType="date"></EditText>
 
                 <ImageButton
                     android:id="@+id/date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_alignParentTop="true"
                     android:layout_toEndOf="@+id/editDate"
                     android:cropToPadding="true"
                     android:onClick="ajouterDate"
-                    android:src="@drawable/ic_calendar" />
+                    android:background="@drawable/calendar" />
 
 
             </RelativeLayout>
-
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="60dp"
-                android:gravity="center"
-                android:text="heure : "
-                android:textColor="#ffffff"
-                android:textSize="18dp"
-                android:textStyle="bold"></TextView>
 
 
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -119,51 +91,32 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:layout_marginLeft="5dp"
                     android:editable="true"
                     android:hint="HH:MM"
                     android:inputType="datetime" />
 
                 <ImageButton
                     android:id="@+id/heure"
-                    android:layout_width="wrap_content"
-                    android:layout_height="60dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_toEndOf="@+id/editHeure"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:cropToPadding="true"
                     android:onClick="ajouterHeure"
-                    android:src="@drawable/ic_heure" />
+                    android:background="@drawable/clock"
+                    android:layout_alignBottom="@+id/editHeure"
+                    android:layout_toEndOf="@+id/editHeure" />
             </RelativeLayout>
 
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="60dp"
-                android:gravity="center"
-                android:text="Message : "
-                android:textColor="#ffffff"
-                android:textSize="18dp"
-                android:textStyle="bold" />
-
             <EditText
                 android:id="@+id/message_msg_prog"
-                android:layout_width="fill_parent"
+                android:layout_width="294dp"
                 android:layout_height="wrap_content"
                 android:hint="Message"
                 android:inputType="textMultiLine" />
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="60dp"
-                android:gravity="center"
-                android:text="Contact : "
-                android:textColor="#ffffff"
-                android:textSize="18dp"
-                android:textStyle="bold" />
-
             <EditText
                 android:id="@+id/contact"
-                android:layout_width="fill_parent"
+                android:layout_width="295dp"
                 android:layout_height="wrap_content"
                 android:hint="contact"
                 android:inputType="textMultiLine" />

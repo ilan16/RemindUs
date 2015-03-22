@@ -35,38 +35,22 @@
             android:weightSum="1">
 
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="60dp"
-                android:gravity="center"
-                android:text="Titre : "
-                android:textColor="#ffffff"
-                android:textSize="18dp"
-                android:textStyle="bold" />
-
             <EditText
                 android:id="@+id/titre_model_msg"
-                android:layout_width="fill_parent"
+                android:layout_width="315dp"
                 android:layout_height="wrap_content"
                 android:hint="Titre"
-                android:inputType="text" />
+                android:inputType="text"
+                android:layout_gravity="center|left" />
 
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="60dp"
-                android:gravity="center"
-                android:text="Message : "
-                android:textColor="#ffffff"
-                android:textSize="18dp"
-                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/message_model_msg"
-                android:layout_width="fill_parent"
+                android:layout_width="308dp"
                 android:layout_height="wrap_content"
                 android:hint="Message"
-                android:inputType="textMultiLine" />
+                android:inputType="textMultiLine"
+                android:layout_gravity="center|left" />
 
             <Button
                 android:id="@+id/valider"

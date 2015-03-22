@@ -39,10 +39,9 @@
 
             <EditText
                 android:id="@+id/titre_model_msg"
-                android:layout_width="fill_parent"
+                android:layout_width="326dp"
                 android:layout_height="wrap_content"
                 android:hint="Titre"
-                android:textColorHint="#ffffff"
                 android:inputType="text" />
 
 
@@ -50,10 +49,9 @@
 
             <EditText
                 android:id="@+id/message_model_msg"
-                android:layout_width="fill_parent"
+                android:layout_width="323dp"
                 android:layout_height="wrap_content"
                 android:hint="Message"
-                android:textColorHint="#ffffff"
                 android:inputType="textMultiLine" />
 
             <Button
