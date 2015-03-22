@@ -60,7 +60,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:onClick="refreshContact"
-            android:text="@string/refresh_contact" />
+            android:text="@string/refresh_contact"
+            android:background="@color/bleu_theme"
+            android:textColor="#ffffffff" />
 
         <Button
             android:id="@+id/validerContact"
@@ -68,7 +70,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:onClick="ajouterContact"
-            android:text="Valider" />
+            android:text="Valider"
+            android:background="@color/bleu_theme"
+            android:textColor="#ffffffff" />
 
     </LinearLayout>
 
