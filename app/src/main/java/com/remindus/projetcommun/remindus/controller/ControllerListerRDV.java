@@ -6,6 +6,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,8 +15,11 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.remindus.projetcommun.remindus.R;
+import com.remindus.projetcommun.remindus.dao.DAOGroupe;
 import com.remindus.projetcommun.remindus.dao.DAORDV;
+import com.remindus.projetcommun.remindus.model.ModelGroupe;
 import com.remindus.projetcommun.remindus.model.ModelRDV;
+import com.tyczj.extendedcalendarview.CalendarProvider;
 
 import java.util.Calendar;
 import java.util.List;
@@ -105,38 +110,38 @@ public class ControllerListerRDV extends ControllerHeader {
 
 
     public void supprimerEventCalendrier(ModelRDV rdv) {
-        Calendar cal = Calendar.getInstance();
-        UtilitaireDate util_date = new UtilitaireDate();
-
-
         String[] tab_date = rdv.getDateString().split("/");
         int annee = Integer.parseInt(tab_date[2]);
         int mois = Integer.parseInt(tab_date[1]);
         int jour = Integer.parseInt(tab_date[0]);
         System.out.println("année: " + annee + " mois: " + mois + " jour: " + jour);
 
-        String h = util_date.convertirLongDateString(rdv.getDate(), "HH:mm:ss");
+        UtilitaireDate util_date = new UtilitaireDate();
+        String h = util_date.convertirLongDateString(rdv.getDate(),"HH:mm:ss");
         System.out.println(h);
         String[] tab_heure = h.split(":");
 
         int heure = Integer.parseInt(tab_heure[0]);
         int min = Integer.parseInt(tab_heure[1]);
 
-        /*cal.set(annee, mois-1, jour, heure, min);
+        System.out.println("heure: "+ heure + " minute: "+ min);
+        //Calendar cal = Calendar.getInstance();
+        //cal.set(annee, mois-1, jour, heure, min);
+        //cal.set(2015, 2, 2, 18, 30);
         // Defines selection criteria for the rows you want to delete
-        String mSelectionClause = UserDictionary.Words.APP_ID + " LIKE ?";
-        String[] mSelectionArgs = {"user"};
+        String mSelectionClause = CalendarProvider.LOCATION + " = ? AND "+ CalendarProvider.EVENT +" = ? AND "+CalendarProvider.START + " = ?";
+        //String time = String.valueOf(cal.getTimeInMillis());
+        String[] mSelectionArgs = {rdv.getLieu(), rdv.getNom(), String.valueOf(rdv.getDate())};
 
         // Defines a variable to contain the number of rows deleted
         int mRowsDeleted = 0;
 
-
-
         // Deletes the words that match the selection criteria
         mRowsDeleted = getContentResolver().delete(
-                UserDictionary.Words.CONTENT_URI,   // the user dictionary content URI
-                mSelectionClause                    // the column to select on
+                CalendarProvider.CONTENT_URI,   // the user dictionary content URI
+                mSelectionClause,                    // the column to select on
                 mSelectionArgs                      // the value to compare to
-        );*/
+        );
+        System.out.println("rows deleted :"+mRowsDeleted);
     }
 }

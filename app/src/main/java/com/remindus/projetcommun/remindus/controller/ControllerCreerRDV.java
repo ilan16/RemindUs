@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.text.format.Time;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
@@ -96,6 +97,22 @@ public class ControllerCreerRDV extends ControllerHeader {
         //this.listerContact();
         //this.checkButtonClick();
     }
+
+    /*public void listerContact(){
+
+        daoContact = new DAOContact(this);
+        daoContact.getCrud().open();
+
+        final List<ModelContact> values = daoContact.getAllContacts();
+        lv = (ListView) findViewById(R.id.listeContact);
+
+        adapter = new CustomAdapterContact(this,R.layout.vue_creer_rdv,values);
+
+        lv.setAdapter(this.adapter);
+        lv.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+
+    }*/
+
 
     private void checkButtonClick() {
 
@@ -195,7 +212,7 @@ public class ControllerCreerRDV extends ControllerHeader {
                         int insert = daordv.insertRDV(nom, dateLong, date, lieu, mode);
 
                         if (insert == 0) {
-                            ajouterEventCalendrier(date, heure);
+                            ajouterEventCalendrier(date, heure, lieu, nom, dateLong);
                             ControllerCreerRDV.setNomRDVstatic(nom);
                             Intent intent = new Intent(ControllerCreerRDV.this, ControllerContact.class);
                             startActivity(intent);
@@ -225,6 +242,7 @@ public class ControllerCreerRDV extends ControllerHeader {
         ValidatorHeure validatorHeure = new ValidatorHeure();
         return validatorHeure.validate(heureEdit.getText().toString());
     }
+
 
     public void ajouterHeure(View v) {
 
@@ -282,12 +300,12 @@ public class ControllerCreerRDV extends ControllerHeader {
         dpd.show();
     }
 
-    public void ajouterEventCalendrier(String date, String h) {
+    public void ajouterEventCalendrier(String date, String h, String lieu, String nom, long dateLong) {
         ContentValues values = new ContentValues();
         values.put(CalendarProvider.COLOR, Event.COLOR_RED);
         values.put(CalendarProvider.DESCRIPTION, "");
-        values.put(CalendarProvider.LOCATION, "");
-        values.put(CalendarProvider.EVENT, "RDV");
+        values.put(CalendarProvider.LOCATION, lieu);
+        values.put(CalendarProvider.EVENT, nom);
 
         Calendar cal = Calendar.getInstance();
 
@@ -304,14 +322,13 @@ public class ControllerCreerRDV extends ControllerHeader {
         System.out.println("heure: " + heure + " minute: " + min);
 
         cal.set(annee, mois - 1, jour, heure, min);
-        values.put(CalendarProvider.START, cal.getTimeInMillis());
-
+        values.put(CalendarProvider.START, String.valueOf(dateLong));
         TimeZone tz = TimeZone.getDefault();
 
         int endDayJulian = Time.getJulianDay(cal.getTimeInMillis(), TimeUnit.MILLISECONDS.toSeconds(tz.getOffset(cal.getTimeInMillis())));
 
         values.put(CalendarProvider.START_DAY, endDayJulian);
-        cal.set(annee, mois - 1, jour, heure, min);
+        cal.set(annee, mois-1, jour, heure, min);
         values.put(CalendarProvider.END, cal.getTimeInMillis());
         values.put(CalendarProvider.END_DAY, endDayJulian);
 
