@@ -1,16 +1,19 @@
 package com.remindus.projetcommun.remindus.model;
 
+import com.remindus.projetcommun.remindus.controller.UtilitaireDate;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 /**
  * Created by ilanmalka on 04/03/15.
  */
-public class ModelGroupe {
+public class ModelGroupe extends IModel {
 
     private long idGroupe;
     private String nomGroupe;
     private long dateCreation;
+    private UtilitaireDate utilitaireDate;
 
     public ModelGroupe() {
     }
@@ -45,12 +48,13 @@ public class ModelGroupe {
         this.dateCreation = dateCreation;
     }
 
-    public String convertionLongDate() {
+    /*public String convertionLongDate() {
         DateFormat df = new SimpleDateFormat("dd/MM/yy à HH:mm:ss");
         return df.format(dateCreation);
-    }
+    }*/
 
     public String toString() {
-        return nomGroupe + " " + convertionLongDate();
+        this.utilitaireDate = new UtilitaireDate();
+        return nomGroupe + " " +  utilitaireDate.convertirLongDateString(this.dateCreation, "dd/MM/yy à HH:mm:ss");
     }
 }

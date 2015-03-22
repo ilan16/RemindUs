@@ -3,7 +3,7 @@ package com.remindus.projetcommun.remindus.model;
 /**
  * Created by ilanmalka on 08/03/15.
  */
-public class ModelMsgProgxContacts {
+public class ModelMsgProgxContacts extends IModel{
 
     private long idMsgProg;
     private long idContact;
@@ -22,5 +22,9 @@ public class ModelMsgProgxContacts {
 
     public void setIdMsgProg(long idMsgProg) {
         this.idMsgProg = idMsgProg;
+    }
+
+    public String toString() {
+        return "idContact: " + idContact + " idMsgProg: "+idMsgProg;
     }
 }

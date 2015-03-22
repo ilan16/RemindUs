@@ -3,7 +3,7 @@ package com.remindus.projetcommun.remindus.model;
 /**
  * Created by Ilan on 24/02/2015.
  */
-public class ModelContact {
+public class ModelContact extends IModel {
 
     private long id;
     private String contact;

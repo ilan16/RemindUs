@@ -5,7 +5,7 @@ import java.text.DateFormat;
 /**
  * Created by ilanmalka on 08/03/15.
  */
-public class ModelMsgProg {
+public class ModelMsgProg extends IModel {
 
     private long idMsgProg;
     private String titre;
