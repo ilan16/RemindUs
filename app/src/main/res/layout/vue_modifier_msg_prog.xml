@@ -39,7 +39,7 @@
 
             <EditText
                 android:id="@+id/titre_msg_prog"
-                android:layout_width="257dp"
+                android:layout_width="298dp"
                 android:layout_height="wrap_content"
                 android:hint="Titre"
 
@@ -112,13 +112,6 @@
                 android:layout_width="294dp"
                 android:layout_height="wrap_content"
                 android:hint="Message"
-                android:inputType="textMultiLine" />
-
-            <EditText
-                android:id="@+id/contact"
-                android:layout_width="295dp"
-                android:layout_height="wrap_content"
-                android:hint="contact"
                 android:inputType="textMultiLine" />
 
             <Button
