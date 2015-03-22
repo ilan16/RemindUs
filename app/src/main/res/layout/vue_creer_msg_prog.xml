@@ -37,21 +37,23 @@
 
             <EditText
                 android:id="@+id/titre_msg_prog"
-                android:layout_width="311dp"
+                android:layout_width="330dp"
                 android:layout_height="wrap_content"
                 android:hint="Titre"
 
                 android:inputType="text"
-                android:layout_gravity="center|left" />
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp" />
 
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:id="@+id/layoutDate"
-                android:layout_width="314dp"
-                android:layout_height="60dp"
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
                 tools:context=".MainActivity"
 
-                android:layout_gravity="center|left">
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp">
 
                 <EditText
                     android:id="@+id/editDate"
@@ -81,10 +83,11 @@
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:id="@+id/layoutHeure"
-                android:layout_width="318dp"
-                android:layout_height="67dp"
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
                 tools:context=".MainActivity"
-                android:layout_gravity="center|left">
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp">
 
                 <EditText
                     android:id="@+id/editHeure"
@@ -110,11 +113,12 @@
 
             <EditText
                 android:id="@+id/message_msg_prog"
-                android:layout_width="310dp"
+                android:layout_width="330dp"
                 android:layout_height="wrap_content"
                 android:hint="Message"
                 android:inputType="textMultiLine"
-                android:layout_gravity="center|left" />
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp" />
 
 
             <Button
@@ -124,7 +128,8 @@
                 android:layout_gravity="center"
                 android:layout_weight="0.08"
                 android:onClick="creerMsgProg"
-                android:text="@string/suivant" />
+                android:text="@string/suivant"
+                android:layout_marginTop="20dp" />
 
 
         </LinearLayout>

@@ -38,34 +38,34 @@
 
             <EditText
                 android:id="@+id/nom_rdv"
-                android:layout_width="323dp"
+                android:layout_width="330dp"
                 android:layout_height="wrap_content"
                 android:hint="Nom"
                 android:inputType="text"
-                android:layout_gravity="center|left" />
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp" />
 
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:id="@+id/layoutDate"
-                android:layout_width="327dp"
+                android:layout_width="330dp"
                 android:layout_height="wrap_content"
                 tools:context=".MainActivity"
 
-                android:layout_gravity="center|left">
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp">
 
                 <EditText
                     android:id="@+id/editDate"
-                    android:layout_width="250dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:editable="true"
-                    android:hint="DD/MM/YYYY"
                     android:inputType="date"
                     android:text="Date (DD/MM/YY)"
-                    android:elegantTextHeight="false"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentStart="true"
                     android:layout_toStartOf="@+id/date"
-                    android:textColorHint="#ffaaaaaa"></EditText>
+                    android:textIsSelectable="false"></EditText>
 
                 <ImageButton
                     android:id="@+id/date"
@@ -84,10 +84,11 @@
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:id="@+id/layoutHeure"
-                android:layout_width="309dp"
+                android:layout_width="330dp"
                 android:layout_height="57dp"
                 tools:context=".MainActivity"
-                android:layout_gravity="center|left">
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp">
 
                 <EditText
                     android:id="@+id/editHeure"
@@ -116,29 +117,31 @@
 
             <EditText
                 android:id="@+id/lieu_rdv"
-                android:layout_width="316dp"
+                android:layout_width="330dp"
                 android:layout_height="42dp"
                 android:hint="Lieu"
                 android:inputType="text"
-                android:layout_gravity="center|left" />
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp" />
 
             <TextView
-                android:layout_width="227dp"
-                android:layout_height="60dp"
-                android:gravity="center"
+                android:layout_width="330dp"
+                android:layout_height="fill_parent"
                 android:text="Mode du téléphone pendant le RDV ?"
                 android:textColor="#000000"
                 android:textSize="13dp"
-                android:textStyle="bold|italic"
+                android:textStyle="bold"
                 android:id="@+id/mode_telephone"
-                android:layout_gravity="center|left" />
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center" />
 
             <RadioGroup
                 android:id="@+id/group_radio_mode_rdv"
                 android:layout_width="308dp"
                 android:layout_height="wrap_content"
                 android:checkedButton="@+id/radio_normal"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginLeft="20dp">
 
                 <RadioButton
                     android:id="@+id/radio_silencieux"
@@ -196,7 +199,8 @@
                 android:layout_gravity="center"
                 android:layout_weight="0.08"
                 android:onClick="creerRDV"
-                android:text="Valider" />
+                android:text="Suivant"
+                android:layout_marginTop="15dp" />
 
 
         </LinearLayout>

@@ -39,20 +39,24 @@
 
             <EditText
                 android:id="@+id/titre_model_msg"
-                android:layout_width="326dp"
+                android:layout_width="330dp"
                 android:layout_height="wrap_content"
                 android:hint="Titre"
-                android:inputType="text" />
+                android:inputType="text"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center" />
 
 
 
 
             <EditText
                 android:id="@+id/message_model_msg"
-                android:layout_width="323dp"
+                android:layout_width="330dp"
                 android:layout_height="wrap_content"
                 android:hint="Message"
-                android:inputType="textMultiLine" />
+                android:inputType="textMultiLine"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp" />
 
             <Button
                 android:id="@+id/valider"
@@ -61,7 +65,8 @@
                 android:layout_gravity="center"
                 android:layout_weight="0.08"
                 android:onClick="modifierModelMsg"
-                android:text="Valider" />
+                android:text="Valider"
+                android:layout_marginTop="20dp" />
 
 
         </LinearLayout>

@@ -39,40 +39,44 @@
 
             <EditText
                 android:id="@+id/nom_rdv"
-                android:layout_width="319dp"
+                android:layout_width="330dp"
                 android:layout_height="wrap_content"
                 android:hint="Nom"
-                android:inputType="text" />
+                android:inputType="text"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp" />
 
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:id="@+id/layoutDate"
-                android:layout_width="match_parent"
+                android:layout_width="329dp"
                 android:layout_height="wrap_content"
                 tools:context=".MainActivity"
 
-                >
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp">
 
                 <EditText
                     android:id="@+id/editDate"
-                    android:layout_width="250dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:editable="true"
                     android:hint="DD/MM/YYYY"
-                    android:inputType="date"></EditText>
+                    android:inputType="date"
+                    android:layout_toStartOf="@+id/date"></EditText>
 
                 <ImageButton
                     android:id="@+id/date"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_toRightOf="@+id/editDate"
                     android:cropToPadding="true"
                     android:onClick="ajouterDate"
-                    android:background="@drawable/calendar" />
+                    android:background="@drawable/calendar"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="28dp" />
 
 
             </RelativeLayout>
@@ -83,7 +87,9 @@
                 android:id="@+id/layoutHeure"
                 android:layout_width="match_parent"
                 android:layout_height="57dp"
-                tools:context=".MainActivity">
+                tools:context=".MainActivity"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp">
 
                 <EditText
                     android:id="@+id/editHeure"
@@ -99,11 +105,11 @@
                     android:id="@+id/heure"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_toRightOf="@+id/editHeure"
                     android:cropToPadding="true"
                     android:onClick="ajouterHeure"
-                    android:background="@drawable/clock" />
+                    android:background="@drawable/clock"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/editHeure" />
             </RelativeLayout>
 
 
@@ -112,7 +118,9 @@
                 android:layout_width="318dp"
                 android:layout_height="60dp"
                 android:hint="Lieu"
-                android:inputType="text" />
+                android:inputType="text"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp" />
 
             <TextView
                 android:layout_width="fill_parent"
@@ -121,15 +129,18 @@
                 android:textColor="#000000"
                 android:textSize="18dp"
                 android:textStyle="bold"
+                android:id="@+id/mode_telephone"
+                android:layout_marginTop="20dp"
                 android:layout_gravity="left"
-                android:id="@+id/" />
+                android:layout_marginLeft="20dp" />
 
             <RadioGroup
                 android:id="@+id/group_radio_mode_rdv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checkedButton="@+id/radio_normal"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginLeft="20dp">
 
                 <RadioButton
                     android:id="@+id/radio_silencieux"

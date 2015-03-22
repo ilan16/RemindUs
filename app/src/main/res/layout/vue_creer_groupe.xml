@@ -37,18 +37,22 @@
 
             <EditText
                 android:id="@+id/nom_groupe"
-                android:layout_width="fill_parent"
+                android:layout_width="330dp"
                 android:layout_height="wrap_content"
                 android:hint="Nom"
-                android:inputType="text" />
+                android:inputType="text"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp" />
 
 
             <EditText
                 android:id="@+id/contact"
-                android:layout_width="fill_parent"
+                android:layout_width="330dp"
                 android:layout_height="wrap_content"
                 android:hint="contact"
-                android:inputType="textMultiLine" />
+                android:inputType="textMultiLine"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp" />
 
             <Button
                 android:id="@+id/valider"
@@ -57,7 +61,8 @@
                 android:layout_gravity="center"
                 android:layout_weight="0.08"
                 android:onClick="ajouterGroupe"
-                android:text="Valider" />
+                android:text="Valider"
+                android:layout_marginTop="20dp" />
 
 
         </LinearLayout>
