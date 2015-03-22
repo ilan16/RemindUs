@@ -46,6 +46,10 @@ public class ControllerListerRDV extends ControllerHeader {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vue_liste_rdv);
 
+        // on remet titre msg prg vide dans le cas ou l'utilisateur veut creer un rdv et un msg prog dans la mm session
+        ControllerCreerMsgProg.setTitreMsgProgStatic("");
+        ControllerListerMsgProg.setValeurSelectionnee(null);
+
         this.listerRDV();
     }
 

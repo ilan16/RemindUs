@@ -29,19 +29,40 @@ public class DAORDVxContacts extends IDAO {
 
 
     public int insertRDVxC(long idrdv, long idcontact) {
-        ContentValues values = new ContentValues();
-        values.put(MySQLiteHelper.COLUMN_ID_RDV_RDVxC, idrdv);
-        values.put(MySQLiteHelper.COLUMN_ID_CONTACT_RDVxC, idcontact);
+        if (!isExist(idrdv, idcontact)) {
+            ContentValues values = new ContentValues();
+            values.put(MySQLiteHelper.COLUMN_ID_RDV_RDVxC, idrdv);
+            values.put(MySQLiteHelper.COLUMN_ID_CONTACT_RDVxC, idcontact);
+
+            getCrud().open();
+            boolean insert = getCrud().insert(MySQLiteHelper.TABLE_RDVxCONTACTS, values);
+
+            if (insert) {
+                Log.i("INSERER", "" + idrdv + " " + idcontact);
+                return 0; // insertion ok
+            }
+            return 1; // pb d'insertion
+        }
+        return 2;
+    }
+
+    private boolean isExist(long idrv, long idcontact) {
+        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_RDVxCONTACTS + " WHERE " + MySQLiteHelper.COLUMN_ID_RDV_RDVxC + " = ?"
+                + " AND " + MySQLiteHelper.COLUMN_ID_CONTACT_RDVxC + " = ?";
 
         getCrud().open();
-        boolean insert = getCrud().insert(MySQLiteHelper.TABLE_RDVxCONTACTS, values);
+        Cursor cursor = getCrud().requeteGeneral(sql, new String[]{""+idrv,""+idcontact});
 
-        if (insert) {
-            Log.i("INSERER", "" + idrdv + " " + idcontact);
-            return 0; // insertion ok
+        if (cursor != null) {
+            if (cursor.getCount() > 0) {
+                cursor.close();
+                return true;
+            }
+            cursor.close();
         }
-        return 1; // pb d'insertion
+        return false;
     }
+
 
     public boolean deleteRDVxC(ModelRDVxContacts modelRDVxContacts) {
         long idcontact = modelRDVxContacts.getIdcontact();

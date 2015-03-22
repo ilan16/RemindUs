@@ -61,9 +61,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:editable="true"
-                    android:hint="DD/MM/YYYY"
                     android:inputType="date"
-                    android:text="Date (DD/MM/YY)"
+                    android:hint="Date (DD/MM/YY)"
                     android:layout_alignParentStart="true"></EditText>
 
                 <ImageButton

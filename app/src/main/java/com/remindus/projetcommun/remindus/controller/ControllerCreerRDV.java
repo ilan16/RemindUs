@@ -97,6 +97,10 @@ public class ControllerCreerRDV extends ControllerHeader {
 
         //this.listerContact();
         //this.checkButtonClick();
+
+        // on remet titre msg prg vide dans le cas ou l'utilisateur veut creer un rdv et un msg prog dans la mm session
+        ControllerCreerMsgProg.setTitreMsgProgStatic("");
+        ControllerListerMsgProg.setValeurSelectionnee(null);
     }
 
     /*public void listerContact(){

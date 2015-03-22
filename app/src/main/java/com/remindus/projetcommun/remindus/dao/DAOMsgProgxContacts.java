@@ -79,7 +79,7 @@ public class DAOMsgProgxContacts extends IDAO {
 
     public List<ModelMsgProgxContacts> getAllMsgProgxC(long idmsgprog) {
         List<ModelMsgProgxContacts> modelMsgProgxContactses = new ArrayList<ModelMsgProgxContacts>();
-        crud.open();
+        getCrud().open();
         String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MSG_PROGxCONTACTS + " WHERE " + MySQLiteHelper.COLUMN_ID_MSG_PROG_MPxC + " = " + idmsgprog;
         Cursor cursor = getCrud().getDatabase().rawQuery(sql, null);
         while (cursor.moveToNext()) {
