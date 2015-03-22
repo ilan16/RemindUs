@@ -62,6 +62,8 @@ public class MainActivity extends ActionBarActivity {
                 //alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
                 alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 1000 * 60, pendingIntent);
         alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 1000 * 60, pendingIntent2);
+        MainActivity.this.stopService(myIntent);
+
 
         final Button boutonAccueil = (Button) findViewById(R.id.bouton_calendrier);
         boutonAccueil.setOnClickListener(new View.OnClickListener() {
