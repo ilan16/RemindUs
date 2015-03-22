@@ -12,6 +12,7 @@ import com.remindus.projetcommun.remindus.R;
  * Created by kevin on 11/03/2015.
  */
 public class ControllerHeader extends ActionBarActivity {
+
     public void backHome(View view) {
 
         new Thread(new Runnable() {
