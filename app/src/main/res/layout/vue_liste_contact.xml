@@ -16,22 +16,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content" />
     </RelativeLayout>
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/scroll"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_below="@id/headerMenu">
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <ListView
-                android:id="@+id/sampleList"
-                android:layout_width="wrap_content"
-                android:layout_height="371dp"
-                android:layout_marginTop="20dp" />
-        </LinearLayout>
-    </ScrollView>
+
     <Button
         android:onClick="redirection"
         android:layout_width="wrap_content"
@@ -39,6 +24,26 @@
         android:text="@string/ajouter_contact"
         android:background="@color/bleu_theme"
         android:textColor="#ffffffff"
-        android:layout_alignBottom="@+id/scroll"
+        android:layout_above="@+id/sampleList"
         android:layout_centerHorizontal="true" />
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/scroll"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/headerMenu">
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"></LinearLayout>
+    </ScrollView>
+
+    <ListView
+        android:id="@+id/sampleList"
+        android:layout_width="wrap_content"
+        android:layout_height="371dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
