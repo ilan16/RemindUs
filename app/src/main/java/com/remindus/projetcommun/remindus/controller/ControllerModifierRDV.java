@@ -133,8 +133,20 @@ public class ControllerModifierRDV extends ControllerHeader {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay,
                                           int minute) {
-                        // Display Selected time in textbox
-                        heureEdit.setText(hourOfDay + ":" + minute);
+                        // Display Selected time in textboxi
+                        String hourString = null;
+                        String minuteString = null;
+                        if(hourOfDay<10){
+                            hourString = "0"+hourOfDay;
+                        }else {
+                            hourString = ""+hourOfDay;
+                        }
+                        if(minute<10){
+                            minuteString = "0"+minute;
+                        }else{
+                            minuteString = ""+minute;
+                        }
+                        heureEdit.setText(hourString + ":" + minuteString);
                     }
                 }, mHour, mMinute, true);
         tpd.show();
