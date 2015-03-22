@@ -22,6 +22,8 @@ import com.remindus.projetcommun.remindus.controller.ControllerListerModelMsg;
 import com.remindus.projetcommun.remindus.controller.ControllerListerMsgProg;
 import com.remindus.projetcommun.remindus.controller.ControllerListerRDV;
 import com.remindus.projetcommun.remindus.controller.ControllerParametre;
+import com.remindus.projetcommun.remindus.dao.DAORDV;
+import com.remindus.projetcommun.remindus.model.ModelRDV;
 
 import junit.framework.Test;
 
@@ -36,6 +38,9 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        DAORDV daordv = new DAORDV(this);
+        ModelRDV modelRDV = new ModelRDV();
+        long date = modelRDV.getDate();
 
                 Intent myIntent = new Intent(MainActivity.this, SmsService.class);
                 PendingIntent pendingIntent = PendingIntent.getService(MainActivity.this, 0, myIntent, 0);
