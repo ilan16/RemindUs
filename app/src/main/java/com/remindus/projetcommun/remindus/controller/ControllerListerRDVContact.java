@@ -1,8 +1,15 @@
 package com.remindus.projetcommun.remindus.controller;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.remindus.projetcommun.remindus.R;
 import com.remindus.projetcommun.remindus.dao.DAOContact;
@@ -21,8 +28,17 @@ import java.util.List;
 public class ControllerListerRDVContact extends ControllerHeader {
 
     private static ModelRDV valeurSelectionnee;
+    private static ModelContact modelContact;
     private DAORDVxContacts daordVxContacts;
     private ListView l;
+
+    public static ModelContact getModelContact() {
+        return modelContact;
+    }
+
+    public static void setModelContact(ModelContact modelContact) {
+        ControllerListerRDVContact.modelContact = modelContact;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,43 +71,38 @@ public class ControllerListerRDVContact extends ControllerHeader {
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, affiche);
         l.setAdapter(adapter);
 
-        /*l.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        l.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                valeurSelectionnee = (ModelRDV) l.getAdapter().getItem(position);
-                ControllerListerRDV.setValeurSelectionnee(valeurSelectionnee);
+                Log.i("test", "" + l.getAdapter().getItem(position));
+                String[] split = l.getAdapter().getItem(position).toString().split("\n");
+                DAOContact daoContact = new DAOContact(getBaseContext());
+                ControllerListerRDVContact.setModelContact(daoContact.getContact(split[1]));
                 AlertDialog alertDialog = new AlertDialog.Builder(ControllerListerRDVContact.this).create();
-                alertDialog.setTitle(valeurSelectionnee.getNom());
-                alertDialog.setButton(Dialog.BUTTON1, "Modifier", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(ControllerListerRDVContact.this, ControllerModifierRDV.class);
-                        startActivity(intent);
-                    }
-                });
                 alertDialog.setButton(Dialog.BUTTON2, "Supprimer", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        supprimerRDV(null);
+                        supprimer(null);
                     }
                 });
+
                 alertDialog.show();
 
-                Log.i("RDV A DELETE", "" + values.get(position).toString() + "");
                 return false;
             }
-        });*/
+        });
     }
 
-    /*public void supprimerRDV(View view){
-        ArrayAdapter<ModelRDV> adapter = (ArrayAdapter<ModelRDV>) l.getAdapter();
-        boolean delete = daordVxContacts.deleteRDV(valeurSelectionnee);
+
+    public void supprimer(View view){
+        ArrayAdapter<ModelContact> adapter = (ArrayAdapter<ModelContact>) l.getAdapter();
+        boolean delete = daordVxContacts.deleteRDVxC(ControllerListerRDVContact.getModelContact().getId());
         if(delete){
-            Toast.makeText(getApplicationContext(), getResources().getString(R.string.rdv_supprime, valeurSelectionnee.getNom()), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), getResources().getString(R.string.rdv_supprime, getModelContact().getContact()), Toast.LENGTH_SHORT).show();
         }
-        Log.i("RDV A DELETE", ""+valeurSelectionnee+"");
-        adapter.remove(valeurSelectionnee);
+        adapter.remove(getModelContact());
         adapter.notifyDataSetChanged();
     }
-*/
+
 
 
 }

@@ -15,15 +15,6 @@ public class ModelGroupe extends IModel {
     private long dateCreation;
     private UtilitaireDate utilitaireDate;
 
-    public ModelGroupe() {
-    }
-
-    public ModelGroupe(long idGroupe, String nomGroupe, long dateCreation) {
-        this.idGroupe = idGroupe;
-        this.nomGroupe = nomGroupe;
-        this.dateCreation = dateCreation;
-    }
-
     public long getIdGroupe() {
         return idGroupe;
     }
@@ -48,11 +39,7 @@ public class ModelGroupe extends IModel {
         this.dateCreation = dateCreation;
     }
 
-    /*public String convertionLongDate() {
-        DateFormat df = new SimpleDateFormat("dd/MM/yy à HH:mm:ss");
-        return df.format(dateCreation);
-    }*/
-
+    @Override
     public String toString() {
         this.utilitaireDate = new UtilitaireDate();
         return nomGroupe + " " +  utilitaireDate.convertirLongDateString(this.dateCreation, "dd/MM/yy à HH:mm:ss");

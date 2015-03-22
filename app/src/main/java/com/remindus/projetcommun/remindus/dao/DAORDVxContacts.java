@@ -15,34 +15,26 @@ import java.util.List;
 /**
  * Created by ilanmalka on 18/03/15.
  */
-public class DAORDVxContacts {
+public class DAORDVxContacts extends IDAO {
 
-    private MySQLiteHelper dbHelper;
-    private String[] allColumns = {
-            MySQLiteHelper.COLUMN_ID_RDV_RDVxC,
-            MySQLiteHelper.COLUMN_ID_CONTACT_RDVxC
-    };
-    private CRUD crud;
 
     public DAORDVxContacts(Context context) {
-        crud = new CRUD(context);
+        super(context);
+        String[] allColumns = {
+                MySQLiteHelper.COLUMN_ID_RDV_RDVxC,
+                MySQLiteHelper.COLUMN_ID_CONTACT_RDVxC
+        };
+        setAllColumns(allColumns);
     }
 
-    public CRUD getCrud() {
-        return crud;
-    }
-
-    public void setCrud(CRUD crud) {
-        this.crud = crud;
-    }
 
     public int insertRDVxC(long idrdv, long idcontact) {
         ContentValues values = new ContentValues();
         values.put(MySQLiteHelper.COLUMN_ID_RDV_RDVxC, idrdv);
         values.put(MySQLiteHelper.COLUMN_ID_CONTACT_RDVxC, idcontact);
 
-        this.crud.open();
-        boolean insert = crud.insert(MySQLiteHelper.TABLE_RDVxCONTACTS, values);
+        getCrud().open();
+        boolean insert = getCrud().insert(MySQLiteHelper.TABLE_RDVxCONTACTS, values);
 
         if (insert) {
             Log.i("INSERER", "" + idrdv + " " + idcontact);
@@ -54,8 +46,8 @@ public class DAORDVxContacts {
     public boolean deleteRDVxC(ModelRDVxContacts modelRDVxContacts) {
         long idcontact = modelRDVxContacts.getIdcontact();
         long idrdv = modelRDVxContacts.getIdrdv();
-        this.crud.open();
-        boolean delete = crud.delete(MySQLiteHelper.TABLE_RDVxCONTACTS, MySQLiteHelper.COLUMN_ID_CONTACT_RDVxC
+        getCrud().open();
+        boolean delete = getCrud().delete(MySQLiteHelper.TABLE_RDVxCONTACTS, MySQLiteHelper.COLUMN_ID_CONTACT_RDVxC
                 + " = " + idcontact + " AND " + MySQLiteHelper.COLUMN_ID_RDV_RDVxC + " = " + idrdv);
         if (delete) {
             Log.i("DELETE", "effectué");
@@ -68,8 +60,8 @@ public class DAORDVxContacts {
     public List<ModelRDVxContacts> getAllRDVxC() {
         List<ModelRDVxContacts> modelRDVxContacts = new ArrayList<ModelRDVxContacts>();
 
-        Cursor cursor = crud.getDatabase().query(MySQLiteHelper.TABLE_RDVxCONTACTS,
-                allColumns, null, null, null, null, null);
+        Cursor cursor = getCrud().getDatabase().query(MySQLiteHelper.TABLE_RDVxCONTACTS,
+                getAllColumns(), null, null, null, null, null);
 
         cursor.moveToFirst();
 
@@ -85,9 +77,9 @@ public class DAORDVxContacts {
 
     public List<ModelRDVxContacts> getAllRDVxC(long idrdv) {
         List<ModelRDVxContacts> modelRDVxContactses = new ArrayList<ModelRDVxContacts>();
-        crud.open();
+        getCrud().open();
         String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_RDVxCONTACTS + " WHERE " + MySQLiteHelper.COLUMN_ID_RDV_RDVxC + " = " + idrdv;
-        Cursor cursor = crud.getDatabase().rawQuery(sql, null);
+        Cursor cursor = getCrud().getDatabase().rawQuery(sql, null);
         while (cursor.moveToNext()) {
             ModelRDVxContacts modelRDVxContacts = cursorToRDVxC(cursor);
             modelRDVxContactses.add(modelRDVxContacts);
@@ -96,9 +88,9 @@ public class DAORDVxContacts {
         return modelRDVxContactses;
     }
 
-    public boolean deleteRDVxC(int idrdv) {
-        this.crud.open();
-        boolean delete = crud.delete(MySQLiteHelper.TABLE_RDVxCONTACTS, MySQLiteHelper.COLUMN_ID_CONTACT_RDVxC + " = " + idrdv);
+    public boolean deleteRDVxC(long idrdv) {
+        getCrud().open();
+        boolean delete = getCrud().delete(MySQLiteHelper.TABLE_RDVxCONTACTS, MySQLiteHelper.COLUMN_ID_CONTACT_RDVxC + " = " + idrdv);
         if (delete) {
             Log.i("DELETE", "effectué");
             return true;

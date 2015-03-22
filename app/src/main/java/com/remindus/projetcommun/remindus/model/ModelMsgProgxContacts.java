@@ -24,6 +24,7 @@ public class ModelMsgProgxContacts extends IModel{
         this.idMsgProg = idMsgProg;
     }
 
+    @Override
     public String toString() {
         return "idContact: " + idContact + " idMsgProg: "+idMsgProg;
     }

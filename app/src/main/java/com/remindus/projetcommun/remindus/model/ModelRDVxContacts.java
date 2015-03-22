@@ -24,6 +24,7 @@ public class ModelRDVxContacts extends IModel {
         this.idcontact = idcontact;
     }
 
+    @Override
     public String toString() {
         return idrdv + " " + idcontact;
     }

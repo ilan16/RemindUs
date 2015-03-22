@@ -5,18 +5,9 @@ package com.remindus.projetcommun.remindus.model;
  */
 public class ModelModelMsg extends IModel {
 
-    private long id;
     private String titre;
     private String contenu;
     private long dateCreation;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getTitre() {
         return titre;
@@ -42,6 +33,7 @@ public class ModelModelMsg extends IModel {
         this.dateCreation = dateCreation;
     }
 
+    @Override
     public String toString() {
         return this.getTitre() + "\n" + this.getContenu();
     }

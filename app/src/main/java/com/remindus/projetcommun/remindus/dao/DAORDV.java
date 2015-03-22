@@ -16,29 +16,20 @@ import java.util.List;
 /**
  * Created by ilanmalka on 11/03/15.
  */
-public class DAORDV {
-
-    private MySQLiteHelper dbHelper;
-    private String[] allColumns = {
-            MySQLiteHelper.COLUMN_ID_RDV,
-            MySQLiteHelper.COLUMN_NOM_RDV,
-            MySQLiteHelper.COLUMN_DATE_RDV,
-            MySQLiteHelper.COLUMN_DATESTRING_RDV,
-            MySQLiteHelper.COLUMN_LIEU_RDV,
-            MySQLiteHelper.COLUMN_MODE_TEL_RDV
-    };
-    private CRUD crud;
+public class DAORDV extends IDAO {
 
     public DAORDV(Context context) {
-        crud = new CRUD(context);
-    }
+        super(context);
+        String[] allColumns = {
+                MySQLiteHelper.COLUMN_ID_RDV,
+                MySQLiteHelper.COLUMN_NOM_RDV,
+                MySQLiteHelper.COLUMN_DATE_RDV,
+                MySQLiteHelper.COLUMN_DATESTRING_RDV,
+                MySQLiteHelper.COLUMN_LIEU_RDV,
+                MySQLiteHelper.COLUMN_MODE_TEL_RDV
+        };
+        setAllColumns(allColumns);
 
-    public CRUD getCrud() {
-        return crud;
-    }
-
-    public void setCrud(CRUD crud) {
-        this.crud = crud;
     }
 
     public int insertRDV(String nom, long date, String datestring, String lieu, long mode) {
@@ -48,9 +39,9 @@ public class DAORDV {
         values.put(MySQLiteHelper.COLUMN_DATESTRING_RDV, datestring);
         values.put(MySQLiteHelper.COLUMN_LIEU_RDV, lieu);
         values.put(MySQLiteHelper.COLUMN_MODE_TEL_RDV, mode);
-        this.crud.open();
-        boolean insert = crud.insert(MySQLiteHelper.TABLE_RDV, values);
-        this.crud.close();
+        getCrud().open();
+        boolean insert = getCrud().insert(MySQLiteHelper.TABLE_RDV, values);
+        getCrud().close();
         if (insert) {
             return 0; // insertion ok
         }
@@ -61,8 +52,8 @@ public class DAORDV {
 
     public boolean deleteRDV(ModelRDV modelRDV) {
         long id = modelRDV.getId();
-        this.crud.open();
-        boolean delete = crud.delete(MySQLiteHelper.TABLE_RDV, MySQLiteHelper.COLUMN_ID_RDV
+        getCrud().open();
+        boolean delete = getCrud().delete(MySQLiteHelper.TABLE_RDV, MySQLiteHelper.COLUMN_ID_RDV
                 + " = " + id);
         // this.crud.close();
         if (delete) {
@@ -77,14 +68,14 @@ public class DAORDV {
     public int updateRDV(ModelRDV modelRDV, String nom, long date, String datestring, String lieu, long mode) {
         String id = "" + modelRDV.getId();
         Log.i("ID", id);
-        this.crud.open();
+        getCrud().open();
         ContentValues values = new ContentValues();
         values.put(MySQLiteHelper.COLUMN_NOM_RDV, nom);
         values.put(MySQLiteHelper.COLUMN_DATE_RDV, date);
         values.put(MySQLiteHelper.COLUMN_DATESTRING_RDV, datestring);
         values.put(MySQLiteHelper.COLUMN_LIEU_RDV, lieu);
         values.put(MySQLiteHelper.COLUMN_MODE_TEL_RDV, mode);
-        boolean update = crud.update(MySQLiteHelper.TABLE_RDV, values, MySQLiteHelper.COLUMN_ID_RDV, new String[]{id});
+        boolean update = getCrud().update(MySQLiteHelper.TABLE_RDV, values, MySQLiteHelper.COLUMN_ID_RDV, new String[]{id});
         if (update) {
             Log.i("UPDATE", "BON");
             return 0; //si l'update fonctionne
@@ -95,8 +86,8 @@ public class DAORDV {
     public List<ModelRDV> getAllRDV() {
         List<ModelRDV> rdvs = new ArrayList<ModelRDV>();
 
-        Cursor cursor = crud.getDatabase().query(MySQLiteHelper.TABLE_RDV,
-                allColumns, null, null, null, null, null);
+        Cursor cursor = getCrud().getDatabase().query(MySQLiteHelper.TABLE_RDV,
+                getAllColumns(), null, null, null, null, null);
 
         cursor.moveToFirst();
 
@@ -111,10 +102,10 @@ public class DAORDV {
     }
 
     public ModelRDV getRDV(long id) {
-        crud.open();
+        getCrud().open();
         ModelRDV modelRDV = new ModelRDV();
         String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_RDV + " WHERE " + MySQLiteHelper.COLUMN_ID_RDV + " = " + id;
-        Cursor cursor = crud.getDatabase().rawQuery(sql, null);
+        Cursor cursor = getCrud().getDatabase().rawQuery(sql, null);
         while (cursor.moveToNext()) {
             modelRDV = cursorToRDV(cursor);
         }
@@ -123,18 +114,18 @@ public class DAORDV {
     }
 
     public ModelRDV getRDV(String date) {
-        crud.open();
+        getCrud().open();
         String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_RDV + " WHERE " + MySQLiteHelper.COLUMN_DATESTRING_RDV + " = ?";
-        Cursor cursor = crud.getDatabase().rawQuery(sql, new String[]{date});
+        Cursor cursor = getCrud().getDatabase().rawQuery(sql, new String[]{date});
         ModelRDV rdv = this.cursorToRDV(cursor);
-        crud.close();
+        getCrud().close();
         return rdv;
     }
 
     public ModelRDV getIdRDV(String nom) {
-        crud.open();
+        getCrud().open();
         String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_RDV + " WHERE " + MySQLiteHelper.COLUMN_NOM_RDV + " = ?";
-        Cursor cursor = crud.getDatabase().rawQuery(sql, new String[]{nom});
+        Cursor cursor = getCrud().getDatabase().rawQuery(sql, new String[]{nom});
         ModelRDV rdv = new ModelRDV();
         while (cursor.moveToNext()) {
             rdv = cursorToRDV(cursor);
@@ -159,8 +150,8 @@ public class DAORDV {
         UtilitaireDate utilitaireDate = new UtilitaireDate();
         String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_RDV + " WHERE " + MySQLiteHelper.COLUMN_DATE_RDV + " >= "
                 + utilitaireDate.dateActuelle() + " ORDER BY " + MySQLiteHelper.COLUMN_DATE_RDV + " ASC";
-        this.crud.open();
-        Cursor cursor = this.crud.requeteGeneral(sql, null);
+        getCrud().open();
+        Cursor cursor = getCrud().requeteGeneral(sql, null);
         ModelRDV modelRDV = new ModelRDV();
         while (cursor.moveToNext()) {
             modelRDV = this.cursorToRDV(cursor);

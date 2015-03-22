@@ -34,6 +34,7 @@ public class ModelGroupexContact extends IModel {
         this.dateAjout = dateAjout;
     }
 
+    @Override
     public String toString() {
         return this.getIdcontact() + " " + this.getIdgroupe();
     }

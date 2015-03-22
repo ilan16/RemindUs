@@ -5,18 +5,8 @@ package com.remindus.projetcommun.remindus.model;
  */
 public class ModelContact extends IModel {
 
-    private long id;
     private String contact;
     private String telephone;
-
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public int getIdLong() {
         return (int) id;

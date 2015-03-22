@@ -4,10 +4,8 @@ package com.remindus.projetcommun.remindus.controller;
  * Created by bahia on 26/02/2015.
  */
 
-import android.annotation.TargetApi;
 import android.content.Intent;
 import android.database.Cursor;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.Log;
@@ -142,7 +140,7 @@ public class ControllerContact extends ControllerHeader {
                     long idcontact = modelContact.getId();
                     int insert = daordVxContacts.insertRDVxC(modelRDV.getId(), idcontact);
 
-                    if (insert == 0 && count==values.size()) {
+                    if (insert == 0 && count == (values.size() - 1)) {
                         ControllerCreerRDV.setNomRDVstatic(""); // on remet nom rdv vide dans le cas ou l'utilisateur veut creer un rdv et un msg prog dans la mm session
                         Intent intent = new Intent(ControllerContact.this, ControllerListerRDV.class);
                         startActivity(intent);
@@ -154,8 +152,8 @@ public class ControllerContact extends ControllerHeader {
                     ModelMsgProg modelMsgProg = new ModelMsgProg();
                     modelMsgProg = daoMsgProg.getIdMsgProg(ControllerCreerMsgProg.getTitreMsgProgStatic());
                     long idcontact = modelContact.getId();
-                    int insert = daoMsgProgxContacts.insertMsgProgxC(modelMsgProg.getIdMsgProg(), idcontact);
-                    if (insert == 0 && values.size() == count) {
+                    int insert = daoMsgProgxContacts.insertMsgProgxC(modelMsgProg.getId(), idcontact);
+                    if (insert == 0 && (values.size() - 1) == count) {
                         ControllerCreerMsgProg.setTitreMsgProgStatic(""); // on remet titre msg prg vide dans le cas ou l'utilisateur veut creer un rdv et un msg prog dans la mm session
                         Intent intent = new Intent(ControllerContact.this, ControllerListerMsgProg.class);
                         startActivity(intent);

@@ -7,7 +7,6 @@ import com.remindus.projetcommun.remindus.controller.UtilitaireDate;
  */
 public class ModelRDV extends IModel {
 
-    private long id;
     private String nom;
     private long date;
     private String dateString;
@@ -15,13 +14,6 @@ public class ModelRDV extends IModel {
     private long mode;
     private UtilitaireDate utilitaireDate;
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getNom() {
         return nom;
@@ -63,6 +55,7 @@ public class ModelRDV extends IModel {
         this.mode = mode;
     }
 
+    @Override
     public String toString() {
         this.utilitaireDate = new UtilitaireDate();
         return "RDV " + this.getNom() + " prévu le " + utilitaireDate.convertirLongDateString(this.getDate(), "dd/MM/yy");
