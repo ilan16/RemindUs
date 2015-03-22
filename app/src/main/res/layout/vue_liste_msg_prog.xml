@@ -39,12 +39,16 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:onClick="redirection"
-                android:text="@string/ajouter_msg_prog" />
+                android:text="@string/ajouter_msg_prog"
+                android:background="@color/bleu_theme"
+                android:layout_marginTop="30dp"
+                android:textColor="#ffffffff" />
 
             <ListView
                 android:id="@+id/sampleList"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp" />
 
         </LinearLayout>
     </ScrollView>

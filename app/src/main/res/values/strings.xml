@@ -57,6 +57,7 @@
     <string name="ajouter_rdv">Ajouter un nouveau RDV</string>
     <string name="ajouter_model_msg">Ajouter un nouveau model de message</string>
     <string name="ajouter_msg_prog">Ajouter un nouveau message programmé</string>
+    <string name="ajouter_contact">Ajouter des contacts</string>
 
     <!-- BOUTONS MODIFIER -->
     <string name="modifier_groupe">Modifier ce groupe</string>

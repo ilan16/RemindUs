@@ -68,10 +68,12 @@
         android:layout_gravity="center"
         android:layout_weight="0.08"
         android:onClick="modifierGroupe"
-        android:text="@string/modifier_groupe"
+        android:text="valider"
         android:layout_below="@+id/scroll"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"
+        android:background="@color/bleu_theme"
+        android:textColor="#ffffffff" />
 
 
 </RelativeLayout>

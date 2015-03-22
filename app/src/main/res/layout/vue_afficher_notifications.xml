@@ -37,18 +37,22 @@
 
             <TextView
                 android:id="@+id/textView2"
-                android:layout_width="wrap_content"
+                android:layout_width="360dp"
                 android:layout_height="wrap_content"
                 android:text="Notifications : Choisir mode de sonnerie"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center" />
 
 
             <RadioGroup
                 android:id="@+id/group_radio_mode_notif"
-                android:layout_width="fill_parent"
+                android:layout_width="333dp"
                 android:layout_height="wrap_content"
                 android:checkedButton="@+id/notif_normal"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp">
 
                 <RadioButton
                     android:id="@+id/notif_silencieux"
@@ -73,32 +77,6 @@
 
             </RadioGroup>
 
-            <!--<CheckBox
-                android:layout_width="320dp"
-                android:layout_height="152dp"
-                android:text="Silencieux"
-                android:id="@+id/notif_silencieux" />
-
-            <CheckBox
-                android:layout_width="316dp"
-                android:layout_height="wrap_content"
-                android:text="Vibreur"
-                android:id="@+id/notif_vibreur"
-                android:layout_weight="0.38" />
-
-            <CheckBox
-                android:layout_width="316dp"
-                android:layout_height="wrap_content"
-                android:text="Normal"
-                android:id="@+id/notif_normal"
-                android:layout_weight="0.38" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Valider"
-                android:id="@+id/notif_button"
-                android:layout_gravity="center_horizontal" />-->
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

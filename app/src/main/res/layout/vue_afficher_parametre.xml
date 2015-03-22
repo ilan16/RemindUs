@@ -33,35 +33,43 @@
 
             <Button
                 android:id="@+id/bouton_parametre_langues"
-                android:layout_width="fill_parent"
+                android:layout_width="330dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/small_padding"
-                android:text="@string/titre_langues" />
+                android:text="@string/titre_langues"
+                android:layout_marginTop="40dp"
+                android:background="@color/bleu_theme"
+                android:textColor="#ffffffff" />
 
             <Button
                 android:id="@+id/bouton_parametre_notifications"
-                android:layout_width="fill_parent"
+                android:layout_width="330dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/small_padding"
-                android:text="@string/titre_notifications" />
+                android:layout_marginTop="20dp"
+                android:text="@string/titre_notifications"
+                android:background="@color/bleu_theme"
+                android:textColor="#ffffffff" />
 
             <Button
                 android:id="@+id/bouton_parametre_copyright"
-                android:layout_width="fill_parent"
+                android:layout_width="330dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/small_padding"
-                android:text="@string/titre_copyright" />
+                android:layout_marginTop="20dp"
+                android:text="@string/titre_copyright"
+                android:background="@color/bleu_theme"
+                android:textColor="#ffffffff" />
 
             <Button
                 android:id="@+id/bouton_parametre_mail"
-                android:layout_width="fill_parent"
+                android:layout_width="330dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/small_padding"
-                android:text="@string/titre_mail" />
+                android:layout_marginTop="20dp"
+                android:text="@string/titre_mail"
+                android:background="@color/bleu_theme"
+                android:textColor="#ffffffff" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

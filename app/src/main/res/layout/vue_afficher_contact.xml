@@ -37,8 +37,10 @@
 
             <ListView
                 android:id="@+id/sampleList"
-                android:layout_width="wrap_content"
-                android:layout_height="236dp" />
+                android:layout_width="330dp"
+                android:layout_height="336dp"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center" />
 
 
         </LinearLayout>

@@ -168,7 +168,8 @@
                 android:layout_gravity="center"
                 android:layout_weight="0.08"
                 android:onClick="modifierRDV"
-                android:text="Valider" />
+                android:text="Valider"
+                android:layout_marginTop="20dp" />
 
 
         </LinearLayout>

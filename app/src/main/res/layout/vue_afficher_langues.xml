@@ -35,35 +35,43 @@
 
             <Button
                 android:id="@+id/bouton_fr"
-                android:layout_width="fill_parent"
+                android:layout_width="330dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/small_padding"
-                android:text="Français" />
+                android:layout_marginTop="30dp"
+                android:text="Français"
+                android:background="@color/bleu_theme"
+                android:textColor="#ffffffff" />
 
             <Button
                 android:id="@+id/bouton_en"
-                android:layout_width="fill_parent"
+                android:layout_width="330dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/small_padding"
-                android:text="English" />
+                android:layout_marginTop="20dp"
+                android:text="English"
+                android:textColor="#ffffffff"
+                android:background="@color/bleu_theme" />
 
             <Button
                 android:id="@+id/bouton_ar"
-                android:layout_width="fill_parent"
+                android:layout_width="330dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/small_padding"
-                android:text="Arabe" />
+                android:layout_marginTop="20dp"
+                android:text="Arabe"
+                android:textColor="#ffffffff"
+                android:background="@color/bleu_theme" />
 
             <Button
                 android:id="@+id/bouton_hw"
-                android:layout_width="fill_parent"
+                android:layout_width="330dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/small_padding"
-                android:text="Hebreu" />
+                android:layout_marginTop="20dp"
+                android:text="Hebreu"
+                android:textColor="#ffffffff"
+                android:background="@color/bleu_theme" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

@@ -4,8 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/fond">
-
-
     <RelativeLayout
         android:id="@+id/headerMenu"
         android:layout_width="match_parent"
@@ -13,29 +11,22 @@
         android:layout_alignParentTop="true"
         android:background="#FFFFFF"
         android:gravity="center">
-
         <include
             android:id="@+id/header"
             layout="@layout/header"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content" />
     </RelativeLayout>
-
-
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/scroll"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_below="@id/headerMenu">
-
-
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical"
             android:weightSum="1">
-
-
             <EditText
                 android:id="@+id/nom_rdv"
                 android:layout_width="330dp"
@@ -44,17 +35,14 @@
                 android:inputType="text"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp" />
-
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:id="@+id/layoutDate"
                 android:layout_width="330dp"
                 android:layout_height="wrap_content"
                 tools:context=".MainActivity"
-
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp">
-
+                android:layout_marginTop="30dp">
                 <EditText
                     android:id="@+id/editDate"
                     android:layout_width="wrap_content"
@@ -62,11 +50,11 @@
                     android:editable="true"
                     android:inputType="date"
                     android:text="Date (DD/MM/YY)"
+                    android:elegantTextHeight="false"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentStart="true"
                     android:layout_toStartOf="@+id/date"
                     android:textIsSelectable="false"></EditText>
-
                 <ImageButton
                     android:id="@+id/date"
                     android:layout_width="50dp"
@@ -76,20 +64,15 @@
                     android:background="@drawable/calendar"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true" />
-
-
             </RelativeLayout>
-
-
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:id="@+id/layoutHeure"
                 android:layout_width="330dp"
-                android:layout_height="57dp"
+                android:layout_height="53dp"
                 tools:context=".MainActivity"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp">
-
+                android:layout_marginTop="30dp">
                 <EditText
                     android:id="@+id/editHeure"
                     android:layout_width="250dp"
@@ -102,7 +85,6 @@
                     android:layout_alignParentBottom="true"
                     android:text="Heure (HH:MM)"
                     android:layout_toStartOf="@+id/heure" />
-
                 <ImageButton
                     android:id="@+id/heure"
                     android:layout_width="40dp"
@@ -110,20 +92,17 @@
                     android:cropToPadding="true"
                     android:onClick="ajouterHeure"
                     android:background="@drawable/clock"
-                    android:layout_alignParentBottom="true"
+                    android:layout_centerVertical="true"
                     android:layout_alignParentEnd="true" />
             </RelativeLayout>
-
-
             <EditText
                 android:id="@+id/lieu_rdv"
                 android:layout_width="330dp"
-                android:layout_height="42dp"
+                android:layout_height="wrap_content"
                 android:hint="Lieu"
                 android:inputType="text"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp" />
-
+                android:layout_marginTop="30dp" />
             <TextView
                 android:layout_width="330dp"
                 android:layout_height="fill_parent"
@@ -132,9 +111,8 @@
                 android:textSize="13dp"
                 android:textStyle="bold"
                 android:id="@+id/mode_telephone"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:layout_gravity="center" />
-
             <RadioGroup
                 android:id="@+id/group_radio_mode_rdv"
                 android:layout_width="308dp"
@@ -142,56 +120,48 @@
                 android:checkedButton="@+id/radio_normal"
                 android:orientation="horizontal"
                 android:layout_marginLeft="20dp">
-
                 <RadioButton
                     android:id="@+id/radio_silencieux"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/silencieux" />
-
                 <RadioButton
                     android:id="@+id/radio_vibreur"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/vibreur" />
-
                 <RadioButton
                     android:id="@+id/radio_normal"
                     android:layout_width="91dp"
                     android:layout_height="wrap_content"
                     android:text="@string/normal" />
             </RadioGroup>
-
             <!--<TextView
-                android:layout_width="fill_parent"
-                android:layout_height="60dp"
-                android:gravity="center"
-                android:text="Contact : "
-                android:textColor="#FF0000"
-                android:textSize="18dp"
-                android:textStyle="bold" />
-
+            android:layout_width="fill_parent"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:text="Contact : "
+            android:textColor="#FF0000"
+            android:textSize="18dp"
+            android:textStyle="bold" />
             <EditText
-                android:id="@+id/contact"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:hint="contact"
-                android:inputType="textMultiLine" />-->
-
-
+            android:id="@+id/contact"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="contact"
+            android:inputType="textMultiLine" />-->
             <!--<ListView-->
             <!--android:id="@android:id/list"-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="wrap_content" />-->
             <!--<ScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
             <ListView
-                android:id="@+id/listeContact"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+            android:id="@+id/listeContact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
             </ScrollView>-->
-
             <Button
                 android:id="@+id/valider"
                 android:layout_width="114dp"
@@ -199,10 +169,10 @@
                 android:layout_gravity="center"
                 android:layout_weight="0.08"
                 android:onClick="creerRDV"
-                android:text="Suivant"
-                android:layout_marginTop="15dp" />
-
-
+                android:text="Valider"
+                android:layout_marginTop="20dp"
+                android:background="@color/bleu_theme"
+                android:textColor="#ffffffff" />
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
