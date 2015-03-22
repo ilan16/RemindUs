@@ -56,8 +56,11 @@ public class ControllerCreerMsgProg extends ControllerHeader {
         editHeure = (EditText) findViewById(R.id.editHeure);
         editTitre = (EditText) findViewById(R.id.titre_msg_prog);
         editContenu = (EditText) findViewById(R.id.message_msg_prog);
-        //buttonDate.setOnClickListener(this);
-        //buttonHeure.setOnClickListener(this);
+
+        // on remet nom rdv vide dans le cas ou l'utilisateur veut creer un rdv et un msg prog dans la mm session
+        ControllerCreerRDV.setNomRDVstatic("");
+        ControllerListerRDV.setValeurSelectionnee(null);
+
     }
 
     public void ajouterHeure(View v) {

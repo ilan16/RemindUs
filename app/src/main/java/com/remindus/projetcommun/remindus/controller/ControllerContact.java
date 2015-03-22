@@ -15,6 +15,7 @@ import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.remindus.projetcommun.remindus.MainActivity;
 import com.remindus.projetcommun.remindus.R;
 import com.remindus.projetcommun.remindus.dao.DAOContact;
 import com.remindus.projetcommun.remindus.dao.DAOMsgProg;
@@ -41,7 +42,6 @@ public class ControllerContact extends ControllerHeader {
         setContentView(R.layout.vue_afficher_contact);
 
         this.listerContact();
-        //this.checkButtonClick();
     }
 
     public void listerContact() {
@@ -54,13 +54,7 @@ public class ControllerContact extends ControllerHeader {
         adapter = new CustomAdapterContact(this, R.layout.vue_afficher_contact, values);
         lv.setAdapter(adapter);
 
-
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.i("Valeur sélectionnée", "" + lv.getId());
-            }
-        });
+        adapter.notifyDataSetChanged();
 
     }
 
@@ -87,78 +81,55 @@ public class ControllerContact extends ControllerHeader {
 
     }
 
-    /*private void checkButtonClick() {
-
-        Button myButton = (Button) findViewById(R.id.validerContact);
-
-        myButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Log.i("test nom rdv", ""+ControllerCreerRDV.getNomRDVstatic());
-                ajouterContactRDV(ControllerCreerRDV.getNomRDVstatic());
-                //StringBuffer responseText = new StringBuffer();
-               // responseText.append("Contacts selectionnés ...\n");
-
-
-                *//*final HashMap<CheckBox, TextView> values = adapter.getListChecked();
-
-                for (HashMap.Entry<CheckBox, TextView> hash : values.entrySet()) {
-                    if (hash.getKey().isChecked()) {
-                        responseText.append("\n - " + hash.getValue().getText());
-                        String[] split = hash.getValue().getText().toString().split("\n");
-                        daoContact = new DAOContact(getBaseContext());
-                        ModelContact modelContact = daoContact.getContact(split[1]);
-                        Log.i("contact", "" + modelContact.getId() + " " + modelContact.getContact());
-
-                    }
-                }*//*
-
-                //Toast.makeText(getApplicationContext(), responseText, Toast.LENGTH_LONG).show();
-            }
-        });
-
-    }
-*/
 
     public void ajouterContact(View view) {
         final HashMap<CheckBox, TextView> values = adapter.getListChecked();
         int count = 0;
         for (HashMap.Entry<CheckBox, TextView> hash : values.entrySet()) {
-            count++;
-            if (hash.getKey().isChecked()) {
-                String[] split = hash.getValue().getText().toString().split("\n");
-                this.daoContact = new DAOContact(this);
-                ModelContact modelContact = this.daoContact.getContact(split[1]);
-                Log.i("contact rdv", "" + modelContact.getId() + " " + modelContact.getContact());
-                //Pour savoir quel insert choisir, on vérifie quel page a appelé cette classe
-                if (!ControllerCreerRDV.getNomRDVstatic().equals("")) { // sil s'agit de la classe RDV
+            String[] split = hash.getValue().getText().toString().split("\n");
+            this.daoContact = new DAOContact(this);
+            ModelContact modelContact = this.daoContact.getContact(split[1]);
+
+            if (!ControllerCreerRDV.getNomRDVstatic().equals("") || !ControllerListerRDV.getValeurSelectionnee().equals("")) { // sil s'agit de la classe RDV
+
+                if (hash.getKey().isChecked()) {
+                    count++;
+
+                    //Pour savoir quel insert choisir, on vérifie quel page a appelé cette classe
+
+                    Log.i("contact rdv", "" + modelContact.getId() + " " + modelContact.getContact());
                     DAORDVxContacts daordVxContacts = new DAORDVxContacts(this);
                     DAORDV daordv = new DAORDV(this);
                     ModelRDV modelRDV = new ModelRDV();
-                    modelRDV = daordv.getIdRDV(ControllerCreerRDV.getNomRDVstatic());
+                    if (!ControllerCreerRDV.getNomRDVstatic().equals("")) {
+                        modelRDV = daordv.getIdRDV(ControllerCreerRDV.getNomRDVstatic());
+                    } else if (!ControllerListerRDV.getValeurSelectionnee().equals("")) {
+                        modelRDV = daordv.getIdRDV(ControllerListerRDV.getValeurSelectionnee().getNom());
+                    }
                     long idcontact = modelContact.getId();
                     int insert = daordVxContacts.insertRDVxC(modelRDV.getId(), idcontact);
+                } else {
+                    Intent intent = new Intent(ControllerContact.this, ControllerListerRDV.class);
+                    startActivity(intent);
+                }
 
-                    if (insert == 0 && count == (values.size() - 1)) {
-                        ControllerCreerRDV.setNomRDVstatic(""); // on remet nom rdv vide dans le cas ou l'utilisateur veut creer un rdv et un msg prog dans la mm session
-                        Intent intent = new Intent(ControllerContact.this, ControllerListerRDV.class);
-                        startActivity(intent);
-                    }
-                }
-                if (!ControllerCreerMsgProg.getTitreMsgProgStatic().equals("")) { //sil s'agit de la classe msg prog
-                    DAOMsgProgxContacts daoMsgProgxContacts = new DAOMsgProgxContacts(this);
-                    DAOMsgProg daoMsgProg = new DAOMsgProg(this);
-                    ModelMsgProg modelMsgProg = new ModelMsgProg();
+            } else if (!ControllerCreerMsgProg.getTitreMsgProgStatic().equals("") || !ControllerListerMsgProg.getValeurSelectionnee().equals("")) { //sil s'agit de la classe msg prog
+                DAOMsgProgxContacts daoMsgProgxContacts = new DAOMsgProgxContacts(this);
+                DAOMsgProg daoMsgProg = new DAOMsgProg(this);
+                ModelMsgProg modelMsgProg = new ModelMsgProg();
+
+                if (!ControllerCreerMsgProg.getTitreMsgProgStatic().equals("")) {
                     modelMsgProg = daoMsgProg.getIdMsgProg(ControllerCreerMsgProg.getTitreMsgProgStatic());
-                    long idcontact = modelContact.getId();
-                    int insert = daoMsgProgxContacts.insertMsgProgxC(modelMsgProg.getId(), idcontact);
-                    if (insert == 0 && (values.size() - 1) == count) {
-                        ControllerCreerMsgProg.setTitreMsgProgStatic(""); // on remet titre msg prg vide dans le cas ou l'utilisateur veut creer un rdv et un msg prog dans la mm session
-                        Intent intent = new Intent(ControllerContact.this, ControllerListerMsgProg.class);
-                        startActivity(intent);
-                    }
+                } else if (!ControllerListerRDV.getValeurSelectionnee().equals("")) {
+                    modelMsgProg = daoMsgProg.getIdMsgProg(ControllerListerMsgProg.getValeurSelectionnee().getTitre());
                 }
+
+                long idcontact = modelContact.getId();
+                int insert = daoMsgProgxContacts.insertMsgProgxC(modelMsgProg.getId(), idcontact);
+
+            } else {
+                Intent intent = new Intent(ControllerContact.this, ControllerListerMsgProg.class);
+                startActivity(intent);
             }
         }
     }

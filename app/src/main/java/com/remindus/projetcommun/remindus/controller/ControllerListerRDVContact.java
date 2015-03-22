@@ -3,6 +3,7 @@ package com.remindus.projetcommun.remindus.controller;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -52,12 +53,17 @@ public class ControllerListerRDVContact extends ControllerHeader {
         daordVxContacts = new DAORDVxContacts(this);
         daordVxContacts.getCrud().open();
 
-        final List<ModelRDVxContacts> values = daordVxContacts.getAllRDVxC(ControllerListerRDV.getValeurSelectionnee().getId());
+        DAORDV daordv = new DAORDV(this);
+        List<ModelRDVxContacts> values = null;
+        if (!ControllerListerRDV.getValeurSelectionnee().equals("")) {
+            values = daordVxContacts.getAllRDVxC(ControllerListerRDV.getValeurSelectionnee().getId());
+        } else if (!ControllerCreerRDV.getNomRDVstatic().equals("")) {
+            values = daordVxContacts.getAllRDVxC(daordv.getIdRDV(ControllerCreerRDV.getNomRDVstatic()).getId());
+        }
         l = (ListView) findViewById(R.id.sampleList);
 
         List affiche = new ArrayList();
 
-        DAORDV daordv = new DAORDV(this);
         DAOContact daoContact = new DAOContact(this);
 
         for (ModelRDVxContacts m : values) {
@@ -103,6 +109,9 @@ public class ControllerListerRDVContact extends ControllerHeader {
         adapter.notifyDataSetChanged();
     }
 
-
+    public void redirection(View view){
+        Intent intent = new Intent(ControllerListerRDVContact.this, ControllerContact.class);
+        startActivity(intent);
+    }
 
 }

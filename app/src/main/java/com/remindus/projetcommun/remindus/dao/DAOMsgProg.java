@@ -15,27 +15,18 @@ import java.util.List;
 /**
  * Created by ilanmalka on 08/03/15.
  */
-public class DAOMsgProg {
-    private MySQLiteHelper dbHelper;
-    private String[] allColumns = {
-            MySQLiteHelper.COLUMN_ID_MSG_PROG,
-            MySQLiteHelper.COLUMN_TITRE_MSG_PROG,
-            MySQLiteHelper.COLUMN_DATE_MSG_PROG,
-            MySQLiteHelper.COLUMN_DATESTRING_MSG_PROG,
-            MySQLiteHelper.COLUMN_MSG_PROG
-    };
-    private CRUD crud;
+public class DAOMsgProg extends IDAO{
 
     public DAOMsgProg(Context context) {
-        crud = new CRUD(context);
-    }
-
-    public CRUD getCrud() {
-        return crud;
-    }
-
-    public void setCrud(CRUD crud) {
-        this.crud = crud;
+        super(context);
+        String[] allColumns = {
+                MySQLiteHelper.COLUMN_ID_MSG_PROG,
+                MySQLiteHelper.COLUMN_TITRE_MSG_PROG,
+                MySQLiteHelper.COLUMN_DATE_MSG_PROG,
+                MySQLiteHelper.COLUMN_DATESTRING_MSG_PROG,
+                MySQLiteHelper.COLUMN_MSG_PROG
+        };
+        setAllColumns(allColumns);
     }
 
     public int insertMsgProg(String titre, long date, String datestring, String contenu) {
@@ -47,9 +38,9 @@ public class DAOMsgProg {
         values.put(MySQLiteHelper.COLUMN_DATESTRING_MSG_PROG, datestring);
         values.put(MySQLiteHelper.COLUMN_MSG_PROG, contenu);
 
-        this.crud.open();
-        boolean insert = crud.insert(MySQLiteHelper.TABLE_MSG_PROG, values);
-        this.crud.close();
+        getCrud().open();
+        boolean insert = getCrud().insert(MySQLiteHelper.TABLE_MSG_PROG, values);
+        getCrud().close();
 
         if (insert) {
             return 0; // insertion ok
@@ -65,13 +56,13 @@ public class DAOMsgProg {
         Log.i("ID", id);
         if(!titre.equals(modelMsgProg.getTitre())) {
             if (!this.isExist(titre)) {
-                this.crud.open();
+                getCrud().open();
                 ContentValues values = new ContentValues();
                 values.put(MySQLiteHelper.COLUMN_TITRE_MSG_PROG, titre);
                 values.put(MySQLiteHelper.COLUMN_DATE_MSG_PROG, date);
                 values.put(MySQLiteHelper.COLUMN_DATESTRING_MSG_PROG, dateString);
                 values.put(MySQLiteHelper.COLUMN_MSG_PROG, contenu);
-                boolean update = crud.update(MySQLiteHelper.TABLE_MSG_PROG, values, MySQLiteHelper.COLUMN_ID_MSG_PROG, new String[]{id});
+                boolean update = getCrud().update(MySQLiteHelper.TABLE_MSG_PROG, values, MySQLiteHelper.COLUMN_ID_MSG_PROG, new String[]{id});
                 if (update) {
                     Log.i("UPDATE", "BON");
                     return 0; //si l'update fonctionne
@@ -80,7 +71,7 @@ public class DAOMsgProg {
             }
             return 2; // le nom existe déjà donc pas possible de maj avec ce nom
         }else {
-            this.crud.open();
+            getCrud().open();
 
             ContentValues values = new ContentValues();
             values.put(MySQLiteHelper.COLUMN_TITRE_MSG_PROG, titre);
@@ -88,7 +79,7 @@ public class DAOMsgProg {
             values.put(MySQLiteHelper.COLUMN_DATESTRING_MSG_PROG, dateString);
             values.put(MySQLiteHelper.COLUMN_MSG_PROG, contenu);
 
-            boolean update = crud.update(MySQLiteHelper.TABLE_MSG_PROG, values, MySQLiteHelper.COLUMN_ID_MSG_PROG, new String[]{id});
+            boolean update = getCrud().update(MySQLiteHelper.TABLE_MSG_PROG, values, MySQLiteHelper.COLUMN_ID_MSG_PROG, new String[]{id});
             if (update) {
                 Log.i("UPDATE", "BON");
                 return 0; //si l'update fonctionne
@@ -99,8 +90,8 @@ public class DAOMsgProg {
 
     public boolean deleteMsgProg(ModelMsgProg modelMsgProg) {
         long id = modelMsgProg.getId();
-        this.crud.open();
-        boolean delete = crud.delete(MySQLiteHelper.TABLE_MSG_PROG, MySQLiteHelper.COLUMN_ID_MSG_PROG
+        getCrud().open();
+        boolean delete = getCrud().delete(MySQLiteHelper.TABLE_MSG_PROG, MySQLiteHelper.COLUMN_ID_MSG_PROG
                 + " = " + id);
         // this.crud.close();
         if (delete) {
@@ -114,8 +105,8 @@ public class DAOMsgProg {
     public List<ModelMsgProg> getAllMsgProg() {
         List<ModelMsgProg> msgProgs = new ArrayList<ModelMsgProg>();
 
-        Cursor cursor = crud.getDatabase().query(MySQLiteHelper.TABLE_MSG_PROG,
-                allColumns, null, null, null, null, null);
+        Cursor cursor = getCrud().getDatabase().query(MySQLiteHelper.TABLE_MSG_PROG,
+                getAllColumns(), null, null, null, null, null);
 
         cursor.moveToFirst();
 
@@ -130,9 +121,9 @@ public class DAOMsgProg {
     }
 
     public ModelMsgProg getIdMsgProg(String titre) {
-        crud.open();
+        getCrud().open();
         String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MSG_PROG + " WHERE " + MySQLiteHelper.COLUMN_TITRE_MSG_PROG + " = ?";
-        Cursor cursor = crud.getDatabase().rawQuery(sql, new String[]{titre});
+        Cursor cursor = getCrud().getDatabase().rawQuery(sql, new String[]{titre});
         ModelMsgProg modelMsgProg = new ModelMsgProg();
         while (cursor.moveToNext()) {
             modelMsgProg = cursorToMsgProg(cursor);
@@ -142,18 +133,18 @@ public class DAOMsgProg {
     }
 
     public ModelMsgProg getMsgProg(int id) {
-        crud.open();
+        getCrud().open();
         String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MSG_PROG + " WHERE " + MySQLiteHelper.COLUMN_ID_MSG_PROG + " = " + id;
-        Cursor cursor = crud.getDatabase().rawQuery(sql, null);
-        crud.close();
+        Cursor cursor = getCrud().getDatabase().rawQuery(sql, null);
+        getCrud().close();
         return this.cursorToMsgProg(cursor);
     }
 
     public ModelMsgProg getMsgProg(String titre) {
-        crud.open();
+        getCrud().open();
         ModelMsgProg modelMsgProg = new ModelMsgProg();
         String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MSG_PROG + " WHERE " + MySQLiteHelper.COLUMN_TITRE_MSG_PROG + " = '" + titre+"'";
-        Cursor cursor = crud.getDatabase().rawQuery(sql, null);
+        Cursor cursor = getCrud().getDatabase().rawQuery(sql, null);
         while (cursor.moveToNext()) {
             modelMsgProg = cursorToMsgProg(cursor);
         }
@@ -174,7 +165,7 @@ public class DAOMsgProg {
     private boolean isExist(String titre) {
         String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MSG_PROG + " WHERE " + MySQLiteHelper.COLUMN_TITRE_MSG_PROG + " = ?";
 
-        Cursor cursor = this.crud.getDatabase().rawQuery(sql, new String[]{titre});
+        Cursor cursor = getCrud().getDatabase().rawQuery(sql, new String[]{titre});
 
         if (cursor != null) {
             if (cursor.getCount() > 0) {

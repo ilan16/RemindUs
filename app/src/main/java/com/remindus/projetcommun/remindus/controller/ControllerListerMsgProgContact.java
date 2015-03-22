@@ -3,6 +3,7 @@ package com.remindus.projetcommun.remindus.controller;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -98,5 +99,10 @@ public class ControllerListerMsgProgContact extends ControllerHeader {
         }
         adapter.remove(getModelContact());
         adapter.notifyDataSetChanged();
+    }
+
+    public void redirection(View view){
+        Intent intent = new Intent(ControllerListerMsgProgContact.this, ControllerContact.class);
+        startActivity(intent);
     }
 }
