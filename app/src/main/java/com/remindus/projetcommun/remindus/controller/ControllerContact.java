@@ -4,10 +4,8 @@ package com.remindus.projetcommun.remindus.controller;
  * Created by bahia on 26/02/2015.
  */
 
-import android.annotation.TargetApi;
 import android.content.Intent;
 import android.database.Cursor;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.Log;
@@ -154,7 +152,7 @@ public class ControllerContact extends ControllerHeader {
                     ModelMsgProg modelMsgProg = new ModelMsgProg();
                     modelMsgProg = daoMsgProg.getIdMsgProg(ControllerCreerMsgProg.getTitreMsgProgStatic());
                     long idcontact = modelContact.getId();
-                    int insert = daoMsgProgxContacts.insertMsgProgxC(modelMsgProg.getIdMsgProg(), idcontact);
+                    int insert = daoMsgProgxContacts.insertMsgProgxC(modelMsgProg.getId(), idcontact);
                     if (insert == 0 && values.size() == count) {
                         ControllerCreerMsgProg.setTitreMsgProgStatic(""); // on remet titre msg prg vide dans le cas ou l'utilisateur veut creer un rdv et un msg prog dans la mm session
                         Intent intent = new Intent(ControllerContact.this, ControllerListerMsgProg.class);

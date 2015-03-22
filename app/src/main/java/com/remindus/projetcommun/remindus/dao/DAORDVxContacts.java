@@ -96,7 +96,7 @@ public class DAORDVxContacts {
         return modelRDVxContactses;
     }
 
-    public boolean deleteRDVxC(int idrdv) {
+    public boolean deleteRDVxC(long idrdv) {
         this.crud.open();
         boolean delete = crud.delete(MySQLiteHelper.TABLE_RDVxCONTACTS, MySQLiteHelper.COLUMN_ID_CONTACT_RDVxC + " = " + idrdv);
         if (delete) {

@@ -7,9 +7,7 @@ import android.util.Log;
 
 import com.remindus.projetcommun.remindus.basededonnees.MySQLiteHelper;
 import com.remindus.projetcommun.remindus.basededonnees.utilities.CRUD;
-import com.remindus.projetcommun.remindus.model.ModelModelMsg;
 import com.remindus.projetcommun.remindus.model.ModelMsgProg;
-import com.remindus.projetcommun.remindus.model.ModelRDV;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +61,7 @@ public class DAOMsgProg {
     }
 
     public int updateMsgProg(ModelMsgProg modelMsgProg, String titre, long date, String dateString, String contenu) {
-        String id = "" + modelMsgProg.getIdMsgProg();
+        String id = "" + modelMsgProg.getId();
         Log.i("ID", id);
         if(!titre.equals(modelMsgProg.getTitre())) {
             if (!this.isExist(titre)) {
@@ -100,7 +98,7 @@ public class DAOMsgProg {
     }
 
     public boolean deleteMsgProg(ModelMsgProg modelMsgProg) {
-        long id = modelMsgProg.getIdMsgProg();
+        long id = modelMsgProg.getId();
         this.crud.open();
         boolean delete = crud.delete(MySQLiteHelper.TABLE_MSG_PROG, MySQLiteHelper.COLUMN_ID_MSG_PROG
                 + " = " + id);
@@ -165,7 +163,7 @@ public class DAOMsgProg {
 
     private ModelMsgProg cursorToMsgProg(Cursor cursor) {
         ModelMsgProg msgProg = new ModelMsgProg();
-        msgProg.setIdMsgProg(cursor.getLong(0));
+        msgProg.setId(cursor.getLong(0));
         msgProg.setTitre(cursor.getString(1));
         msgProg.setDate(cursor.getLong(2));
         msgProg.setDatestring(cursor.getString(3));

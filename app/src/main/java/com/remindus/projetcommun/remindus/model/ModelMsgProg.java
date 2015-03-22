@@ -7,21 +7,11 @@ import java.text.DateFormat;
  */
 public class ModelMsgProg extends IModel {
 
-    private long idMsgProg;
     private String titre;
     private long date;
     private String datestring;
     private DateFormat format;
     private String msgProg;
-
-
-    public long getIdMsgProg() {
-        return idMsgProg;
-    }
-
-    public void setIdMsgProg(long idMsgProg) {
-        this.idMsgProg = idMsgProg;
-    }
 
     public String getTitre() {
         return titre;
@@ -63,6 +53,7 @@ public class ModelMsgProg extends IModel {
         this.msgProg = msgProg;
     }
 
+    @Override
     public String toString() {
         return this.getTitre() + "\n" + this.getMsgProg();
     }

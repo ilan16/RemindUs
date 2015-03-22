@@ -3,7 +3,6 @@ package com.remindus.projetcommun.remindus.controller;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,9 +16,7 @@ import com.remindus.projetcommun.remindus.dao.DAOContact;
 import com.remindus.projetcommun.remindus.dao.DAOMsgProg;
 import com.remindus.projetcommun.remindus.dao.DAOMsgProgxContacts;
 import com.remindus.projetcommun.remindus.model.ModelContact;
-import com.remindus.projetcommun.remindus.model.ModelMsgProg;
 import com.remindus.projetcommun.remindus.model.ModelMsgProgxContacts;
-import com.remindus.projetcommun.remindus.model.ModelRDV;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +50,7 @@ public class ControllerListerMsgProgContact extends ControllerHeader {
         daoMsgProgxContacts = new DAOMsgProgxContacts(this);
         daoMsgProgxContacts.getCrud().open();
 
-        final List<ModelMsgProgxContacts> values = daoMsgProgxContacts.getAllMsgProgxC(ControllerListerMsgProg.getValeurSelectionnee().getIdMsgProg());
+        final List<ModelMsgProgxContacts> values = daoMsgProgxContacts.getAllMsgProgxC(ControllerListerMsgProg.getValeurSelectionnee().getId());
         l = (ListView) findViewById(R.id.sampleList);
 
         List affiche = new ArrayList();
