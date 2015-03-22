@@ -40,7 +40,7 @@ public class CustomAdapterContact extends ArrayAdapter<ModelContact> {
         TextView name = (TextView) convertView.findViewById(R.id.textView1);
         CheckBox cb = (CheckBox) convertView.findViewById(R.id.checkBox1);
         //name.setText(modelItems.get(position).getContact()+"\n"+modelItems.get(position).getTelephone());
-        name.setText(modelItems.get(position).getContact() + "\n" + modelItems.get(position).getTelephone());
+        name.setText(modelItems.get(position).getContact() + " - " +modelItems.get(position).getTelephone());
         cb.setTag(position);
 
         listbox.put(cb, name);
