@@ -8,6 +8,7 @@ import android.util.Log;
 import com.remindus.projetcommun.remindus.basededonnees.MySQLiteHelper;
 import com.remindus.projetcommun.remindus.basededonnees.utilities.CRUD;
 import com.remindus.projetcommun.remindus.controller.UtilitaireDate;
+import com.remindus.projetcommun.remindus.model.ModelGroupexContact;
 import com.remindus.projetcommun.remindus.model.ModelModelMsg;
 
 import java.util.ArrayList;
@@ -16,40 +17,32 @@ import java.util.List;
 /**
  * Created by ilanmalka on 11/03/15.
  */
-public class DAOModelMsg {
+public class DAOModelMsg extends IDAO {
 
-    private MySQLiteHelper dbHelper;
-    private UtilitaireDate utilitaireDate;
-    private String[] allColumns = {
-            MySQLiteHelper.COLUMN_ID_MODEL_MSG,
-            MySQLiteHelper.COLUMN_TITRE_MODEL_MSG,
-            MySQLiteHelper.COLUMN_CONTENU_MODEL_MSG,
-            MySQLiteHelper.COLUMN_DATE_CREATION_MODEL_MSG
-    };
     private CRUD crud;
 
     public DAOModelMsg(Context context) {
-        crud = new CRUD(context);
-        utilitaireDate = new UtilitaireDate();
+        super(context);
+        String[] allColumns = {
+                MySQLiteHelper.COLUMN_ID_MODEL_MSG,
+                MySQLiteHelper.COLUMN_TITRE_MODEL_MSG,
+                MySQLiteHelper.COLUMN_CONTENU_MODEL_MSG,
+                MySQLiteHelper.COLUMN_DATE_CREATION_MODEL_MSG
+        };
+        setAllColumns(allColumns);
     }
 
-    public CRUD getCrud() {
-        return crud;
-    }
 
-    public void setCrud(CRUD crud) {
-        this.crud = crud;
-    }
 
     public int insertModelMsg(String titre, String contenu) {
         if (!this.isExist(titre)) {
             ContentValues values = new ContentValues();
             values.put(MySQLiteHelper.COLUMN_TITRE_MODEL_MSG, titre);
-            values.put(MySQLiteHelper.COLUMN_DATE_CREATION_MODEL_MSG, utilitaireDate.dateActuelle());
+            values.put(MySQLiteHelper.COLUMN_DATE_CREATION_MODEL_MSG, getUtilitaireDate().dateActuelle());
             values.put(MySQLiteHelper.COLUMN_CONTENU_MODEL_MSG, contenu);
-            this.crud.open();
-            boolean insert = crud.insert(MySQLiteHelper.TABLE_MODEL_MSG, values);
-            this.crud.close();
+            getCrud().open();
+            boolean insert = getCrud().insert(MySQLiteHelper.TABLE_MODEL_MSG, values);
+            getCrud().close();
             if (insert) {
                 return 0; // insertion ok
             }
@@ -62,8 +55,8 @@ public class DAOModelMsg {
 
     public boolean deleteModelMsg(ModelModelMsg modelModelMsg) {
         long id = modelModelMsg.getId();
-        this.crud.open();
-        boolean delete = crud.delete(MySQLiteHelper.TABLE_MODEL_MSG, MySQLiteHelper.COLUMN_ID_MODEL_MSG
+        getCrud().open();
+        boolean delete = getCrud().delete(MySQLiteHelper.TABLE_MODEL_MSG, MySQLiteHelper.COLUMN_ID_MODEL_MSG
                 + " = " + id);
         // this.crud.close();
         if (delete) {
@@ -79,11 +72,11 @@ public class DAOModelMsg {
         String id = "" + modelModelMsg.getId();
         Log.i("ID", id);
 //        if(!this.isExist(titre)) {
-        this.crud.open();
+        getCrud().open();
         ContentValues values = new ContentValues();
         values.put(MySQLiteHelper.COLUMN_TITRE_MODEL_MSG, titre);
         values.put(MySQLiteHelper.COLUMN_CONTENU_MODEL_MSG, contenu);
-        boolean update = crud.update(MySQLiteHelper.TABLE_MODEL_MSG, values, MySQLiteHelper.COLUMN_ID_MODEL_MSG, new String[]{id});
+        boolean update = getCrud().update(MySQLiteHelper.TABLE_MODEL_MSG, values, MySQLiteHelper.COLUMN_ID_MODEL_MSG, new String[]{id});
         if (update) {
             Log.i("UPDATE", "BON");
             return 0; //si l'update fonctionne
@@ -96,8 +89,8 @@ public class DAOModelMsg {
     public List<ModelModelMsg> getAllModelMsg() {
         List<ModelModelMsg> modelModelMsgs = new ArrayList<ModelModelMsg>();
 
-        Cursor cursor = crud.getDatabase().query(MySQLiteHelper.TABLE_MODEL_MSG,
-                allColumns, null, null, null, null, null);
+        Cursor cursor = getCrud().getDatabase().query(MySQLiteHelper.TABLE_MODEL_MSG,
+                getAllColumns(), null, null, null, null, null);
 
         cursor.moveToFirst();
 
@@ -112,19 +105,27 @@ public class DAOModelMsg {
     }
 
     public ModelModelMsg getModelMsg(int id) {
-        crud.open();
+        getCrud().open();
         String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MODEL_MSG + " WHERE " + MySQLiteHelper.COLUMN_ID_MODEL_MSG + " = " + id;
-        Cursor cursor = crud.getDatabase().rawQuery(sql, null);
-        crud.close();
-        return this.cursorToModelMsg(cursor);
+        Cursor cursor = getCrud().getDatabase().rawQuery(sql, null);
+        ModelModelMsg modelModelMsg = new ModelModelMsg();
+        while (cursor.moveToNext()) {
+            modelModelMsg = cursorToModelMsg(cursor);
+        }
+        cursor.close();
+        return modelModelMsg;
     }
 
     public ModelModelMsg getGroupe(String titre) {
-        crud.open();
+        getCrud().open();
         String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MODEL_MSG + " WHERE " + MySQLiteHelper.COLUMN_TITRE_MODEL_MSG + " = " + titre;
-        Cursor cursor = crud.getDatabase().rawQuery(sql, null);
-        crud.close();
-        return this.cursorToModelMsg(cursor);
+        Cursor cursor = getCrud().getDatabase().rawQuery(sql, null);
+        ModelModelMsg modelModelMsg = new ModelModelMsg();
+        while (cursor.moveToNext()) {
+            modelModelMsg = cursorToModelMsg(cursor);
+        }
+        cursor.close();
+        return modelModelMsg;
     }
 
     private ModelModelMsg cursorToModelMsg(Cursor cursor) {
@@ -137,9 +138,9 @@ public class DAOModelMsg {
     }
 
     private boolean isExist(String titre) {
-        this.crud.open();
+        getCrud().open();
         String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MODEL_MSG + " WHERE " + MySQLiteHelper.COLUMN_TITRE_MODEL_MSG + " = '" + titre + "'";
-        Cursor cursor = crud.getDatabase().rawQuery(sql, null);
+        Cursor cursor = getCrud().getDatabase().rawQuery(sql, null);
 
         if (cursor != null) {
             if (cursor.getCount() > 0) {

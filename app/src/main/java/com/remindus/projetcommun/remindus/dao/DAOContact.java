@@ -14,26 +14,16 @@ import java.util.List;
 /**
  * Created by Ilan on 24/02/2015.
  */
-public class DAOContact {
-
-    private MySQLiteHelper dbHelper;
-    private String[] allColumns = {
-            MySQLiteHelper.COLUMN_ID_CONTACT,
-            MySQLiteHelper.COLUMN_NOM_CONTACT,
-            MySQLiteHelper.COLUMN_TELEPHONE
-    };
-    private CRUD crud;
+public class DAOContact extends IDAO{
 
     public DAOContact(Context context) {
-        crud = new CRUD(context);
-    }
-
-    public CRUD getCrud() {
-        return crud;
-    }
-
-    public void setCrud(CRUD crud) {
-        this.crud = crud;
+        super(context);
+        String[] allColumns = {
+                MySQLiteHelper.COLUMN_ID_CONTACT,
+                MySQLiteHelper.COLUMN_NOM_CONTACT,
+                MySQLiteHelper.COLUMN_TELEPHONE
+        };
+        setAllColumns(allColumns);
     }
 
     public boolean insertContact(String contact, String telephone) {
@@ -41,9 +31,9 @@ public class DAOContact {
             ContentValues values = new ContentValues();
             values.put(MySQLiteHelper.COLUMN_NOM_CONTACT, contact);
             values.put(MySQLiteHelper.COLUMN_TELEPHONE, telephone);
-            this.crud.open();
-            boolean insert = crud.insert(MySQLiteHelper.TABLE_CONTACTS, values);
-            this.crud.close();
+            getCrud().open();
+            boolean insert = getCrud().insert(MySQLiteHelper.TABLE_CONTACTS, values);
+            getCrud().close();
             if (insert) {
                 return true;
             }
@@ -55,15 +45,15 @@ public class DAOContact {
     public void deleteContact(ModelContact contact) {
         long id = contact.getId();
         System.out.println("Contact deleted with id: " + id);
-        crud.getDatabase().delete(MySQLiteHelper.TABLE_CONTACTS, MySQLiteHelper.COLUMN_ID_CONTACT
+        getCrud().getDatabase().delete(MySQLiteHelper.TABLE_CONTACTS, MySQLiteHelper.COLUMN_ID_CONTACT
                 + " = " + id, null);
     }
 
     public List<ModelContact> getAllContacts() {
         List<ModelContact> contacts = new ArrayList<ModelContact>();
 
-        Cursor cursor = crud.getDatabase().query(MySQLiteHelper.TABLE_CONTACTS,
-                allColumns, null, null, null, null, null);
+        Cursor cursor = getCrud().getDatabase().query(MySQLiteHelper.TABLE_CONTACTS,
+                getAllColumns(), null, null, null, null, null);
 
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
@@ -77,9 +67,9 @@ public class DAOContact {
 
     public ModelContact getContact(String telephone) {
         ModelContact contact = new ModelContact();
-        crud.open();
+        getCrud().open();
         String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_CONTACTS + " WHERE " + MySQLiteHelper.COLUMN_TELEPHONE + " = ?";
-        Cursor cursor = crud.getDatabase().rawQuery(sql, new String[]{telephone});
+        Cursor cursor = getCrud().getDatabase().rawQuery(sql, new String[]{telephone});
         while (cursor.moveToNext()) {
             contact = cursorToContact(cursor);
         }
@@ -89,9 +79,9 @@ public class DAOContact {
 
     public ModelContact getContact(long id) {
         ModelContact contact = new ModelContact();
-        crud.open();
+        getCrud().open();
         String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_CONTACTS + " WHERE " + MySQLiteHelper.COLUMN_ID_CONTACT + " = " + id;
-        Cursor cursor = crud.getDatabase().rawQuery(sql, null);
+        Cursor cursor = getCrud().getDatabase().rawQuery(sql, null);
         while (cursor.moveToNext()) {
             contact = cursorToContact(cursor);
         }
@@ -109,10 +99,10 @@ public class DAOContact {
 
 
     public boolean isExist(String nom, String tel) {
-        this.crud.open();
+        getCrud().open();
         String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_CONTACTS + " WHERE " + MySQLiteHelper.COLUMN_NOM_CONTACT + " = \"" + nom + "\"" +
                 " AND " + MySQLiteHelper.COLUMN_TELEPHONE + " = \"" + tel + "\"";
-        Cursor cursor = crud.getDatabase().rawQuery(sql, null);
+        Cursor cursor = getCrud().getDatabase().rawQuery(sql, null);
 
         if (cursor != null) {
             if (cursor.getCount() > 0) {

@@ -121,8 +121,7 @@
                 android:textColor="#000000"
                 android:textSize="18dp"
                 android:textStyle="bold"
-                android:layout_gravity="left"
-                android:id="@+id/" />
+                android:layout_gravity="left" />
 
             <RadioGroup
                 android:id="@+id/group_radio_mode_rdv"

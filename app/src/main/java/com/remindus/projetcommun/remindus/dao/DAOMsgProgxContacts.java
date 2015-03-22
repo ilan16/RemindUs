@@ -17,24 +17,17 @@ import java.util.List;
 /**
  * Created by ilanmalka on 22/03/15.
  */
-public class DAOMsgProgxContacts {
-    private MySQLiteHelper dbHelper;
-    private String[] allColumns = {
-            MySQLiteHelper.COLUMN_ID_MSG_PROG_MPxC,
-            MySQLiteHelper.COLUMN_ID_CONTACT_MPxC
-    };
+public class DAOMsgProgxContacts extends IDAO {
+
     private CRUD crud;
 
     public DAOMsgProgxContacts(Context context) {
-        crud = new CRUD(context);
-    }
-
-    public CRUD getCrud() {
-        return crud;
-    }
-
-    public void setCrud(CRUD crud) {
-        this.crud = crud;
+        super(context);
+        String[] allColumns = {
+                MySQLiteHelper.COLUMN_ID_MSG_PROG_MPxC,
+                MySQLiteHelper.COLUMN_ID_CONTACT_MPxC
+        };
+        setAllColumns(allColumns);
     }
 
     public int insertMsgProgxC(long idmsg, long idcontact) {
@@ -42,8 +35,8 @@ public class DAOMsgProgxContacts {
         values.put(MySQLiteHelper.COLUMN_ID_MSG_PROG_MPxC, idmsg);
         values.put(MySQLiteHelper.COLUMN_ID_CONTACT_MPxC, idcontact);
 
-        this.crud.open();
-        boolean insert = crud.insert(MySQLiteHelper.TABLE_MSG_PROGxCONTACTS, values);
+        getCrud().open();
+        boolean insert = getCrud().insert(MySQLiteHelper.TABLE_MSG_PROGxCONTACTS, values);
 
         if (insert) {
             Log.i("INSERER", "" + idmsg + " " + idcontact);
@@ -55,8 +48,8 @@ public class DAOMsgProgxContacts {
     public boolean deleteMsgProgxC(ModelMsgProgxContacts modelMsgProgxContacts) {
         long idcontact = modelMsgProgxContacts.getIdContact();
         long idMsgProg = modelMsgProgxContacts.getIdMsgProg();
-        this.crud.open();
-        boolean delete = crud.delete(MySQLiteHelper.TABLE_MSG_PROGxCONTACTS, MySQLiteHelper.COLUMN_ID_CONTACT_MPxC
+        getCrud().open();
+        boolean delete = getCrud().delete(MySQLiteHelper.TABLE_MSG_PROGxCONTACTS, MySQLiteHelper.COLUMN_ID_CONTACT_MPxC
                 + " = " + idcontact + " AND " + MySQLiteHelper.COLUMN_ID_MSG_PROG_MPxC + " = " + idMsgProg);
         if (delete) {
             Log.i("DELETE", "effectué");
@@ -69,8 +62,8 @@ public class DAOMsgProgxContacts {
     public List<ModelMsgProgxContacts> getAllMsgProgxC() {
         List<ModelMsgProgxContacts> modelMsgProgxContactses = new ArrayList<ModelMsgProgxContacts>();
 
-        Cursor cursor = crud.getDatabase().query(MySQLiteHelper.TABLE_MSG_PROGxCONTACTS,
-                allColumns, null, null, null, null, null);
+        Cursor cursor = getCrud().getDatabase().query(MySQLiteHelper.TABLE_MSG_PROGxCONTACTS,
+                getAllColumns(), null, null, null, null, null);
 
         cursor.moveToFirst();
 
@@ -88,7 +81,7 @@ public class DAOMsgProgxContacts {
         List<ModelMsgProgxContacts> modelMsgProgxContactses = new ArrayList<ModelMsgProgxContacts>();
         crud.open();
         String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MSG_PROGxCONTACTS + " WHERE " + MySQLiteHelper.COLUMN_ID_MSG_PROG_MPxC + " = " + idmsgprog;
-        Cursor cursor = crud.getDatabase().rawQuery(sql, null);
+        Cursor cursor = getCrud().getDatabase().rawQuery(sql, null);
         while (cursor.moveToNext()) {
             ModelMsgProgxContacts modelMsgProgxContacts = cursorToMsgProgxC(cursor);
            modelMsgProgxContactses.add(modelMsgProgxContacts);
@@ -98,8 +91,8 @@ public class DAOMsgProgxContacts {
     }
 
     public boolean deleteMsgProgxC(long idc) {
-        this.crud.open();
-        boolean delete = crud.delete(MySQLiteHelper.TABLE_MSG_PROGxCONTACTS, MySQLiteHelper.COLUMN_ID_CONTACT_MPxC + " = " + idc);
+        getCrud().open();
+        boolean delete = getCrud().delete(MySQLiteHelper.TABLE_MSG_PROGxCONTACTS, MySQLiteHelper.COLUMN_ID_CONTACT_MPxC + " = " + idc);
         if (delete) {
             Log.i("DELETE", "effectué");
             return true;
