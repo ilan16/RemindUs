@@ -3,17 +3,17 @@ package com.remindus.projetcommun.remindus.model;
 /**
  * Created by ilanmalka on 08/03/15.
  */
-public class ModelMsgProgxGroupe {
+public class ModelMsgProgxContacts {
 
     private long idMsgProg;
-    private long idGroupe;
+    private long idContact;
 
-    public long getIdGroupe() {
-        return idGroupe;
+    public long getIdContact() {
+        return idContact;
     }
 
-    public void setIdGroupe(long idGroupe) {
-        this.idGroupe = idGroupe;
+    public void setIdContact(long idContact) {
+        this.idContact = idContact;
     }
 
     public long getIdMsgProg() {

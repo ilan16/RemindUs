@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.SEND_SMS"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
 
     <application
@@ -36,6 +37,7 @@
             android:name=".controller.ControllerCreerMsgProg"
             android:label="@string/titre_msg_prog" />
         <activity android:name=".controller.ControllerListerMsgProg" />
+        <activity android:name=".controller.ControllerListerMsgProgContact"/>
         <activity android:name=".controller.ControllerModifierMsgProg" />
         <activity
             android:name=".controller.ControllerCreerModelMsg"

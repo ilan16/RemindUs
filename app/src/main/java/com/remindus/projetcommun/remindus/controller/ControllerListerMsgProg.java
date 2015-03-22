@@ -74,6 +74,12 @@ public class ControllerListerMsgProg extends ControllerHeader {
                         supprimerMsgProg(null);
                     }
                 });
+                alertDialog.setButton(Dialog.BUTTON3, "Contacts", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(ControllerListerMsgProg.this, ControllerListerMsgProgContact.class);
+                        startActivity(intent);
+                    }
+                });
                 alertDialog.show();
 
                 Log.i("RDV A DELETE", "" + values.get(position).toString() + "");

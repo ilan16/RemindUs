@@ -9,6 +9,7 @@ import com.remindus.projetcommun.remindus.basededonnees.MySQLiteHelper;
 import com.remindus.projetcommun.remindus.basededonnees.utilities.CRUD;
 import com.remindus.projetcommun.remindus.model.ModelModelMsg;
 import com.remindus.projetcommun.remindus.model.ModelMsgProg;
+import com.remindus.projetcommun.remindus.model.ModelRDV;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -128,6 +129,18 @@ public class DAOMsgProg {
         }
         cursor.close();
         return msgProgs;
+    }
+
+    public ModelMsgProg getIdMsgProg(String titre) {
+        crud.open();
+        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MSG_PROG + " WHERE " + MySQLiteHelper.COLUMN_TITRE_MSG_PROG + " = ?";
+        Cursor cursor = crud.getDatabase().rawQuery(sql, new String[]{titre});
+        ModelMsgProg modelMsgProg = new ModelMsgProg();
+        while (cursor.moveToNext()) {
+            modelMsgProg = cursorToMsgProg(cursor);
+        }
+        cursor.close();
+        return modelMsgProg;
     }
 
     public ModelMsgProg getMsgProg(int id) {

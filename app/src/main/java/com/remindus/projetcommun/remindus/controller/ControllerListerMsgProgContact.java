@@ -6,22 +6,22 @@ import android.widget.ListView;
 
 import com.remindus.projetcommun.remindus.R;
 import com.remindus.projetcommun.remindus.dao.DAOContact;
-import com.remindus.projetcommun.remindus.dao.DAORDV;
-import com.remindus.projetcommun.remindus.dao.DAORDVxContacts;
+import com.remindus.projetcommun.remindus.dao.DAOMsgProg;
+import com.remindus.projetcommun.remindus.dao.DAOMsgProgxContacts;
 import com.remindus.projetcommun.remindus.model.ModelContact;
-import com.remindus.projetcommun.remindus.model.ModelRDV;
-import com.remindus.projetcommun.remindus.model.ModelRDVxContacts;
+import com.remindus.projetcommun.remindus.model.ModelMsgProg;
+import com.remindus.projetcommun.remindus.model.ModelMsgProgxContacts;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by ilanmalka on 19/03/15.
+ * Created by ilanmalka on 22/03/15.
  */
-public class ControllerListerRDVContact extends ControllerHeader {
+public class ControllerListerMsgProgContact extends ControllerHeader {
 
-    private static ModelRDV valeurSelectionnee;
-    private DAORDVxContacts daordVxContacts;
+    private static ModelMsgProg valeurSelectionnee;
+    private DAOMsgProgxContacts daoMsgProgxContacts;
     private ListView l;
 
     @Override
@@ -29,23 +29,23 @@ public class ControllerListerRDVContact extends ControllerHeader {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vue_liste_contact);
 
-        this.listerRDVContact();
+        this.lister();
     }
 
-    public void listerRDVContact() {
-        daordVxContacts = new DAORDVxContacts(this);
-        daordVxContacts.getCrud().open();
+    public void lister() {
+        daoMsgProgxContacts = new DAOMsgProgxContacts(this);
+        daoMsgProgxContacts.getCrud().open();
 
-        final List<ModelRDVxContacts> values = daordVxContacts.getAllRDVxC(ControllerListerRDV.getValeurSelectionnee().getId());
+        final List<ModelMsgProgxContacts> values = daoMsgProgxContacts.getAllMsgProgxC(ControllerListerMsgProg.getValeurSelectionnee().getIdMsgProg());
         l = (ListView) findViewById(R.id.sampleList);
 
         List affiche = new ArrayList();
 
-        DAORDV daordv = new DAORDV(this);
+        DAOMsgProg daoMsgProg = new DAOMsgProg(this);
         DAOContact daoContact = new DAOContact(this);
 
-        for (ModelRDVxContacts m : values) {
-            ModelContact modelContact = daoContact.getContact(m.getIdcontact());
+        for (ModelMsgProgxContacts m : values) {
+            ModelContact modelContact = daoContact.getContact(m.getIdContact());
             String tel = modelContact.getTelephone();
             String nom = modelContact.getContact();
             affiche.add(nom + "\n" + tel);
@@ -79,19 +79,4 @@ public class ControllerListerRDVContact extends ControllerHeader {
                 return false;
             }
         });*/
-    }
-
-    /*public void supprimerRDV(View view){
-        ArrayAdapter<ModelRDV> adapter = (ArrayAdapter<ModelRDV>) l.getAdapter();
-        boolean delete = daordVxContacts.deleteRDV(valeurSelectionnee);
-        if(delete){
-            Toast.makeText(getApplicationContext(), getResources().getString(R.string.rdv_supprime, valeurSelectionnee.getNom()), Toast.LENGTH_SHORT).show();
-        }
-        Log.i("RDV A DELETE", ""+valeurSelectionnee+"");
-        adapter.remove(valeurSelectionnee);
-        adapter.notifyDataSetChanged();
-    }
-*/
-
-
-}
+    }}

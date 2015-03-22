@@ -60,13 +60,13 @@ public class SmsService extends Service {
 
         ConnectivityManager connexion=(ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         LocationManager localisation=(LocationManager) getSystemService(LOCATION_SERVICE);
-        if(localisation.isProviderEnabled(LocationManager.GPS_PROVIDER)||connexion.getActiveNetworkInfo()!=null){
-            String num="0660805965;";
+        /*if(localisation.isProviderEnabled(LocationManager.GPS_PROVIDER)||connexion.getActiveNetworkInfo()!=null){
+            String num="06;";
             String msg="juste pour te faire chier";
 
             EnvoiSms s=new EnvoiSms(num,msg);
             s.envoi_texto();
-        }else{
+        }else{*/
             NotificationManager notificationmanager=(NotificationManager) this.getApplicationContext().getSystemService(this.getApplicationContext().NOTIFICATION_SERVICE);
             Intent myIntent=new Intent(this.getApplicationContext(), MainActivity.class);
             Notification notification=new Notification(R.drawable.ic_launcher,"test",System.currentTimeMillis());
@@ -75,7 +75,7 @@ public class SmsService extends Service {
             notification.setLatestEventInfo(this.getApplicationContext(),"test1","ol",myPendingIntent);
             notificationmanager.notify(0, notification);
 
-        }
+        //}
 
     }
 

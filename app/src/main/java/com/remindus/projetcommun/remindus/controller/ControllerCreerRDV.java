@@ -62,6 +62,10 @@ public class ControllerCreerRDV extends ControllerHeader {
         return nomRDVstatic;
     }
 
+    public static void setNomRDVstatic(String nomRDVstatic) {
+        ControllerCreerRDV.nomRDVstatic = nomRDVstatic;
+    }
+
     /*public void listerContact(){
 
         daoContact = new DAOContact(this);
@@ -77,9 +81,6 @@ public class ControllerCreerRDV extends ControllerHeader {
 
     }*/
 
-    public static void setNomRDVstatic(String nomRDVstatic) {
-        ControllerCreerRDV.nomRDVstatic = nomRDVstatic;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

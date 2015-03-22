@@ -31,6 +31,15 @@ public class ControllerCreerMsgProg extends ControllerHeader {
     private DAOMsgProg daoMsgProg;
     // Variable for storing current date and time
     private int mYear, mMonth, mDay, mHour, mMinute;
+    private static String titreMsgProgStatic;
+
+    public static String getTitreMsgProgStatic() {
+        return titreMsgProgStatic;
+    }
+
+    public static void setTitreMsgProgStatic(String titreMsgProgStatic) {
+        ControllerCreerMsgProg.titreMsgProgStatic = titreMsgProgStatic;
+    }
 
     /**
      * Called when the activity is first created.
@@ -129,7 +138,8 @@ public class ControllerCreerMsgProg extends ControllerHeader {
                         int insert = daoMsgProg.insertMsgProg(titre, dateLong, date, contenu);
 
                         if (insert == 0) {
-                            Intent intent = new Intent(ControllerCreerMsgProg.this, ControllerListerMsgProg.class);
+                            ControllerCreerMsgProg.setTitreMsgProgStatic(titre);
+                            Intent intent = new Intent(ControllerCreerMsgProg.this, ControllerContact.class);
                             startActivity(intent);
                         } else {
                             Toast.makeText(this, R.string.erreur_insertion_msg_prog, Toast.LENGTH_SHORT).show();

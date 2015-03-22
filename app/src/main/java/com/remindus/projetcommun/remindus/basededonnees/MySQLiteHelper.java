@@ -9,12 +9,14 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class MySQLiteHelper extends SQLiteOpenHelper {
 
-    public static final String TABLE_CONTACTS = "contacts";
-    public static final String COLUMN_ID_CONTACT = "id_contact";
+    private static final String DATABASE_NAME = "remindus.db";
+    private static final int DATABASE_VERSION = 15;
 
     /*
             CONTACTS
      */
+    public static final String TABLE_CONTACTS = "contacts";
+    public static final String COLUMN_ID_CONTACT = "id_contact";
     public static final String COLUMN_NOM_CONTACT = "nom_contact";
     public static final String COLUMN_TELEPHONE = "telephone";
     private static final String DATABASE_CREATE_CONTACTS = "create table "
@@ -22,12 +24,13 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             + COLUMN_ID_CONTACT + " integer primary key autoincrement, "
             + COLUMN_NOM_CONTACT + " text not null,"
             + COLUMN_TELEPHONE + " text not null);";
-    public static final String TABLE_GROUPES = "groupes";
-    public static final String COLUMN_ID_GROUPE = "id_groupe";
+
 
     /*
             GROUPES
      */
+    public static final String TABLE_GROUPES = "groupes";
+    public static final String COLUMN_ID_GROUPE = "id_groupe";
     public static final String COLUMN_NOM_GROUPE = "nom_groupe";
     public static final String COLUMN_DATE_CREATION = "date_creation";
     private static final String DATABASE_CREATE_GROUPES = "create table "
@@ -35,12 +38,14 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             + COLUMN_ID_GROUPE + " integer primary key autoincrement, "
             + COLUMN_NOM_GROUPE + " text not null, "
             + COLUMN_DATE_CREATION + " integer not null);";
-    public static final String TABLE_GROUPESxCONTACTS = "groupes_contacts";
-    public static final String COLUMN_DATE_AJOUT = "date_ajout";
+
 
     /*
             GROUPESxCONTACTS
     */
+
+    public static final String TABLE_GROUPESxCONTACTS = "groupes_contacts";
+    public static final String COLUMN_DATE_AJOUT = "date_ajout";
     public static final String COLUMN_ID_CONTACT_GC = "idcontact";
     public static final String COLUMN_ID_GROUPE_GC = "idgroupe";
     private static final String DATABASE_CREATE_GROUPESxCONTACTS = "create table "
@@ -51,12 +56,15 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             + "(" + COLUMN_ID_GROUPE + "),"
             + COLUMN_DATE_AJOUT + " INTEGER,"
             + " PRIMARY KEY (" + COLUMN_ID_CONTACT_GC + "," + COLUMN_ID_GROUPE_GC + "));";
-    public static final String TABLE_MSG_PROG = "messages_programmes";
-    public static final String COLUMN_ID_MSG_PROG = "id_message_programme";
+;
 
     /*
             MESSAGES PROGRAMMES
     */
+
+
+    public static final String TABLE_MSG_PROG = "messages_programmes";
+    public static final String COLUMN_ID_MSG_PROG = "id_message_programme";
     public static final String COLUMN_TITRE_MSG_PROG = "titre_message_programme";
     public static final String COLUMN_DATESTRING_MSG_PROG = "datestring_message_programme";
     public static final String COLUMN_DATE_MSG_PROG = "date_message_programme";
@@ -68,27 +76,28 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             + COLUMN_DATE_MSG_PROG + " integer not null,"
             + COLUMN_DATESTRING_MSG_PROG + " text not null,"
             + COLUMN_MSG_PROG + " text not null );";
-    public static final String TABLE_MSG_PROGxGROUPES = "messages_programmes_groupes";
-    public static final String COLUMN_ID_MSG_PROG_MPxG = "idmp";
 
     /*
-            MSG PRG x GROUPES
+            MSG PRG x CONTACTS
     */
-    public static final String COLUMN_ID_GROUPE_MPxG = "idgrpe";
-    private static final String DATABASE_CREATE_MSG_PROGxGROUPES = "create table "
-            + TABLE_MSG_PROGxGROUPES + "("
-            + COLUMN_ID_MSG_PROG_MPxG + " INTEGER NOT NULL CONSTRAINT fk_msg_prog_id REFERENCES " + TABLE_MSG_PROG
+
+    public static final String TABLE_MSG_PROGxCONTACTS = "messages_programmes_contacts";
+    public static final String COLUMN_ID_MSG_PROG_MPxC = "idmp";
+    public static final String COLUMN_ID_CONTACT_MPxC = "idcontact";
+
+    private static final String DATABASE_CREATE_MSG_PROGxCONTACTS = "create table "
+            + TABLE_MSG_PROGxCONTACTS + "("
+            + COLUMN_ID_MSG_PROG_MPxC + " INTEGER NOT NULL CONSTRAINT fk_msg_prog_id REFERENCES " + TABLE_MSG_PROG
             + "(" + COLUMN_ID_MSG_PROG + "),"
-            + COLUMN_ID_GROUPE_MPxG + " INTEGER NOT NULL CONSTRAINT fk_groupes_id_msg_prog REFERENCES " + TABLE_GROUPES
-            + "(" + COLUMN_ID_GROUPE + "),"
-            + COLUMN_DATE_AJOUT + " INTEGER,"
-            + " PRIMARY KEY (" + COLUMN_ID_MSG_PROG_MPxG + "," + COLUMN_ID_GROUPE_MPxG + "));";
-    public static final String TABLE_MODEL_MSG = "model_messages";
-    public static final String COLUMN_ID_MODEL_MSG = "id_model_msg";
+            + COLUMN_ID_CONTACT_MPxC + " INTEGER NOT NULL CONSTRAINT fk_contacts_id_msg_prog REFERENCES " + TABLE_CONTACTS
+            + "(" + COLUMN_ID_CONTACT + "),"
+            + " PRIMARY KEY (" + COLUMN_ID_MSG_PROG_MPxC + "," + COLUMN_ID_CONTACT_MPxC + "));";
 
     /*
             MODEL MESSAGE
      */
+    public static final String TABLE_MODEL_MSG = "model_messages";
+    public static final String COLUMN_ID_MODEL_MSG = "id_model_msg";
     public static final String COLUMN_TITRE_MODEL_MSG = "titre";
     public static final String COLUMN_CONTENU_MODEL_MSG = "contenu";
     public static final String COLUMN_DATE_CREATION_MODEL_MSG = "date_creation";
@@ -98,12 +107,13 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             + COLUMN_TITRE_MODEL_MSG + " text not null,"
             + COLUMN_CONTENU_MODEL_MSG + " text not null, "
             + COLUMN_DATE_CREATION_MODEL_MSG + " integer not null);";
-    public static final String TABLE_RDV = "table_rdv";
-    public static final String COLUMN_ID_RDV = "id_rdv";
+
 
     /*
             RDV
      */
+    public static final String TABLE_RDV = "table_rdv";
+    public static final String COLUMN_ID_RDV = "id_rdv";
     public static final String COLUMN_NOM_RDV = "nom_rdv";
     public static final String COLUMN_DATE_RDV = "date_rdv";
     public static final String COLUMN_DATESTRING_RDV = "datestring_rdv";
@@ -117,12 +127,13 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             + COLUMN_DATESTRING_RDV + " text not null, "
             + COLUMN_LIEU_RDV + " text not null, "
             + COLUMN_MODE_TEL_RDV + " integer not null);";
-    public static final String TABLE_RDVxCONTACTS = "rdv_contacts";
-    public static final String COLUMN_ID_RDV_RDVxC = "idrdv";
+
 
     /*
             RDV CONTACTS
      */
+    public static final String TABLE_RDVxCONTACTS = "rdv_contacts";
+    public static final String COLUMN_ID_RDV_RDVxC = "idrdv";
     public static final String COLUMN_ID_CONTACT_RDVxC = "idcontact";
     private static final String DATABASE_CREATE_RDVxCONTACTS = "create table "
             + TABLE_RDVxCONTACTS + "("
@@ -131,8 +142,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             + COLUMN_ID_CONTACT_RDVxC + " INTEGER NOT NULL CONSTRAINT fk_contacts_id_rdv REFERENCES " + TABLE_CONTACTS
             + "(" + COLUMN_ID_CONTACT + "),"
             + " PRIMARY KEY (" + COLUMN_ID_RDV_RDVxC + "," + COLUMN_ID_CONTACT_RDVxC + "));";
-    private static final String DATABASE_NAME = "remindus.db";
-    private static final int DATABASE_VERSION = 14;
+
 
     /*
         METHODES BDD
@@ -148,7 +158,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         database.execSQL(DATABASE_CREATE_GROUPES);
         database.execSQL(DATABASE_CREATE_GROUPESxCONTACTS);
         database.execSQL(DATABASE_CREATE_MSG_PROG);
-        database.execSQL(DATABASE_CREATE_MSG_PROGxGROUPES);
+        database.execSQL(DATABASE_CREATE_MSG_PROGxCONTACTS);
         database.execSQL(DATABASE_CREATE_MODEL_MSG);
         database.execSQL(DATABASE_CREATE_RDV);
         database.execSQL(DATABASE_CREATE_RDVxCONTACTS);
@@ -160,7 +170,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         database.execSQL("DROP TABLE IF EXISTS " + TABLE_GROUPES);
         database.execSQL("DROP TABLE IF EXISTS " + TABLE_GROUPESxCONTACTS);
         database.execSQL("DROP TABLE IF EXISTS " + TABLE_MSG_PROG);
-        database.execSQL("DROP TABLE IF EXISTS " + TABLE_MSG_PROGxGROUPES);
+        database.execSQL("DROP TABLE IF EXISTS " + TABLE_MSG_PROGxCONTACTS);
         database.execSQL("DROP TABLE IF EXISTS " + TABLE_MODEL_MSG);
         database.execSQL("DROP TABLE IF EXISTS " + TABLE_RDV);
         database.execSQL("DROP TABLE IF EXISTS " + TABLE_RDVxCONTACTS);

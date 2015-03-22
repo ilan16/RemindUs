@@ -17,6 +17,8 @@ import com.remindus.projetcommun.remindus.Service.Jesa;
 import com.remindus.projetcommun.remindus.Service.SmsService;
 import com.remindus.projetcommun.remindus.controller.ControllerCalendrier;
 import com.remindus.projetcommun.remindus.controller.ControllerContact;
+import com.remindus.projetcommun.remindus.controller.ControllerCreerMsgProg;
+import com.remindus.projetcommun.remindus.controller.ControllerCreerRDV;
 import com.remindus.projetcommun.remindus.controller.ControllerListerGroupe;
 import com.remindus.projetcommun.remindus.controller.ControllerListerModelMsg;
 import com.remindus.projetcommun.remindus.controller.ControllerListerMsgProg;
@@ -37,6 +39,9 @@ public class MainActivity extends ActionBarActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ControllerCreerRDV.setNomRDVstatic("");
+        ControllerCreerMsgProg.setTitreMsgProgStatic("");
 
         DAORDV daordv = new DAORDV(this);
         ModelRDV modelRDV = new ModelRDV();
@@ -60,7 +65,7 @@ public class MainActivity extends ActionBarActivity {
                 cal.set(Calendar.SECOND, 0);
 
                 //alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
-                alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 1000 * 60, pendingIntent);
+                alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 1000 * 30, pendingIntent);
         alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 1000 * 60, pendingIntent2);
         MainActivity.this.stopService(myIntent);
 

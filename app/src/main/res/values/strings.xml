@@ -76,9 +76,11 @@
     <string name="dialogue_supprimer">Supprimer</string>
     <string name="dialogue_modifier">Modifier</string>
 
-    <!-- CHAMPS VIDES -->
+    <!-- CHAMPS VIDES -->x
     <string name="groupe_nom_vide">Le champs nom est vide. Veuillez le remplir !</string>
     <string name="champs_vide">Le champs %s est vide. Veuillez le remplir !</string>
 
+    <!-- BOUTONS GENERAL -->
+    <string name="suivant">Suivant</string>
 
 </resources>
