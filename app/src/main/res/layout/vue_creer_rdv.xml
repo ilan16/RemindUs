@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/fond">
 
 
     <RelativeLayout
@@ -32,35 +33,15 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical"
-            android:weightSum="1"
-            android:background="#486e76">
+            android:weightSum="1">
 
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="60dp"
-                android:gravity="center"
-                android:text="Nom : "
-                android:textColor="#FFFFFF"
-                android:textSize="18dp"
-                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/nom_rdv"
-                android:layout_width="fill_parent"
-                android:layout_height="37dp"
+                android:layout_width="322dp"
+                android:layout_height="59dp"
                 android:hint="Nom"
-                android:inputType="text"
-                android:background="#ffffffff" />
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="60dp"
-                android:gravity="center"
-                android:text="date : "
-                android:textColor="#FFFFFF"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+                android:inputType="text" />
 
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
@@ -74,39 +55,29 @@
                 <EditText
                     android:id="@+id/editDate"
                     android:layout_width="250dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_marginLeft="5dp"
                     android:editable="true"
                     android:hint="DD/MM/YYYY"
                     android:inputType="date"
-                    android:background="#ffffffff"
+                    android:text="Date (DD/MM/YY)"
+                    android:layout_alignParentTop="false"
                     android:layout_alignParentBottom="true"
-                    android:layout_alignParentTop="true"></EditText>
+                    android:elegantTextHeight="false"></EditText>
 
                 <ImageButton
                     android:id="@+id/date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_toRightOf="@+id/editDate"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:cropToPadding="true"
                     android:onClick="ajouterDate"
-                    android:src="@drawable/ic_calendar"
-                    android:layout_alignTop="@+id/editDate" />
+                    android:background="@drawable/calendar"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/editDate" />
 
 
             </RelativeLayout>
-
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="60dp"
-                android:gravity="center"
-                android:text="heure : "
-                android:textColor="#FFFFFF"
-                android:textSize="18dp"
-                android:textStyle="bold"></TextView>
 
 
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -126,47 +97,38 @@
                     android:editable="true"
                     android:hint="HH:MM"
                     android:inputType="datetime"
-                    android:background="#ffffffff"
-                    android:layout_alignParentBottom="true" />
+                    android:layout_alignParentBottom="true"
+                    android:text="Heure (HH:MM)" />
 
                 <ImageButton
                     android:id="@+id/heure"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/editHeure"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:cropToPadding="true"
                     android:onClick="ajouterHeure"
-                    android:src="@drawable/ic_heure"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentBottom="true" />
+                    android:background="@drawable/clock"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toEndOf="@+id/editHeure" />
             </RelativeLayout>
 
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="60dp"
-                android:gravity="center"
-                android:text="Lieu : "
-                android:textColor="#FFFFFF"
-                android:textSize="18dp"
-                android:textStyle="bold" />
-
             <EditText
                 android:id="@+id/lieu_rdv"
-                android:layout_width="fill_parent"
+                android:layout_width="282dp"
                 android:layout_height="42dp"
                 android:hint="Lieu"
-                android:inputType="text"
-                android:background="#ffffffff" />
+                android:inputType="text" />
 
             <TextView
-                android:layout_width="fill_parent"
+                android:layout_width="227dp"
                 android:layout_height="60dp"
                 android:gravity="center"
-                android:text="Mode du téléphone pendant le RDV : "
-                android:textColor="#FFFFFF"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+                android:text="Mode du téléphone pendant le RDV ?"
+                android:textColor="#000000"
+                android:textSize="13dp"
+                android:textStyle="bold|italic"
+                android:layout_gravity="left"
+                android:id="@+id/mode_telephone" />
 
             <RadioGroup
                 android:id="@+id/group_radio_mode_rdv"
