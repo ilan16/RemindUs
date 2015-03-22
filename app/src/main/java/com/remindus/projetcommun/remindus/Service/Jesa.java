@@ -23,7 +23,7 @@ import java.util.TimeZone;
 /**
  * Created by kevin on 21/03/2015.
  */
-public class SmsService extends Service {
+public class Jesa extends Service {
 
     @Override
     public void onCreate() {
@@ -55,27 +55,26 @@ public class SmsService extends Service {
 
     @Override
     public void onStart(Intent intent, int startId) {
-        // TODO Auto-generated method stub
-        super.onStart(intent, startId);
+        Intent myIntent = new Intent(Jesa.this, SmsService.class);
+        PendingIntent pendingIntent = PendingIntent.getService(Jesa.this, 0, myIntent, 0);
+        Intent myIntent2 = new Intent(getApplicationContext(), Jesa.class);
+        PendingIntent pendingIntent2 = PendingIntent.getService(getApplicationContext(), 0, myIntent2, 0);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
-        ConnectivityManager connexion=(ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-        LocationManager localisation=(LocationManager) getSystemService(LOCATION_SERVICE);
-        /*if(localisation.isProviderEnabled(LocationManager.GPS_PROVIDER)||connexion.getActiveNetworkInfo()!=null){
-            String num="0621766518;";
-            String msg="l'ol";
+        Calendar cal = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
+//cal.add(Calendar.SECOND, 10);
 
-            EnvoiSms s=new EnvoiSms(num,msg);
-            s.envoi_texto();
-        }else{*/
-            NotificationManager notificationmanager=(NotificationManager) this.getApplicationContext().getSystemService(this.getApplicationContext().NOTIFICATION_SERVICE);
-            Intent myIntent=new Intent(this.getApplicationContext(), MainActivity.class);
-            Notification notification=new Notification(R.drawable.ic_launcher,"test",System.currentTimeMillis());
-            myIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP| Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            PendingIntent myPendingIntent=PendingIntent.getActivity(this.getApplicationContext(),0,myIntent,PendingIntent.FLAG_UPDATE_CURRENT);
-            notification.setLatestEventInfo(this.getApplicationContext(),"test1","ol",myPendingIntent);
+        cal.set(Calendar.DATE, 22);  //1-31
+        cal.set(Calendar.MONTH, 2);  //first month is 0!!! January is zero!!!
+        cal.set(Calendar.YEAR, 2015);//year...
 
+        cal.set(Calendar.HOUR_OF_DAY, 0);  //HOUR
+        cal.set(Calendar.MINUTE, 11);       //MIN
+        cal.set(Calendar.SECOND, 0);
 
-        //}
+        //alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 1000 * 60, pendingIntent);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 1000 * 60, pendingIntent2);
 
     }
 
