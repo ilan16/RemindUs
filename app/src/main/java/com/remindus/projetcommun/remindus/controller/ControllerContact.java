@@ -140,7 +140,7 @@ public class ControllerContact extends ControllerHeader {
                     long idcontact = modelContact.getId();
                     int insert = daordVxContacts.insertRDVxC(modelRDV.getId(), idcontact);
 
-                    if (insert == 0 && count==values.size()) {
+                    if (insert == 0 && count == (values.size() - 1)) {
                         ControllerCreerRDV.setNomRDVstatic(""); // on remet nom rdv vide dans le cas ou l'utilisateur veut creer un rdv et un msg prog dans la mm session
                         Intent intent = new Intent(ControllerContact.this, ControllerListerRDV.class);
                         startActivity(intent);
@@ -153,7 +153,7 @@ public class ControllerContact extends ControllerHeader {
                     modelMsgProg = daoMsgProg.getIdMsgProg(ControllerCreerMsgProg.getTitreMsgProgStatic());
                     long idcontact = modelContact.getId();
                     int insert = daoMsgProgxContacts.insertMsgProgxC(modelMsgProg.getId(), idcontact);
-                    if (insert == 0 && values.size() == count) {
+                    if (insert == 0 && (values.size() - 1) == count) {
                         ControllerCreerMsgProg.setTitreMsgProgStatic(""); // on remet titre msg prg vide dans le cas ou l'utilisateur veut creer un rdv et un msg prog dans la mm session
                         Intent intent = new Intent(ControllerContact.this, ControllerListerMsgProg.class);
                         startActivity(intent);
