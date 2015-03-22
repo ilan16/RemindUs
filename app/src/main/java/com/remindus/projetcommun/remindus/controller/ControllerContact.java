@@ -125,7 +125,9 @@ public class ControllerContact extends ControllerHeader {
 
     public void ajouterContact(View view) {
         final HashMap<CheckBox, TextView> values = adapter.getListChecked();
+        int count = 0;
         for (HashMap.Entry<CheckBox, TextView> hash : values.entrySet()) {
+            count++;
             if (hash.getKey().isChecked()) {
                 String[] split = hash.getValue().getText().toString().split("\n");
                 this.daoContact = new DAOContact(this);
@@ -139,7 +141,8 @@ public class ControllerContact extends ControllerHeader {
                     modelRDV = daordv.getIdRDV(ControllerCreerRDV.getNomRDVstatic());
                     long idcontact = modelContact.getId();
                     int insert = daordVxContacts.insertRDVxC(modelRDV.getId(), idcontact);
-                    if (insert == 0) {
+
+                    if (insert == 0 && count==values.size()) {
                         ControllerCreerRDV.setNomRDVstatic(""); // on remet nom rdv vide dans le cas ou l'utilisateur veut creer un rdv et un msg prog dans la mm session
                         Intent intent = new Intent(ControllerContact.this, ControllerListerRDV.class);
                         startActivity(intent);
@@ -152,7 +155,7 @@ public class ControllerContact extends ControllerHeader {
                     modelMsgProg = daoMsgProg.getIdMsgProg(ControllerCreerMsgProg.getTitreMsgProgStatic());
                     long idcontact = modelContact.getId();
                     int insert = daoMsgProgxContacts.insertMsgProgxC(modelMsgProg.getIdMsgProg(), idcontact);
-                    if (insert == 0) {
+                    if (insert == 0 && values.size() == count) {
                         ControllerCreerMsgProg.setTitreMsgProgStatic(""); // on remet titre msg prg vide dans le cas ou l'utilisateur veut creer un rdv et un msg prog dans la mm session
                         Intent intent = new Intent(ControllerContact.this, ControllerListerMsgProg.class);
                         startActivity(intent);
