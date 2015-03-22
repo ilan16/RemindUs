@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ff486e76">
+    android:background="@color/fond">
 
 
     <RelativeLayout
@@ -152,21 +152,6 @@
                 android:hint="Message"
                 android:inputType="textMultiLine" />
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="60dp"
-                android:gravity="center"
-                android:text="Contact : "
-                android:textColor="#ffffff"
-                android:textSize="18dp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/contact"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:hint="contact"
-                android:inputType="textMultiLine" />
 
             <Button
                 android:id="@+id/valider"

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/fond">
+    android:background="#ff486e76">
 
 
     <RelativeLayout
@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:background="#FFFFFF"
+        android:background="#FC9"
         android:gravity="center">
 
         <include
@@ -36,18 +36,37 @@
             android:weightSum="1">
 
 
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:text="Titre : "
+                android:textColor="#ffffff"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
             <EditText
-                android:id="@+id/nom_rdv"
-                android:layout_width="322dp"
-                android:layout_height="59dp"
-                android:hint="Nom"
+                android:id="@+id/titre_msg_prog"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="Titre"
+
                 android:inputType="text" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:text="date : "
+                android:textColor="#ffffff"
+                android:textSize="18dp"
+                android:textStyle="bold" />
 
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:id="@+id/layoutDate"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 tools:context=".MainActivity"
 
                 >
@@ -57,34 +76,41 @@
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
                     android:layout_marginLeft="5dp"
                     android:editable="true"
                     android:hint="DD/MM/YYYY"
-                    android:inputType="date"
-                    android:text="Date (DD/MM/YY)"
-                    android:layout_alignParentTop="false"
-                    android:layout_alignParentBottom="true"
-                    android:elegantTextHeight="false"></EditText>
+                    android:inputType="date"></EditText>
 
                 <ImageButton
                     android:id="@+id/date"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_toEndOf="@+id/editDate"
                     android:cropToPadding="true"
                     android:onClick="ajouterDate"
-                    android:background="@drawable/calendar"
-                    android:layout_alignParentTop="true"
-                    android:layout_toEndOf="@+id/editDate" />
+                    android:src="@drawable/ic_calendar" />
 
 
             </RelativeLayout>
+
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:text="heure : "
+                android:textColor="#ffffff"
+                android:textSize="18dp"
+                android:textStyle="bold"></TextView>
 
 
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:id="@+id/layoutHeure"
                 android:layout_width="match_parent"
-                android:layout_height="57dp"
+                android:layout_height="67dp"
                 tools:context=".MainActivity">
 
                 <EditText
@@ -96,72 +122,42 @@
                     android:layout_marginLeft="5dp"
                     android:editable="true"
                     android:hint="HH:MM"
-                    android:inputType="datetime"
-                    android:layout_alignParentBottom="true"
-                    android:text="Heure (HH:MM)" />
+                    android:inputType="datetime" />
 
                 <ImageButton
                     android:id="@+id/heure"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toEndOf="@+id/editHeure"
                     android:cropToPadding="true"
                     android:onClick="ajouterHeure"
-                    android:background="@drawable/clock"
-                    android:layout_alignParentBottom="true"
-                    android:layout_toEndOf="@+id/editHeure" />
+                    android:src="@drawable/ic_heure" />
             </RelativeLayout>
 
 
-            <EditText
-                android:id="@+id/lieu_rdv"
-                android:layout_width="282dp"
-                android:layout_height="42dp"
-                android:hint="Lieu"
-                android:inputType="text" />
-
             <TextView
-                android:layout_width="227dp"
+                android:layout_width="fill_parent"
                 android:layout_height="60dp"
                 android:gravity="center"
-                android:text="Mode du téléphone pendant le RDV ?"
-                android:textColor="#000000"
-                android:textSize="13dp"
-                android:textStyle="bold|italic"
-                android:layout_gravity="left"
-                android:id="@+id/mode_telephone" />
+                android:text="Message : "
+                android:textColor="#ffffff"
+                android:textSize="18dp"
+                android:textStyle="bold" />
 
-            <RadioGroup
-                android:id="@+id/group_radio_mode_rdv"
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/message_msg_prog"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:checkedButton="@+id/radio_normal"
-                android:orientation="horizontal">
+                android:hint="Message"
+                android:inputType="textMultiLine" />
 
-                <RadioButton
-                    android:id="@+id/radio_silencieux"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/silencieux" />
-
-                <RadioButton
-                    android:id="@+id/radio_vibreur"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/vibreur" />
-
-                <RadioButton
-                    android:id="@+id/radio_normal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/normal" />
-            </RadioGroup>
-
-            <!--<TextView
+            <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="60dp"
                 android:gravity="center"
                 android:text="Contact : "
-                android:textColor="#FF0000"
+                android:textColor="#ffffff"
                 android:textSize="18dp"
                 android:textStyle="bold" />
 
@@ -170,21 +166,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:hint="contact"
-                android:inputType="textMultiLine" />-->
-
-
-            <!--<ListView-->
-            <!--android:id="@android:id/list"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content" />-->
-            <!--<ScrollView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-            <ListView
-                android:id="@+id/listeContact"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            </ScrollView>-->
+                android:inputType="textMultiLine" />
 
             <Button
                 android:id="@+id/valider"
@@ -192,7 +174,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="0.08"
-                android:onClick="creerRDV"
+                android:onClick="modifierMsgProg"
                 android:text="Valider" />
 
 

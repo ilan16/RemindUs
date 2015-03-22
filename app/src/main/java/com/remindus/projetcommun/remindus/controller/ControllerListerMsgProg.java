@@ -63,7 +63,9 @@ public class ControllerListerMsgProg extends ControllerHeader {
                 alertDialog.setTitle(valeurSelectionnee.getTitre());
                 alertDialog.setButton(Dialog.BUTTON1, "Modifier", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(ControllerListerMsgProg.this, ControllerModifierModelMsg.class);
+                        ModelMsgProg modelMsgProg = daoMsgProg.getMsgProg(valeurSelectionnee.getTitre());
+                        ControllerListerMsgProg.setValeurSelectionnee(modelMsgProg);
+                        Intent intent = new Intent(ControllerListerMsgProg.this, ControllerModifierMsgProg.class);
                         startActivity(intent);
                     }
                 });
