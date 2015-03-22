@@ -3,7 +3,7 @@ package com.remindus.projetcommun.remindus.model;
 /**
  * Created by ilanmalka on 08/03/15.
  */
-public class ModelGroupexContact {
+public class ModelGroupexContact extends IModel {
 
     private long idcontact;
     private long idgroupe;

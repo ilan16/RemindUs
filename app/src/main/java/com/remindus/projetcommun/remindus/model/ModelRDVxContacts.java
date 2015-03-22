@@ -3,7 +3,7 @@ package com.remindus.projetcommun.remindus.model;
 /**
  * Created by ilanmalka on 18/03/15.
  */
-public class ModelRDVxContacts {
+public class ModelRDVxContacts extends IModel {
 
     private long idrdv;
     private long idcontact;

@@ -5,7 +5,7 @@ import com.remindus.projetcommun.remindus.controller.UtilitaireDate;
 /**
  * Created by ilanmalka on 11/03/15.
  */
-public class ModelRDV {
+public class ModelRDV extends IModel {
 
     private long id;
     private String nom;

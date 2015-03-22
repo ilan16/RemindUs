@@ -97,7 +97,7 @@ public class DAOMsgProgxContacts {
         return modelMsgProgxContactses;
     }
 
-    public boolean deleteMsgProgxC(int idc) {
+    public boolean deleteMsgProgxC(long idc) {
         this.crud.open();
         boolean delete = crud.delete(MySQLiteHelper.TABLE_MSG_PROGxCONTACTS, MySQLiteHelper.COLUMN_ID_CONTACT_MPxC + " = " + idc);
         if (delete) {

@@ -3,7 +3,7 @@ package com.remindus.projetcommun.remindus.model;
 /**
  * Created by ilanmalka on 11/03/15.
  */
-public class ModelModelMsg {
+public class ModelModelMsg extends IModel {
 
     private long id;
     private String titre;
