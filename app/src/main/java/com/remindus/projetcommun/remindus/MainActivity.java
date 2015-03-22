@@ -49,8 +49,8 @@ public class MainActivity extends ActionBarActivity {
 
                 Intent myIntent = new Intent(MainActivity.this, SmsService.class);
                 PendingIntent pendingIntent = PendingIntent.getService(MainActivity.this, 0, myIntent, 0);
-        Intent myIntent2 = new Intent(getApplicationContext(), Jesa.class);
-        PendingIntent pendingIntent2 = PendingIntent.getService(getApplicationContext(), 0, myIntent2, 0);
+        //Intent myIntent2 = new Intent(getApplicationContext(), Jesa.class);
+        //PendingIntent pendingIntent2 = PendingIntent.getService(getApplicationContext(), 0, myIntent2, 0);
                 AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
                 Calendar cal = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
@@ -66,7 +66,7 @@ public class MainActivity extends ActionBarActivity {
 
                 //alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
                 alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 1000 * 30, pendingIntent);
-        alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 1000 * 60, pendingIntent2);
+       // alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 1000 * 60, pendingIntent2);
         MainActivity.this.stopService(myIntent);
 
 

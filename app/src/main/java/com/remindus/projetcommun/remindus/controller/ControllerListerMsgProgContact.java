@@ -1,8 +1,16 @@
 package com.remindus.projetcommun.remindus.controller;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.remindus.projetcommun.remindus.R;
 import com.remindus.projetcommun.remindus.dao.DAOContact;
@@ -11,6 +19,7 @@ import com.remindus.projetcommun.remindus.dao.DAOMsgProgxContacts;
 import com.remindus.projetcommun.remindus.model.ModelContact;
 import com.remindus.projetcommun.remindus.model.ModelMsgProg;
 import com.remindus.projetcommun.remindus.model.ModelMsgProgxContacts;
+import com.remindus.projetcommun.remindus.model.ModelRDV;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +29,17 @@ import java.util.List;
  */
 public class ControllerListerMsgProgContact extends ControllerHeader {
 
-    private static ModelMsgProg valeurSelectionnee;
     private DAOMsgProgxContacts daoMsgProgxContacts;
+    private static ModelContact modelContact;
     private ListView l;
+
+    public static ModelContact getModelContact() {
+        return modelContact;
+    }
+
+    public static void setModelContact(ModelContact modelContact) {
+        ControllerListerMsgProgContact.modelContact = modelContact;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,7 +58,7 @@ public class ControllerListerMsgProgContact extends ControllerHeader {
 
         List affiche = new ArrayList();
 
-        DAOMsgProg daoMsgProg = new DAOMsgProg(this);
+        final DAOMsgProg daoMsgProg = new DAOMsgProg(this);
         DAOContact daoContact = new DAOContact(this);
 
         for (ModelMsgProgxContacts m : values) {
@@ -55,28 +72,34 @@ public class ControllerListerMsgProgContact extends ControllerHeader {
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, affiche);
         l.setAdapter(adapter);
 
-        /*l.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        l.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                valeurSelectionnee = (ModelRDV) l.getAdapter().getItem(position);
-                ControllerListerRDV.setValeurSelectionnee(valeurSelectionnee);
-                AlertDialog alertDialog = new AlertDialog.Builder(ControllerListerRDVContact.this).create();
-                alertDialog.setTitle(valeurSelectionnee.getNom());
-                alertDialog.setButton(Dialog.BUTTON1, "Modifier", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(ControllerListerRDVContact.this, ControllerModifierRDV.class);
-                        startActivity(intent);
-                    }
-                });
+                Log.i("test", ""+ l.getAdapter().getItem(position));
+                String[] split = l.getAdapter().getItem(position).toString().split("\n");
+                DAOContact daoContact = new DAOContact(getBaseContext());
+                ControllerListerMsgProgContact.setModelContact(daoContact.getContact(split[1]));
+                AlertDialog alertDialog = new AlertDialog.Builder(ControllerListerMsgProgContact.this).create();
                 alertDialog.setButton(Dialog.BUTTON2, "Supprimer", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        supprimerRDV(null);
+                        supprimer(null);
                     }
                 });
+
                 alertDialog.show();
 
-                Log.i("RDV A DELETE", "" + values.get(position).toString() + "");
                 return false;
             }
-        });*/
-    }}
+        });
+    }
+
+      public void supprimer(View view){
+        ArrayAdapter<ModelContact> adapter = (ArrayAdapter<ModelContact>) l.getAdapter();
+        boolean delete = daoMsgProgxContacts.deleteMsgProgxC(ControllerListerMsgProgContact.getModelContact().getId());
+        if(delete){
+            Toast.makeText(getApplicationContext(), getResources().getString(R.string.rdv_supprime, getModelContact().getContact()), Toast.LENGTH_SHORT).show();
+        }
+        adapter.remove(getModelContact());
+        adapter.notifyDataSetChanged();
+    }
+}
