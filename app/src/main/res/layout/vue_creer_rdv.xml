@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:background="#FC9"
+        android:background="#FFFFFF"
         android:gravity="center">
 
         <include
@@ -32,7 +32,8 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical"
-            android:weightSum="1">
+            android:weightSum="1"
+            android:background="#486e76">
 
 
             <TextView
@@ -40,23 +41,24 @@
                 android:layout_height="60dp"
                 android:gravity="center"
                 android:text="Nom : "
-                android:textColor="#FF0000"
+                android:textColor="#FFFFFF"
                 android:textSize="18dp"
                 android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/nom_rdv"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="37dp"
                 android:hint="Nom"
-                android:inputType="text" />
+                android:inputType="text"
+                android:background="#ffffffff" />
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="60dp"
                 android:gravity="center"
                 android:text="date : "
-                android:textColor="#FF0000"
+                android:textColor="#FFFFFF"
                 android:textSize="18dp"
                 android:textStyle="bold" />
 
@@ -72,24 +74,26 @@
                 <EditText
                     android:id="@+id/editDate"
                     android:layout_width="250dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
                     android:layout_marginLeft="5dp"
                     android:editable="true"
                     android:hint="DD/MM/YYYY"
-                    android:inputType="date"></EditText>
+                    android:inputType="date"
+                    android:background="#ffffffff"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentTop="true"></EditText>
 
                 <ImageButton
                     android:id="@+id/date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
-                    android:layout_alignParentTop="true"
                     android:layout_toRightOf="@+id/editDate"
                     android:cropToPadding="true"
                     android:onClick="ajouterDate"
-                    android:src="@drawable/ic_calendar" />
+                    android:src="@drawable/ic_calendar"
+                    android:layout_alignTop="@+id/editDate" />
 
 
             </RelativeLayout>
@@ -100,7 +104,7 @@
                 android:layout_height="60dp"
                 android:gravity="center"
                 android:text="heure : "
-                android:textColor="#FF0000"
+                android:textColor="#FFFFFF"
                 android:textSize="18dp"
                 android:textStyle="bold"></TextView>
 
@@ -121,17 +125,20 @@
                     android:layout_marginLeft="5dp"
                     android:editable="true"
                     android:hint="HH:MM"
-                    android:inputType="datetime" />
+                    android:inputType="datetime"
+                    android:background="#ffffffff"
+                    android:layout_alignParentBottom="true" />
 
                 <ImageButton
                     android:id="@+id/heure"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
                     android:layout_toRightOf="@+id/editHeure"
                     android:cropToPadding="true"
                     android:onClick="ajouterHeure"
-                    android:src="@drawable/ic_heure" />
+                    android:src="@drawable/ic_heure"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="true" />
             </RelativeLayout>
 
 
@@ -140,23 +147,24 @@
                 android:layout_height="60dp"
                 android:gravity="center"
                 android:text="Lieu : "
-                android:textColor="#FF0000"
+                android:textColor="#FFFFFF"
                 android:textSize="18dp"
                 android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/lieu_rdv"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="42dp"
                 android:hint="Lieu"
-                android:inputType="text" />
+                android:inputType="text"
+                android:background="#ffffffff" />
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="60dp"
                 android:gravity="center"
                 android:text="Mode du téléphone pendant le RDV : "
-                android:textColor="#FF0000"
+                android:textColor="#FFFFFF"
                 android:textSize="18dp"
                 android:textStyle="bold" />
 
