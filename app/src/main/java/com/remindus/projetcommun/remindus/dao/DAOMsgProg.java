@@ -139,8 +139,12 @@ public class DAOMsgProg extends IDAO{
         getCrud().open();
         String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MSG_PROG + " WHERE " + MySQLiteHelper.COLUMN_ID_MSG_PROG + " = " + id;
         Cursor cursor = getCrud().getDatabase().rawQuery(sql, null);
-        getCrud().close();
-        return this.cursorToMsgProg(cursor);
+        ModelMsgProg modelMsgProg = new ModelMsgProg();
+        while (cursor.moveToNext()) {
+            modelMsgProg = cursorToMsgProg(cursor);
+        }
+        cursor.close();
+        return modelMsgProg;
     }
 
     public ModelMsgProg getMsgProg(String titre) {

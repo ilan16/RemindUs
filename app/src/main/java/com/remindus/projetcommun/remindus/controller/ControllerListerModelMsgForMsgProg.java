@@ -38,6 +38,7 @@ public class ControllerListerModelMsgForMsgProg extends ControllerHeader {
     private static ModelModelMsg modelModelMsg;
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vue_afficher_msg_modele);
