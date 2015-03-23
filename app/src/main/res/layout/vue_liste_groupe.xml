@@ -45,27 +45,6 @@
                 android:textColor="#ffffffff"
                 android:layout_marginTop="30dp" />
 
-            <Button
-                android:id="@+id/bouton_modifier_groupe"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:onClick="redirectionGroupe"
-                android:text="@string/modifier_groupe"
-                android:background="@color/bleu_theme"
-                android:textColor="#ffffffff"
-                android:layout_marginTop="30dp" />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:onClick="supprimerGroupe"
-                android:text="Supprimer"
-                android:layout_marginTop="20dp"
-                android:background="@color/bleu_theme"
-                android:textColor="#ffffffff" />
-
             <ListView
                 android:id="@+id/sampleList"
                 android:layout_width="match_parent"

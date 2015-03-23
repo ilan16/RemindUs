@@ -162,17 +162,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
             </ScrollView>-->
-            <Button
-                android:id="@+id/valider"
-                android:layout_width="114dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="0.08"
-                android:onClick="creerRDV"
-                android:text="Valider"
-                android:layout_marginTop="20dp"
-                android:background="@color/bleu_theme"
-                android:textColor="#ffffffff" />
         </LinearLayout>
     </ScrollView>
+
+    <Button
+        android:id="@+id/valider"
+        android:layout_width="114dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="0.08"
+        android:onClick="creerRDV"
+        android:text="Suivant"
+        android:background="@color/bleu_theme"
+        android:textColor="#ffffffff"
+        android:layout_alignBottom="@+id/scroll"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="425dp"
+        android:layout_marginBottom="41dp" />
 </RelativeLayout>
