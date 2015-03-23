@@ -107,6 +107,10 @@ public class ControllerContact extends ControllerHeader {
                     }
                     long idcontact = modelContact.getId();
                     int insert = daordVxContacts.insertRDVxC(modelRDV.getId(), idcontact);
+                    if(count == values.size()){
+                        Intent intent = new Intent(ControllerContact.this, ControllerListerRDV.class);
+                        startActivity(intent);
+                    }
                 } else {
                     Intent intent = new Intent(ControllerContact.this, ControllerListerRDV.class);
                     startActivity(intent);
@@ -131,7 +135,10 @@ public class ControllerContact extends ControllerHeader {
 
                     long idcontact = modelContact.getId();
                     int insert = daoMsgProgxContacts.insertMsgProgxC(modelMsgProg.getId(), idcontact);
-
+                    if(count == values.size()){
+                        Intent intent = new Intent(ControllerContact.this, ControllerListerMsgProg.class);
+                        startActivity(intent);
+                    }
                 } else {
                     Intent intent = new Intent(ControllerContact.this, ControllerListerMsgProg.class);
                     startActivity(intent);
