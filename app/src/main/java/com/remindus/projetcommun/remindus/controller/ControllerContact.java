@@ -88,7 +88,7 @@ public class ControllerContact extends ControllerHeader {
         for (HashMap.Entry<CheckBox, TextView> hash : values.entrySet()) {
 
             //Pour savoir quel insert choisir, on vérifie quel page a appelé cette classe
-            if (!ControllerCreerRDV.getNomRDVstatic().equals("") || !ControllerListerRDV.getValeurSelectionnee().getNom().equals("")) { // sil s'agit de la classe RDV
+            if (!ControllerCreerRDV.getNomRDVstatic().equals("") || ControllerListerRDV.getValeurSelectionnee() != null) { // sil s'agit de la classe RDV
 
                 if (hash.getKey().isChecked()) {
                     count++;
@@ -129,7 +129,7 @@ public class ControllerContact extends ControllerHeader {
 
                     if (!ControllerCreerMsgProg.getTitreMsgProgStatic().equals("")) {
                         modelMsgProg = daoMsgProg.getIdMsgProg(ControllerCreerMsgProg.getTitreMsgProgStatic());
-                    } else if (!ControllerListerRDV.getValeurSelectionnee().equals("")) {
+                    } else if (!ControllerListerMsgProg.getValeurSelectionnee().getTitre().equals("")) {
                         modelMsgProg = daoMsgProg.getIdMsgProg(ControllerListerMsgProg.getValeurSelectionnee().getTitre());
                     }
 
