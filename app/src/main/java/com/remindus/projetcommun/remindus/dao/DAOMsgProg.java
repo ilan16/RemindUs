@@ -7,7 +7,10 @@ import android.util.Log;
 
 import com.remindus.projetcommun.remindus.basededonnees.MySQLiteHelper;
 import com.remindus.projetcommun.remindus.basededonnees.utilities.CRUD;
+import com.remindus.projetcommun.remindus.controller.UtilitaireDate;
+import com.remindus.projetcommun.remindus.model.ModelModelMsg;
 import com.remindus.projetcommun.remindus.model.ModelMsgProg;
+import com.remindus.projetcommun.remindus.model.ModelRDV;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -175,6 +178,19 @@ public class DAOMsgProg extends IDAO{
             cursor.close();
         }
         return false;
+    }
+
+    public ModelMsgProg prochainMsgProg() {
+        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MSG_PROG + " WHERE " + MySQLiteHelper.COLUMN_DATE_MSG_PROG + " >= "
+                + getUtilitaireDate().dateActuelle() + " ORDER BY " + MySQLiteHelper.COLUMN_DATE_MSG_PROG + " ASC";
+        getCrud().open();
+        Cursor cursor = getCrud().requeteGeneral(sql, null);
+        ModelMsgProg modelMsgProg = new ModelMsgProg();
+        while (cursor.moveToNext()) {
+            modelMsgProg = this.cursorToMsgProg(cursor);
+            break;
+        }
+        return modelMsgProg;
     }
 
 }

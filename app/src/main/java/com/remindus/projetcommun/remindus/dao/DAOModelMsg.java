@@ -104,6 +104,7 @@ public class DAOModelMsg extends IDAO {
         return modelModelMsgs;
     }
 
+
     public ModelModelMsg getModelMsg(int id) {
         getCrud().open();
         String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MODEL_MSG + " WHERE " + MySQLiteHelper.COLUMN_ID_MODEL_MSG + " = " + id;
@@ -116,10 +117,10 @@ public class DAOModelMsg extends IDAO {
         return modelModelMsg;
     }
 
-    public ModelModelMsg getGroupe(String titre) {
+    public ModelModelMsg getModelMsg(String titre) {
         getCrud().open();
-        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MODEL_MSG + " WHERE " + MySQLiteHelper.COLUMN_TITRE_MODEL_MSG + " = " + titre;
-        Cursor cursor = getCrud().getDatabase().rawQuery(sql, null);
+        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MODEL_MSG + " WHERE " + MySQLiteHelper.COLUMN_TITRE_MODEL_MSG + " =  ?";
+        Cursor cursor = getCrud().getDatabase().rawQuery(sql, new String[]{titre});
         ModelModelMsg modelModelMsg = new ModelModelMsg();
         while (cursor.moveToNext()) {
             modelModelMsg = cursorToModelMsg(cursor);

@@ -59,13 +59,6 @@ public class ControllerContact extends ControllerHeader {
     }
 
 
-    public void choisirCheckBox(View view) {
-
-        CheckBox cb = (CheckBox) view;
-        int position = Integer.parseInt(cb.getTag().toString());
-        Log.i("POSITION: ", "" + position);
-    }
-
     public void refreshContact(View view) {
         daoContact = new DAOContact(this);
         cursor1 = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC");
