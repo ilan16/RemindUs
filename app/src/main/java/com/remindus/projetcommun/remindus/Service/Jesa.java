@@ -11,10 +11,15 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.os.IBinder;
 import android.os.SystemClock;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.remindus.projetcommun.remindus.MainActivity;
 import com.remindus.projetcommun.remindus.R;
+import com.remindus.projetcommun.remindus.dao.DAOMsgProg;
+import com.remindus.projetcommun.remindus.dao.DAORDV;
+import com.remindus.projetcommun.remindus.model.ModelMsgProg;
+import com.remindus.projetcommun.remindus.model.ModelRDV;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -55,27 +60,34 @@ public class Jesa extends Service {
 
     @Override
     public void onStart(Intent intent, int startId) {
-        Intent myIntent = new Intent(Jesa.this, SmsService.class);
-        PendingIntent pendingIntent = PendingIntent.getService(Jesa.this, 0, myIntent, 0);
-        Intent myIntent2 = new Intent(getApplicationContext(), Jesa.class);
-        PendingIntent pendingIntent2 = PendingIntent.getService(getApplicationContext(), 0, myIntent2, 0);
-        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        DAOMsgProg daoMsgProg = new DAOMsgProg(this);
+        ModelMsgProg modelMsgProg = daoMsgProg.prochainMsgProg();
+        long date = modelMsgProg.getDate();
+        Log.i("test2","test123456");
+        if(date!=0) {
 
-        Calendar cal = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
+            Intent myIntent = new Intent(Jesa.this, SmsService.class);
+            PendingIntent pendingIntent = PendingIntent.getService(Jesa.this, 0, myIntent, 0);
+            //Intent myIntent2 = new Intent(getApplicationContext(), Jesa.class);
+            //PendingIntent pendingIntent2 = PendingIntent.getService(getApplicationContext(), 0, myIntent2, 0);
+            AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+            /*Calendar cal = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
 //cal.add(Calendar.SECOND, 10);
 
-        cal.set(Calendar.DATE, 22);  //1-31
-        cal.set(Calendar.MONTH, 2);  //first month is 0!!! January is zero!!!
-        cal.set(Calendar.YEAR, 2015);//year...
+            cal.set(Calendar.DATE, 22);  //1-31
+            cal.set(Calendar.MONTH, 2);  //first month is 0!!! January is zero!!!
+            cal.set(Calendar.YEAR, 2015);//year...
 
-        cal.set(Calendar.HOUR_OF_DAY, 0);  //HOUR
-        cal.set(Calendar.MINUTE, 11);       //MIN
-        cal.set(Calendar.SECOND, 0);
+            cal.set(Calendar.HOUR_OF_DAY, 0);  //HOUR
+            cal.set(Calendar.MINUTE, 11);       //MIN
+            cal.set(Calendar.SECOND, 0);
 
-        //alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
-        alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 1000 * 30, pendingIntent);
-        alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 1000 * 30, pendingIntent2);
-
+            //alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);*/
+            alarmManager.set(AlarmManager.RTC_WAKEUP, date, pendingIntent);
+            // alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 1000 * 60, pendingIntent2);
+            //Jesa.this.stopService(myIntent);
+        }
     }
 
     @Override
