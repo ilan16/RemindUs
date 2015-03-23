@@ -2,15 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:baselineAligned="false"
-    android:clickable="false"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-
 
         <Button
             android:layout_width="250dp"
@@ -27,26 +23,24 @@
 
 
     <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="160dp">
 
 
         <Button
             android:id="@+id/bouton_rdv"
             android:layout_width="160dp"
-            android:layout_height="160dp"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
             android:background="@drawable/rdv"
             android:gravity="bottom|center"
             android:text="@string/titre_RDV"
             android:textColor="#ffffffff" />
 
-
-
         <Button
             android:id="@+id/bouton_msg_prog"
             android:layout_width="160dp"
-            android:layout_height="160dp"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
             android:background="@drawable/prog"
             android:gravity="bottom|center"
@@ -57,13 +51,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="160dp">
 
 
         <Button
             android:id="@+id/bouton_calendrier"
             android:layout_width="160dp"
-            android:layout_height="160dp"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
             android:background="@drawable/calendrier"
             android:gravity="bottom|center"
@@ -73,7 +67,7 @@
         <Button
             android:id="@+id/bouton_groupe"
             android:layout_width="160dp"
-            android:layout_height="160dp"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
             android:background="@drawable/groupe"
             android:gravity="bottom|center"
@@ -84,13 +78,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="160dp">
 
 
         <Button
             android:id="@+id/bouton_contact"
             android:layout_width="160dp"
-            android:layout_height="160dp"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
             android:background="@drawable/contact"
             android:gravity="bottom|center"
@@ -100,7 +94,7 @@
         <Button
             android:id="@+id/bouton_model_msg"
             android:layout_width="160dp"
-            android:layout_height="160dp"
+            android:layout_height="fill_parent"
             android:layout_weight="1"
             android:background="@drawable/modele"
             android:gravity="bottom|center"
@@ -111,8 +105,8 @@
 
     <Button
         android:id="@+id/bouton_parametre"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:background="@drawable/parametre"
         android:text="@string/titre_parametre"
         android:textColor="#ffffffff" />
