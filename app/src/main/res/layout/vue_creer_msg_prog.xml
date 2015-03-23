@@ -38,7 +38,7 @@
             <EditText
                 android:id="@+id/titre_msg_prog"
                 android:layout_width="330dp"
-                android:layout_height="wrap_content"
+                android:layout_height="fill_parent"
                 android:hint="Titre"
 
                 android:inputType="text"
@@ -49,7 +49,7 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:id="@+id/layoutDate"
                 android:layout_width="330dp"
-                android:layout_height="wrap_content"
+                android:layout_height="fill_parent"
                 tools:context=".MainActivity"
 
                 android:layout_gravity="center"
@@ -63,18 +63,18 @@
                     android:editable="true"
                     android:inputType="date"
                     android:hint="Date (DD/MM/YY)"
-                    android:layout_alignParentStart="true"></EditText>
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@+id/date"></EditText>
 
                 <ImageButton
                     android:id="@+id/date"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_toEndOf="@+id/editDate"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:cropToPadding="true"
                     android:onClick="ajouterDate"
                     android:background="@drawable/calendar"
-                    android:layout_alignBottom="@+id/editDate" />
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true" />
 
 
             </RelativeLayout>
@@ -84,7 +84,7 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:id="@+id/layoutHeure"
                 android:layout_width="330dp"
-                android:layout_height="wrap_content"
+                android:layout_height="fill_parent"
                 tools:context=".MainActivity"
                 android:layout_gravity="center"
                 android:layout_marginTop="40dp">
@@ -97,7 +97,8 @@
                     android:layout_alignParentTop="true"
                     android:editable="true"
                     android:hint="Heure (HH:MM)"
-                    android:inputType="datetime" />
+                    android:inputType="datetime"
+                    android:layout_toStartOf="@+id/heure" />
 
                 <ImageButton
                     android:id="@+id/heure"
@@ -105,9 +106,9 @@
                     android:layout_height="40dp"
                     android:cropToPadding="true"
                     android:onClick="ajouterHeure"
+                    android:background="@drawable/clock"
                     android:layout_alignParentTop="true"
-                    android:layout_toEndOf="@+id/editHeure"
-                    android:background="@drawable/clock" />
+                    android:layout_alignParentEnd="true" />
             </RelativeLayout>
 
 
@@ -115,7 +116,7 @@
    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="330dp"
-                android:layout_height="wrap_content"
+                android:layout_height="fill_parent"
        android:layout_gravity="center"
        android:layout_marginTop="40dp">
 
@@ -130,8 +131,8 @@
                 android:layout_toStartOf="@+id/imageButton" />
 
             <ImageButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:id="@+id/imageButton"
                 android:layout_alignParentEnd="true"
                 android:background="@drawable/add"
