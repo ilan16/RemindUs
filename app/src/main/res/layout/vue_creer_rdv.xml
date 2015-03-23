@@ -136,47 +136,22 @@
                     android:layout_height="wrap_content"
                     android:text="@string/normal" />
             </RadioGroup>
-            <!--<TextView
-            android:layout_width="fill_parent"
-            android:layout_height="60dp"
-            android:gravity="center"
-            android:text="Contact : "
-            android:textColor="#FF0000"
-            android:textSize="18dp"
-            android:textStyle="bold" />
-            <EditText
-            android:id="@+id/contact"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:hint="contact"
-            android:inputType="textMultiLine" />-->
-            <!--<ListView-->
-            <!--android:id="@android:id/list"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content" />-->
-            <!--<ScrollView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <ListView
-            android:id="@+id/listeContact"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-            </ScrollView>-->
+
+
+            <Button
+                android:id="@+id/valider"
+                android:layout_width="114dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:onClick="creerRDV"
+                android:text="Suivant"
+                android:background="@color/bleu_theme"
+                android:textColor="#ffffffff"
+                android:layout_alignBottom="@+id/scroll"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="20dp" />
+
         </LinearLayout>
     </ScrollView>
 
-    <Button
-        android:id="@+id/valider"
-        android:layout_width="114dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="0.08"
-        android:onClick="creerRDV"
-        android:text="Suivant"
-        android:background="@color/bleu_theme"
-        android:textColor="#ffffffff"
-        android:layout_alignBottom="@+id/scroll"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="425dp"
-        android:layout_marginBottom="41dp" />
 </RelativeLayout>
