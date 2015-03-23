@@ -86,16 +86,15 @@ public class ControllerContact extends ControllerHeader {
         final HashMap<CheckBox, TextView> values = adapter.getListChecked();
         int count = 0;
         for (HashMap.Entry<CheckBox, TextView> hash : values.entrySet()) {
-            String[] split = hash.getValue().getText().toString().split("\n");
-            this.daoContact = new DAOContact(this);
-            ModelContact modelContact = this.daoContact.getContact(split[1]);
 
-            if (!ControllerCreerRDV.getNomRDVstatic().equals("") || !ControllerListerRDV.getValeurSelectionnee().equals("")) { // sil s'agit de la classe RDV
+            //Pour savoir quel insert choisir, on vérifie quel page a appelé cette classe
+            if (!ControllerCreerRDV.getNomRDVstatic().equals("") || !ControllerListerRDV.getValeurSelectionnee().getNom().equals("")) { // sil s'agit de la classe RDV
 
                 if (hash.getKey().isChecked()) {
                     count++;
-
-                    //Pour savoir quel insert choisir, on vérifie quel page a appelé cette classe
+                    String[] split = hash.getValue().getText().toString().split(" - ");
+                    this.daoContact = new DAOContact(this);
+                    ModelContact modelContact = this.daoContact.getContact(split[1]);
 
                     Log.i("contact rdv", "" + modelContact.getId() + " " + modelContact.getContact());
                     DAORDVxContacts daordVxContacts = new DAORDVxContacts(this);
@@ -103,7 +102,7 @@ public class ControllerContact extends ControllerHeader {
                     ModelRDV modelRDV = new ModelRDV();
                     if (!ControllerCreerRDV.getNomRDVstatic().equals("")) {
                         modelRDV = daordv.getIdRDV(ControllerCreerRDV.getNomRDVstatic());
-                    } else if (!ControllerListerRDV.getValeurSelectionnee().equals("")) {
+                    } else if (!ControllerListerRDV.getValeurSelectionnee().getNom().equals("")) {
                         modelRDV = daordv.getIdRDV(ControllerListerRDV.getValeurSelectionnee().getNom());
                     }
                     long idcontact = modelContact.getId();
@@ -114,22 +113,29 @@ public class ControllerContact extends ControllerHeader {
                 }
 
             } else if (!ControllerCreerMsgProg.getTitreMsgProgStatic().equals("") || !ControllerListerMsgProg.getValeurSelectionnee().equals("")) { //sil s'agit de la classe msg prog
-                DAOMsgProgxContacts daoMsgProgxContacts = new DAOMsgProgxContacts(this);
-                DAOMsgProg daoMsgProg = new DAOMsgProg(this);
-                ModelMsgProg modelMsgProg = new ModelMsgProg();
+                if (hash.getKey().isChecked()) {
+                    count++;
+                    String[] split = hash.getValue().getText().toString().split(" - ");
+                    this.daoContact = new DAOContact(this);
+                    ModelContact modelContact = this.daoContact.getContact(split[1]);
 
-                if (!ControllerCreerMsgProg.getTitreMsgProgStatic().equals("")) {
-                    modelMsgProg = daoMsgProg.getIdMsgProg(ControllerCreerMsgProg.getTitreMsgProgStatic());
-                } else if (!ControllerListerRDV.getValeurSelectionnee().equals("")) {
-                    modelMsgProg = daoMsgProg.getIdMsgProg(ControllerListerMsgProg.getValeurSelectionnee().getTitre());
+                    DAOMsgProgxContacts daoMsgProgxContacts = new DAOMsgProgxContacts(this);
+                    DAOMsgProg daoMsgProg = new DAOMsgProg(this);
+                    ModelMsgProg modelMsgProg = new ModelMsgProg();
+
+                    if (!ControllerCreerMsgProg.getTitreMsgProgStatic().equals("")) {
+                        modelMsgProg = daoMsgProg.getIdMsgProg(ControllerCreerMsgProg.getTitreMsgProgStatic());
+                    } else if (!ControllerListerRDV.getValeurSelectionnee().equals("")) {
+                        modelMsgProg = daoMsgProg.getIdMsgProg(ControllerListerMsgProg.getValeurSelectionnee().getTitre());
+                    }
+
+                    long idcontact = modelContact.getId();
+                    int insert = daoMsgProgxContacts.insertMsgProgxC(modelMsgProg.getId(), idcontact);
+
+                } else {
+                    Intent intent = new Intent(ControllerContact.this, ControllerListerMsgProg.class);
+                    startActivity(intent);
                 }
-
-                long idcontact = modelContact.getId();
-                int insert = daoMsgProgxContacts.insertMsgProgxC(modelMsgProg.getId(), idcontact);
-
-            } else {
-                Intent intent = new Intent(ControllerContact.this, ControllerListerMsgProg.class);
-                startActivity(intent);
             }
         }
     }

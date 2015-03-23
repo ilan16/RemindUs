@@ -55,7 +55,8 @@ public class ControllerListerRDVContact extends ControllerHeader {
 
         DAORDV daordv = new DAORDV(this);
         List<ModelRDVxContacts> values = null;
-        if (!ControllerListerRDV.getValeurSelectionnee().equals("")) {
+        Log.i("lrdvc", ""+ControllerListerRDV.getValeurSelectionnee().getNom());
+        if (!ControllerListerRDV.getValeurSelectionnee().getNom().equals("")) {
             values = daordVxContacts.getAllRDVxC(ControllerListerRDV.getValeurSelectionnee().getId());
         } else if (!ControllerCreerRDV.getNomRDVstatic().equals("")) {
             values = daordVxContacts.getAllRDVxC(daordv.getIdRDV(ControllerCreerRDV.getNomRDVstatic()).getId());

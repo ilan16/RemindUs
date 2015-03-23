@@ -98,10 +98,6 @@ public class ControllerListerGroupe extends ControllerHeader {
                 intent = new Intent(ControllerListerGroupe.this, ControllerCreerGroupe.class);
                 startActivity(intent);
                 break;
-            case R.id.bouton_modifier_groupe:
-                intent = new Intent(ControllerListerGroupe.this, ControllerModifierGroupe.class);
-                startActivity(intent);
-                break;
         }
     }
 
