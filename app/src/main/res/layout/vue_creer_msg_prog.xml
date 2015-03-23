@@ -43,7 +43,7 @@
 
                 android:inputType="text"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp" />
+                android:layout_marginTop="40dp" />
 
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
@@ -53,7 +53,7 @@
                 tools:context=".MainActivity"
 
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="40dp">
 
                 <EditText
                     android:id="@+id/editDate"
@@ -67,13 +67,14 @@
 
                 <ImageButton
                     android:id="@+id/date"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_alignParentTop="true"
                     android:layout_toEndOf="@+id/editDate"
                     android:cropToPadding="true"
                     android:onClick="ajouterDate"
-                    android:background="@drawable/calendar" />
+                    android:background="@drawable/calendar"
+                    android:layout_alignBottom="@+id/editDate" />
 
 
             </RelativeLayout>
@@ -86,7 +87,7 @@
                 android:layout_height="wrap_content"
                 tools:context=".MainActivity"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="40dp">
 
                 <EditText
                     android:id="@+id/editHeure"
@@ -110,6 +111,14 @@
             </RelativeLayout>
 
 
+
+   <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+       android:layout_gravity="center"
+       android:layout_marginTop="40dp">
+
             <EditText
                 android:id="@+id/message_msg_prog"
                 android:layout_width="330dp"
@@ -117,8 +126,19 @@
                 android:hint="Message"
                 android:inputType="textMultiLine"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp" />
+                android:layout_marginTop="20dp"
+                android:layout_toStartOf="@+id/imageButton" />
 
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/imageButton"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/add"
+                android:onClick="redirectionMsgModele"
+                android:layout_alignParentBottom="true" />
+
+    </RelativeLayout>
 
             <Button
                 android:id="@+id/valider"
@@ -135,4 +155,6 @@
 
         </LinearLayout>
     </ScrollView>
+
+
 </RelativeLayout>

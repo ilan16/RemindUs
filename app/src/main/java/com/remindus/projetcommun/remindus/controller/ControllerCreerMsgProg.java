@@ -172,6 +172,10 @@ public class ControllerCreerMsgProg extends ControllerHeader {
     }
 
 
+    public void redirectionMsgModele(View view) throws ParseException {
 
+        Intent intent = new Intent(this,ControllerListerModelMsg.class);
+        startActivity(intent);
+    }
 
 }
