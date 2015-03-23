@@ -4,7 +4,9 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -32,14 +34,7 @@ public class ControllerCreerMsgProg extends ControllerHeader {
     // Variable for storing current date and time
     private int mYear, mMonth, mDay, mHour, mMinute;
     private static String titreMsgProgStatic;
-
-    public static String getTitreMsgProgStatic() {
-        return titreMsgProgStatic;
-    }
-
-    public static void setTitreMsgProgStatic(String titreMsgProgStatic) {
-        ControllerCreerMsgProg.titreMsgProgStatic = titreMsgProgStatic;
-    }
+    private static String[] contenuForm;
 
     /**
      * Called when the activity is first created.
@@ -57,6 +52,13 @@ public class ControllerCreerMsgProg extends ControllerHeader {
         editTitre = (EditText) findViewById(R.id.titre_msg_prog);
         editContenu = (EditText) findViewById(R.id.message_msg_prog);
 
+        if(ControllerListerModelMsgForMsgProg.getModelModelMsg() != null && getContenuForm().length > 0) {
+            Log.i("merde2", "okok");
+            editTitre.setText((CharSequence) getContenuForm()[0]);
+            editDate.setText((CharSequence) getContenuForm()[1]);
+            editHeure.setText((CharSequence) getContenuForm()[2]);
+            editContenu.setText((CharSequence) ControllerListerModelMsgForMsgProg.getModelModelMsg().getContenu());
+        }
         // on remet nom rdv vide dans le cas ou l'utilisateur veut creer un rdv et un msg prog dans la mm session
         ControllerCreerRDV.setNomRDVstatic("");
         ControllerListerRDV.setValeurSelectionnee(null);
@@ -120,10 +122,12 @@ public class ControllerCreerMsgProg extends ControllerHeader {
     }
 
     public void creerMsgProg(View view) throws ParseException {
+
         String titre = editTitre.getText().toString();
-        String date = editDate.getText().toString();
-        String heure = editHeure.getText().toString();
-        String contenu = editContenu.getText().toString();
+            String date = editDate.getText().toString();
+            String heure = editHeure.getText().toString();
+            String contenu = editContenu.getText().toString();
+
 
         if (this.verifierDate()) {
 
@@ -173,9 +177,28 @@ public class ControllerCreerMsgProg extends ControllerHeader {
 
 
     public void redirectionMsgModele(View view) throws ParseException {
-
-        Intent intent = new Intent(this,ControllerListerModelMsgForMsgProg.class);
+        String titre = editTitre.getText().toString();
+        String date = editDate.getText().toString();
+        String heure = editHeure.getText().toString();
+        setContenuForm(new String[]{titre, date, heure});
+        ControllerCreerMsgProg.this.finish();
+        Intent intent = new Intent(ControllerCreerMsgProg.this,ControllerListerModelMsgForMsgProg.class);
         startActivity(intent);
     }
 
+    public static String getTitreMsgProgStatic() {
+        return titreMsgProgStatic;
+    }
+
+    public static void setTitreMsgProgStatic(String titreMsgProgStatic) {
+        ControllerCreerMsgProg.titreMsgProgStatic = titreMsgProgStatic;
+    }
+
+    public static String[] getContenuForm() {
+        return contenuForm;
+    }
+
+    public static void setContenuForm(String[] contenuForm) {
+        ControllerCreerMsgProg.contenuForm = contenuForm;
+    }
 }

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -33,7 +34,8 @@ public class ControllerListerModelMsgForMsgProg extends ControllerHeader {
     private ListView lv;
     private Cursor cursor1;
     private DAOModelMsg daoModelMsg;
-    private CustomAdapterMsgModele adapter = null;
+    private ArrayAdapter<ModelModelMsg> adapter = null;
+    private static ModelModelMsg modelModelMsg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,45 +50,28 @@ public class ControllerListerModelMsgForMsgProg extends ControllerHeader {
         daoModelMsg.getCrud().open();
 
         final List<ModelModelMsg> values = daoModelMsg.getAllModelMsg();
-        lv = (ListView) findViewById(R.id.sampleList);
+        lv = (ListView) findViewById(R.id.sampleListRadio);
 
-        adapter = new CustomAdapterMsgModele(this, R.layout.vue_afficher_msg_modele, values);
+        adapter = new ArrayAdapter<ModelModelMsg>(this, android.R.layout.simple_list_item_single_choice, values);
         lv.setAdapter(adapter);
 
         adapter.notifyDataSetChanged();
 
     }
 
+    public void valider(View view) {
+        int idSelectionne = lv.getCheckedItemPosition();
+        setModelModelMsg(adapter.getItem(idSelectionne));
+        ControllerListerModelMsgForMsgProg.this.finish();
+        Intent intent = new Intent(ControllerListerModelMsgForMsgProg.this,ControllerCreerMsgProg.class);
+        startActivity(intent);
+    }
 
-    /*public void ajouterContact(View view) {
-        final HashMap<RadioButton, TextView> values = adapter.getListChecked();
-        int count = 0;
-        for (HashMap.Entry<RadioButton, TextView> hash : values.entrySet()) {
+    public static ModelModelMsg getModelModelMsg() {
+        return modelModelMsg;
+    }
 
-            if (hash.getKey().isChecked()) {
-                count++;
-                String[] split = hash.getValue().getText().toString().split(" - ");
-                this.daoModelMsg = new DAOModelMsg(this);
-                ModelModelMsg modelModelMsg = this.daoModelMsg.getModelMsg(split[0]);
-
-                DAORDVxContacts daordVxContacts = new DAORDVxContacts(this);
-                DAORDV daordv = new DAORDV(this);
-                ModelRDV modelRDV = new ModelRDV();
-                if (!ControllerCreerRDV.getNomRDVstatic().equals("")) {
-                    modelRDV = daordv.getIdRDV(ControllerCreerRDV.getNomRDVstatic());
-                } else if (!ControllerListerRDV.getValeurSelectionnee().getNom().equals("")) {
-                    modelRDV = daordv.getIdRDV(ControllerListerRDV.getValeurSelectionnee().getNom());
-                }
-                long idcontact = modelModelMsg.getId();
-                int insert = daordVxContacts.insertRDVxC(modelRDV.getId(), idcontact);
-                if (count == values.size()) {
-                    Intent intent = new Intent(ControllerContact.this, ControllerListerRDV.class);
-                    startActivity(intent);
-                }
-            } else {
-                Intent intent = new Intent(ControllerContact.this, ControllerListerRDV.class);
-                startActivity(intent);
-            }
-        }
-    }*/
+    public static void setModelModelMsg(ModelModelMsg modelModelMsg) {
+        ControllerListerModelMsgForMsgProg.modelModelMsg = modelModelMsg;
+    }
 }

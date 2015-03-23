@@ -39,6 +39,7 @@
         <activity android:name=".controller.ControllerListerMsgProg" />
         <activity android:name=".controller.ControllerListerMsgProgContact"/>
         <activity android:name=".controller.ControllerModifierMsgProg" />
+        <activity android:name=".controller.ControllerListerModelMsgForMsgProg"/>
         <activity
             android:name=".controller.ControllerCreerModelMsg"
             android:label="@string/titre_model_msg_creer" />
