@@ -24,7 +24,7 @@ import java.util.Calendar;
  */
 public class ControllerModifierRDV extends ControllerHeader {
 
-    private EditText nomEdit, dateEdit, heureEdit, lieuEdit;
+    private EditText nomEdit, dateEdit, heureDebutEdit, heureFinEdit, lieuEdit;
     private RadioButton normal, silencieux, vibreur;
     private int mYear, mMonth, mDay, mHour, mMinute;
     private UtilitaireDate utilitaireDate;
@@ -39,7 +39,8 @@ public class ControllerModifierRDV extends ControllerHeader {
 
         nomEdit = (EditText) findViewById(R.id.nom_rdv);
         dateEdit = (EditText) findViewById(R.id.editDate);
-        heureEdit = (EditText) findViewById(R.id.editHeure);
+        heureDebutEdit = (EditText) findViewById(R.id.editHeureDebut);
+        heureFinEdit = (EditText) findViewById(R.id.editHeureFin);
         lieuEdit = (EditText) findViewById(R.id.lieu_rdv);
         normal = (RadioButton) findViewById(R.id.radio_normal);
         silencieux = (RadioButton) findViewById(R.id.radio_silencieux);
@@ -47,7 +48,8 @@ public class ControllerModifierRDV extends ControllerHeader {
 
         nomEdit.setText((CharSequence) ControllerListerRDV.getValeurSelectionnee().getNom());
         dateEdit.setText((CharSequence) ControllerListerRDV.getValeurSelectionnee().getDateString());
-        heureEdit.setText((CharSequence) utilitaireDate.convertirLongDateString(ControllerListerRDV.getValeurSelectionnee().getDate(), "HH:mm"));
+        heureDebutEdit.setText((CharSequence) utilitaireDate.convertirLongDateString(ControllerListerRDV.getValeurSelectionnee().getDatedebut(), "HH:mm"));
+        heureFinEdit.setText((CharSequence) utilitaireDate.convertirLongDateString(ControllerListerRDV.getValeurSelectionnee().getDatefin(), "HH:mm"));
         lieuEdit.setText((CharSequence) ControllerListerRDV.getValeurSelectionnee().getLieu());
 
         if (ControllerListerRDV.getValeurSelectionnee().getMode() == 0) {
@@ -71,13 +73,14 @@ public class ControllerModifierRDV extends ControllerHeader {
         this.daordv = new DAORDV(this);
         String nom = nomEdit.getText().toString();
         String date = dateEdit.getText().toString();
-        String heure = heureEdit.getText().toString();
+        String heuredebut = heureDebutEdit.getText().toString();
+        String heurefin = heureFinEdit.getText().toString();
         String lieu = lieuEdit.getText().toString();
         long mode = 0;
 
         if (this.verifierDate()) {
 
-            if (this.verifierHeure()) {
+            if (this.verifierHeure(heureDebutEdit) && this.verifierHeure(heureFinEdit)) {
 
                 if (!nom.equals("")) {
 
@@ -91,11 +94,13 @@ public class ControllerModifierRDV extends ControllerHeader {
                             mode = 2;
                         }
 
-                        String dateRDV = date + "-" + heure;
                         utilitaireDate = new UtilitaireDate();
-                        long dateLong = utilitaireDate.convertirStringDateEnLong(dateRDV);
+                        String dateRDVdebut = date + "-" + heuredebut;
+                        long dateDebutLong = utilitaireDate.convertirStringDateEnLong(dateRDVdebut);
+                        String dateRDVfin = date + "-" + heurefin;
+                        long dateFinLong = utilitaireDate.convertirStringDateEnLong(dateRDVfin);
 
-                        int update = this.daordv.updateRDV(ControllerListerRDV.getValeurSelectionnee(), nom, dateLong, date, lieu, mode);
+                        int update = this.daordv.updateRDV(ControllerListerRDV.getValeurSelectionnee(), nom, dateDebutLong, dateFinLong, date, lieu, mode);
 
                         if (update == 0) {
                             Toast.makeText(getApplicationContext(), getResources().getString(R.string.rdv_modifie, ControllerListerRDV.getValeurSelectionnee().getNom()), Toast.LENGTH_SHORT).show();
@@ -119,7 +124,13 @@ public class ControllerModifierRDV extends ControllerHeader {
     }
 
 
-    public void ajouterHeure(View v) {
+    public boolean verifierHeure(EditText heure) {
+        ValidatorHeure validatorHeure = new ValidatorHeure();
+        return validatorHeure.validate(heure.getText().toString());
+    }
+
+
+    public void ajouterHeureDebut(View v) {
 
         // Process to get Current Time
         final Calendar c = Calendar.getInstance();
@@ -146,7 +157,40 @@ public class ControllerModifierRDV extends ControllerHeader {
                         }else{
                             minuteString = ""+minute;
                         }
-                        heureEdit.setText(hourString + ":" + minuteString);
+                        heureDebutEdit.setText(hourString + ":" + minuteString);
+                    }
+                }, mHour, mMinute, true);
+        tpd.show();
+    }
+
+    public void ajouterHeureFin(View v) {
+
+        // Process to get Current Time
+        final Calendar c = Calendar.getInstance();
+        mHour = c.get(Calendar.HOUR_OF_DAY);
+        mMinute = c.get(Calendar.MINUTE);
+
+        // Launch Time Picker Dialog
+        TimePickerDialog tpd = new TimePickerDialog(this,
+                new TimePickerDialog.OnTimeSetListener() {
+
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay,
+                                          int minute) {
+                        // Display Selected time in textboxi
+                        String hourString = null;
+                        String minuteString = null;
+                        if(hourOfDay<10){
+                            hourString = "0"+hourOfDay;
+                        }else {
+                            hourString = ""+hourOfDay;
+                        }
+                        if(minute<10){
+                            minuteString = "0"+minute;
+                        }else{
+                            minuteString = ""+minute;
+                        }
+                        heureFinEdit.setText(hourString + ":" + minuteString);
                     }
                 }, mHour, mMinute, true);
         tpd.show();
@@ -179,13 +223,6 @@ public class ControllerModifierRDV extends ControllerHeader {
         ValidatorDate validatorDate = new ValidatorDate();
         return validatorDate.validate(dateEdit.getText().toString());
     }
-
-    public boolean verifierHeure() {
-        ValidatorHeure validatorHeure = new ValidatorHeure();
-        return validatorHeure.validate(heureEdit.getText().toString());
-    }
-
-
 
 }
 

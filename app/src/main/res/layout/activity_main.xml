@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:orientation="vertical">
 
     <LinearLayout
@@ -10,7 +10,7 @@
 
         <Button
             android:layout_width="250dp"
-            android:layout_height="40dp"
+            android:layout_height="60dp"
             android:layout_weight="1"
             android:text="REMIND US"
             android:gravity="center"
@@ -24,13 +24,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="160dp">
+        android:layout_height="170dp">
 
 
         <Button
             android:id="@+id/bouton_rdv"
             android:layout_width="160dp"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/rdv"
             android:gravity="bottom|center"
@@ -51,13 +51,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="160dp">
+        android:layout_height="180dp">
 
 
         <Button
             android:id="@+id/bouton_calendrier"
             android:layout_width="160dp"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/calendrier"
             android:gravity="bottom|center"
@@ -65,20 +65,21 @@
             android:textColor="#ffffffff" />
 
         <Button
-            android:id="@+id/bouton_groupe"
-            android:layout_width="160dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
-            android:background="@drawable/groupe"
-            android:gravity="bottom|center"
-            android:text="@string/titre_groupe"
-            android:textColor="#ffffffff" />
+        android:id="@+id/bouton_model_msg"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/modele"
+        android:gravity="bottom|center"
+        android:text="@string/titre_model_msg"
+        android:textColor="#ffffffff" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="160dp">
+        android:layout_height="match_parent">
+
 
 
         <Button
@@ -91,24 +92,18 @@
             android:text="@string/titre_contact"
             android:textColor="#ffffffff" />
 
+
         <Button
-            android:id="@+id/bouton_model_msg"
+            android:id="@+id/bouton_parametre"
             android:layout_width="160dp"
-            android:layout_height="fill_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/modele"
+            android:background="@drawable/parametre"
             android:gravity="bottom|center"
-            android:text="@string/titre_model_msg"
+            android:text="@string/titre_parametre"
             android:textColor="#ffffffff" />
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/bouton_parametre"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="@drawable/parametre"
-        android:text="@string/titre_parametre"
-        android:textColor="#ffffffff" />
 
 </LinearLayout>

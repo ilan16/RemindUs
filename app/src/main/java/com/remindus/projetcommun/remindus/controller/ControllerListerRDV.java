@@ -6,8 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,13 +13,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.remindus.projetcommun.remindus.R;
-import com.remindus.projetcommun.remindus.dao.DAOGroupe;
 import com.remindus.projetcommun.remindus.dao.DAORDV;
-import com.remindus.projetcommun.remindus.model.ModelGroupe;
 import com.remindus.projetcommun.remindus.model.ModelRDV;
 import com.tyczj.extendedcalendarview.CalendarProvider;
 
-import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -121,7 +116,7 @@ public class ControllerListerRDV extends ControllerHeader {
         System.out.println("année: " + annee + " mois: " + mois + " jour: " + jour);
 
         UtilitaireDate util_date = new UtilitaireDate();
-        String h = util_date.convertirLongDateString(rdv.getDate(),"HH:mm:ss");
+        String h = util_date.convertirLongDateString(rdv.getDatedebut(),"HH:mm:ss");
         System.out.println(h);
         String[] tab_heure = h.split(":");
 
@@ -135,7 +130,7 @@ public class ControllerListerRDV extends ControllerHeader {
         // Defines selection criteria for the rows you want to delete
         String mSelectionClause = CalendarProvider.LOCATION + " = ? AND "+ CalendarProvider.EVENT +" = ? AND "+CalendarProvider.START + " = ?";
         //String time = String.valueOf(cal.getTimeInMillis());
-        String[] mSelectionArgs = {rdv.getLieu(), rdv.getNom(), String.valueOf(rdv.getDate())};
+        String[] mSelectionArgs = {rdv.getLieu(), rdv.getNom(), String.valueOf(rdv.getDatedebut())};
 
         // Defines a variable to contain the number of rows deleted
         int mRowsDeleted = 0;

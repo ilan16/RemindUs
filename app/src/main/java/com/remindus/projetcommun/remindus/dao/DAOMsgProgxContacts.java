@@ -23,6 +23,7 @@ public class DAOMsgProgxContacts extends IDAO {
 
     public DAOMsgProgxContacts(Context context) {
         super(context);
+        //rempli le allColumn avec le attributs de la table msgxcontacts
         String[] allColumns = {
                 MySQLiteHelper.COLUMN_ID_MSG_PROG_MPxC,
                 MySQLiteHelper.COLUMN_ID_CONTACT_MPxC
@@ -95,7 +96,7 @@ public class DAOMsgProgxContacts extends IDAO {
         DAOContact daoContact = new DAOContact(context);
         String numeros = "";
         for (int i = 0; i < maList.size(); i++){
-            long idContact = maList.get(i).getIdContact();
+            long idContact = maList.get(i).getIdMsgProg();
             numeros += daoContact.getContact(idContact)+";";
         }
         return numeros;

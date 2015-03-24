@@ -18,6 +18,7 @@ public class DAOContact extends IDAO{
 
     public DAOContact(Context context) {
         super(context);
+        //rempli le allColumn avec le attributs de la table contact
         String[] allColumns = {
                 MySQLiteHelper.COLUMN_ID_CONTACT,
                 MySQLiteHelper.COLUMN_NOM_CONTACT,

@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class MySQLiteHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "remindus.db";
-    private static final int DATABASE_VERSION = 17;
+    private static final int DATABASE_VERSION = 18;
 
     /*
             CONTACTS
@@ -24,39 +24,6 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             + COLUMN_ID_CONTACT + " integer primary key autoincrement, "
             + COLUMN_NOM_CONTACT + " text not null,"
             + COLUMN_TELEPHONE + " text not null);";
-
-
-    /*
-            GROUPES
-     */
-    public static final String TABLE_GROUPES = "groupes";
-    public static final String COLUMN_ID_GROUPE = "id_groupe";
-    public static final String COLUMN_NOM_GROUPE = "nom_groupe";
-    public static final String COLUMN_DATE_CREATION = "date_creation";
-    private static final String DATABASE_CREATE_GROUPES = "create table "
-            + TABLE_GROUPES + "("
-            + COLUMN_ID_GROUPE + " integer primary key autoincrement, "
-            + COLUMN_NOM_GROUPE + " text not null, "
-            + COLUMN_DATE_CREATION + " integer not null);";
-
-
-    /*
-            GROUPESxCONTACTS
-    */
-
-    public static final String TABLE_GROUPESxCONTACTS = "groupes_contacts";
-    public static final String COLUMN_DATE_AJOUT = "date_ajout";
-    public static final String COLUMN_ID_CONTACT_GC = "idcontact";
-    public static final String COLUMN_ID_GROUPE_GC = "idgroupe";
-    private static final String DATABASE_CREATE_GROUPESxCONTACTS = "create table "
-            + TABLE_GROUPESxCONTACTS + "("
-            + COLUMN_ID_CONTACT_GC + " INTEGER NOT NULL CONSTRAINT fk_contacts_id REFERENCES " + TABLE_CONTACTS
-            + "(" + COLUMN_ID_CONTACT + "),"
-            + COLUMN_ID_GROUPE_GC + " INTEGER NOT NULL CONSTRAINT fk_groupes_id REFERENCES " + TABLE_GROUPES
-            + "(" + COLUMN_ID_GROUPE + "),"
-            + COLUMN_DATE_AJOUT + " INTEGER,"
-            + " PRIMARY KEY (" + COLUMN_ID_CONTACT_GC + "," + COLUMN_ID_GROUPE_GC + "));";
-;
 
     /*
             MESSAGES PROGRAMMES
@@ -117,7 +84,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     public static final String TABLE_RDV = "table_rdv";
     public static final String COLUMN_ID_RDV = "id_rdv";
     public static final String COLUMN_NOM_RDV = "nom_rdv";
-    public static final String COLUMN_DATE_RDV = "date_rdv";
+    public static final String COLUMN_DATE_DEBUT_RDV = "date_rdv_debut";
+    public static final String COLUMN_DATE_FIN_RDV = "date_rdv_fin";
     public static final String COLUMN_DATESTRING_RDV = "datestring_rdv";
     public static final String COLUMN_LIEU_RDV = "lieu";
     public static final String COLUMN_MODE_TEL_RDV = "mode";
@@ -125,7 +93,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             + TABLE_RDV + "("
             + COLUMN_ID_RDV + " integer primary key autoincrement, "
             + COLUMN_NOM_RDV + " text not null, "
-            + COLUMN_DATE_RDV + " integer not null, "
+            + COLUMN_DATE_DEBUT_RDV + " integer not null, "
+            + COLUMN_DATE_FIN_RDV + " integer not null, "
             + COLUMN_DATESTRING_RDV + " text not null, "
             + COLUMN_LIEU_RDV + " text not null, "
             + COLUMN_MODE_TEL_RDV + " integer not null);";
@@ -157,8 +126,6 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase database) {
         database.execSQL(DATABASE_CREATE_CONTACTS);
-        database.execSQL(DATABASE_CREATE_GROUPES);
-        database.execSQL(DATABASE_CREATE_GROUPESxCONTACTS);
         database.execSQL(DATABASE_CREATE_MSG_PROG);
         database.execSQL(DATABASE_CREATE_MSG_PROGxCONTACTS);
         database.execSQL(DATABASE_CREATE_MODEL_MSG);
@@ -169,8 +136,6 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase database, int oldVersion, int newVersion) {
         database.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
-        database.execSQL("DROP TABLE IF EXISTS " + TABLE_GROUPES);
-        database.execSQL("DROP TABLE IF EXISTS " + TABLE_GROUPESxCONTACTS);
         database.execSQL("DROP TABLE IF EXISTS " + TABLE_MSG_PROG);
         database.execSQL("DROP TABLE IF EXISTS " + TABLE_MSG_PROGxCONTACTS);
         database.execSQL("DROP TABLE IF EXISTS " + TABLE_MODEL_MSG);

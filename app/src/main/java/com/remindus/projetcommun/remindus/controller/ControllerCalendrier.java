@@ -72,7 +72,7 @@ public class ControllerCalendrier extends ControllerHeader /*implements Calendar
                     s_date += "RDV " + values.get(i).getNom() + " à "
                             + values.get(i).getLieu()
                             + " de " + utilitaire_date.convertirLongDateString(
-                            values.get(i).getDate(), "dd/MM/yy à HH:mm:ss") + "\n";
+                            values.get(i).getDatedebut(), "dd/MM/yy à HH:mm") + "\n";
                 }
             }
         }

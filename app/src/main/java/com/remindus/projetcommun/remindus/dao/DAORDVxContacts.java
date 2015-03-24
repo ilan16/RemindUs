@@ -20,6 +20,7 @@ public class DAORDVxContacts extends IDAO {
 
     public DAORDVxContacts(Context context) {
         super(context);
+        //rempli le allColumn avec le attributs de la table rdvxcontacts
         String[] allColumns = {
                 MySQLiteHelper.COLUMN_ID_RDV_RDVxC,
                 MySQLiteHelper.COLUMN_ID_CONTACT_RDVxC
@@ -27,9 +28,16 @@ public class DAORDVxContacts extends IDAO {
         setAllColumns(allColumns);
     }
 
-
+    //permet d'insérer une ligne dans la table rdvxcontacts
+    // on insère idrdv et idcontact obligatoirement car les deux attributs ne peuvent pas etre null
+    /**
+     *
+     * @param idrdv: id rdv à ajouter
+     * @param idcontact : id contact à ajouter
+     * @return:  retourne un int qui correspond à l'état de l'insertion, ie si ca a été inséré ou pas
+     */
     public int insertRDVxC(long idrdv, long idcontact) {
-        if (!isExist(idrdv, idcontact)) {
+        if (!isExist(idrdv, idcontact)) { //si idrdv intersection idcontact existe déjà dans la bdd on n'insère pas
             ContentValues values = new ContentValues();
             values.put(MySQLiteHelper.COLUMN_ID_RDV_RDVxC, idrdv);
             values.put(MySQLiteHelper.COLUMN_ID_CONTACT_RDVxC, idcontact);
@@ -46,6 +54,14 @@ public class DAORDVxContacts extends IDAO {
         return 2;
     }
 
+    //cette méthode permet de savoir si la paire idrdv et idcontact a déjà été insérée dans la bdd
+    // --> permet d'éviter d'avoir une exception car les deux id sont en clés primaires et donc doivent être uniques
+    /**
+     *
+     * @param idrv id rdv à ajouter
+     * @param idcontact id contact à ajouter
+     * @return: retourne soit true si la paire existe et false sinon
+     */
     private boolean isExist(long idrv, long idcontact) {
         String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_RDVxCONTACTS + " WHERE " + MySQLiteHelper.COLUMN_ID_RDV_RDVxC + " = ?"
                 + " AND " + MySQLiteHelper.COLUMN_ID_CONTACT_RDVxC + " = ?";
@@ -63,7 +79,13 @@ public class DAORDVxContacts extends IDAO {
         return false;
     }
 
+    //cette méthode permet de supprimer une ligne de la table rdvxcontact
 
+    /**
+     *
+     * @param modelRDVxContacts : de ce param on peut récuperer l'idcontact et l'idrdv a supprimer
+     * @return boolean:  si true --> supprimé sinon non
+     */
     public boolean deleteRDVxC(ModelRDVxContacts modelRDVxContacts) {
         long idcontact = modelRDVxContacts.getIdcontact();
         long idrdv = modelRDVxContacts.getIdrdv();
@@ -78,6 +100,12 @@ public class DAORDVxContacts extends IDAO {
         return false;
     }
 
+    //permet de récupérer l'ensemble des lignes de la table rdvxcontact
+
+    /**
+     *
+     * @return la liste des rdvxcontact
+     */
     public List<ModelRDVxContacts> getAllRDVxC() {
         List<ModelRDVxContacts> modelRDVxContacts = new ArrayList<ModelRDVxContacts>();
 
@@ -96,6 +124,13 @@ public class DAORDVxContacts extends IDAO {
         return modelRDVxContacts;
     }
 
+    //permet de récupérer l'ensmble des lignes de la table rdvxcontact ayant le mm id rdv
+
+    /**
+     *
+     * @param idrdv
+     * @return: list de l'ensemble des lignes avec le mm id rdv
+     */
     public List<ModelRDVxContacts> getAllRDVxC(long idrdv) {
         List<ModelRDVxContacts> modelRDVxContactses = new ArrayList<ModelRDVxContacts>();
         getCrud().open();

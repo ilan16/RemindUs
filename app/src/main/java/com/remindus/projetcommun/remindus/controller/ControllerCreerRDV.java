@@ -46,7 +46,7 @@ public class ControllerCreerRDV extends ControllerHeader {
     private static String nomRDVstatic;
     private EditText nomEdit;
     private EditText dateEdit;
-    private EditText heureEdit;
+    private EditText heureDebutEdit, heureFinEdit;
     private EditText lieuEdit;
     private RadioButton normal, silencieux, vibreur;
     private DAORDV daordv;
@@ -66,21 +66,6 @@ public class ControllerCreerRDV extends ControllerHeader {
         ControllerCreerRDV.nomRDVstatic = nomRDVstatic;
     }
 
-    /*public void listerContact(){
-
-        daoContact = new DAOContact(this);
-        daoContact.getCrud().open();
-
-        final List<ModelContact> values = daoContact.getAllContacts();
-        lv = (ListView) findViewById(R.id.listeContact);
-
-        adapter = new CustomAdapterContact(this,R.layout.vue_creer_rdv,values);
-
-        lv.setAdapter(this.adapter);
-        lv.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-
-    }*/
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -89,14 +74,13 @@ public class ControllerCreerRDV extends ControllerHeader {
 
         nomEdit = (EditText) findViewById(R.id.nom_rdv);
         dateEdit = (EditText) findViewById(R.id.editDate);
-        heureEdit = (EditText) findViewById(R.id.editHeure);
+        heureDebutEdit = (EditText) findViewById(R.id.editHeureDebut);
+        heureFinEdit = (EditText) findViewById(R.id.editHeureFin);
         lieuEdit = (EditText) findViewById(R.id.lieu_rdv);
         normal = (RadioButton) findViewById(R.id.radio_normal);
         silencieux = (RadioButton) findViewById(R.id.radio_silencieux);
         vibreur = (RadioButton) findViewById(R.id.radio_vibreur);
 
-        //this.listerContact();
-        //this.checkButtonClick();
 
         // on remet titre msg prg vide dans le cas ou l'utilisateur veut creer un rdv et un msg prog dans la mm session
         ControllerCreerMsgProg.setTitreMsgProgStatic("");
@@ -189,13 +173,14 @@ public class ControllerCreerRDV extends ControllerHeader {
 
         String nom = nomEdit.getText().toString();
         String date = dateEdit.getText().toString();
-        String heure = heureEdit.getText().toString();
+        String heuredebut = heureDebutEdit.getText().toString();
+        String heurefin = heureFinEdit.getText().toString();
         String lieu = lieuEdit.getText().toString();
         long mode = 0;
 
         if (this.verifierDate()) {
 
-            if (this.verifierHeure()) {
+            if (this.verifierHeure(heureDebutEdit) && this.verifierHeure(heureFinEdit)) {
 
                 if (!nom.equals("")) {
 
@@ -209,20 +194,25 @@ public class ControllerCreerRDV extends ControllerHeader {
                             mode = 2;
                         }
 
-                        String dateRDV = date + "-" + heure;
                         utilitaireDate = new UtilitaireDate();
-                        long dateLong = utilitaireDate.convertirStringDateEnLong(dateRDV);
+                        String dateRDVdebut = date + "-" + heuredebut;
+                        long dateDebutLong = utilitaireDate.convertirStringDateEnLong(dateRDVdebut);
+                        String dateRDVfin = date + "-" + heurefin;
+                        long dateFinLong = utilitaireDate.convertirStringDateEnLong(dateRDVfin);
+                        if(dateDebutLong <= dateFinLong) {
+                            daordv = new DAORDV(this);
+                            int insert = daordv.insertRDV(nom, dateDebutLong, dateFinLong, date, lieu, mode);
 
-                        daordv = new DAORDV(this);
-                        int insert = daordv.insertRDV(nom, dateLong, date, lieu, mode);
-
-                        if (insert == 0) {
-                            ajouterEventCalendrier(date, heure, lieu, nom, dateLong);
-                            ControllerCreerRDV.setNomRDVstatic(nom);
-                            Intent intent = new Intent(ControllerCreerRDV.this, ControllerContact.class);
-                            startActivity(intent);
+                            if (insert == 0) {
+                                ajouterEventCalendrier(date, heuredebut, lieu, nom, dateDebutLong);
+                                ControllerCreerRDV.setNomRDVstatic(nom);
+                                Intent intent = new Intent(ControllerCreerRDV.this, ControllerContact.class);
+                                startActivity(intent);
+                            } else {
+                                Toast.makeText(this, R.string.erreur_insertion_rdv, Toast.LENGTH_SHORT).show();
+                            }
                         } else {
-                            Toast.makeText(this, R.string.erreur_insertion_rdv, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this,"L'heure de fin doit être supérieure à l'heure de début", Toast.LENGTH_SHORT).show();
                         }
                     } else {
                         Toast.makeText(this, getResources().getString(R.string.champs_vide, "lieu"), Toast.LENGTH_SHORT).show();
@@ -243,13 +233,13 @@ public class ControllerCreerRDV extends ControllerHeader {
         return validatorDate.validate(dateEdit.getText().toString());
     }
 
-    public boolean verifierHeure() {
+    public boolean verifierHeure(EditText heure) {
         ValidatorHeure validatorHeure = new ValidatorHeure();
-        return validatorHeure.validate(heureEdit.getText().toString());
+        return validatorHeure.validate(heure.getText().toString());
     }
 
 
-    public void ajouterHeure(View v) {
+    public void ajouterHeureDebut(View v) {
 
         // Process to get Current Time
         final Calendar c = Calendar.getInstance();
@@ -276,7 +266,40 @@ public class ControllerCreerRDV extends ControllerHeader {
                         }else{
                             minuteString = ""+minute;
                         }
-                        heureEdit.setText(hourString + ":" + minuteString);
+                        heureDebutEdit.setText(hourString + ":" + minuteString);
+                    }
+                }, mHour, mMinute, true);
+        tpd.show();
+    }
+
+    public void ajouterHeureFin(View v) {
+
+        // Process to get Current Time
+        final Calendar c = Calendar.getInstance();
+        mHour = c.get(Calendar.HOUR_OF_DAY);
+        mMinute = c.get(Calendar.MINUTE);
+
+        // Launch Time Picker Dialog
+        TimePickerDialog tpd = new TimePickerDialog(this,
+                new TimePickerDialog.OnTimeSetListener() {
+
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay,
+                                          int minute) {
+                        // Display Selected time in textboxi
+                        String hourString = null;
+                        String minuteString = null;
+                        if(hourOfDay<10){
+                            hourString = "0"+hourOfDay;
+                        }else {
+                            hourString = ""+hourOfDay;
+                        }
+                        if(minute<10){
+                            minuteString = "0"+minute;
+                        }else{
+                            minuteString = ""+minute;
+                        }
+                        heureFinEdit.setText(hourString + ":" + minuteString);
                     }
                 }, mHour, mMinute, true);
         tpd.show();

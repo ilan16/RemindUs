@@ -7,8 +7,6 @@ import android.util.Log;
 
 import com.remindus.projetcommun.remindus.basededonnees.MySQLiteHelper;
 import com.remindus.projetcommun.remindus.basededonnees.utilities.CRUD;
-import com.remindus.projetcommun.remindus.controller.UtilitaireDate;
-import com.remindus.projetcommun.remindus.model.ModelGroupexContact;
 import com.remindus.projetcommun.remindus.model.ModelModelMsg;
 
 import java.util.ArrayList;
@@ -23,6 +21,7 @@ public class DAOModelMsg extends IDAO {
 
     public DAOModelMsg(Context context) {
         super(context);
+        //rempli le allColumn avec le attributs de la table model message
         String[] allColumns = {
                 MySQLiteHelper.COLUMN_ID_MODEL_MSG,
                 MySQLiteHelper.COLUMN_TITRE_MODEL_MSG,

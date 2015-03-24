@@ -49,7 +49,7 @@
                     android:layout_height="wrap_content"
                     android:editable="true"
                     android:inputType="date"
-                    android:text="Date (DD/MM/YY)"
+                    android:hint="Date (DD/MM/YY)"
                     android:elegantTextHeight="false"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentStart="true"
@@ -67,30 +67,58 @@
             </RelativeLayout>
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
-                android:id="@+id/layoutHeure"
+                android:id="@+id/layoutHeureDebut"
                 android:layout_width="330dp"
                 android:layout_height="53dp"
                 tools:context=".MainActivity"
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp">
                 <EditText
-                    android:id="@+id/editHeure"
+                    android:id="@+id/editHeureDebut"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:editable="true"
-                    android:hint="HH:MM"
+                    android:hint="Heure du début (HH:MM)"
                     android:inputType="datetime"
                     android:layout_alignParentBottom="true"
-                    android:text="Heure (HH:MM)"
-                    android:layout_toStartOf="@+id/heure" />
+                    android:layout_toStartOf="@+id/heureDebut" />
                 <ImageButton
-                    android:id="@+id/heure"
+                    android:id="@+id/heureDebut"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:cropToPadding="true"
-                    android:onClick="ajouterHeure"
+                    android:onClick="ajouterHeureDebut"
+                    android:background="@drawable/clock"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true" />
+            </RelativeLayout>
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/layoutHeureFin"
+                android:layout_width="330dp"
+                android:layout_height="53dp"
+                tools:context=".MainActivity"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp">
+                <EditText
+                    android:id="@+id/editHeureFin"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:editable="true"
+                    android:hint="Heure de fin (HH:MM)"
+                    android:inputType="datetime"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toStartOf="@+id/heureFin" />
+                <ImageButton
+                    android:id="@+id/heureFin"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:cropToPadding="true"
+                    android:onClick="ajouterHeureFin"
                     android:background="@drawable/clock"
                     android:layout_centerVertical="true"
                     android:layout_alignParentEnd="true" />
