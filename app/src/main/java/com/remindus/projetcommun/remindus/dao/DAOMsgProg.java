@@ -22,6 +22,7 @@ public class DAOMsgProg extends IDAO{
 
     public DAOMsgProg(Context context) {
         super(context);
+        //rempli le allColumn avec le attributs de la table msgprog
         String[] allColumns = {
                 MySQLiteHelper.COLUMN_ID_MSG_PROG,
                 MySQLiteHelper.COLUMN_TITRE_MSG_PROG,

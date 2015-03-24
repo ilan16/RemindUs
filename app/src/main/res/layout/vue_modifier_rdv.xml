@@ -3,70 +3,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/fond"
-    >
-
-
+    android:background="@color/fond">
     <RelativeLayout
         android:id="@+id/headerMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:background="#FC9"
+        android:background="#FFFFFF"
         android:gravity="center">
-
         <include
             android:id="@+id/header"
             layout="@layout/header"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content" />
     </RelativeLayout>
-
-
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/scroll"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_below="@id/headerMenu">
-
-
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical"
             android:weightSum="1">
-
-
             <EditText
                 android:id="@+id/nom_rdv"
                 android:layout_width="330dp"
                 android:layout_height="wrap_content"
                 android:hint="Nom"
                 android:inputType="text"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="20dp" />
-
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp" />
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:id="@+id/layoutDate"
-                android:layout_width="329dp"
+                android:layout_width="330dp"
                 android:layout_height="wrap_content"
                 tools:context=".MainActivity"
-
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp">
-
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp">
                 <EditText
                     android:id="@+id/editDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
                     android:editable="true"
-                    android:hint="DD/MM/YYYY"
                     android:inputType="date"
-                    android:layout_toStartOf="@+id/date"></EditText>
-
+                    android:hint="Date (DD/MM/YY)"
+                    android:elegantTextHeight="false"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@+id/date"
+                    android:textIsSelectable="false"></EditText>
                 <ImageButton
                     android:id="@+id/date"
                     android:layout_width="50dp"
@@ -75,103 +63,123 @@
                     android:onClick="ajouterDate"
                     android:background="@drawable/calendar"
                     android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginEnd="28dp" />
-
-
+                    android:layout_alignParentEnd="true" />
             </RelativeLayout>
-
-
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:tools="http://schemas.android.com/tools"
-                android:id="@+id/layoutHeure"
-                android:layout_width="match_parent"
-                android:layout_height="57dp"
+                android:id="@+id/layoutHeureDebut"
+                android:layout_width="330dp"
+                android:layout_height="53dp"
                 tools:context=".MainActivity"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="20dp">
-
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp">
                 <EditText
-                    android:id="@+id/editHeure"
+                    android:id="@+id/editHeureDebut"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:editable="true"
-                    android:hint="HH:MM"
-                    android:inputType="datetime" />
-
+                    android:hint="Heure du début (HH:MM)"
+                    android:inputType="datetime"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toStartOf="@+id/heureDebut" />
                 <ImageButton
-                    android:id="@+id/heure"
+                    android:id="@+id/heureDebut"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:cropToPadding="true"
-                    android:onClick="ajouterHeure"
+                    android:onClick="ajouterHeureDebut"
                     android:background="@drawable/clock"
-                    android:layout_alignParentTop="true"
-                    android:layout_toEndOf="@+id/editHeure" />
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true" />
             </RelativeLayout>
-
-
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/layoutHeureFin"
+                android:layout_width="330dp"
+                android:layout_height="53dp"
+                tools:context=".MainActivity"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp">
+                <EditText
+                    android:id="@+id/editHeureFin"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:editable="true"
+                    android:hint="Heure de fin (HH:MM)"
+                    android:inputType="datetime"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toStartOf="@+id/heureFin" />
+                <ImageButton
+                    android:id="@+id/heureFin"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:cropToPadding="true"
+                    android:onClick="ajouterHeureFin"
+                    android:background="@drawable/clock"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true" />
+            </RelativeLayout>
             <EditText
                 android:id="@+id/lieu_rdv"
-                android:layout_width="318dp"
-                android:layout_height="60dp"
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
                 android:hint="Lieu"
                 android:inputType="text"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp" />
-
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp" />
             <TextView
-                android:layout_width="fill_parent"
+                android:layout_width="330dp"
                 android:layout_height="fill_parent"
                 android:text="Mode du téléphone pendant le RDV ?"
                 android:textColor="#000000"
-                android:textSize="18dp"
+                android:textSize="13dp"
                 android:textStyle="bold"
                 android:id="@+id/mode_telephone"
-                android:layout_marginTop="20dp"
-                android:layout_gravity="left"
-                android:layout_marginLeft="20dp" />
-
+                android:layout_marginTop="30dp"
+                android:layout_gravity="center" />
             <RadioGroup
                 android:id="@+id/group_radio_mode_rdv"
-                android:layout_width="wrap_content"
+                android:layout_width="308dp"
                 android:layout_height="wrap_content"
                 android:checkedButton="@+id/radio_normal"
                 android:orientation="horizontal"
                 android:layout_marginLeft="20dp">
-
                 <RadioButton
                     android:id="@+id/radio_silencieux"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/silencieux" />
-
                 <RadioButton
                     android:id="@+id/radio_vibreur"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/vibreur" />
-
                 <RadioButton
                     android:id="@+id/radio_normal"
-                    android:layout_width="wrap_content"
+                    android:layout_width="91dp"
                     android:layout_height="wrap_content"
                     android:text="@string/normal" />
             </RadioGroup>
 
+
             <Button
                 android:id="@+id/valider"
                 android:layout_width="114dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:layout_weight="0.08"
-                android:onClick="modifierRDV"
-                android:text="Valider"
+                android:onClick="creerRDV"
+                android:text="Suivant"
+                android:background="@color/bleu_theme"
+                android:textColor="#ffffffff"
+                android:layout_alignBottom="@+id/scroll"
+                android:layout_alignParentStart="true"
                 android:layout_marginTop="20dp" />
-
 
         </LinearLayout>
     </ScrollView>
+
 </RelativeLayout>

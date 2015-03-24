@@ -20,10 +20,12 @@ public class DAORDV extends IDAO {
 
     public DAORDV(Context context) {
         super(context);
+        //rempli le allColumn avec le attributs de la table rdv
         String[] allColumns = {
                 MySQLiteHelper.COLUMN_ID_RDV,
                 MySQLiteHelper.COLUMN_NOM_RDV,
-                MySQLiteHelper.COLUMN_DATE_RDV,
+                MySQLiteHelper.COLUMN_DATE_DEBUT_RDV,
+                MySQLiteHelper.COLUMN_DATE_FIN_RDV,
                 MySQLiteHelper.COLUMN_DATESTRING_RDV,
                 MySQLiteHelper.COLUMN_LIEU_RDV,
                 MySQLiteHelper.COLUMN_MODE_TEL_RDV
@@ -32,10 +34,11 @@ public class DAORDV extends IDAO {
 
     }
 
-    public int insertRDV(String nom, long date, String datestring, String lieu, long mode) {
+    public int insertRDV(String nom, long datedebut, long datefin, String datestring, String lieu, long mode) {
         ContentValues values = new ContentValues();
         values.put(MySQLiteHelper.COLUMN_NOM_RDV, nom);
-        values.put(MySQLiteHelper.COLUMN_DATE_RDV, date);
+        values.put(MySQLiteHelper.COLUMN_DATE_DEBUT_RDV, datedebut);
+        values.put(MySQLiteHelper.COLUMN_DATE_FIN_RDV, datefin);
         values.put(MySQLiteHelper.COLUMN_DATESTRING_RDV, datestring);
         values.put(MySQLiteHelper.COLUMN_LIEU_RDV, lieu);
         values.put(MySQLiteHelper.COLUMN_MODE_TEL_RDV, mode);
@@ -65,13 +68,14 @@ public class DAORDV extends IDAO {
 
     }
 
-    public int updateRDV(ModelRDV modelRDV, String nom, long date, String datestring, String lieu, long mode) {
+    public int updateRDV(ModelRDV modelRDV, String nom, long datedebut, long datefin, String datestring, String lieu, long mode) {
         String id = "" + modelRDV.getId();
         Log.i("ID", id);
         getCrud().open();
         ContentValues values = new ContentValues();
         values.put(MySQLiteHelper.COLUMN_NOM_RDV, nom);
-        values.put(MySQLiteHelper.COLUMN_DATE_RDV, date);
+        values.put(MySQLiteHelper.COLUMN_DATE_DEBUT_RDV, datedebut);
+        values.put(MySQLiteHelper.COLUMN_DATE_FIN_RDV, datefin);
         values.put(MySQLiteHelper.COLUMN_DATESTRING_RDV, datestring);
         values.put(MySQLiteHelper.COLUMN_LIEU_RDV, lieu);
         values.put(MySQLiteHelper.COLUMN_MODE_TEL_RDV, mode);
@@ -139,16 +143,17 @@ public class DAORDV extends IDAO {
         ModelRDV rdv = new ModelRDV();
         rdv.setId(cursor.getLong(0));
         rdv.setNom(cursor.getString(1));
-        rdv.setDate(cursor.getLong(2));
-        rdv.setDateString(cursor.getString(3));
-        rdv.setLieu(cursor.getString(4));
-        rdv.setMode(cursor.getLong(5));
+        rdv.setDatedebut(cursor.getLong(2));
+        rdv.setDatefin(cursor.getLong(3));
+        rdv.setDateString(cursor.getString(4));
+        rdv.setLieu(cursor.getString(5));
+        rdv.setMode(cursor.getLong(6));
         return rdv;
     }
 
     public ModelRDV prochainRDV() {
-        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_RDV + " WHERE " + MySQLiteHelper.COLUMN_DATE_RDV + " >= "
-                + getUtilitaireDate().dateActuelle() + " ORDER BY " + MySQLiteHelper.COLUMN_DATE_RDV + " ASC";
+        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_RDV + " WHERE " + MySQLiteHelper.COLUMN_DATE_DEBUT_RDV + " >= "
+                + getUtilitaireDate().dateActuelle() + " ORDER BY " + MySQLiteHelper.COLUMN_DATE_DEBUT_RDV + " ASC";
         getCrud().open();
         Cursor cursor = getCrud().requeteGeneral(sql, null);
         ModelRDV modelRDV = new ModelRDV();

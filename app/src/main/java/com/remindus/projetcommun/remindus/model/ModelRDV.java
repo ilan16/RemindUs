@@ -8,7 +8,8 @@ import com.remindus.projetcommun.remindus.controller.UtilitaireDate;
 public class ModelRDV extends IModel {
 
     private String nom;
-    private long date;
+    private long datedebut;
+    private long datefin;
     private String dateString;
     private String lieu;
     private long mode;
@@ -23,12 +24,20 @@ public class ModelRDV extends IModel {
         this.nom = nom;
     }
 
-    public long getDate() {
-        return date;
+    public long getDatedebut() {
+        return datedebut;
     }
 
-    public void setDate(long date) {
-        this.date = date;
+    public void setDatedebut(long datedebut) {
+        this.datedebut = datedebut;
+    }
+
+    public long getDatefin() {
+        return datefin;
+    }
+
+    public void setDatefin(long datefin) {
+        this.datefin = datefin;
     }
 
     public String getDateString() {
@@ -58,6 +67,6 @@ public class ModelRDV extends IModel {
     @Override
     public String toString() {
         this.utilitaireDate = new UtilitaireDate();
-        return "RDV " + this.getNom() + " prévu le " + utilitaireDate.convertirLongDateString(this.getDate(), "dd/MM/yy");
+        return "RDV " + this.getNom() + " prévu le " + utilitaireDate.convertirLongDateString(this.getDatedebut(), "dd/MM/yy");
     }
 }

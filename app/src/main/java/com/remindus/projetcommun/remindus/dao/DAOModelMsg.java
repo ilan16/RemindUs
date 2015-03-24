@@ -23,6 +23,7 @@ public class DAOModelMsg extends IDAO {
 
     public DAOModelMsg(Context context) {
         super(context);
+        //rempli le allColumn avec le attributs de la table model message
         String[] allColumns = {
                 MySQLiteHelper.COLUMN_ID_MODEL_MSG,
                 MySQLiteHelper.COLUMN_TITRE_MODEL_MSG,
