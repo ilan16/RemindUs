@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.remindus.projetcommun.remindus.R;
+import com.remindus.projetcommun.remindus.Service.DeclencheurSms;
 import com.remindus.projetcommun.remindus.dao.DAOMsgProg;
 import com.remindus.projetcommun.remindus.model.ModelMsgProg;
 
@@ -24,8 +25,10 @@ import java.util.List;
 public class ControllerListerMsgProg extends ControllerHeader {
 
     private static ModelMsgProg valeurSelectionnee;
-    private DAOMsgProg daoMsgProg;
+    private DAOMsgProg daoMsgProg; 
     private ListView l;
+
+
 
     public static ModelMsgProg getValeurSelectionnee() {
         return valeurSelectionnee;
@@ -35,10 +38,17 @@ public class ControllerListerMsgProg extends ControllerHeader {
         ControllerListerMsgProg.valeurSelectionnee = valeurSelectionnee;
     }
 
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vue_liste_msg_prog);
+
+        //debut du service declencheurSms pour savoir quand envoyer un sms
+        Intent myIntent = new Intent(ControllerListerMsgProg.this, DeclencheurSms.class);
+
+        ControllerListerMsgProg.this.startService(myIntent);
 
         // on remet nom rdv vide dans le cas ou l'utilisateur veut creer un rdv et un msg prog dans la mm session
         ControllerCreerRDV.setNomRDVstatic("");

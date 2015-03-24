@@ -35,26 +35,20 @@ public class ControllerNotifications extends ControllerHeader {
         switch (view.getId()) {
             case R.id.notif_normal:
                 if (checked) {
-                    AudioManager audiomanage = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-                    audiomanage.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
 
-                    Toast.makeText(ControllerNotifications.this, "Mode normal activé !", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ControllerNotifications.this, "Mode normal par defaut activé !", Toast.LENGTH_LONG).show();
                     break;
                 }
             case R.id.notif_silencieux:
                 if (checked) {
-                    AudioManager audiomanage = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-                    audiomanage.setRingerMode(AudioManager.RINGER_MODE_SILENT);
 
-                    Toast.makeText(ControllerNotifications.this, "Mode silencieux activé !", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ControllerNotifications.this, "Mode silencieux par defaut activé !", Toast.LENGTH_LONG).show();
                     break;
                 }
             case R.id.notif_vibreur:
                 if (checked) {
-                    AudioManager audiomanage = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-                    audiomanage.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
 
-                    Toast.makeText(ControllerNotifications.this, "Mode vibreur activé !", Toast.LENGTH_LONG).show();
+                    Toast.makeText(ControllerNotifications.this, "Mode vibreur par defaut activé !", Toast.LENGTH_LONG).show();
                     break;
                 }
         }
