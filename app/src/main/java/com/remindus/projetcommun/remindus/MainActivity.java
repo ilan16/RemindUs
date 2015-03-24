@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -24,7 +25,9 @@ import com.remindus.projetcommun.remindus.controller.ControllerListerModelMsg;
 import com.remindus.projetcommun.remindus.controller.ControllerListerMsgProg;
 import com.remindus.projetcommun.remindus.controller.ControllerListerRDV;
 import com.remindus.projetcommun.remindus.controller.ControllerParametre;
+import com.remindus.projetcommun.remindus.dao.DAOMsgProg;
 import com.remindus.projetcommun.remindus.dao.DAORDV;
+import com.remindus.projetcommun.remindus.model.ModelMsgProg;
 import com.remindus.projetcommun.remindus.model.ModelRDV;
 
 import junit.framework.Test;
@@ -43,17 +46,19 @@ public class MainActivity extends ActionBarActivity {
         ControllerCreerRDV.setNomRDVstatic("");
         ControllerCreerMsgProg.setTitreMsgProgStatic("");
 
-        DAORDV daordv = new DAORDV(this);
-        ModelRDV modelRDV = new ModelRDV();
-        long date = modelRDV.getDate();
+        DAOMsgProg daoMsgProg = new DAOMsgProg(this);
+        ModelMsgProg modelMsgProg = daoMsgProg.prochainMsgProg();
+        long date = modelMsgProg.getDate();
+        Log.i("testetet", "" + date + "");
+        if(date!=0) {
+            Log.i("test3","enciler");
+            //Intent myIntent = new Intent(MainActivity.this, SmsService.class);
+            //PendingIntent pendingIntent = PendingIntent.getService(MainActivity.this, 0, myIntent, 0);
+            Intent myIntent = new Intent(getApplicationContext(), Jesa.class);
+            //PendingIntent pendingIntent2 = PendingIntent.getService(getApplicationContext(), 0, myIntent2, 0);
+            //AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
-                Intent myIntent = new Intent(MainActivity.this, SmsService.class);
-                PendingIntent pendingIntent = PendingIntent.getService(MainActivity.this, 0, myIntent, 0);
-        //Intent myIntent2 = new Intent(getApplicationContext(), Jesa.class);
-        //PendingIntent pendingIntent2 = PendingIntent.getService(getApplicationContext(), 0, myIntent2, 0);
-                AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-
-                Calendar cal = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
+                /*Calendar cal = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
 //cal.add(Calendar.SECOND, 10);
 
                 cal.set(Calendar.DATE, 22);  //1-31
@@ -65,10 +70,11 @@ public class MainActivity extends ActionBarActivity {
                 cal.set(Calendar.SECOND, 0);
 
                 //alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
-                alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 1000 * 30, pendingIntent);
-       // alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 1000 * 60, pendingIntent2);
-        MainActivity.this.stopService(myIntent);
-
+                alarmManager.set(AlarmManager.RTC_WAKEUP, date, pendingIntent);*/
+            //alarmManager.set(AlarmManager.RTC, System.currentTimeMillis(), pendingIntent2);
+            //Intent myIntent = new Intent(getApplicationContext(), Jesa.class);
+            MainActivity.this.startService(myIntent);
+        }
 
         final Button boutonAccueil = (Button) findViewById(R.id.bouton_calendrier);
         boutonAccueil.setOnClickListener(new View.OnClickListener() {

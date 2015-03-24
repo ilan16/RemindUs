@@ -186,7 +186,7 @@ public class DAOMsgProg extends IDAO{
 
     public ModelMsgProg prochainMsgProg() {
         String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MSG_PROG + " WHERE " + MySQLiteHelper.COLUMN_DATE_MSG_PROG + " >= "
-                + getUtilitaireDate().dateActuelle() + " ORDER BY " + MySQLiteHelper.COLUMN_DATE_MSG_PROG + " ASC";
+                + (getUtilitaireDate().dateActuelle()) + " ORDER BY " + MySQLiteHelper.COLUMN_DATE_MSG_PROG + " ASC";
         getCrud().open();
         Cursor cursor = getCrud().requeteGeneral(sql, null);
         ModelMsgProg modelMsgProg = new ModelMsgProg();

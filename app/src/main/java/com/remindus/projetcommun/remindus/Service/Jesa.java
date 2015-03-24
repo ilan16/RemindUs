@@ -29,7 +29,7 @@ import java.util.TimeZone;
  * Created by kevin on 21/03/2015.
  */
 public class Jesa extends Service {
-
+    private String message;
     @Override
     public void onCreate() {
 
@@ -63,13 +63,14 @@ public class Jesa extends Service {
         DAOMsgProg daoMsgProg = new DAOMsgProg(this);
         ModelMsgProg modelMsgProg = daoMsgProg.prochainMsgProg();
         long date = modelMsgProg.getDate();
-        Log.i("test2","test123456");
+        message=modelMsgProg.getMsgProg();
+        Log.i("test2",""+date);
         if(date!=0) {
 
             Intent myIntent = new Intent(Jesa.this, SmsService.class);
             PendingIntent pendingIntent = PendingIntent.getService(Jesa.this, 0, myIntent, 0);
-            //Intent myIntent2 = new Intent(getApplicationContext(), Jesa.class);
-            //PendingIntent pendingIntent2 = PendingIntent.getService(getApplicationContext(), 0, myIntent2, 0);
+            Intent myIntent2 = new Intent(getApplicationContext(), Jesa.class);
+            PendingIntent pendingIntent2 = PendingIntent.getService(getApplicationContext(), 0, myIntent2, 0);
             AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
             /*Calendar cal = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
@@ -85,8 +86,11 @@ public class Jesa extends Service {
 
             //alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);*/
             alarmManager.set(AlarmManager.RTC_WAKEUP, date, pendingIntent);
-            // alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 1000 * 60, pendingIntent2);
-            //Jesa.this.stopService(myIntent);
+            alarmManager.set(AlarmManager.RTC_WAKEUP, date, pendingIntent2);
+            Jesa.this.stopService(myIntent);
+            this.stopSelf();
+        }else{
+            this.stopSelf();
         }
     }
 
@@ -97,9 +101,9 @@ public class Jesa extends Service {
         return super.onUnbind(intent);
     }
 
-
-
-
+    public String getMessage(){
+        return message;
+    }
 
 }
 
