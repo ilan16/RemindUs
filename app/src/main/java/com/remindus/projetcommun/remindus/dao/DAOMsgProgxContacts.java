@@ -96,7 +96,7 @@ public class DAOMsgProgxContacts extends IDAO {
         String numeros = "";
         for (int i = 0; i < maList.size(); i++){
             long idContact = maList.get(i).getIdMsgProg();
-            numeros += daoContact.getContact(idContact)+";";
+            numeros += daoContact.getContact(idContact).getTelephone()+";";
         }
         return numeros;
     }
