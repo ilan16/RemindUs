@@ -31,7 +31,7 @@ public class ModelContact extends IModel {
 
     @Override
     public String toString() {
-        return contact + "\n" + telephone;
+        return telephone;
     }
 
 

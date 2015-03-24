@@ -3,13 +3,19 @@
     package="com.remindus.projetcommun.remindus"
     android:versionCode="1"
     android:versionName="Beta">
-
+    <!-- permission pour recuperer les contact -->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <!-- permission pour lire le calendrier-->
     <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <!-- permission pour ecrire dans le calendrier -->
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+    <!-- permission pour le mode du telephone -->
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <!-- permission pour envoyer des sms-->
     <uses-permission android:name="android.permission.SEND_SMS"/>
+    <!-- permission pour les données résseaux -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!-- permission pour la localisation -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
 
@@ -18,7 +24,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-
+        <!-- page à l'ouverture de l'application -->
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
@@ -90,8 +96,10 @@
         <provider
             android:name="com.tyczj.extendedcalendarview.CalendarProvider"
             android:authorities="com.tyczj.extendedcalendarview.calendarprovider" />
+
+        <!-- on declare les services -->
         <service android:name=".Service.SmsService"/>
-        <service android:name=".Service.Jesa"/>
+        <service android:name=".Service.DeclencheurSms"/>
     </application>
 
 </manifest>
