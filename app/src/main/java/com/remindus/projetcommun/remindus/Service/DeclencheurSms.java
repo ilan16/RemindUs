@@ -19,15 +19,7 @@ public class DeclencheurSms extends Service {
     public void onCreate() {
 
     }
-    /*public int onStartCommand(Intent intent, int flags, int startId) {
-        i++;
-        PendingIntent pendingIntent = PendingIntent.getService(SmsService.this, 0, intent, 0);
 
-        AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
-        alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+1000*60, pendingIntent);
-        //TODO do something useful
-        return Service.START_NOT_STICKY;
-    }*/
 
     @Override
     public IBinder onBind(Intent intent) {
