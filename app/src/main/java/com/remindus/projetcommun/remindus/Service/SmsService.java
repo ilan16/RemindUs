@@ -52,7 +52,7 @@ public class SmsService extends Service {
 
     @Override
     public void onDestroy() {
-        // TODO Auto-generated method stub
+        // pour detruire le service
         super.onDestroy();
 
     }
@@ -61,33 +61,41 @@ public class SmsService extends Service {
     public void onStart(Intent intent, int startId) {
         // TODO Auto-generated method stub
         super.onStart(intent, startId);
-
+        //on verifi si la localisation ou le reseau de donnée est actif
         ConnectivityManager connexion=(ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         LocationManager localisation=(LocationManager) getSystemService(LOCATION_SERVICE);
+
+        // on se connecte a la basse de donné des messages programme
+        DAOMsgProg daoMsgProg = new DAOMsgProg(this);
+        ModelMsgProg modelMsgProg = daoMsgProg.lastMsgProg();
+
         if(localisation.isProviderEnabled(LocationManager.GPS_PROVIDER)||connexion.getActiveNetworkInfo()!=null){
-
-            DAOMsgProg daoMsgProg = new DAOMsgProg(this);
-
-            ModelMsgProg modelMsgProg = daoMsgProg.lastMsgProg();
+            //si il est actif
             DAOMsgProgxContacts daoContact=new DAOMsgProgxContacts(this);
+            //on recupere les numeros
             String num=daoContact.getAllNumero(modelMsgProg.getId(),getApplicationContext());
-            //String num="06 21 76 65 18";
+            //on supprime les espace dans le(s) numero(s) de telephone
             num=num.replace(" ","");
+            //on recupere le message à envoyé
             String msg=modelMsgProg.getMsgProg();
-            Log.i("test",""+num);
+            //on appele la classe EnvoiSms pour pouvoir lancer le sms
             EnvoiSms s=new EnvoiSms(num,msg);
             s.envoi_texto();
         }else{
+            //si il y a pas de de résseaux on envoi une notification
+            //car si la personne est à l'étranger elle peux décidé de ne pas envoyé le texto
             NotificationManager notificationmanager=(NotificationManager) this.getApplicationContext().getSystemService(this.getApplicationContext().NOTIFICATION_SERVICE);
             Intent myIntent=new Intent(this.getApplicationContext(), MainActivity.class);
             Notification notification=new Notification(R.drawable.ic_launcher,"test",System.currentTimeMillis());
             myIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP| Intent.FLAG_ACTIVITY_CLEAR_TOP);
             PendingIntent myPendingIntent=PendingIntent.getActivity(this.getApplicationContext(),0,myIntent,PendingIntent.FLAG_UPDATE_CURRENT);
-            notification.setLatestEventInfo(this.getApplicationContext(),"test1","ol",myPendingIntent);
+            String titre=modelMsgProg.getTitre();
+            notification.setLatestEventInfo(this.getApplicationContext(),titre,"ce message n'a pas pu être envoyer",myPendingIntent);
             notification.defaults = Notification.DEFAULT_VIBRATE;
             notificationmanager.notify(0, notification);
 
         }
+        //on ferme le service
         this.stopSelf();
 
     }

@@ -91,7 +91,7 @@
             android:name="com.tyczj.extendedcalendarview.CalendarProvider"
             android:authorities="com.tyczj.extendedcalendarview.calendarprovider" />
         <service android:name=".Service.SmsService"/>
-        <service android:name=".Service.Jesa"/>
+        <service android:name=".Service.DeclencheurSms"/>
     </application>
 
 </manifest>
