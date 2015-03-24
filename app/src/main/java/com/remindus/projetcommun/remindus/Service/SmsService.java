@@ -74,13 +74,28 @@ public class SmsService extends Service {
             DAOMsgProgxContacts daoContact=new DAOMsgProgxContacts(this);
             //on recupere les numeros
             String num=daoContact.getAllNumero(modelMsgProg.getId(),getApplicationContext());
-            //on supprime les espace dans le(s) numero(s) de telephone
-            num=num.replace(" ","");
-            //on recupere le message à envoyé
-            String msg=modelMsgProg.getMsgProg();
-            //on appele la classe EnvoiSms pour pouvoir lancer le sms
-            EnvoiSms s=new EnvoiSms(num,msg);
-            s.envoi_texto();
+            if(num!=null) {
+                //si un numero est renseigner
+                //on supprime les espace dans le(s) numero(s) de telephone
+                num = num.replace(" ", "");
+                //on recupere le message à envoyé
+                String msg = modelMsgProg.getMsgProg();
+                //on appele la classe EnvoiSms pour pouvoir lancer le sms
+                EnvoiSms s = new EnvoiSms(num, msg);
+                s.envoi_texto();
+            }else{
+                // si aucun numero renseigner on envoi une notification
+                NotificationManager notificationmanager=(NotificationManager) this.getApplicationContext().getSystemService(this.getApplicationContext().NOTIFICATION_SERVICE);
+                Intent myIntent=new Intent(this.getApplicationContext(), MainActivity.class);
+                Notification notification=new Notification(R.drawable.ic_launcher,"test",System.currentTimeMillis());
+                myIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP| Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                PendingIntent myPendingIntent=PendingIntent.getActivity(this.getApplicationContext(),0,myIntent,PendingIntent.FLAG_UPDATE_CURRENT);
+                String titre=modelMsgProg.getTitre();
+                notification.setLatestEventInfo(this.getApplicationContext(),titre,"ERREUR : aucun contact reseigner",myPendingIntent);
+                notification.defaults = Notification.DEFAULT_VIBRATE;
+                notificationmanager.notify(0, notification);
+
+            }
         }else{
             //si il y a pas de de résseaux on envoi une notification
             //car si la personne est à l'étranger elle peux décidé de ne pas envoyé le texto
