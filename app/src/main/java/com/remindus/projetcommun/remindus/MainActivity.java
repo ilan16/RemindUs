@@ -4,34 +4,23 @@ package com.remindus.projetcommun.remindus;
  * Created by bahia on 26/02/2015.
  */
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 
 import com.remindus.projetcommun.remindus.Service.Jesa;
-import com.remindus.projetcommun.remindus.Service.SmsService;
 import com.remindus.projetcommun.remindus.controller.ControllerCalendrier;
 import com.remindus.projetcommun.remindus.controller.ControllerContact;
 import com.remindus.projetcommun.remindus.controller.ControllerCreerMsgProg;
 import com.remindus.projetcommun.remindus.controller.ControllerCreerRDV;
-import com.remindus.projetcommun.remindus.controller.ControllerListerGroupe;
 import com.remindus.projetcommun.remindus.controller.ControllerListerModelMsg;
 import com.remindus.projetcommun.remindus.controller.ControllerListerMsgProg;
 import com.remindus.projetcommun.remindus.controller.ControllerListerRDV;
 import com.remindus.projetcommun.remindus.controller.ControllerParametre;
 import com.remindus.projetcommun.remindus.dao.DAORDV;
 import com.remindus.projetcommun.remindus.model.ModelRDV;
-
-import junit.framework.Test;
-
-import java.util.Calendar;
-import java.util.Locale;
-import java.util.TimeZone;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -100,15 +89,6 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-        final Button boutonGroupe = (Button) findViewById(R.id.bouton_groupe);
-        boutonGroupe.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ControllerListerGroupe.class);
-                startActivity(intent);
-            }
-        });
 
         final Button boutonContact = (Button) findViewById(R.id.bouton_contact);
         boutonContact.setOnClickListener(new View.OnClickListener() {
