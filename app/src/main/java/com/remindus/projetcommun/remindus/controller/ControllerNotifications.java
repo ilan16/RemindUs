@@ -23,7 +23,7 @@ public class ControllerNotifications extends ControllerHeader {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.vue_afficher_notifications);
+        setContentView(R.layout.vue_afficher_notifications) ;
 
     }
 

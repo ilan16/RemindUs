@@ -36,7 +36,7 @@ public class Mode extends Service {
     }
 
     @Override
-    public void onStart(Intent intent, int startId) {
+    public void onStart(Intent intent, int startId){
         AudioManager audiomanage = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
 
         int initiale =audiomanage.getRingerMode();

@@ -25,7 +25,7 @@ import java.util.List;
 public class ControllerListerMsgProg extends ControllerHeader {
 
     private static ModelMsgProg valeurSelectionnee;
-    private DAOMsgProg daoMsgProg; 
+    private DAOMsgProg daoMsgProg;
     private ListView l;
 
 
