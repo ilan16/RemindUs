@@ -23,11 +23,15 @@ public class EnvoiSms {public String num;
                 taille++;
             }
         }
-
+        String test="+";
         int it=0;
         String recup[]= new String[taille];
         for(int a=0;a<num.length();){
+
             String num_recup="0";
+            if(num.charAt(0)==test.charAt(0)){
+                num_recup+="0";
+            }
             a++;
             while(num.charAt(a)!=comp.charAt(0)){
                 num_recup+=num.charAt(a);

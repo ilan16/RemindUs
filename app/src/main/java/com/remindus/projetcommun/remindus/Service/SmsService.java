@@ -71,6 +71,8 @@ public class SmsService extends Service {
             ModelMsgProg modelMsgProg = daoMsgProg.lastMsgProg();
             DAOMsgProgxContacts daoContact=new DAOMsgProgxContacts(this);
             String num=daoContact.getAllNumero(modelMsgProg.getId(),getApplicationContext());
+            //String num="06 21 76 65 18";
+            num=num.replace(" ","");
             String msg=modelMsgProg.getMsgProg();
             Log.i("test",""+num);
             EnvoiSms s=new EnvoiSms(num,msg);

@@ -1,34 +1,19 @@
 package com.remindus.projetcommun.remindus.Service;
 
 import android.app.AlarmManager;
-import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
-import android.content.Context;
 import android.content.Intent;
-import android.location.LocationManager;
-import android.net.ConnectivityManager;
 import android.os.IBinder;
-import android.os.SystemClock;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.remindus.projetcommun.remindus.MainActivity;
-import com.remindus.projetcommun.remindus.R;
 import com.remindus.projetcommun.remindus.dao.DAOMsgProg;
-import com.remindus.projetcommun.remindus.dao.DAORDV;
 import com.remindus.projetcommun.remindus.model.ModelMsgProg;
-import com.remindus.projetcommun.remindus.model.ModelRDV;
-
-import java.util.Calendar;
-import java.util.Locale;
-import java.util.TimeZone;
 
 /**
  * Created by kevin on 21/03/2015.
  */
-public class Jesa extends Service {
+public class DeclencheurSms extends Service {
 
     @Override
     public void onCreate() {
@@ -67,9 +52,9 @@ public class Jesa extends Service {
         Log.i("test2",""+date);
         if(date!=0) {
 
-            Intent myIntent = new Intent(Jesa.this, SmsService.class);
-            PendingIntent pendingIntent = PendingIntent.getService(Jesa.this, 0, myIntent, 0);
-            Intent myIntent2 = new Intent(getApplicationContext(), Jesa.class);
+            Intent myIntent = new Intent(DeclencheurSms.this, SmsService.class);
+            PendingIntent pendingIntent = PendingIntent.getService(DeclencheurSms.this, 0, myIntent, 0);
+            Intent myIntent2 = new Intent(getApplicationContext(), DeclencheurSms.class);
             PendingIntent pendingIntent2 = PendingIntent.getService(getApplicationContext(), 0, myIntent2, 0);
             AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
@@ -87,7 +72,7 @@ public class Jesa extends Service {
             //alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);*/
             alarmManager.set(AlarmManager.RTC_WAKEUP, date, pendingIntent);
             alarmManager.set(AlarmManager.RTC_WAKEUP, date, pendingIntent2);
-            Jesa.this.stopService(myIntent);
+            DeclencheurSms.this.stopService(myIntent);
             this.stopSelf();
         }else{
             this.stopSelf();
