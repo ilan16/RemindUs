@@ -11,6 +11,7 @@ import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.os.IBinder;
 import android.os.SystemClock;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.remindus.projetcommun.remindus.MainActivity;
@@ -63,10 +64,13 @@ public class SmsService extends Service {
         ConnectivityManager connexion=(ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         LocationManager localisation=(LocationManager) getSystemService(LOCATION_SERVICE);
         if(localisation.isProviderEnabled(LocationManager.GPS_PROVIDER)||connexion.getActiveNetworkInfo()!=null){
-            String num="0621766518";
-            Jesa jesa=new Jesa();
-            String msg="test";
+            String num="0621766518;";
+            DAOMsgProg daoMsgProg = new DAOMsgProg(this);
 
+            ModelMsgProg modelMsgProg = daoMsgProg.lastMsgProg();
+
+            String msg=modelMsgProg.getMsgProg();
+            Log.i("test",msg);
             EnvoiSms s=new EnvoiSms(num,msg);
             s.envoi_texto();
         }else{

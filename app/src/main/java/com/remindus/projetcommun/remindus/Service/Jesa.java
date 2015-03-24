@@ -29,7 +29,7 @@ import java.util.TimeZone;
  * Created by kevin on 21/03/2015.
  */
 public class Jesa extends Service {
-    private String message;
+
     @Override
     public void onCreate() {
 
@@ -63,7 +63,7 @@ public class Jesa extends Service {
         DAOMsgProg daoMsgProg = new DAOMsgProg(this);
         ModelMsgProg modelMsgProg = daoMsgProg.prochainMsgProg();
         long date = modelMsgProg.getDate();
-        message=modelMsgProg.getMsgProg();
+        long id=modelMsgProg.getId();
         Log.i("test2",""+date);
         if(date!=0) {
 
@@ -101,9 +101,7 @@ public class Jesa extends Service {
         return super.onUnbind(intent);
     }
 
-    public String getMessage(){
-        return message;
-    }
+
 
 }
 
