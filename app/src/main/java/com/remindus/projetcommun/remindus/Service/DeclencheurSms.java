@@ -38,43 +38,39 @@ public class DeclencheurSms extends Service {
 
     @Override
     public void onDestroy() {
-        // TODO Auto-generated method stub
+        // detruire le service
         super.onDestroy();
 
     }
 
     @Override
     public void onStart(Intent intent, int startId) {
+        //connection à la base de donnée
         DAOMsgProg daoMsgProg = new DAOMsgProg(this);
         ModelMsgProg modelMsgProg = daoMsgProg.prochainMsgProg();
+        //recupeation de la date et heure du prochain envoi
         long date = modelMsgProg.getDate();
-        long id=modelMsgProg.getId();
-        Log.i("test2",""+date);
         if(date!=0) {
-
+            //si il existe un prochain message programmé
+            //on se redirige vers SmsService.class
             Intent myIntent = new Intent(DeclencheurSms.this, SmsService.class);
             PendingIntent pendingIntent = PendingIntent.getService(DeclencheurSms.this, 0, myIntent, 0);
+            //on redemarre un nouveau service DeclencheurSms pour le prochaoin sms
             Intent myIntent2 = new Intent(getApplicationContext(), DeclencheurSms.class);
             PendingIntent pendingIntent2 = PendingIntent.getService(getApplicationContext(), 0, myIntent2, 0);
+
             AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-
-            /*Calendar cal = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
-//cal.add(Calendar.SECOND, 10);
-
-            cal.set(Calendar.DATE, 22);  //1-31
-            cal.set(Calendar.MONTH, 2);  //first month is 0!!! January is zero!!!
-            cal.set(Calendar.YEAR, 2015);//year...
-
-            cal.set(Calendar.HOUR_OF_DAY, 0);  //HOUR
-            cal.set(Calendar.MINUTE, 11);       //MIN
-            cal.set(Calendar.SECOND, 0);
-
-            //alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);*/
+            //verifie quand envoyé le message
             alarmManager.set(AlarmManager.RTC_WAKEUP, date, pendingIntent);
+
+            //verifie quand demarré le nouveau service declencheurSms
             alarmManager.set(AlarmManager.RTC_WAKEUP, date, pendingIntent2);
+            //on ferme le service smsService pour evité qu'il renvoi un nouveau message aléatoirement
             DeclencheurSms.this.stopService(myIntent);
+            //on detruit se service
             this.stopSelf();
         }else{
+            //si il a plus de prochain message programmé on detruit se service
             this.stopSelf();
         }
     }
