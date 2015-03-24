@@ -47,11 +47,11 @@ public class MainActivity extends ActionBarActivity {
         ModelRDV modelRDV = new ModelRDV();
         long date = modelRDV.getDate();
 
-                Intent myIntent = new Intent(MainActivity.this, SmsService.class);
-                PendingIntent pendingIntent = PendingIntent.getService(MainActivity.this, 0, myIntent, 0);
+                Intent myIntent = new Intent(MainActivity.this, Jesa.class);
+                //PendingIntent pendingIntent = PendingIntent.getService(MainActivity.this, 0, myIntent, 0);
         //Intent myIntent2 = new Intent(getApplicationContext(), Jesa.class);
         //PendingIntent pendingIntent2 = PendingIntent.getService(getApplicationContext(), 0, myIntent2, 0);
-                AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+               /* AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
                 Calendar cal = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault());
 //cal.add(Calendar.SECOND, 10);
@@ -64,10 +64,10 @@ public class MainActivity extends ActionBarActivity {
                 cal.set(Calendar.MINUTE, 11);       //MIN
                 cal.set(Calendar.SECOND, 0);
 
-                alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);
+                alarmManager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), pendingIntent);*/
                 //alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 1000 * 30, pendingIntent);
        // alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 1000 * 60, pendingIntent2);
-        MainActivity.this.stopService(myIntent);
+        MainActivity.this.startService(myIntent);
 
 
         final Button boutonAccueil = (Button) findViewById(R.id.bouton_calendrier);

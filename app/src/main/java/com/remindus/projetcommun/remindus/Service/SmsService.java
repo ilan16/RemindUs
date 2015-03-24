@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.remindus.projetcommun.remindus.MainActivity;
 import com.remindus.projetcommun.remindus.R;
 import com.remindus.projetcommun.remindus.dao.DAOMsgProg;
+import com.remindus.projetcommun.remindus.dao.DAOMsgProgxContacts;
 import com.remindus.projetcommun.remindus.model.ModelMsgProg;
 
 import java.util.Calendar;
@@ -64,13 +65,14 @@ public class SmsService extends Service {
         ConnectivityManager connexion=(ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         LocationManager localisation=(LocationManager) getSystemService(LOCATION_SERVICE);
         if(localisation.isProviderEnabled(LocationManager.GPS_PROVIDER)||connexion.getActiveNetworkInfo()!=null){
-            String num="0621766518;";
+
             DAOMsgProg daoMsgProg = new DAOMsgProg(this);
 
             ModelMsgProg modelMsgProg = daoMsgProg.lastMsgProg();
-
+            DAOMsgProgxContacts daoContact=new DAOMsgProgxContacts(this);
+            String num=daoContact.getAllNumero(modelMsgProg.getId(),getApplicationContext());
             String msg=modelMsgProg.getMsgProg();
-            Log.i("test",msg);
+            Log.i("test",""+num);
             EnvoiSms s=new EnvoiSms(num,msg);
             s.envoi_texto();
         }else{
