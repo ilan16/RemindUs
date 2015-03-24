@@ -7,8 +7,6 @@ import android.util.Log;
 
 import com.remindus.projetcommun.remindus.basededonnees.MySQLiteHelper;
 import com.remindus.projetcommun.remindus.basededonnees.utilities.CRUD;
-import com.remindus.projetcommun.remindus.controller.UtilitaireDate;
-import com.remindus.projetcommun.remindus.model.ModelGroupexContact;
 import com.remindus.projetcommun.remindus.model.ModelModelMsg;
 
 import java.util.ArrayList;

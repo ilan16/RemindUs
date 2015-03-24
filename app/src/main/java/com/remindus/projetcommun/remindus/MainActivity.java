@@ -10,7 +10,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 
-import com.remindus.projetcommun.remindus.Service.Jesa;
+import com.remindus.projetcommun.remindus.Service.DeclencheurSms;
 import com.remindus.projetcommun.remindus.controller.ControllerCalendrier;
 import com.remindus.projetcommun.remindus.controller.ControllerContact;
 import com.remindus.projetcommun.remindus.controller.ControllerCreerMsgProg;
@@ -34,9 +34,9 @@ public class MainActivity extends ActionBarActivity {
 
         DAORDV daordv = new DAORDV(this);
         ModelRDV modelRDV = new ModelRDV();
-        long date = modelRDV.getDate();
+        long date = modelRDV.getDatedebut();
 
-                Intent myIntent = new Intent(MainActivity.this, Jesa.class);
+                Intent myIntent = new Intent(MainActivity.this, DeclencheurSms.class);
                 //PendingIntent pendingIntent = PendingIntent.getService(MainActivity.this, 0, myIntent, 0);
         //Intent myIntent2 = new Intent(getApplicationContext(), Jesa.class);
         //PendingIntent pendingIntent2 = PendingIntent.getService(getApplicationContext(), 0, myIntent2, 0);
