@@ -90,6 +90,17 @@ public class DAOMsgProgxContacts extends IDAO {
         return modelMsgProgxContactses;
     }
 
+    public String getAllNumero(long idmsgprog, Context context){
+        List<ModelMsgProgxContacts> maList = this.getAllMsgProgxC(idmsgprog);
+        DAOContact daoContact = new DAOContact(context);
+        String numeros = "";
+        for (int i = 0; i < maList.size(); i++){
+            long idContact = maList.get(i).getIdMsgProg();
+            numeros += daoContact.getContact(idContact)+";";
+        }
+        return numeros;
+    }
+
     public boolean deleteMsgProgxC(long idc) {
         getCrud().open();
         boolean delete = getCrud().delete(MySQLiteHelper.TABLE_MSG_PROGxCONTACTS, MySQLiteHelper.COLUMN_ID_CONTACT_MPxC + " = " + idc);
