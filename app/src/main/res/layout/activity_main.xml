@@ -9,7 +9,7 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:layout_width="250dp"
+            android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_weight="1"
             android:text="REMIND US"
@@ -29,9 +29,9 @@
 
         <Button
             android:id="@+id/bouton_rdv"
-            android:layout_width="160dp"
+            android:layout_width="170dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="0.55"
             android:background="@drawable/rdv"
             android:gravity="bottom|center"
             android:text="@string/titre_RDV"
@@ -39,13 +39,13 @@
 
         <Button
             android:id="@+id/bouton_msg_prog"
-            android:layout_width="160dp"
-            android:layout_height="fill_parent"
-            android:layout_weight="1"
+            android:layout_width="170dp"
+            android:layout_height="match_parent"
             android:background="@drawable/prog"
             android:gravity="bottom|center"
             android:text="@string/titre_msg_prog"
-            android:textColor="#ffffffff" />
+            android:textColor="#ffffffff"
+            android:layout_weight="0.55" />
 
     </LinearLayout>
 
@@ -56,7 +56,7 @@
 
         <Button
             android:id="@+id/bouton_calendrier"
-            android:layout_width="160dp"
+            android:layout_width="170dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/calendrier"
@@ -66,7 +66,7 @@
 
         <Button
         android:id="@+id/bouton_model_msg"
-        android:layout_width="160dp"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="@drawable/modele"
@@ -84,8 +84,8 @@
 
         <Button
             android:id="@+id/bouton_contact"
-            android:layout_width="160dp"
-            android:layout_height="fill_parent"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/contact"
             android:gravity="bottom|center"
@@ -95,8 +95,8 @@
 
         <Button
             android:id="@+id/bouton_parametre"
-            android:layout_width="160dp"
-            android:layout_height="match_parent"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/parametre"
             android:gravity="bottom|center"
