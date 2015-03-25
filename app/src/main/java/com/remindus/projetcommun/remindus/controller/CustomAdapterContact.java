@@ -20,10 +20,18 @@ import java.util.List;
  */
 public class CustomAdapterContact extends ArrayAdapter<ModelContact> {
 
+    //cette classe permettra de lier le checkbox avec TextView pour faire les checkbox dans les listes
+
     List<ModelContact> modelItems = null;
     HashMap<CheckBox, TextView> listbox = null;
     Context context;
 
+    /**
+     *
+     * @param context
+     * @param textViewResourceId
+     * @param resource
+     */
     public CustomAdapterContact(Context context, int textViewResourceId, List<ModelContact> resource) {
         super(context, textViewResourceId, resource);
         this.context = context;
@@ -32,6 +40,13 @@ public class CustomAdapterContact extends ArrayAdapter<ModelContact> {
 
     }
 
+    /**
+     *
+     * @param position
+     * @param convertView
+     * @param parent
+     * @return
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
@@ -48,6 +63,10 @@ public class CustomAdapterContact extends ArrayAdapter<ModelContact> {
         return convertView;
     }
 
+    /**
+     *
+     * @return
+     */
     public HashMap<CheckBox, TextView> getListChecked() {
         return listbox;
     }

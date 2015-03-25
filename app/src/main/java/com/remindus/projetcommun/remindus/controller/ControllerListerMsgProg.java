@@ -75,7 +75,9 @@ public class ControllerListerMsgProg extends ControllerHeader {
                 valeurSelectionnee = (ModelMsgProg) l.getAdapter().getItem(position);
                 ControllerListerMsgProg.setValeurSelectionnee(valeurSelectionnee);
 
-
+/**
+ * boite de dialogue
+ */
                 final String[] option = {getResources().getString(R.string.dialogue_modifier),getResources().getString(R.string.dialogue_supprimer),getResources().getString(R.string.dialogue_contacts),getResources().getString(R.string.dialogue_manuellement)};
 
                 AlertDialog.Builder myDialog =new AlertDialog.Builder(ControllerListerMsgProg.this);

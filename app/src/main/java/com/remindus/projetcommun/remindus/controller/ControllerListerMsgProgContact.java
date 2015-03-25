@@ -91,6 +91,10 @@ public class ControllerListerMsgProgContact extends ControllerHeader {
         });
     }
 
+    /**
+     * permet de supprimer un élément de la bdd et de la liste visuel
+     * @param view
+     */
       public void supprimer(View view){
         ArrayAdapter<ModelContact> adapter = (ArrayAdapter<ModelContact>) l.getAdapter();
         boolean delete = daoMsgProgxContacts.deleteMsgProgxC(ControllerListerMsgProgContact.getModelContact().getId());
@@ -101,6 +105,10 @@ public class ControllerListerMsgProgContact extends ControllerHeader {
         adapter.notifyDataSetChanged();
     }
 
+    /**
+     * permet de faire une redirection vers les contacts
+     * @param view
+     */
     public void redirection(View view){
         Intent intent = new Intent(ControllerListerMsgProgContact.this, ControllerContact.class);
         startActivity(intent);

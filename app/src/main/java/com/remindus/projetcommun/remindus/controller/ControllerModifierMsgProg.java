@@ -31,6 +31,10 @@ public class ControllerModifierMsgProg extends ControllerHeader {
     // Variable for storing current date and time
     private int mYear, mMonth, mDay, mHour, mMinute;
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,13 +49,18 @@ public class ControllerModifierMsgProg extends ControllerHeader {
         editHeure = (EditText) findViewById(R.id.editHeure);
         editTitre = (EditText) findViewById(R.id.titre_msg_prog);
         editContenu = (EditText) findViewById(R.id.message_msg_prog);
-
+        //permet de remplir l'intégralité des champs
         editTitre.setText((CharSequence) ControllerListerMsgProg.getValeurSelectionnee().getTitre());
         editContenu.setText((CharSequence) ControllerListerMsgProg.getValeurSelectionnee().getMsgProg());
         editDate.setText((CharSequence) ControllerListerMsgProg.getValeurSelectionnee().getDatestring());
         editHeure.setText((CharSequence) utilitaireDate.convertirLongDateString(ControllerListerMsgProg.getValeurSelectionnee().getDate(), "HH:mm"));
     }
 
+    /**
+     * permet de modifier un msg prg (il appelle les DAO qu'il faut...)
+     * @param view
+     * @throws ParseException
+     */
     public void modifierMsgProg(View view) throws ParseException {
         this.daoMsgProg = new DAOMsgProg(this);
 
@@ -75,6 +84,10 @@ public class ControllerModifierMsgProg extends ControllerHeader {
         }
     }
 
+    /**
+     * permet d'ajouter l'heure du msg prog avec heurePicker
+     * @param v
+     */
     public void ajouterHeure(View v) {
 
         // Process to get Current Time
@@ -108,6 +121,10 @@ public class ControllerModifierMsgProg extends ControllerHeader {
         tpd.show();
     }
 
+    /**
+     * permet d'ajouter la date avec datePicker
+     * @param view
+     */
     public void ajouterDate(View view) {
         // Process to get Current Date
         final Calendar c = Calendar.getInstance();

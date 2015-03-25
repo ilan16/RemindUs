@@ -24,18 +24,31 @@ import java.util.List;
  */
 public class ControllerListerRDV extends ControllerHeader {
 
-    private static ModelRDV valeurSelectionnee;
+    private static ModelRDV valeurSelectionnee; //permettra de récupérer les valeurs à delete ou à update
+    // c'est en static car on en a besoin pour garder le contenu de cette variable lorsquon changera de classe
     private DAORDV daordv;
     private ListView l;
 
+    /**
+     *
+     * @return
+     */
     public static ModelRDV getValeurSelectionnee() {
         return valeurSelectionnee;
     }
 
+    /**
+     *
+     * @param valeurSelectionnee
+     */
     public static void setValeurSelectionnee(ModelRDV valeurSelectionnee) {
         ControllerListerRDV.valeurSelectionnee = valeurSelectionnee;
     }
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +64,9 @@ public class ControllerListerRDV extends ControllerHeader {
         this.listerRDV();
     }
 
+    /**
+     * permet de lister l'ensemble des rdv
+     */
     public void listerRDV() {
         daordv = new DAORDV(this);
         daordv.getCrud().open();
@@ -62,6 +78,7 @@ public class ControllerListerRDV extends ControllerHeader {
                 android.R.layout.simple_list_item_1, values);
         l.setAdapter(adapter);
 
+        // qd l'utilisateur reste longtemps appuié, une boite dialogue s'ouvre
         l.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -104,6 +121,10 @@ public class ControllerListerRDV extends ControllerHeader {
         });
     }
 
+    /**
+     * peremet de supprimer un rdv
+     * @param view
+     */
     public void supprimerRDV(View view) {
         ArrayAdapter<ModelRDV> adapter = (ArrayAdapter<ModelRDV>) l.getAdapter();
         boolean delete = daordv.deleteRDV(valeurSelectionnee);
@@ -116,6 +137,10 @@ public class ControllerListerRDV extends ControllerHeader {
         adapter.notifyDataSetChanged();
     }
 
+    /**
+     * permet de faire une redirection vers la page créer un rdv
+     * @param view
+     */
     public void redirectionCreerRDV(View view) {
         Intent intent = new Intent(ControllerListerRDV.this, ControllerCreerRDV.class);
         startActivity(intent);
