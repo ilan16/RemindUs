@@ -14,8 +14,11 @@ import android.widget.Toast;
 
 import com.remindus.projetcommun.remindus.R;
 import com.remindus.projetcommun.remindus.Service.DeclencheurSms;
+import com.remindus.projetcommun.remindus.Service.EnvoiSms;
 import com.remindus.projetcommun.remindus.dao.DAOMsgProg;
+import com.remindus.projetcommun.remindus.dao.DAOMsgProgxContacts;
 import com.remindus.projetcommun.remindus.model.ModelMsgProg;
+import com.remindus.projetcommun.remindus.model.ModelMsgProgxContacts;
 
 import java.util.List;
 
@@ -92,6 +95,18 @@ public class ControllerListerMsgProg extends ControllerHeader {
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(ControllerListerMsgProg.this, ControllerListerMsgProgContact.class);
                         startActivity(intent);
+                    }
+                });
+                alertDialog.setButton(Dialog.BUTTON_NEUTRAL, "Envoier manuellement", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        int idInt  = (int) valeurSelectionnee.getId();
+                        long idLong = valeurSelectionnee.getId();
+                        ModelMsgProg modelMsgProg = daoMsgProg.getMsgProg(idInt);
+                        String message = modelMsgProg.getMsgProg();
+                        DAOMsgProgxContacts daoMsgProgxContacts = new DAOMsgProgxContacts(getBaseContext());
+                        String numero = daoMsgProgxContacts.getAllNumero(idLong, getBaseContext());
+                        EnvoiSms envoiSms = new EnvoiSms(numero, message);
+                        envoiSms.envoi_texto();
                     }
                 });
                 alertDialog.show();

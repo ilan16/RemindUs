@@ -23,6 +23,11 @@ import com.remindus.projetcommun.remindus.controller.ControllerParametre;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +48,10 @@ public class MainActivity extends ActionBarActivity {
         final Button boutonAccueil = (Button) findViewById(R.id.bouton_calendrier);
         boutonAccueil.setOnClickListener(new View.OnClickListener() {
 
+            /**
+             *
+             * @param v
+             */
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ControllerCalendrier.class);
@@ -53,6 +62,10 @@ public class MainActivity extends ActionBarActivity {
         final Button boutonRDV = (Button) findViewById(R.id.bouton_rdv);
         boutonRDV.setOnClickListener(new View.OnClickListener() {
 
+            /**
+             *
+             * @param v
+             */
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ControllerListerRDV.class);
@@ -63,6 +76,10 @@ public class MainActivity extends ActionBarActivity {
         final Button boutonMsgProg = (Button) findViewById(R.id.bouton_msg_prog);
         boutonMsgProg.setOnClickListener(new View.OnClickListener() {
 
+            /**
+             *
+             * @param v
+             */
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ControllerListerMsgProg.class);

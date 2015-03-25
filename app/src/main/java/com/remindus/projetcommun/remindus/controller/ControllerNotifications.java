@@ -35,19 +35,16 @@ public class ControllerNotifications extends ControllerHeader {
         switch (view.getId()) {
             case R.id.notif_normal:
                 if (checked) {
-
                     Toast.makeText(ControllerNotifications.this, "Mode normal par defaut activé !", Toast.LENGTH_LONG).show();
                     break;
                 }
             case R.id.notif_silencieux:
                 if (checked) {
-
                     Toast.makeText(ControllerNotifications.this, "Mode silencieux par defaut activé !", Toast.LENGTH_LONG).show();
                     break;
                 }
             case R.id.notif_vibreur:
                 if (checked) {
-
                     Toast.makeText(ControllerNotifications.this, "Mode vibreur par defaut activé !", Toast.LENGTH_LONG).show();
                     break;
                 }
