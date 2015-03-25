@@ -24,13 +24,13 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="170dp">
+        android:layout_height="180dp">
 
 
         <Button
             android:id="@+id/bouton_rdv"
             android:layout_width="170dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="0.55"
             android:background="@drawable/rdv"
             android:gravity="bottom|center"
@@ -57,7 +57,7 @@
         <Button
             android:id="@+id/bouton_calendrier"
             android:layout_width="170dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/calendrier"
             android:gravity="bottom|center"
@@ -67,7 +67,7 @@
         <Button
         android:id="@+id/bouton_model_msg"
         android:layout_width="170dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="@drawable/modele"
         android:gravity="bottom|center"
@@ -85,7 +85,7 @@
         <Button
             android:id="@+id/bouton_contact"
             android:layout_width="170dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/contact"
             android:gravity="bottom|center"
@@ -96,7 +96,7 @@
         <Button
             android:id="@+id/bouton_parametre"
             android:layout_width="170dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/parametre"
             android:gravity="bottom|center"
