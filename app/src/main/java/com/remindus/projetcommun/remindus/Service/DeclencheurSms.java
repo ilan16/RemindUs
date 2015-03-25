@@ -82,7 +82,7 @@ public class DeclencheurSms extends Service {
     }
 
     /**
-     * 
+     *
      * @param intent
      * @return
      */
