@@ -1,7 +1,6 @@
 package com.remindus.projetcommun.remindus.controller;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,7 +17,6 @@ import com.remindus.projetcommun.remindus.Service.EnvoiSms;
 import com.remindus.projetcommun.remindus.dao.DAOMsgProg;
 import com.remindus.projetcommun.remindus.dao.DAOMsgProgxContacts;
 import com.remindus.projetcommun.remindus.model.ModelMsgProg;
-import com.remindus.projetcommun.remindus.model.ModelMsgProgxContacts;
 
 import java.util.List;
 
@@ -76,42 +74,50 @@ public class ControllerListerMsgProg extends ControllerHeader {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 valeurSelectionnee = (ModelMsgProg) l.getAdapter().getItem(position);
                 ControllerListerMsgProg.setValeurSelectionnee(valeurSelectionnee);
-                AlertDialog alertDialog = new AlertDialog.Builder(ControllerListerMsgProg.this).create();
-                alertDialog.setTitle(valeurSelectionnee.getTitre());
-                alertDialog.setButton(Dialog.BUTTON1, "Modifier", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        ModelMsgProg modelMsgProg = daoMsgProg.getMsgProg(valeurSelectionnee.getTitre());
-                        ControllerListerMsgProg.setValeurSelectionnee(modelMsgProg);
-                        Intent intent = new Intent(ControllerListerMsgProg.this, ControllerModifierMsgProg.class);
-                        startActivity(intent);
-                    }
-                });
-                alertDialog.setButton(Dialog.BUTTON2, "Supprimer", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        supprimerMsgProg(null);
-                    }
-                });
-                alertDialog.setButton(Dialog.BUTTON3, "Contacts", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(ControllerListerMsgProg.this, ControllerListerMsgProgContact.class);
-                        startActivity(intent);
-                    }
-                });
-                alertDialog.setButton(Dialog.BUTTON_NEUTRAL, "Envoier manuellement", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        int idInt  = (int) valeurSelectionnee.getId();
-                        long idLong = valeurSelectionnee.getId();
-                        ModelMsgProg modelMsgProg = daoMsgProg.getMsgProg(idInt);
-                        String message = modelMsgProg.getMsgProg();
-                        DAOMsgProgxContacts daoMsgProgxContacts = new DAOMsgProgxContacts(getBaseContext());
-                        String numero = daoMsgProgxContacts.getAllNumero(idLong, getBaseContext());
-                        EnvoiSms envoiSms = new EnvoiSms(numero, message);
-                        envoiSms.envoi_texto();
-                    }
-                });
-                alertDialog.show();
 
-                Log.i("RDV A DELETE", "" + values.get(position).toString() + "");
+
+                final String[] option = {"Modifier", "Contacts", "Supprimer","Envoyer manuellement"};
+
+                AlertDialog.Builder myDialog =new AlertDialog.Builder(ControllerListerMsgProg.this);
+                myDialog.setTitle(valeurSelectionnee.getTitre());
+                myDialog.setItems(option, new DialogInterface.OnClickListener(){
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        String item = option[which];
+
+                        switch (item){
+                            case "Modifier":
+                                Intent intent = new Intent(ControllerListerMsgProg.this, ControllerModifierMsgProg.class);
+                                startActivity(intent);
+                                break;
+                            case "Supprimer":
+                                supprimerMsgProg(null);
+                                break;
+                            case "Contacts":
+                                Intent intent2 = new Intent(ControllerListerMsgProg.this, ControllerListerMsgProgContact.class);
+                                startActivity(intent2);
+                                break;
+                            case "Envoyer manuellement":
+                                int idInt  = (int) valeurSelectionnee.getId();
+                                long idLong = valeurSelectionnee.getId();
+                                ModelMsgProg modelMsgProg = daoMsgProg.getMsgProg(idInt);
+                                String message = modelMsgProg.getMsgProg();
+                                DAOMsgProgxContacts daoMsgProgxContacts = new DAOMsgProgxContacts(getBaseContext());
+                                String numero = daoMsgProgxContacts.getAllNumero(idLong, getBaseContext());
+                                EnvoiSms envoiSms = new EnvoiSms(numero, message);
+                                envoiSms.envoi_texto();
+                                break;
+                        }
+
+
+                    }});
+
+                myDialog.setNegativeButton("Cancel", null);
+
+                myDialog.show();
+
                 return false;
             }
         });

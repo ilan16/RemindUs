@@ -1,11 +1,9 @@
 package com.remindus.projetcommun.remindus.controller;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -58,22 +56,40 @@ public class ControllerListerModelMsg extends ControllerHeader {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 valeurSelectionnee = (ModelModelMsg) l.getAdapter().getItem(position);
                 ControllerListerModelMsg.setValeurSelectionnee(valeurSelectionnee);
-                AlertDialog alertDialog = new AlertDialog.Builder(ControllerListerModelMsg.this).create();
-                alertDialog.setTitle(valeurSelectionnee.getTitre());
-                alertDialog.setButton(Dialog.BUTTON1, "Modifier", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(ControllerListerModelMsg.this, ControllerModifierModelMsg.class);
-                        startActivity(intent);
-                    }
-                });
-                alertDialog.setButton(Dialog.BUTTON2, "Supprimer", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        supprimerModelMsg(null);
-                    }
-                });
-                alertDialog.show();
 
-                Log.i("MODEL MSG A DELETE", "" + values.get(position).toString() + "");
+
+
+                final String[] option = {"Modifier","Supprimer"};
+
+                AlertDialog.Builder myDialog =new AlertDialog.Builder(ControllerListerModelMsg.this);
+                myDialog.setTitle(valeurSelectionnee.getTitre());
+                myDialog.setItems(option, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        String item = option[which];
+
+                        switch (item) {
+                            case "Modifier":
+                                Intent intent = new Intent(ControllerListerModelMsg.this, ControllerModifierModelMsg.class);
+                                startActivity(intent);
+                                break;
+                            case "Supprimer":
+                                supprimerModelMsg(null);
+                                break;
+
+                        }
+
+
+                    }
+                });
+
+                myDialog.setNegativeButton("Cancel", null);
+
+                myDialog.show();
+
+
                 return false;
             }
         });
