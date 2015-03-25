@@ -112,12 +112,15 @@ public class ControllerListerRDV extends ControllerHeader {
     }
 
 
+    /*
+    * @param rdv
+    * Méthode qui permet de supprimer un rdv du calendrier
+    * */
     public void supprimerEventCalendrier(ModelRDV rdv) {
         String[] tab_date = rdv.getDateString().split("/");
         int annee = Integer.parseInt(tab_date[2]);
         int mois = Integer.parseInt(tab_date[1]);
         int jour = Integer.parseInt(tab_date[0]);
-        System.out.println("année: " + annee + " mois: " + mois + " jour: " + jour);
 
         UtilitaireDate util_date = new UtilitaireDate();
         String h = util_date.convertirLongDateString(rdv.getDatedebut(),"HH:mm:ss");
@@ -127,23 +130,20 @@ public class ControllerListerRDV extends ControllerHeader {
         int heure = Integer.parseInt(tab_heure[0]);
         int min = Integer.parseInt(tab_heure[1]);
 
-        System.out.println("heure: "+ heure + " minute: "+ min);
-        //Calendar cal = Calendar.getInstance();
-        //cal.set(annee, mois-1, jour, heure, min);
-        //cal.set(2015, 2, 2, 18, 30);
-        // Defines selection criteria for the rows you want to delete
+
+        // Définit les critères de selection pour les lignes que l'on souhaite supprimer
         String mSelectionClause = CalendarProvider.LOCATION + " = ? AND "+ CalendarProvider.EVENT +" = ? AND "+CalendarProvider.START + " = ?";
-        //String time = String.valueOf(cal.getTimeInMillis());
+        //Les parametres de la requête
         String[] mSelectionArgs = {rdv.getLieu(), rdv.getNom(), String.valueOf(rdv.getDatedebut())};
 
-        // Defines a variable to contain the number of rows deleted
+        // Variable qui montrera le  nombre de ligne supprimer
         int mRowsDeleted = 0;
 
-        // Deletes the words that match the selection criteria
+        // Execution de la requête
         mRowsDeleted = getContentResolver().delete(
-                CalendarProvider.CONTENT_URI,   // the user dictionary content URI
-                mSelectionClause,                    // the column to select on
-                mSelectionArgs                      // the value to compare to
+                CalendarProvider.CONTENT_URI,   //la table
+                mSelectionClause,
+                mSelectionArgs
         );
         System.out.println("rows deleted :"+mRowsDeleted);
     }

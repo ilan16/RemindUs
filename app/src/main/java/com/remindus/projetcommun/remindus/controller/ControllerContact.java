@@ -44,13 +44,15 @@ public class ControllerContact extends ControllerHeader {
         this.listerContact();
     }
 
+    /*
+    * Methode qui permet de lister les contacts de l'utilisateur
+     */
     public void listerContact() {
         daoContact = new DAOContact(this);
-        daoContact.getCrud().open();
+        daoContact.getCrud().open(); //On ouvre la connexion à la base de données
 
         final List<ModelContact> values = daoContact.getAllContacts();
         lv = (ListView) findViewById(R.id.sampleList);
-
         adapter = new CustomAdapterContact(this, R.layout.vue_afficher_contact, values);
         lv.setAdapter(adapter);
 
@@ -61,12 +63,18 @@ public class ControllerContact extends ControllerHeader {
 
     public void refreshContact(View view) {
         daoContact = new DAOContact(this);
+        //On récupère tous les Contacts du répertoire
         cursor1 = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC");
 
+        //On parcourt la liste des Contacts
         while (cursor1.moveToNext()) {
+            //On récupère l'id
             String contactId = cursor1.getString(cursor1.getColumnIndex(ContactsContract.Contacts._ID));
+            //On récupère le nom
             String name = cursor1.getString(cursor1.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+            //On récupère le numéro de telephone
             String number = cursor1.getString(cursor1.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+            //On insère le contact dans la base de données
             daoContact.insertContact(name, number);
         }
 
