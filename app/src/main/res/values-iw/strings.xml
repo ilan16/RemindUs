@@ -56,4 +56,11 @@
     <string name="modifier_rdv"> ערוך את האירוע הזה</string>
     <string name="titre"> כותרת</string>
     <string name="valider"> לאמת</string>
+    <string name="saturday"> ביום שבת</string>
+    <string name="thursday"> יום חמישי</string>
+    <string name="sunday"> ביום שבת</string>
+    <string name="monday"> ביום שני</string>
+    <string name="modifier_groupe"> ערוך קבוצה זו</string>
+    <string name="friday"> ביום שישי</string>
+    <string name="groupe_nom_vide"> שם שדה ריק. אנא מלא!</string>
 </resources>

@@ -56,4 +56,10 @@
     <string name="modifier_rdv"> تعديل هذا الحدث</string>
     <string name="titre"> لقب</string>
     <string name="valider"> التحقق من صحة</string>
+    <string name="saturday"> السبت</string>
+    <string name="sunday"> الأحد</string>
+    <string name="thursday"> الخميس</string>
+    <string name="monday"> الاثنين</string>
+    <string name="modifier_groupe"> تعديل هذه المجموعة</string>
+    <string name="friday"> الجمعة</string>
 </resources>
