@@ -12,7 +12,7 @@ import com.remindus.projetcommun.remindus.model.ModelMsgProg;
 /**
  * Created by kevin on 25/03/2015.
  */
-public class DeclencheurMode extends Service {
+public class DeclencheurModeService extends Service {
 
     @Override
     public void onCreate() {
@@ -44,8 +44,8 @@ public class DeclencheurMode extends Service {
         if(date!=0) {
             //si il existe un prochain message programmé
             //on se redirige vers SmsService.class
-            Intent myIntent = new Intent(DeclencheurMode.this, SmsService.class);
-            PendingIntent pendingIntent = PendingIntent.getService(DeclencheurMode.this, 0, myIntent, 0);
+            Intent myIntent = new Intent(DeclencheurModeService.this, SmsService.class);
+            PendingIntent pendingIntent = PendingIntent.getService(DeclencheurModeService.this, 0, myIntent, 0);
             //on redemarre un nouveau service DeclencheurSms pour le prochaoin sms
             Intent myIntent2 = new Intent(getApplicationContext(), DeclencheurSms.class);
             PendingIntent pendingIntent2 = PendingIntent.getService(getApplicationContext(), 0, myIntent2, 0);
@@ -57,7 +57,7 @@ public class DeclencheurMode extends Service {
             //verifie quand demarré le nouveau service declencheurSms
             alarmManager.set(AlarmManager.RTC_WAKEUP, date, pendingIntent2);
             //on ferme le service smsService pour evité qu'il renvoi un nouveau message aléatoirement
-            DeclencheurMode.this.stopService(myIntent);
+            DeclencheurModeService.this.stopService(myIntent);
             //on detruit se service
             this.stopSelf();
         }else{
@@ -76,4 +76,3 @@ public class DeclencheurMode extends Service {
 
 
 }
-

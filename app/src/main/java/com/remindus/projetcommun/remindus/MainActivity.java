@@ -10,7 +10,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 
-import com.remindus.projetcommun.remindus.Service.DeclencheurMode;
+import com.remindus.projetcommun.remindus.Service.DeclencheurModeService;
 import com.remindus.projetcommun.remindus.Service.DeclencheurSms;
 import com.remindus.projetcommun.remindus.controller.ControllerCalendrier;
 import com.remindus.projetcommun.remindus.controller.ControllerContact;
@@ -26,7 +26,7 @@ public class MainActivity extends ActionBarActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main) ;
 
         ControllerCreerRDV.setNomRDVstatic("");
         ControllerCreerMsgProg.setTitreMsgProgStatic("");
@@ -36,7 +36,7 @@ public class MainActivity extends ActionBarActivity {
         Intent myIntent = new Intent(MainActivity.this, DeclencheurSms.class);
         MainActivity.this.startService(myIntent);
         //debut du service declencheurMode pour savoir quand changer le mode
-        Intent myIntent2 = new Intent(MainActivity.this, DeclencheurMode.class);
+        Intent myIntent2 = new Intent(MainActivity.this, DeclencheurModeService.class);
         MainActivity.this.startService(myIntent2);
 
         //redirection vers le calendrier
