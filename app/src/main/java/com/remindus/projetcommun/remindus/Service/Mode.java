@@ -54,7 +54,7 @@ public class Mode extends Service {
         }else if(mode==1){
             audiomanage.setRingerMode(AudioManager.RINGER_MODE_SILENT);
         }
-        this.stopSelf();
+        this.stopSelf() ;
     }
 
     @Override

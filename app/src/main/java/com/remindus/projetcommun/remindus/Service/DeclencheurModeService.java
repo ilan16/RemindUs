@@ -63,7 +63,7 @@ public class DeclencheurModeService extends Service {
             //on ferme le service smsService pour evité qu'il renvoi un nouveau message aléatoirement
             DeclencheurModeService.this.stopService(myIntent);
             //on detruit se service
-            this.stopSelf();
+            this.stopSelf() ;
         }else{
             //si il a plus de prochain message programmé on detruit se service
             this.stopSelf();
