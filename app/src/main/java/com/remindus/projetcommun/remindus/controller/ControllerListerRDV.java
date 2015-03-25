@@ -69,7 +69,7 @@ public class ControllerListerRDV extends ControllerHeader {
                 ControllerListerRDV.setValeurSelectionnee(valeurSelectionnee);
 
 
-        final String[] option = {getResources().getString(R.string.dialogue_modifier),getResources().getString(R.string.dialogue_contacts), getResources().getString(R.string.dialogue_supprimer)};
+        final String[] option = {getResources().getString(R.string.dialogue_modifier),getResources().getString(R.string.dialogue_supprimer),getResources().getString(R.string.dialogue_contacts) };
 
         AlertDialog.Builder myDialog =new AlertDialog.Builder(ControllerListerRDV.this);
         myDialog.setTitle(valeurSelectionnee.getNom());
