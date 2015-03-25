@@ -15,7 +15,10 @@ import java.util.List;
  * Created by Ilan on 24/02/2015.
  */
 public class DAOContact extends IDAO{
-
+    /**
+     *
+     * @param context
+     */
     public DAOContact(Context context) {
         super(context);
         //rempli le allColumn avec le attributs de la table contact
@@ -27,6 +30,12 @@ public class DAOContact extends IDAO{
         setAllColumns(allColumns);
     }
 
+    /**
+     * permet d'insérer un contact avec son numéro de tel
+     * @param contact
+     * @param telephone
+     * @return
+     */
     public boolean insertContact(String contact, String telephone) {
         if (!isExist(contact, telephone)) {
             ContentValues values = new ContentValues();
@@ -44,7 +53,7 @@ public class DAOContact extends IDAO{
     }
 
     /**
-     *
+     *permet de supprimer un contact
      * @param contact
      */
     public void deleteContact(ModelContact contact) {
@@ -54,6 +63,10 @@ public class DAOContact extends IDAO{
                 + " = " + id, null);
     }
 
+    /**
+     * permet de récupérer l'ensemble des lignes de la tables contact
+     * @return List<ModelContact>
+     */
     public List<ModelContact> getAllContacts() {
         List<ModelContact> contacts = new ArrayList<ModelContact>();
 
@@ -70,6 +83,11 @@ public class DAOContact extends IDAO{
         return contacts;
     }
 
+    /**
+     * permet de récupérer le contact correspondant au numero de télphnoe renseigné
+     * @param telephone
+     * @return
+     */
     public ModelContact getContact(String telephone) {
         ModelContact contact = new ModelContact();
         getCrud().open();
@@ -83,7 +101,7 @@ public class DAOContact extends IDAO{
     }
 
     /**
-     *
+     * permet de récupérer le contact correspondant à l'id renseigné
      * @param id
      * @return ModelContact
      */

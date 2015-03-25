@@ -20,6 +20,10 @@ import java.util.List;
  */
 public class DAOMsgProg extends IDAO{
 
+    /**
+     *
+     * @param context
+     */
     public DAOMsgProg(Context context) {
         super(context);
         //rempli le allColumn avec le attributs de la table msgprog
@@ -33,6 +37,14 @@ public class DAOMsgProg extends IDAO{
         setAllColumns(allColumns);
     }
 
+    /**
+     * permet d'insérer un msg programmé
+     * @param titre
+     * @param date
+     * @param datestring
+     * @param contenu
+     * @return
+     */
     public int insertMsgProg(String titre, long date, String datestring, String contenu) {
         //if(!this.isExist(titre)) {
 
@@ -55,6 +67,15 @@ public class DAOMsgProg extends IDAO{
         //}
     }
 
+    /**
+     * permet de modifier tous les champs d'un message programmé
+     * @param modelMsgProg
+     * @param titre
+     * @param date
+     * @param dateString
+     * @param contenu
+     * @return
+     */
     public int updateMsgProg(ModelMsgProg modelMsgProg, String titre, long date, String dateString, String contenu) {
         String id = "" + modelMsgProg.getId();
         Log.i("ID", id);
@@ -104,13 +125,15 @@ public class DAOMsgProg extends IDAO{
                 + " = " + id);
         // this.crud.close();
         if (delete) {
-            Log.i("DELETE", "effectué");
             return true;
         }
-        Log.i("DELETE", "merde");
         return false;
     }
 
+    /**
+     * permet de retourner l'ensmble des lignes de la table msg programmé
+     * @return
+     */
     public List<ModelMsgProg> getAllMsgProg() {
         List<ModelMsgProg> msgProgs = new ArrayList<ModelMsgProg>();
 
@@ -129,6 +152,11 @@ public class DAOMsgProg extends IDAO{
         return msgProgs;
     }
 
+    /**
+     * permet de récupérer l'id du msg prog ayant ce titre
+     * @param titre
+     * @return
+     */
     public ModelMsgProg getIdMsgProg(String titre) {
         getCrud().open();
         String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MSG_PROG + " WHERE " + MySQLiteHelper.COLUMN_TITRE_MSG_PROG + " = ?";
@@ -141,6 +169,11 @@ public class DAOMsgProg extends IDAO{
         return modelMsgProg;
     }
 
+    /**
+     * permet de récupérer le msg prog ayant cet id
+     * @param id
+     * @return
+     */
     public ModelMsgProg getMsgProg(int id) {
         getCrud().open();
         String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MSG_PROG + " WHERE " + MySQLiteHelper.COLUMN_ID_MSG_PROG + " = " + id;
@@ -153,6 +186,11 @@ public class DAOMsgProg extends IDAO{
         return modelMsgProg;
     }
 
+    /**
+     * permet de récupérer le msg prog ayant ce titre
+     * @param titre
+     * @return
+     */
     public ModelMsgProg getMsgProg(String titre) {
         getCrud().open();
         ModelMsgProg modelMsgProg = new ModelMsgProg();
@@ -181,6 +219,11 @@ public class DAOMsgProg extends IDAO{
         return msgProg;
     }
 
+    /**
+     * permet de voir si le titre de ce msg prog existe
+     * @param titre
+     * @return true si oui false sinon
+     */
     private boolean isExist(String titre) {
         String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MSG_PROG + " WHERE " + MySQLiteHelper.COLUMN_TITRE_MSG_PROG + " = ?";
 
@@ -196,6 +239,11 @@ public class DAOMsgProg extends IDAO{
         return false;
     }
 
+    /**
+     * permet de récupérer le prochain msg prog
+     * @param time: 0 pour déclancher le service d'envoie et 10000 (10sec) pour récupérer les numéros de tel
+     * @return
+     */
     public ModelMsgProg prochainMsgProg(long time) {
         String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MSG_PROG + " WHERE " + MySQLiteHelper.COLUMN_DATE_MSG_PROG + " >= "
                 + ((getUtilitaireDate().dateActuelle())-time) + " ORDER BY " + MySQLiteHelper.COLUMN_DATE_MSG_PROG + " ASC";
