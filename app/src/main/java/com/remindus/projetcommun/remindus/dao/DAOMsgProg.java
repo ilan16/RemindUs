@@ -185,9 +185,9 @@ public class DAOMsgProg extends IDAO{
         return false;
     }
 
-    public ModelMsgProg prochainMsgProg() {
+    public ModelMsgProg prochainMsgProg(long time) {
         String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MSG_PROG + " WHERE " + MySQLiteHelper.COLUMN_DATE_MSG_PROG + " >= "
-                + (getUtilitaireDate().dateActuelle()) + " ORDER BY " + MySQLiteHelper.COLUMN_DATE_MSG_PROG + " ASC";
+                + ((getUtilitaireDate().dateActuelle())-time) + " ORDER BY " + MySQLiteHelper.COLUMN_DATE_MSG_PROG + " ASC";
         getCrud().open();
         Cursor cursor = getCrud().requeteGeneral(sql, null);
         ModelMsgProg modelMsgProg = new ModelMsgProg();
@@ -198,18 +198,7 @@ public class DAOMsgProg extends IDAO{
         return modelMsgProg;
     }
 
-    public ModelMsgProg lastMsgProg() {
-        String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MSG_PROG + " WHERE " + MySQLiteHelper.COLUMN_DATE_MSG_PROG + " >= "
-                + ((getUtilitaireDate().dateActuelle())-1000*20) + " ORDER BY " + MySQLiteHelper.COLUMN_DATE_MSG_PROG + " ASC";
-        getCrud().open();
-        Cursor cursor = getCrud().requeteGeneral(sql, null);
-        ModelMsgProg modelMsgProg = new ModelMsgProg();
-        while (cursor.moveToNext()) {
-            modelMsgProg = this.cursorToMsgProg(cursor);
-            break;
-        }
-        return modelMsgProg;
-    }
+
 
 }
 

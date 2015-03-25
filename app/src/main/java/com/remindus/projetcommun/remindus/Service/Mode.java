@@ -7,9 +7,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.os.IBinder;
+import android.util.Log;
 
 import com.remindus.projetcommun.remindus.dao.DAOMsgProg;
+import com.remindus.projetcommun.remindus.dao.DAORDV;
 import com.remindus.projetcommun.remindus.model.ModelMsgProg;
+import com.remindus.projetcommun.remindus.model.ModelRDV;
 
 /**
  * Created by kevin on 24/03/2015.
@@ -38,22 +41,31 @@ public class Mode extends Service {
     @Override
     public void onStart(Intent intent, int startId){
         AudioManager audiomanage = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-
+        //connection à la base de donnée
+        DAORDV daordv = new DAORDV(this);
+        ModelRDV modelRDV = daordv.prochainRDV(10000);
+        //recupeation de la date et heure du prochain envoi
+        long mode = modelRDV.getMode();
+        Log.i("test","test");
         int initiale =audiomanage.getRingerMode();
-        String mode=null;
-        if(mode=="vibreur"){
+    Log.i("test3",""+mode);
+        if(mode==2){
             audiomanage.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
-        }else if(mode=="silencieux"){
+        }else if(mode==1){
             audiomanage.setRingerMode(AudioManager.RINGER_MODE_SILENT);
         }
-        int duree=0;
+
+        long debut=modelRDV.getDatedebut();
+        long fin=modelRDV.getDatefin();
+        long duree=fin-debut;
         try {
-            Thread.sleep(duree);
+            Thread.currentThread().sleep(duree);
             audiomanage.setRingerMode(initiale);
             this.stopSelf();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        this.stopSelf();
     }
 
     @Override

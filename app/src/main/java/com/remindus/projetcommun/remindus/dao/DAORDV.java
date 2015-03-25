@@ -151,9 +151,9 @@ public class DAORDV extends IDAO {
         return rdv;
     }
 
-    public ModelRDV prochainRDV() {
+    public ModelRDV prochainRDV(long time) {
         String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_RDV + " WHERE " + MySQLiteHelper.COLUMN_DATE_DEBUT_RDV + " >= "
-                + getUtilitaireDate().dateActuelle() + " ORDER BY " + MySQLiteHelper.COLUMN_DATE_DEBUT_RDV + " ASC";
+                + ((getUtilitaireDate().dateActuelle())-time) + " ORDER BY " + MySQLiteHelper.COLUMN_DATE_DEBUT_RDV + " ASC";
         getCrud().open();
         Cursor cursor = getCrud().requeteGeneral(sql, null);
         ModelRDV modelRDV = new ModelRDV();
@@ -163,5 +163,7 @@ public class DAORDV extends IDAO {
         }
         return modelRDV;
     }
+
+
 
 }

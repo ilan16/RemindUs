@@ -90,7 +90,9 @@
 
         <!-- on declare les services -->
         <service android:name=".Service.SmsService"/>
+        <service android:name=".Service.DeclencheurModeService"/>
         <service android:name=".Service.DeclencheurSms"/>
+        <service android:name=".Service.Mode"/>
     </application>
 
 </manifest>

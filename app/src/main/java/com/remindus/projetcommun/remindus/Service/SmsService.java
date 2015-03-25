@@ -67,7 +67,7 @@ public class SmsService extends Service {
 
         // on se connecte a la basse de donné des messages programme
         DAOMsgProg daoMsgProg = new DAOMsgProg(this);
-        ModelMsgProg modelMsgProg = daoMsgProg.lastMsgProg();
+        ModelMsgProg modelMsgProg = daoMsgProg.prochainMsgProg(10000);
 
         if(localisation.isProviderEnabled(LocationManager.GPS_PROVIDER)||connexion.getActiveNetworkInfo()!=null){
             //si il est actif

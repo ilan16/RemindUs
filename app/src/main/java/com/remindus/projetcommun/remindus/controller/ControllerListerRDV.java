@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.remindus.projetcommun.remindus.R;
+import com.remindus.projetcommun.remindus.Service.DeclencheurModeService;
 import com.remindus.projetcommun.remindus.dao.DAORDV;
 import com.remindus.projetcommun.remindus.model.ModelRDV;
 import com.tyczj.extendedcalendarview.CalendarProvider;
@@ -40,6 +41,9 @@ public class ControllerListerRDV extends ControllerHeader {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vue_liste_rdv);
+        //debut du service declencheurMode pour savoir quand changer le mode
+        Intent myIntent2 = new Intent(ControllerListerRDV.this, DeclencheurModeService.class);
+        ControllerListerRDV.this.startService(myIntent2);
 
         // on remet titre msg prg vide dans le cas ou l'utilisateur veut creer un rdv et un msg prog dans la mm session
         ControllerCreerMsgProg.setTitreMsgProgStatic("");

@@ -39,7 +39,7 @@ public class DeclencheurSms extends Service {
     public void onStart(Intent intent, int startId) {
         //connection à la base de donnée
         DAOMsgProg daoMsgProg = new DAOMsgProg(this);
-        ModelMsgProg modelMsgProg = daoMsgProg.prochainMsgProg();
+        ModelMsgProg modelMsgProg = daoMsgProg.prochainMsgProg(0);
         //recupeation de la date et heure du prochain envoi
         long date = modelMsgProg.getDate();
         if(date!=0) {
