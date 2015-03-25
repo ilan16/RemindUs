@@ -58,6 +58,7 @@ public class MainActivity extends ActionBarActivity {
                 startActivity(intent);
             }
         });
+
         //redirection vers la liste des RDV
         final Button boutonRDV = (Button) findViewById(R.id.bouton_rdv);
         boutonRDV.setOnClickListener(new View.OnClickListener() {
@@ -90,7 +91,10 @@ public class MainActivity extends ActionBarActivity {
         //redirection vers la liste des contacts
         final Button boutonContact = (Button) findViewById(R.id.bouton_contact);
         boutonContact.setOnClickListener(new View.OnClickListener() {
-
+            /**
+             *
+             * @param v
+             */
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ControllerContact.class);
@@ -100,7 +104,10 @@ public class MainActivity extends ActionBarActivity {
         //redirection vers liste des modele messages
         final Button boutonModelMsg = (Button) findViewById(R.id.bouton_model_msg);
         boutonModelMsg.setOnClickListener(new View.OnClickListener() {
-
+            /**
+             *
+             * @param v
+             */
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ControllerListerModelMsg.class);
@@ -111,7 +118,10 @@ public class MainActivity extends ActionBarActivity {
         //redirection vers les parametres
         final Button boutonParametre = (Button) findViewById(R.id.bouton_parametre);
         boutonParametre.setOnClickListener(new View.OnClickListener() {
-
+            /**
+             * 
+             * @param v
+             */
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ControllerParametre.class);

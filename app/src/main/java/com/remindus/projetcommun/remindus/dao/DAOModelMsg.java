@@ -17,6 +17,10 @@ import java.util.List;
  */
 public class DAOModelMsg extends IDAO {
 
+    /**
+     *
+     * @param context
+     */
     public DAOModelMsg(Context context) {
         super(context);
         //rempli le allColumn avec le attributs de la table model message
@@ -32,6 +36,7 @@ public class DAOModelMsg extends IDAO {
 
 
     /**
+     * permet d'insérer un modele msg avec son titre et son contenu
      * @param titre, contenu
      * @return int
      */
@@ -53,22 +58,30 @@ public class DAOModelMsg extends IDAO {
         }
     }
 
-
+    /**
+     * permet de supprimer un modele messsage
+     * @param modelModelMsg
+     * @return boolean
+     */
     public boolean deleteModelMsg(ModelModelMsg modelModelMsg) {
         long id = modelModelMsg.getId();
         getCrud().open();
         boolean delete = getCrud().delete(MySQLiteHelper.TABLE_MODEL_MSG, MySQLiteHelper.COLUMN_ID_MODEL_MSG
                 + " = " + id);
-        // this.crud.close();
         if (delete) {
-            Log.i("DELETE", "effectué");
             return true;
         }
-        Log.i("DELETE", "merde");
         return false;
 
     }
 
+    /**
+     * permet de mettre à jour l'ensemble du modèle message
+     * @param modelModelMsg
+     * @param titre
+     * @param contenu
+     * @return
+     */
     public int updateModelMsg(ModelModelMsg modelModelMsg, String titre, String contenu) {
         String id = "" + modelModelMsg.getId();
         Log.i("ID", id);
@@ -87,6 +100,10 @@ public class DAOModelMsg extends IDAO {
 //        return 2; // le nom existe déjà donc pas possible de maj avec ce nom
     }
 
+    /**
+     * permet de retourner l'ensemble des lignes de la tale modele message
+     * @return
+     */
     public List<ModelModelMsg> getAllModelMsg() {
         List<ModelModelMsg> modelModelMsgs = new ArrayList<ModelModelMsg>();
 
@@ -105,7 +122,11 @@ public class DAOModelMsg extends IDAO {
         return modelModelMsgs;
     }
 
-
+    /**
+     * permet de récuperer la ligne du modele message qui a cet id
+     * @param id
+     * @return
+     */
     public ModelModelMsg getModelMsg(int id) {
         getCrud().open();
         String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MODEL_MSG + " WHERE " + MySQLiteHelper.COLUMN_ID_MODEL_MSG + " = " + id;
@@ -118,6 +139,11 @@ public class DAOModelMsg extends IDAO {
         return modelModelMsg;
     }
 
+    /**
+     * permet de récuperer la ligne du modele message qui a ce titre
+     * @param titre
+     * @return
+     */
     public ModelModelMsg getModelMsg(String titre) {
         getCrud().open();
         String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MODEL_MSG + " WHERE " + MySQLiteHelper.COLUMN_TITRE_MODEL_MSG + " =  ?";
@@ -130,6 +156,11 @@ public class DAOModelMsg extends IDAO {
         return modelModelMsg;
     }
 
+    /**
+     * permet de renvoyer les données d'une seule ligne
+     * @param cursor
+     * @return ModelModelMsg
+     */
     private ModelModelMsg cursorToModelMsg(Cursor cursor) {
         ModelModelMsg modelModelMsg = new ModelModelMsg();
         modelModelMsg.setId(cursor.getLong(0));
@@ -139,6 +170,11 @@ public class DAOModelMsg extends IDAO {
         return modelModelMsg;
     }
 
+    /**
+     * permet de voir si le titre du modele qui va etre créé ou modifié n'existe pas déjà
+     * @param titre
+     * @return
+     */
     private boolean isExist(String titre) {
         getCrud().open();
         String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_MODEL_MSG + " WHERE " + MySQLiteHelper.COLUMN_TITRE_MODEL_MSG + " = '" + titre + "'";

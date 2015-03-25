@@ -8,10 +8,19 @@ import android.telephony.gsm.SmsManager;
 public class EnvoiSms {public String num;
     public String msg;
 
+    /**
+     *
+     * @param num
+     * @param msg
+     */
     public EnvoiSms(String num, String msg){
         this.num=num;
         this.msg=msg;
     }
+
+    /**
+     *
+     */
     public void envoi_texto(){
 
 
