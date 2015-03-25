@@ -58,7 +58,7 @@ public class ControllerListerRDV extends ControllerHeader {
         final List<ModelRDV> values = daordv.getAllRDV();
         l = (ListView) findViewById(R.id.afficherRDV);
 
-        ArrayAdapter<ModelRDV> adapter = new ArrayAdapter<ModelRDV>(this,
+        final ArrayAdapter<ModelRDV> adapter = new ArrayAdapter<ModelRDV>(this,
                 android.R.layout.simple_list_item_1, values);
         l.setAdapter(adapter);
 
@@ -69,7 +69,7 @@ public class ControllerListerRDV extends ControllerHeader {
                 ControllerListerRDV.setValeurSelectionnee(valeurSelectionnee);
 
 
-        final String[] option = {"Modifier", "Contacts", "Supprimer"};
+        final String[] option = {getResources().getString(R.string.dialogue_modifier),getResources().getString(R.string.dialogue_contacts), getResources().getString(R.string.dialogue_supprimer)};
 
         AlertDialog.Builder myDialog =new AlertDialog.Builder(ControllerListerRDV.this);
         myDialog.setTitle(valeurSelectionnee.getNom());
@@ -78,17 +78,15 @@ public class ControllerListerRDV extends ControllerHeader {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                String item = option[which];
-
-                switch (item){
-                    case "Modifier":
+                switch (which){
+                    case 0:
                         Intent intent = new Intent(ControllerListerRDV.this, ControllerModifierRDV.class);
                         startActivity(intent);
                         break;
-                    case "Supprimer":
+                    case 1:
                         supprimerRDV(null);
                         break;
-                    case "Contacts":
+                    case 2:
                         Intent intent2 = new Intent(ControllerListerRDV.this, ControllerListerRDVContact.class);
                         startActivity(intent2);
                         break;

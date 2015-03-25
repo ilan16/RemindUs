@@ -76,7 +76,7 @@ public class ControllerListerMsgProg extends ControllerHeader {
                 ControllerListerMsgProg.setValeurSelectionnee(valeurSelectionnee);
 
 
-                final String[] option = {"Modifier", "Contacts", "Supprimer","Envoyer manuellement"};
+                final String[] option = {getResources().getString(R.string.dialogue_modifier),getResources().getString(R.string.dialogue_supprimer),getResources().getString(R.string.dialogue_contacts),getResources().getString(R.string.dialogue_manuellement)};
 
                 AlertDialog.Builder myDialog =new AlertDialog.Builder(ControllerListerMsgProg.this);
                 myDialog.setTitle(valeurSelectionnee.getTitre());
@@ -85,21 +85,21 @@ public class ControllerListerMsgProg extends ControllerHeader {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        String item = option[which];
 
-                        switch (item){
-                            case "Modifier":
+
+                        switch (which){
+                            case 0:
                                 Intent intent = new Intent(ControllerListerMsgProg.this, ControllerModifierMsgProg.class);
                                 startActivity(intent);
                                 break;
-                            case "Supprimer":
+                            case 1:
                                 supprimerMsgProg(null);
                                 break;
-                            case "Contacts":
+                            case 2:
                                 Intent intent2 = new Intent(ControllerListerMsgProg.this, ControllerListerMsgProgContact.class);
                                 startActivity(intent2);
                                 break;
-                            case "Envoyer manuellement":
+                            case 3:
                                 int idInt  = (int) valeurSelectionnee.getId();
                                 long idLong = valeurSelectionnee.getId();
                                 ModelMsgProg modelMsgProg = daoMsgProg.getMsgProg(idInt);

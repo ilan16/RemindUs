@@ -22,4 +22,18 @@
     <string name="normal">רגיל</string>
     <string name="titre_mail">צור קשר</string>
     <string name="vibreur">רַטָט</string>
+    <string name="dialogue_contacts">אנשי קשר</string>
+    <string name="dialogue_manuellement"> לערוך ידני</string>
+    <string name="dialogue_modifier">לשנות</string>
+    <string name="dialogue_supprimer">למחוק</string>
+    <string name="wednesday">יום רביעי</string>
+    <string name="tuesday"> יום שלישי</string>
+    <string name="titre_modifier_groupe">קבוצה לערוך</string>
+    <string name="titre_model_msg_modifier">קשר עריכה</string>
+    <string name="titre_model_msg_creer">יצירת תבנית הודעה</string>
+    <string name="titre_liste_groupe"> רשימת קבוצות</string>
+    <string name="titre_creer_RDV"> ליצור מינוי</string>
+    <string name="ajouter_groupe">הוספת קבוצה חדשה</string>
+    <string name="ajouter_model_msg"> להוסיף תבנית הודעה חדשה</string>
+    <string name="refresh_contact"> לממש את</string>
 </resources>

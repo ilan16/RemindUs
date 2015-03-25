@@ -59,7 +59,7 @@ public class ControllerListerModelMsg extends ControllerHeader {
 
 
 
-                final String[] option = {"Modifier","Supprimer"};
+                final String[] option = {getResources().getString(R.string.dialogue_modifier),getResources().getString(R.string.dialogue_supprimer)};
 
                 AlertDialog.Builder myDialog =new AlertDialog.Builder(ControllerListerModelMsg.this);
                 myDialog.setTitle(valeurSelectionnee.getTitre());
@@ -68,14 +68,12 @@ public class ControllerListerModelMsg extends ControllerHeader {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        String item = option[which];
-
-                        switch (item) {
-                            case "Modifier":
+                        switch (which) {
+                            case 0:
                                 Intent intent = new Intent(ControllerListerModelMsg.this, ControllerModifierModelMsg.class);
                                 startActivity(intent);
                                 break;
-                            case "Supprimer":
+                            case 1:
                                 supprimerModelMsg(null);
                                 break;
 

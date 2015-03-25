@@ -29,4 +29,23 @@
     <string name="normal">Normal</string>
     <string name="titre_mail">Contact Us</string>
     <string name="vibreur">Vibrate</string>
+    <string name="dialogue_contacts">Contacts</string>
+    <string name="dialogue_manuellement">Send manually</string>
+    <string name="dialogue_modifier">Edit</string>
+    <string name="dialogue_supprimer">Delete</string>
+    <string name="titre_modifier_groupe">Edit group</string>
+    <string name="titre_model_msg_modifier">Edit contact</string>
+    <string name="titre_model_msg_creer">Create a predefined message</string>
+    <string name="titre_liste_groupe">List of group</string>
+    <string name="titre_creer_RDV">Create a meeting</string>
+    <string name="ajouter_model_msg">Add a new predefined message</string>
+    <string name="ajouter_msg_prog">Add a new programed message</string>
+    <string name="ajouter_rdv">Add a new meeting</string>
+    <string name="ajouter_groupe">Add a new group</string>
+    <string name="ajouter_contact">Add a new contact</string>
+    <string name="action_example"></string>
+    <string name="champs_vide">This filed %s is empty. Please fill it !</string>
+    <string name="modifier_groupe">Edit this group</string>
+    <string name="modifier_rdv">Edit this meeting</string>
+    <string name="refresh_contact">Refresh</string>
 </resources>

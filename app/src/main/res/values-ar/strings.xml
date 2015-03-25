@@ -22,4 +22,18 @@
     <string name="normal">طبيعي</string>
     <string name="titre_mail">اتصل بنا</string>
     <string name="vibreur">هزاز</string>
+    <string name="dialogue_contacts">اتصال</string>
+    <string name="dialogue_manuellement">تعديل يدويا</string>
+    <string name="dialogue_modifier">تغير</string>
+    <string name="dialogue_supprimer"> diˈlēt حذف</string>
+    <string name="wednesday">الأربعاء</string>
+    <string name="tuesday"> الثلاثاء</string>
+    <string name="titre_modifier_groupe">تحرير مجموعة</string>
+    <string name="titre_model_msg_modifier"> تحرير اتصال</string>
+    <string name="titre_model_msg_creer">إنشاء قالب رسالة</string>
+    <string name="titre_liste_groupe"> قائمة المجموعة</string>
+    <string name="titre_creer_RDV">إنشاء موعد</string>
+    <string name="ajouter_groupe"> إضافة مجموعة جديدة</string>
+    <string name="ajouter_contact"> إضافة جهات اتصال</string>
+    <string name="ajouter_model_msg">إضافة قالب رسالة جديدة</string>
 </resources>
