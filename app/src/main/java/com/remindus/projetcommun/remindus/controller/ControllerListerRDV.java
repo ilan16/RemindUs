@@ -1,7 +1,6 @@
 package com.remindus.projetcommun.remindus.controller;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -68,26 +67,39 @@ public class ControllerListerRDV extends ControllerHeader {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 valeurSelectionnee = (ModelRDV) l.getAdapter().getItem(position);
                 ControllerListerRDV.setValeurSelectionnee(valeurSelectionnee);
-                AlertDialog alertDialog = new AlertDialog.Builder(ControllerListerRDV.this).create();
-                alertDialog.setTitle(valeurSelectionnee.getNom());
-                alertDialog.setButton(Dialog.BUTTON1, "Modifier", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
+
+
+        final String[] option = {"Modifier", "Contacts", "Supprimer"};
+
+        AlertDialog.Builder myDialog =new AlertDialog.Builder(ControllerListerRDV.this);
+        myDialog.setTitle(valeurSelectionnee.getNom());
+        myDialog.setItems(option, new DialogInterface.OnClickListener(){
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                String item = option[which];
+
+                switch (item){
+                    case "Modifier":
                         Intent intent = new Intent(ControllerListerRDV.this, ControllerModifierRDV.class);
                         startActivity(intent);
-                    }
-                });
-                alertDialog.setButton(Dialog.BUTTON2, "Supprimer", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
+                        break;
+                    case "Supprimer":
                         supprimerRDV(null);
-                    }
-                });
-                alertDialog.setButton(Dialog.BUTTON3, "Contacts", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(ControllerListerRDV.this, ControllerListerRDVContact.class);
-                        startActivity(intent);
-                    }
-                });
-                alertDialog.show();
+                        break;
+                    case "Contacts":
+                        Intent intent2 = new Intent(ControllerListerRDV.this, ControllerListerRDVContact.class);
+                        startActivity(intent2);
+                        break;
+                }
+
+
+            }});
+
+        myDialog.setNegativeButton("Cancel", null);
+
+        myDialog.show();
 
                 return false;
             }
