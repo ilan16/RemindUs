@@ -72,6 +72,11 @@ public class Mode extends Service {
         this.stopSelf() ;
     }
 
+    /**
+     *
+     * @param intent
+     * @return
+     */
     @Override
     public boolean onUnbind(Intent intent) {
         // TODO Auto-generated method stub

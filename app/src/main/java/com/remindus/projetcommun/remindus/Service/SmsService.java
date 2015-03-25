@@ -28,21 +28,19 @@ import java.util.TimeZone;
  * Created by kevin on 21/03/2015.
  */
 public class SmsService extends Service {
-
+    /**
+     *
+     */
     @Override
     public void onCreate() {
 
     }
-    /*public int onStartCommand(Intent intent, int flags, int startId) {
-        i++;
-        PendingIntent pendingIntent = PendingIntent.getService(SmsService.this, 0, intent, 0);
 
-        AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
-        alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()+1000*60, pendingIntent);
-        //TODO do something useful
-        return Service.START_NOT_STICKY;
-    }*/
-
+    /**
+     *
+     * @param intent
+     * @return
+     */
     @Override
     public IBinder onBind(Intent intent) {
         // TODO Auto-generated method stub
@@ -50,6 +48,9 @@ public class SmsService extends Service {
         return null;
     }
 
+    /**
+     *
+     */
     @Override
     public void onDestroy() {
         // pour detruire le service
@@ -57,6 +58,11 @@ public class SmsService extends Service {
 
     }
 
+    /**
+     *
+     * @param intent
+     * @param startId
+     */
     @Override
     public void onStart(Intent intent, int startId) {
         // TODO Auto-generated method stub
@@ -68,14 +74,11 @@ public class SmsService extends Service {
         // on se connecte a la basse de donné des messages programme
         DAOMsgProg daoMsgProg = new DAOMsgProg(this);
         ModelMsgProg modelMsgProg = daoMsgProg.prochainMsgProg(10000);
-        Log.i("TEST",""+modelMsgProg.getDate()+"");
         if(localisation.isProviderEnabled(LocationManager.GPS_PROVIDER)||connexion.getActiveNetworkInfo()!=null){
             //si il est actif
             DAOMsgProgxContacts daoContact=new DAOMsgProgxContacts(this);
             //on recupere les numeros
             String num=daoContact.getAllNumero(modelMsgProg.getId(),getApplicationContext()) ;
-            Log.i("erer",num);
-            String test="x";
             //on supprime les espace dans le(s) numero(s) de telephone
             num = num.replace(" ", "");
             if(!num.isEmpty()) {
@@ -122,6 +125,11 @@ public class SmsService extends Service {
 
     }
 
+    /**
+     * 
+     * @param intent
+     * @return
+     */
     @Override
     public boolean onUnbind(Intent intent) {
         // TODO Auto-generated method stub
