@@ -47,7 +47,7 @@ public class EnvoiSms {public String num;
         }
         //On envoi tout les messages
         for(int a=0;a<taille;a++){
-            SmsManager.getDefault().sendTextMessage(recup[a], null, msg, null, null);
+            SmsManager.getDefault().sendTextMessage(recup[a], null, msg, null, null) ;
         }
 
 

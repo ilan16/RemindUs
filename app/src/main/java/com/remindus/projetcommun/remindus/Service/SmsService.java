@@ -68,12 +68,12 @@ public class SmsService extends Service {
         // on se connecte a la basse de donné des messages programme
         DAOMsgProg daoMsgProg = new DAOMsgProg(this);
         ModelMsgProg modelMsgProg = daoMsgProg.prochainMsgProg(10000);
-
+        Log.i("TEST",""+modelMsgProg.getDate()+"");
         if(localisation.isProviderEnabled(LocationManager.GPS_PROVIDER)||connexion.getActiveNetworkInfo()!=null){
             //si il est actif
             DAOMsgProgxContacts daoContact=new DAOMsgProgxContacts(this);
             //on recupere les numeros
-            String num=daoContact.getAllNumero(modelMsgProg.getId(),getApplicationContext());
+            String num=daoContact.getAllNumero(modelMsgProg.getId(),getApplicationContext()) ;
             Log.i("erer",num);
             String test="x";
             //on supprime les espace dans le(s) numero(s) de telephone

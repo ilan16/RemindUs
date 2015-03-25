@@ -31,7 +31,7 @@ public class DeclencheurSms extends Service {
     @Override
     public void onDestroy() {
         // detruire le service
-        super.onDestroy();
+        super.onDestroy() ;
 
     }
 
