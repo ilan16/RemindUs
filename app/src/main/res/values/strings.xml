@@ -93,5 +93,12 @@
     <string name="mail_message">Message</string>
     <string name="mail_envoyer">Envoyer</string>
     <string name="notification">Choisir mode de notification</string>
+    <string name="titre">Titre</string>
+    <string name="date">Date</string>
+    <string name="heureDebut">Heure du début</string>
+    <string name="heureFin">Heure de fin</string>
+    <string name="lieu">Lieu</string>
+    <string name="modeTel">Mode du téléphone pendant le RDV ?</string>
+    <string name="valider">Valider</string>
 
 </resources>

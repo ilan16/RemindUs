@@ -57,4 +57,11 @@
     <string name="mail_message">Message</string>
     <string name="mail_sujet">Subject</string>
     <string name="notification">Set default ring style</string>
+    <string name="date">Date</string>
+    <string name="heureDebut">Start time</string>
+    <string name="heureFin">End time</string>
+    <string name="lieu">Place</string>
+    <string name="modeTel">Phone mode during the meeting ?</string>
+    <string name="titre">Title</string>
+    <string name="valider">validate</string>
 </resources>

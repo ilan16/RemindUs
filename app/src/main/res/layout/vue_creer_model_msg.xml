@@ -39,7 +39,7 @@
                 android:id="@+id/titre_model_msg"
                 android:layout_width="330dp"
                 android:layout_height="wrap_content"
-                android:hint="Titre"
+                android:hint="@string/titre"
                 android:inputType="text"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp" />
@@ -49,7 +49,7 @@
                 android:id="@+id/message_model_msg"
                 android:layout_width="330dp"
                 android:layout_height="wrap_content"
-                android:hint="Message"
+                android:hint="@string/mail_message"
                 android:inputType="textMultiLine"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp" />
@@ -61,7 +61,7 @@
                 android:layout_gravity="center"
                 android:layout_weight="0.08"
                 android:onClick="ajouterModelMsg"
-                android:text="Valider"
+                android:text="@string/valider"
                 android:layout_marginTop="20dp"
                 android:background="@color/bleu_theme"
                 android:textColor="#ffffffff" />

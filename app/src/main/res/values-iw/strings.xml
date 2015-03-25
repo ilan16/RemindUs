@@ -48,4 +48,12 @@
     <string name="mail_message"> Langue source : Anglais הודעה</string>
     <string name="mail_sujet"> נושא</string>
     <string name="notification"> סגנון טבעת סט</string>
+    <string name="date">תאריך</string>
+    <string name="heureDebut"> זמן התחלה</string>
+    <string name="heureFin"> זמן סיום</string>
+    <string name="lieu"> מקום</string>
+    <string name="modeTel"> טלפון מצב למינוי</string>
+    <string name="modifier_rdv"> ערוך את האירוע הזה</string>
+    <string name="titre"> כותרת</string>
+    <string name="valider"> לאמת</string>
 </resources>

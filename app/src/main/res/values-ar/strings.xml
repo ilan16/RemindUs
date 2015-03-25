@@ -48,4 +48,12 @@
     <string name="mail_message">رسالة</string>
     <string name="mail_sujet"> موضوع</string>
     <string name="notification"> تعيين نمط حلقة</string>
+    <string name="date">تاريخ</string>
+    <string name="heureDebut"> وقت البدء</string>
+    <string name="heureFin"> وقت النهاية</string>
+    <string name="lieu"> مكان</string>
+    <string name="modeTel"> الهاتف وضع لتعيين</string>
+    <string name="modifier_rdv"> تعديل هذا الحدث</string>
+    <string name="titre"> لقب</string>
+    <string name="valider"> التحقق من صحة</string>
 </resources>
