@@ -20,6 +20,10 @@ public class ControllerNotifications extends ControllerHeader {
     private CheckBox normal, silencieux, vibreur;
     private Button button;
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +31,10 @@ public class ControllerNotifications extends ControllerHeader {
 
     }
 
+    /**
+     *
+     * @param view
+     */
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();

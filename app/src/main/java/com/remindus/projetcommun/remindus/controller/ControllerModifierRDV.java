@@ -30,6 +30,10 @@ public class ControllerModifierRDV extends ControllerHeader {
     private UtilitaireDate utilitaireDate;
     private DAORDV daordv;
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +50,7 @@ public class ControllerModifierRDV extends ControllerHeader {
         silencieux = (RadioButton) findViewById(R.id.radio_silencieux);
         vibreur = (RadioButton) findViewById(R.id.radio_vibreur);
 
+        //permet de remplir l'intégralité des champs
         nomEdit.setText((CharSequence) ControllerListerRDV.getValeurSelectionnee().getNom());
         dateEdit.setText((CharSequence) ControllerListerRDV.getValeurSelectionnee().getDateString());
         heureDebutEdit.setText((CharSequence) utilitaireDate.convertirLongDateString(ControllerListerRDV.getValeurSelectionnee().getDatedebut(), "HH:mm"));
@@ -67,7 +72,11 @@ public class ControllerModifierRDV extends ControllerHeader {
         }
     }
 
-
+    /**
+     * permet de modifier un RDV (il appelle les DAO qu'il faut...)
+     * @param view
+     * @throws ParseException
+     */
     public void modifierRDV(View view) throws ParseException {
 
         this.daordv = new DAORDV(this);
@@ -123,13 +132,20 @@ public class ControllerModifierRDV extends ControllerHeader {
         }
     }
 
-
+    /**
+     * permet de vérifier la syntaxe de l'heure
+     * @param heure
+     * @return
+     */
     public boolean verifierHeure(EditText heure) {
         ValidatorHeure validatorHeure = new ValidatorHeure();
         return validatorHeure.validate(heure.getText().toString());
     }
 
-
+    /**
+     * permet d'ajouter l'heure de début du rdv avec heurePicker
+     * @param v
+     */
     public void ajouterHeureDebut(View v) {
 
         // Process to get Current Time
@@ -163,6 +179,10 @@ public class ControllerModifierRDV extends ControllerHeader {
         tpd.show();
     }
 
+    /**
+     * permet d'ajouter l'heure de fin du rdv avec heurePicker
+     * @param v
+     */
     public void ajouterHeureFin(View v) {
 
         // Process to get Current Time
@@ -196,6 +216,10 @@ public class ControllerModifierRDV extends ControllerHeader {
         tpd.show();
     }
 
+    /**
+     * permet d'ajouter la date du rdv avec datePicker
+     * @param view
+     */
     public void ajouterDate(View view) {
         // Process to get Current Date
         final Calendar c = Calendar.getInstance();
@@ -219,6 +243,10 @@ public class ControllerModifierRDV extends ControllerHeader {
         dpd.show();
     }
 
+    /**
+     * permet de vérifier la syntaxe de la date
+     * @return
+     */
     public boolean verifierDate() {
         ValidatorDate validatorDate = new ValidatorDate();
         return validatorDate.validate(dateEdit.getText().toString());

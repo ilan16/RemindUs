@@ -33,14 +33,26 @@ public class ControllerListerRDVContact extends ControllerHeader {
     private DAORDVxContacts daordVxContacts;
     private ListView l;
 
+    /**
+     *
+     * @return
+     */
     public static ModelContact getModelContact() {
         return modelContact;
     }
 
+    /**
+     *
+     * @param modelContact
+     */
     public static void setModelContact(ModelContact modelContact) {
         ControllerListerRDVContact.modelContact = modelContact;
     }
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +61,9 @@ public class ControllerListerRDVContact extends ControllerHeader {
         this.listerRDVContact();
     }
 
+    /**
+     * permet de lister les contacts d'un rdv
+     */
     public void listerRDVContact() {
         daordVxContacts = new DAORDVxContacts(this);
         daordVxContacts.getCrud().open();
@@ -99,7 +114,10 @@ public class ControllerListerRDVContact extends ControllerHeader {
         });
     }
 
-
+    /**
+     * permet de supprimer un contact d'un rdv
+     * @param view
+     */
     public void supprimer(View view){
         ArrayAdapter<ModelContact> adapter = (ArrayAdapter<ModelContact>) l.getAdapter();
         boolean delete = daordVxContacts.deleteRDVxC(ControllerListerRDVContact.getModelContact().getId());
@@ -110,6 +128,10 @@ public class ControllerListerRDVContact extends ControllerHeader {
         adapter.notifyDataSetChanged();
     }
 
+    /**
+     * permet de faire une redirection vers la page des contacts
+     * @param view
+     */
     public void redirection(View view){
         Intent intent = new Intent(ControllerListerRDVContact.this, ControllerContact.class);
         startActivity(intent);
