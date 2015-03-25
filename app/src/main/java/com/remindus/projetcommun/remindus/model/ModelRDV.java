@@ -67,6 +67,6 @@ public class ModelRDV extends IModel {
     @Override
     public String toString() {
         this.utilitaireDate = new UtilitaireDate();
-        return "RDV " + this.getNom() + " prévu le " + utilitaireDate.convertirLongDateString(this.getDatedebut(), "dd/MM/yy");
+        return this.getNom() + " - " + utilitaireDate.convertirLongDateString(this.getDatedebut(), "dd/MM/yy");
     }
 }
