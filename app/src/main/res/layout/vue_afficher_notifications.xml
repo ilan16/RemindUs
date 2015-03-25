@@ -39,7 +39,7 @@
                 android:id="@+id/textView2"
                 android:layout_width="360dp"
                 android:layout_height="wrap_content"
-                android:text="Notifications : Choisir mode de sonnerie"
+                android:text="@string/notification"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:layout_marginTop="30dp"
                 android:layout_gravity="center" />

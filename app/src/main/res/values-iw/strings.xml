@@ -36,4 +36,16 @@
     <string name="ajouter_groupe">הוספת קבוצה חדשה</string>
     <string name="ajouter_model_msg"> להוסיף תבנית הודעה חדשה</string>
     <string name="refresh_contact"> לממש את</string>
+    <string name="ajouter_msg_prog"> הוסף הודעה חדשה מתוכנת</string>
+    <string name="ajouter_rdv"> הוסף מינוי חדש</string>
+    <string name="ajouter_contact"> הוספת אנשי קשר</string>
+    <string name="suivant"> הבא</string>
+    <string name="français"> צרפתי</string>
+    <string name="anglais"> אנגלית</string>
+    <string name="hebreu">עברית</string>
+    <string name="arabe"> ערבית</string>
+    <string name="mail_envoyer"> שלח</string>
+    <string name="mail_message"> Langue source : Anglais הודעה</string>
+    <string name="mail_sujet"> נושא</string>
+    <string name="notification"> סגנון טבעת סט</string>
 </resources>

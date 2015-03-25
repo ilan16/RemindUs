@@ -25,7 +25,7 @@
     <string name="dialogue_contacts">اتصال</string>
     <string name="dialogue_manuellement">تعديل يدويا</string>
     <string name="dialogue_modifier">تغير</string>
-    <string name="dialogue_supprimer"> diˈlēt حذف</string>
+    <string name="dialogue_supprimer">نزع</string>
     <string name="wednesday">الأربعاء</string>
     <string name="tuesday"> الثلاثاء</string>
     <string name="titre_modifier_groupe">تحرير مجموعة</string>
@@ -36,4 +36,16 @@
     <string name="ajouter_groupe"> إضافة مجموعة جديدة</string>
     <string name="ajouter_contact"> إضافة جهات اتصال</string>
     <string name="ajouter_model_msg">إضافة قالب رسالة جديدة</string>
+    <string name="ajouter_rdv">إضافة موعد جديد</string>
+    <string name="ajouter_msg_prog"> إضافة رسالة جديدة مبرمجة</string>
+    <string name="suivant"> التالى</string>
+    <string name="refresh_contact"> حقق أمرا</string>
+    <string name="français"> اللغة الفرنسية</string>
+    <string name="anglais"> الإنجليزية</string>
+    <string name="hebreu"> العبرية</string>
+    <string name="arabe"> العربية</string>
+    <string name="mail_envoyer"> إرسال</string>
+    <string name="mail_message">رسالة</string>
+    <string name="mail_sujet"> موضوع</string>
+    <string name="notification"> تعيين نمط حلقة</string>
 </resources>

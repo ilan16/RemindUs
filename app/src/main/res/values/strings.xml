@@ -85,5 +85,13 @@
 
     <!-- BOUTONS GENERAL -->
     <string name="suivant">Suivant</string>
+    <string name="anglais">Anglais</string>
+    <string name="français">Français</string>
+    <string name="arabe">Arabe</string>
+    <string name="hebreu">Hébreu</string>
+    <string name="mail_sujet">Sujet</string>
+    <string name="mail_message">Message</string>
+    <string name="mail_envoyer">Envoyer</string>
+    <string name="notification">Choisir mode de notification</string>
 
 </resources>

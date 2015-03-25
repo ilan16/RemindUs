@@ -48,4 +48,13 @@
     <string name="modifier_groupe">Edit this group</string>
     <string name="modifier_rdv">Edit this meeting</string>
     <string name="refresh_contact">Refresh</string>
+    <string name="suivant">Next</string>
+    <string name="français">French</string>
+    <string name="anglais">English</string>
+    <string name="hebreu">Hebrew</string>
+    <string name="arabe">Arabic</string>
+    <string name="mail_envoyer">Send</string>
+    <string name="mail_message">Message</string>
+    <string name="mail_sujet">Subject</string>
+    <string name="notification">Set default ring style</string>
 </resources>

@@ -54,7 +54,7 @@
             android:layout_below="@+id/mail_message"
             android:ems="10"
             android:inputType="textLongMessage"
-            android:text="Message"
+            android:text="@string/mail_message"
             android:layout_gravity="center"
             android:layout_marginTop="20dp" />
 
@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/mail_destinataire"
         android:layout_alignParentBottom="true"
-            android:text="Envoyer"
+            android:text="@string/mail_envoyer"
             android:layout_marginTop="20dp"
             android:layout_gravity="center"
             android:background="@color/bleu_theme"
