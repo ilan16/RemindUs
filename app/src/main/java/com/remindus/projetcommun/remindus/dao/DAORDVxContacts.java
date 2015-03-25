@@ -144,17 +144,25 @@ public class DAORDVxContacts extends IDAO {
         return modelRDVxContactses;
     }
 
+    /**
+     *
+     * @param idrdv correspond à l'id a supprimer
+     * @return boolean : true si supp false sinon
+     */
     public boolean deleteRDVxC(long idrdv) {
         getCrud().open();
         boolean delete = getCrud().delete(MySQLiteHelper.TABLE_RDVxCONTACTS, MySQLiteHelper.COLUMN_ID_CONTACT_RDVxC + " = " + idrdv);
         if (delete) {
-            Log.i("DELETE", "effectué");
             return true;
         }
-        Log.i("DELETE", "merde");
         return false;
     }
 
+    /**
+     * cette classe permet de renvoyer les données d'une seule ligne
+     * @param cursor
+     * @return ModelRDVxContacts
+     */
     private ModelRDVxContacts cursorToRDVxC(Cursor cursor) {
         ModelRDVxContacts modelRDVxContacts = new ModelRDVxContacts();
         modelRDVxContacts.setIdrdv(cursor.getLong(0));

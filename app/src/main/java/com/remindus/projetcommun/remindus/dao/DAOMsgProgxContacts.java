@@ -44,6 +44,11 @@ public class DAOMsgProgxContacts extends IDAO {
         return 1; // pb d'insertion
     }
 
+    /**
+     *
+     * @param modelMsgProgxContacts
+     * @return boolean : true si supp false sinon
+     */
     public boolean deleteMsgProgxC(ModelMsgProgxContacts modelMsgProgxContacts) {
         long idcontact = modelMsgProgxContacts.getIdContact();
         long idMsgProg = modelMsgProgxContacts.getIdMsgProg();
@@ -51,10 +56,8 @@ public class DAOMsgProgxContacts extends IDAO {
         boolean delete = getCrud().delete(MySQLiteHelper.TABLE_MSG_PROGxCONTACTS, MySQLiteHelper.COLUMN_ID_CONTACT_MPxC
                 + " = " + idcontact + " AND " + MySQLiteHelper.COLUMN_ID_MSG_PROG_MPxC + " = " + idMsgProg);
         if (delete) {
-            Log.i("DELETE", "effectué");
             return true;
         }
-        Log.i("DELETE", "merde");
         return false;
     }
 
@@ -100,6 +103,11 @@ public class DAOMsgProgxContacts extends IDAO {
         return numeros;
     }
 
+    /**
+     *
+     * @param idc
+     * @return boolean : true si supp false sinon
+     */
     public boolean deleteMsgProgxC(long idc) {
         getCrud().open();
         boolean delete = getCrud().delete(MySQLiteHelper.TABLE_MSG_PROGxCONTACTS, MySQLiteHelper.COLUMN_ID_CONTACT_MPxC + " = " + idc);
@@ -111,6 +119,11 @@ public class DAOMsgProgxContacts extends IDAO {
         return false;
     }
 
+    /**
+     * permet de renvoyer les données d'une seule ligne
+     * @param cursor
+     * @return ModelMsgProgxContacts
+     */
     private ModelMsgProgxContacts cursorToMsgProgxC(Cursor cursor) {
         ModelMsgProgxContacts modelMsgProgxContacts = new ModelMsgProgxContacts();
         modelMsgProgxContacts.setIdMsgProg(cursor.getLong(0));

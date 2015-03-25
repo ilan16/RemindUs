@@ -52,18 +52,19 @@ public class DAORDV extends IDAO {
 
     }
 
-
+    /**
+     *
+     * @param modelRDV
+     * @return boolean : true si supp false sinon
+     */
     public boolean deleteRDV(ModelRDV modelRDV) {
         long id = modelRDV.getId();
         getCrud().open();
         boolean delete = getCrud().delete(MySQLiteHelper.TABLE_RDV, MySQLiteHelper.COLUMN_ID_RDV
                 + " = " + id);
-        // this.crud.close();
         if (delete) {
-            Log.i("DELETE", "effectué");
             return true;
         }
-        Log.i("DELETE", "merde");
         return false;
 
     }
@@ -138,7 +139,11 @@ public class DAORDV extends IDAO {
         return rdv;
     }
 
-
+    /**
+     * permet de renvoyer les données d'une seule ligne
+     * @param cursor
+     * @return ModelRDV
+     */
     public ModelRDV cursorToRDV(Cursor cursor) {
         ModelRDV rdv = new ModelRDV();
         rdv.setId(cursor.getLong(0));
@@ -151,6 +156,11 @@ public class DAORDV extends IDAO {
         return rdv;
     }
 
+    /**
+     * permet de récupérer le prochaine rdv
+     * @param time : 0 pour déclancher le service d'envoie et 10000 (10sec) pour récupérer le mode
+     * @return ModelRDV
+     */
     public ModelRDV prochainRDV(long time) {
         String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_RDV + " WHERE " + MySQLiteHelper.COLUMN_DATE_DEBUT_RDV + " >= "
                 + ((getUtilitaireDate().dateActuelle())-time) + " ORDER BY " + MySQLiteHelper.COLUMN_DATE_DEBUT_RDV + " ASC";

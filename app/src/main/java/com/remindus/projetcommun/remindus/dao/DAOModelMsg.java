@@ -17,6 +17,10 @@ import java.util.List;
  */
 public class DAOModelMsg extends IDAO {
 
+    /**
+     *
+     * @param context
+     */
     public DAOModelMsg(Context context) {
         super(context);
         //rempli le allColumn avec le attributs de la table model message
@@ -130,6 +134,11 @@ public class DAOModelMsg extends IDAO {
         return modelModelMsg;
     }
 
+    /**
+     * permet de renvoyer les données d'une seule ligne
+     * @param cursor
+     * @return ModelModelMsg
+     */
     private ModelModelMsg cursorToModelMsg(Cursor cursor) {
         ModelModelMsg modelModelMsg = new ModelModelMsg();
         modelModelMsg.setId(cursor.getLong(0));

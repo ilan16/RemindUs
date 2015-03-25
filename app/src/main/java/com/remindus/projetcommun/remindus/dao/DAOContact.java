@@ -43,6 +43,10 @@ public class DAOContact extends IDAO{
         return false;
     }
 
+    /**
+     *
+     * @param contact
+     */
     public void deleteContact(ModelContact contact) {
         long id = contact.getId();
         System.out.println("Contact deleted with id: " + id);
@@ -78,6 +82,11 @@ public class DAOContact extends IDAO{
         return contact;
     }
 
+    /**
+     *
+     * @param id
+     * @return ModelContact
+     */
     public ModelContact getContact(long id) {
         ModelContact contact = new ModelContact();
         getCrud().open();
@@ -90,6 +99,11 @@ public class DAOContact extends IDAO{
         return contact;
     }
 
+    /**
+     * permet de renvoyer les données d'une seule ligne
+     * @param cursor
+     * @return ModelContact
+     */
     private ModelContact cursorToContact(Cursor cursor) {
         ModelContact contact = new ModelContact();
         contact.setId(cursor.getLong(0));
@@ -98,7 +112,12 @@ public class DAOContact extends IDAO{
         return contact;
     }
 
-
+    /**
+     * vérifie si la paire nom et tel existe dans la bdd
+     * @param nom
+     * @param tel
+     * @return boolean : true si ca existe false sinon
+     */
     public boolean isExist(String nom, String tel) {
         getCrud().open();
         String sql = "SELECT * FROM " + MySQLiteHelper.TABLE_CONTACTS + " WHERE " + MySQLiteHelper.COLUMN_NOM_CONTACT + " = \"" + nom + "\"" +

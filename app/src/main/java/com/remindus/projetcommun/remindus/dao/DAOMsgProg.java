@@ -92,6 +92,11 @@ public class DAOMsgProg extends IDAO{
         }
     }
 
+    /**
+     *
+     * @param modelMsgProg
+     * @return boolean : true si supp false sinon
+     */
     public boolean deleteMsgProg(ModelMsgProg modelMsgProg) {
         long id = modelMsgProg.getId();
         getCrud().open();
@@ -160,6 +165,12 @@ public class DAOMsgProg extends IDAO{
         return modelMsgProg;
     }
 
+
+    /**
+     * permet de renvoyer les données d'une seule ligne
+     * @param cursor
+     * @return ModelMsgProg
+     */
     private ModelMsgProg cursorToMsgProg(Cursor cursor) {
         ModelMsgProg msgProg = new ModelMsgProg();
         msgProg.setId(cursor.getLong(0));
