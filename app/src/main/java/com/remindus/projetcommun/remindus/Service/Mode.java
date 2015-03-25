@@ -18,12 +18,19 @@ import com.remindus.projetcommun.remindus.model.ModelRDV;
  * Created by kevin on 24/03/2015.
  */
 public class Mode extends Service {
+    /**
+     *
+     */
     @Override
     public void onCreate() {
 
     }
 
-
+    /**
+     *
+     * @param intent
+     * @return
+     */
     @Override
     public IBinder onBind(Intent intent) {
         // TODO Auto-generated method stub
@@ -31,6 +38,9 @@ public class Mode extends Service {
         return null;
     }
 
+    /**
+     *
+     */
     @Override
     public void onDestroy() {
         // detruire le service
@@ -38,22 +48,27 @@ public class Mode extends Service {
 
     }
 
+    /**
+     *
+     * @param intent
+     * @param startId
+     */
     @Override
     public void onStart(Intent intent, int startId){
         AudioManager audiomanage = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         //connection à la base de donnée
         DAORDV daordv = new DAORDV(this);
         ModelRDV modelRDV = daordv.prochainRDV(10000);
-        //recupeation de la date et heure du prochain envoi
+        //recupeation du mode pour le RDV
         long mode = modelRDV.getMode();
-        Log.i("test","test");
-        int initiale =audiomanage.getRingerMode();
-    Log.i("test3",""+mode);
+
+        //on recherche le mode à mettre
         if(mode==2){
             audiomanage.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
         }else if(mode==1){
             audiomanage.setRingerMode(AudioManager.RINGER_MODE_SILENT);
         }
+        //on detruit le service
         this.stopSelf() ;
     }
 

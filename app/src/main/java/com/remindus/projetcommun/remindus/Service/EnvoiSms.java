@@ -19,7 +19,7 @@ public class EnvoiSms {public String num;
     }
 
     /**
-     * 
+     *
      */
     public void envoi_texto(){
 
