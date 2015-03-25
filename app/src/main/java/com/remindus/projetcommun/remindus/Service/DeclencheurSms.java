@@ -14,13 +14,19 @@ import com.remindus.projetcommun.remindus.model.ModelMsgProg;
  * Created by kevin on 21/03/2015.
  */
 public class DeclencheurSms extends Service {
-
+    /**
+     *
+     */
     @Override
     public void onCreate() {
 
     }
 
-
+    /**
+     *
+     * @param intent
+     * @return
+     */
     @Override
     public IBinder onBind(Intent intent) {
         // TODO Auto-generated method stub
@@ -28,6 +34,9 @@ public class DeclencheurSms extends Service {
         return null;
     }
 
+    /**
+     *
+     */
     @Override
     public void onDestroy() {
         // detruire le service
@@ -35,6 +44,11 @@ public class DeclencheurSms extends Service {
 
     }
 
+    /**
+     *
+     * @param intent
+     * @param startId
+     */
     @Override
     public void onStart(Intent intent, int startId) {
         //connection à la base de donnée
@@ -67,6 +81,11 @@ public class DeclencheurSms extends Service {
         }
     }
 
+    /**
+     * 
+     * @param intent
+     * @return
+     */
     @Override
     public boolean onUnbind(Intent intent) {
         // TODO Auto-generated method stub
