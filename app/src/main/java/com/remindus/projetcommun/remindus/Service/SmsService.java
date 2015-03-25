@@ -74,17 +74,24 @@ public class SmsService extends Service {
             DAOMsgProgxContacts daoContact=new DAOMsgProgxContacts(this);
             //on recupere les numeros
             String num=daoContact.getAllNumero(modelMsgProg.getId(),getApplicationContext());
-            if(num!=null) {
-                //si un numero est renseigner
-                //on supprime les espace dans le(s) numero(s) de telephone
-                num = num.replace(" ", "");
-                //on recupere le message à envoyé
-                String msg = modelMsgProg.getMsgProg();
-                //on appele la classe EnvoiSms pour pouvoir lancer le sms
-                EnvoiSms s = new EnvoiSms(num, msg);
-                s.envoi_texto();
+            Log.i("erer",num);
+            String test="x";
+            //on supprime les espace dans le(s) numero(s) de telephone
+            num = num.replace(" ", "");
+            if(!num.isEmpty()) {
+
+
+                    //si un numero est renseigner
+
+                    //on recupere le message à envoyé
+                    String msg = modelMsgProg.getMsgProg();
+                    //on appele la classe EnvoiSms pour pouvoir lancer le sms
+                    EnvoiSms s = new EnvoiSms(num, msg);
+                    s.envoi_texto();
+
+
             }else{
-                // si aucun numero renseigner on envoi une notification
+                 // si aucun numero renseigner on envoi une notification
                 NotificationManager notificationmanager=(NotificationManager) this.getApplicationContext().getSystemService(this.getApplicationContext().NOTIFICATION_SERVICE);
                 Intent myIntent=new Intent(this.getApplicationContext(), MainActivity.class);
                 Notification notification=new Notification(R.drawable.ic_launcher,"test",System.currentTimeMillis());
