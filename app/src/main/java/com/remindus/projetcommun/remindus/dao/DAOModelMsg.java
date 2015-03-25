@@ -17,8 +17,6 @@ import java.util.List;
  */
 public class DAOModelMsg extends IDAO {
 
-    private CRUD crud;
-
     public DAOModelMsg(Context context) {
         super(context);
         //rempli le allColumn avec le attributs de la table model message
@@ -33,6 +31,10 @@ public class DAOModelMsg extends IDAO {
 
 
 
+    /**
+     * @param titre, contenu
+     * @return int
+     */
     public int insertModelMsg(String titre, String contenu) {
         if (!this.isExist(titre)) {
             ContentValues values = new ContentValues();
