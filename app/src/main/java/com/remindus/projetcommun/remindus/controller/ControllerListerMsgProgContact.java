@@ -31,14 +31,26 @@ public class ControllerListerMsgProgContact extends ControllerHeader {
     private static ModelContact modelContact;
     private ListView l;
 
+    /**
+     *
+     * @return
+     */
     public static ModelContact getModelContact() {
         return modelContact;
     }
 
+    /**
+     *
+     * @param modelContact
+     */
     public static void setModelContact(ModelContact modelContact) {
         ControllerListerMsgProgContact.modelContact = modelContact;
     }
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +59,9 @@ public class ControllerListerMsgProgContact extends ControllerHeader {
         this.lister();
     }
 
+    /**
+     * permet de lister les contacts faisant partis à un msg prog
+     */
     public void lister() {
         daoMsgProgxContacts = new DAOMsgProgxContacts(this);
         daoMsgProgxContacts.getCrud().open();
@@ -69,7 +84,7 @@ public class ControllerListerMsgProgContact extends ControllerHeader {
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, affiche);
         l.setAdapter(adapter);
-
+//boite de dialogue
         l.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {

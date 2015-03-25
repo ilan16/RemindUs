@@ -125,6 +125,10 @@ public class ControllerListerMsgProg extends ControllerHeader {
         });
     }
 
+    /**
+     * permet de supprimer un élément de la bdd et de la liste visuel
+     * @param view
+     */
     public void supprimerMsgProg(View view) {
         ArrayAdapter<ModelMsgProg> adapter = (ArrayAdapter<ModelMsgProg>) l.getAdapter();
         boolean delete = daoMsgProg.deleteMsgProg(valeurSelectionnee);
@@ -136,6 +140,10 @@ public class ControllerListerMsgProg extends ControllerHeader {
         adapter.notifyDataSetChanged();
     }
 
+    /**
+     * faire des redirection vers créer un msg prog
+     * @param view
+     */
     public void redirection(View view) {
         Intent intent = new Intent(ControllerListerMsgProg.this, ControllerCreerMsgProg.class);
         startActivity(intent);

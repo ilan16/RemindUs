@@ -18,6 +18,10 @@ public class ControllerCreerModelMsg extends ControllerHeader {
     private EditText titreEdit, contenuEdit;
     private UtilitaireDate utilitaireDate;
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +31,10 @@ public class ControllerCreerModelMsg extends ControllerHeader {
         contenuEdit = (EditText) findViewById(R.id.message_model_msg);
     }
 
+    /**
+     * permet de rajouter un nouveau model msg
+     * @param view
+     */
     public void ajouterModelMsg(View view) {
         String titre = this.titreEdit.getText().toString();
         String contenu = this.contenuEdit.getText().toString();

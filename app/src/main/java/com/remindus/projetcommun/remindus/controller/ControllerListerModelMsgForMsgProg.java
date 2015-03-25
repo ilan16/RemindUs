@@ -31,14 +31,18 @@ import java.util.List;
  * Created by ilanmalka on 23/03/15.
  */
 public class ControllerListerModelMsgForMsgProg extends ControllerHeader {
+
     private ListView lv;
     private Cursor cursor1;
     private DAOModelMsg daoModelMsg;
     private ArrayAdapter<ModelModelMsg> adapter = null;
     private static ModelModelMsg modelModelMsg;
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vue_afficher_msg_modele);
@@ -46,6 +50,9 @@ public class ControllerListerModelMsgForMsgProg extends ControllerHeader {
         this.listerContact();
     }
 
+    /**
+     * permet de lister les modeles messages pour en ajouter un seul lors de la création d'un msg prog
+     */
     public void listerContact() {
         daoModelMsg = new DAOModelMsg(this);
         daoModelMsg.getCrud().open();
@@ -60,6 +67,10 @@ public class ControllerListerModelMsgForMsgProg extends ControllerHeader {
 
     }
 
+    /**
+     * permet de changer de vue une fois le modele message sélectionné
+     * @param view
+     */
     public void valider(View view) {
         int idSelectionne = lv.getCheckedItemPosition();
         setModelModelMsg(adapter.getItem(idSelectionne));
@@ -68,10 +79,18 @@ public class ControllerListerModelMsgForMsgProg extends ControllerHeader {
         startActivity(intent);
     }
 
+    /**
+     *
+     * @return
+     */
     public static ModelModelMsg getModelModelMsg() {
         return modelModelMsg;
     }
 
+    /**
+     *
+     * @param modelModelMsg
+     */
     public static void setModelModelMsg(ModelModelMsg modelModelMsg) {
         ControllerListerModelMsgForMsgProg.modelModelMsg = modelModelMsg;
     }

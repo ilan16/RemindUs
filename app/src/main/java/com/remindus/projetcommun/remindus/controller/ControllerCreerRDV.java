@@ -87,22 +87,10 @@ public class ControllerCreerRDV extends ControllerHeader {
         ControllerListerMsgProg.setValeurSelectionnee(null);
     }
 
-    /*public void listerContact(){
 
-        daoContact = new DAOContact(this);
-        daoContact.getCrud().open();
-
-        final List<ModelContact> values = daoContact.getAllContacts();
-        lv = (ListView) findViewById(R.id.listeContact);
-
-        adapter = new CustomAdapterContact(this,R.layout.vue_creer_rdv,values);
-
-        lv.setAdapter(this.adapter);
-        lv.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
-
-    }*/
-
-
+    /**
+     *
+     */
     private void checkButtonClick() {
 
         Button myButton = (Button) findViewById(R.id.valider);
@@ -135,6 +123,10 @@ public class ControllerCreerRDV extends ControllerHeader {
         });
     }
 
+    /**
+     *
+     * @param nomRDV
+     */
     public void ajouterContactRDV(String nomRDV) {
         final HashMap<CheckBox, TextView> values = adapter.getListChecked();
         for (HashMap.Entry<CheckBox, TextView> hash : values.entrySet()) {
@@ -153,23 +145,12 @@ public class ControllerCreerRDV extends ControllerHeader {
         }
     }
 
+    /**
+     * permet de créer un rdv
+     * @param view
+     * @throws ParseException
+     */
     public void creerRDV(View view) throws ParseException {
-
-        /*ArrayList<String> contacts = new ArrayList<String>();
-
-        lv = (ListView) findViewById(R.id.sampleList);
-
-        SparseBooleanArray checked = lv.getCheckedItemPositions();
-
-
-        for (int i = 0; i < lv.getCount(); i++) {
-            if (checked.get(i)) {
-                String text = lv.getItemAtPosition(i).toString();
-                contacts.add(text);
-                Log.i("LIST", ""+text);
-
-            }
-        }*/
 
         String nom = nomEdit.getText().toString();
         String date = dateEdit.getText().toString();
@@ -177,7 +158,7 @@ public class ControllerCreerRDV extends ControllerHeader {
         String heurefin = heureFinEdit.getText().toString();
         String lieu = lieuEdit.getText().toString();
         long mode = 0;
-
+//on vérifie l'ensemble des champs
         if (this.verifierDate()) {
 
             if (this.verifierHeure(heureDebutEdit) && this.verifierHeure(heureFinEdit)) {
@@ -228,17 +209,29 @@ public class ControllerCreerRDV extends ControllerHeader {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean verifierDate() {
         ValidatorDate validatorDate = new ValidatorDate();
         return validatorDate.validate(dateEdit.getText().toString());
     }
 
+    /**
+     *
+     * @param heure
+     * @return
+     */
     public boolean verifierHeure(EditText heure) {
         ValidatorHeure validatorHeure = new ValidatorHeure();
         return validatorHeure.validate(heure.getText().toString());
     }
 
-
+    /**
+     *
+     * @param v
+     */
     public void ajouterHeureDebut(View v) {
 
         // Process to get Current Time
@@ -272,6 +265,10 @@ public class ControllerCreerRDV extends ControllerHeader {
         tpd.show();
     }
 
+    /**
+     *
+     * @param v
+     */
     public void ajouterHeureFin(View v) {
 
         // Process to get Current Time
@@ -305,6 +302,10 @@ public class ControllerCreerRDV extends ControllerHeader {
         tpd.show();
     }
 
+    /**
+     *
+     * @param view
+     */
     public void ajouterDate(View view) {
         // Process to get Current Date
         final Calendar c = Calendar.getInstance();
@@ -328,6 +329,14 @@ public class ControllerCreerRDV extends ControllerHeader {
         dpd.show();
     }
 
+    /**
+     * permet de rajouter un marqueur dans le calendrier
+     * @param date
+     * @param h
+     * @param lieu
+     * @param nom
+     * @param dateLong
+     */
     public void ajouterEventCalendrier(String date, String h, String lieu, String nom, long dateLong) {
         ContentValues values = new ContentValues();
         values.put(CalendarProvider.COLOR, Event.COLOR_RED);

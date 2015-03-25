@@ -12,7 +12,10 @@ import com.remindus.projetcommun.remindus.R;
  * Created by kevin on 11/03/2015.
  */
 public class ControllerHeader extends ActionBarActivity {
-
+    /**
+     * permet de faire une redirection vers lemenu lors de l'appui sur le bouton home
+     * @param view
+     */
     public void backHome(View view) {
 
         new Thread(new Runnable() {

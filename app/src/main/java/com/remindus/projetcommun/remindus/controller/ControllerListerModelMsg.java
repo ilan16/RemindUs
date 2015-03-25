@@ -25,14 +25,26 @@ public class ControllerListerModelMsg extends ControllerHeader {
     private DAOModelMsg daoModelMsg;
     private ListView l;
 
+    /**
+     *
+     * @return
+     */
     public static ModelModelMsg getValeurSelectionnee() {
         return valeurSelectionnee;
     }
 
+    /**
+     *
+     * @param valeurSelectionnee
+     */
     public static void setValeurSelectionnee(ModelModelMsg valeurSelectionnee) {
         ControllerListerModelMsg.valeurSelectionnee = valeurSelectionnee;
     }
 
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +53,9 @@ public class ControllerListerModelMsg extends ControllerHeader {
         this.listerModelMsg();
     }
 
+    /**
+     * permet de lister l'ensemble des modeles messages
+     */
     public void listerModelMsg() {
         daoModelMsg = new DAOModelMsg(this);
         daoModelMsg.getCrud().open();
@@ -56,8 +71,6 @@ public class ControllerListerModelMsg extends ControllerHeader {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 valeurSelectionnee = (ModelModelMsg) l.getAdapter().getItem(position);
                 ControllerListerModelMsg.setValeurSelectionnee(valeurSelectionnee);
-
-
 
                 final String[] option = {getResources().getString(R.string.dialogue_modifier),getResources().getString(R.string.dialogue_supprimer)};
 
@@ -76,10 +89,7 @@ public class ControllerListerModelMsg extends ControllerHeader {
                             case 1:
                                 supprimerModelMsg(null);
                                 break;
-
                         }
-
-
                     }
                 });
 
@@ -93,6 +103,10 @@ public class ControllerListerModelMsg extends ControllerHeader {
         });
     }
 
+    /**
+     * permet de faire une redirection vers le menu créer un modele message
+     * @param view
+     */
     public void redirection(View view) {
         Intent intent = null;
         switch (view.getId()) {
@@ -103,6 +117,10 @@ public class ControllerListerModelMsg extends ControllerHeader {
         }
     }
 
+    /**
+     * permet de supprimer un élément de la bdd et de la liste visuel
+     * @param view
+     */
     public void supprimerModelMsg(View view) {
         ArrayAdapter<ModelModelMsg> adapter = (ArrayAdapter<ModelModelMsg>) l.getAdapter();
         boolean delete = daoModelMsg.deleteModelMsg(valeurSelectionnee);
@@ -110,7 +128,7 @@ public class ControllerListerModelMsg extends ControllerHeader {
             Toast.makeText(getApplicationContext(), getResources().getString(R.string.model_msg_supprime, valeurSelectionnee.getTitre()), Toast.LENGTH_SHORT).show();
         }
         adapter.remove(valeurSelectionnee);
-        adapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();//permet de mettre à jour la liste niveau design
     }
 
 
