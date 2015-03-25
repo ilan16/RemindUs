@@ -19,8 +19,6 @@ import java.util.List;
  */
 public class DAOMsgProgxContacts extends IDAO {
 
-    private CRUD crud;
-
     public DAOMsgProgxContacts(Context context) {
         super(context);
         //rempli le allColumn avec le attributs de la table msgxcontacts
