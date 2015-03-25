@@ -54,17 +54,6 @@ public class Mode extends Service {
         }else if(mode==1){
             audiomanage.setRingerMode(AudioManager.RINGER_MODE_SILENT);
         }
-
-        long debut=modelRDV.getDatedebut();
-        long fin=modelRDV.getDatefin();
-        long duree=fin-debut;
-        try {
-            Thread.currentThread().sleep(duree);
-            audiomanage.setRingerMode(initiale);
-            this.stopSelf();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         this.stopSelf();
     }
 

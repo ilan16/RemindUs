@@ -46,7 +46,6 @@ public class DeclencheurModeService extends Service {
         long date = modelRDV.getDatedebut();
         Log.i("test1",date+"");
         if(date!=0) {
-            Log.i("test12","tzqt");
             //si il existe un prochain message programmé
             //on se redirige vers SmsService.class
             Intent myIntent = new Intent(DeclencheurModeService.this, Mode.class);
@@ -61,7 +60,8 @@ public class DeclencheurModeService extends Service {
 
             //verifie quand demarré le nouveau service declencheurSms
             alarmManager.set(AlarmManager.RTC_WAKEUP, date, pendingIntent2);
-
+            //on ferme le service smsService pour evité qu'il renvoi un nouveau message aléatoirement
+            DeclencheurModeService.this.stopService(myIntent);
             //on detruit se service
             this.stopSelf();
         }else{
